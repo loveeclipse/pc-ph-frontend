@@ -1,10 +1,11 @@
-package provaprogetto.unibo.it.prova
+package it.unibo.preh_frontend
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import it.unibo.preh_frontend.R
 
 class MainActivity : AppCompatActivity() {
 

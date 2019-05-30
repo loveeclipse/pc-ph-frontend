@@ -1,4 +1,4 @@
-package provaprogetto.unibo.it.prova.notifications
+package it.unibo.preh_frontend.notifications
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -10,7 +10,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import provaprogetto.unibo.it.prova.MainActivity
+import it.unibo.preh_frontend.MainActivity
 
 class PreHMessagingService : FirebaseMessagingService() {
 

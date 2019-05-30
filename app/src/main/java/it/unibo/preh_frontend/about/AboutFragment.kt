@@ -1,11 +1,11 @@
-package provaprogetto.unibo.it.prova.about
+package it.unibo.preh_frontend.about
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import provaprogetto.unibo.it.prova.R
+import it.unibo.preh_frontend.R
 
 class AboutFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

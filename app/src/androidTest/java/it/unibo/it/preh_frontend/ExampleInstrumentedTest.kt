@@ -1,4 +1,4 @@
-package provaprogetto.unibo.it.prova
+package it.unibo.it.preh_frontend
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4

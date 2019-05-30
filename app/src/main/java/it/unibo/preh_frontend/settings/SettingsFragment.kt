@@ -1,11 +1,11 @@
-package provaprogetto.unibo.it.prova.settings
+package it.unibo.preh_frontend.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import provaprogetto.unibo.it.prova.R
+import it.unibo.preh_frontend.R
 
 class SettingsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

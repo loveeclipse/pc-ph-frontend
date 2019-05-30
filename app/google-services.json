@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:40129209859:android:551376f5e3129b45",
         "android_client_info": {
-          "package_name": "provaprogetto.unibo.it.prova"
+          "package_name": "it.unibo.preh_frontend"
         }
       },
       "oauth_client": [

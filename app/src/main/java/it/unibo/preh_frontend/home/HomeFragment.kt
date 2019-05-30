@@ -1,4 +1,4 @@
-package provaprogetto.unibo.it.prova.home
+package it.unibo.preh_frontend.home
 
 import android.content.Context
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import provaprogetto.unibo.it.prova.R
+import it.unibo.preh_frontend.R
 
 class HomeFragment : Fragment() {
 
