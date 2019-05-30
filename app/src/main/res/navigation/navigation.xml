@@ -4,7 +4,7 @@
             android:id="@+id/navigation" app:startDestination="@id/home">
 
     <fragment android:id="@+id/home" android:name="it.unibo.preh_frontend.home.HomeFragment"
-              android:layout="@layout/fragment_home"
+              android:layout="@layout/fragment_login"
               android:label="@string/app_name">
         <action android:id="@+id/action_home_to_settings" app:destination="@id/settings"
                 app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
