@@ -1,75 +1,101 @@
 package it.unibo.preh_frontend.home
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
-import android.view.*
-import android.widget.Button
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import android.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+
 import it.unibo.preh_frontend.R
 
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
+
+/**
+ * A simple [Fragment] subclass.
+ * Activities that contain this fragment must implement the
+ * [HomeFragment.OnFragmentInteractionListener] interface
+ * to handle interaction events.
+ * Use the [HomeFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ *
+ */
 class HomeFragment : Fragment() {
+    // TODO: Rename and change types of parameters
+    private var param1: String? = null
+    private var param2: String? = null
+    private var listener: OnFragmentInteractionListener? = null
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        setHasOptionsMenu(true)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
+        }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_login, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
 
-        /* val fab = findViewById<FloatingActionButton>(R.id.fab)
-        fab.setOnClickListener {
+    // TODO: Rename method, update argument and hook method into UI event
+    fun onButtonPressed(uri: Uri) {
+        listener?.onFragmentInteraction(uri)
+    }
 
-        }*/
-        root.findViewById<View>(R.id.button1).setOnClickListener {
-            DialogFragmentExample().show(requireActivity().supportFragmentManager, "dialog_fragment")
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnFragmentInteractionListener) {
+            listener = context
+        } else {
+            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
         }
-        root.findViewById<View>(R.id.button2).setOnClickListener {
-            BottomSheetFragmentExample().show(requireActivity().supportFragmentManager, "bottom_dialog_fragment")
-        }
-        root.findViewById<Button>(R.id.button3).setOnClickListener {
-            AlertDialog.Builder(requireContext())
-                    .setMessage("banana 2")
-                    .setTitle("Decidi")
-                    .setPositiveButton("OK") { dialog, which ->
-                        Toast.makeText(requireContext(), "premuto ok", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     *
+     *
+     * See the Android Training lesson [Communicating with Other Fragments]
+     * (http://developer.android.com/training/basics/fragments/communicating.html)
+     * for more information.
+     */
+    interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        fun onFragmentInteraction(uri: Uri)
+    }
+
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment HomeFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+                HomeFragment().apply {
+                    arguments = Bundle().apply {
+                        putString(ARG_PARAM1, param1)
+                        putString(ARG_PARAM2, param2)
                     }
-                    .setNegativeButton(R.string.cancel) { dialog, which ->
-                        Toast.makeText(requireContext(), "premuto annulla", Toast.LENGTH_SHORT).show()
-                    }
-                    .create().show()
-        }
-        root.findViewById<FloatingActionButton>(R.id.fab).apply {
-            setOnClickListener {
-                DialogFragmentExample().show(requireActivity().supportFragmentManager, "banana_dialog")
-                //Toast.makeText(requireContext(), "banana", Toast.LENGTH_SHORT).show()
-                //Snackbar.make(findViewById(R.id.root), "Sei sicuro", Snackbar.LENGTH_SHORT).show()
-            }
-        }
-
-        val sharedPreferences = requireContext().getSharedPreferences("dati", Context.MODE_PRIVATE)
-
-        sharedPreferences.edit().putString("chiave_valore", "valore").apply()
-
-        val valoreSalvato = sharedPreferences.getString("chiave_valore", null)
-
-        if (valoreSalvato != null && valoreSalvato == "valore")  {
-            Toast.makeText(requireContext(), "i valori sono uguali", Toast.LENGTH_SHORT).show()
-        }
-
-        return root
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.home, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item, findNavController())
+                }
     }
 }

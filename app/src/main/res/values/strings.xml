@@ -6,4 +6,17 @@
     <string name="conferma">Conferma</string>
     <string name="mezzo">Mezzo</string>
     <string name="medico">Medico</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="storico">Storico</string>
+    <string name="dett_missione">Dett. Missione</string>
+    <string name="stato_paziente">Stato Paziente</string>
+    <string name="farmaci">Farmaci</string>
+    <string name="manovre">Manovre</string>
+    <string name="trattamenti">Trattamenti</string>
+    <string name="complicanze_in_itinere">Complicanze in itinere</string>
+    <string name="parametri_vitali">Parametri Vitali</string>
+    <string name="new_pc_car">New PC Car</string>
+    <string name="note">Note</string>
 </resources>
