@@ -26,7 +26,7 @@ class LoginFragment : Fragment() {
         val medicSpinner = root.findViewById<Spinner>(R.id.medicSpinner)
         medicSpinner.onItemSelectedListener= object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
-
+                confirmButton.isEnabled = false
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -36,7 +36,7 @@ class LoginFragment : Fragment() {
         val vehicleSpinner = root.findViewById<Spinner>(R.id.vehicleSpinner)
         medicSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
-
+                confirmButton.isEnabled = false
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
