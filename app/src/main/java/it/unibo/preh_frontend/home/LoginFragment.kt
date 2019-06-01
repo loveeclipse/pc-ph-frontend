@@ -44,7 +44,7 @@ class LoginFragment : Fragment() {
         val confirm = root.findViewById<Button>(R.id.confirmButton)
         confirm.isEnabled = false
         confirm.setOnClickListener {
-            setApplicationSubtitle("Medico " + medicSpinner.selectedItem.toString() + " Mezzo " + vehicleSpinner.selectedItem.toString())
+            setApplicationSubtitle("Medico: " + medicSpinner.selectedItem.toString() + "     Mezzo: " + vehicleSpinner.selectedItem.toString())
             //Cambia fragment con quello HOME
             findNavController().navigate(R.id.action_login_to_home)
         }
@@ -54,7 +54,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun setApplicationSubtitle(subtitle: String){
-        //(activity as AppCompatActivity).supportActionBar?.title = "Title"
+        (activity as AppCompatActivity).supportActionBar?.subtitle = subtitle
         //val actionBar = activity?.actionBar
         //Log.d("p-r-e-h", "activity = $activity")
         // actionBar!!.subtitle = subtitle
