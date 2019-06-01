@@ -55,9 +55,6 @@ class LoginFragment : Fragment() {
 
     private fun setApplicationSubtitle(subtitle: String){
         (activity as AppCompatActivity).supportActionBar?.subtitle = subtitle
-        //val actionBar = activity?.actionBar
-        //Log.d("p-r-e-h", "activity = $activity")
-        // actionBar!!.subtitle = subtitle
     }
     private fun toggleConfigButton(){
         confirmButton.isEnabled = !(medicSpinner.selectedItemPosition == 0 || vehicleSpinner.selectedItemPosition == 0)
