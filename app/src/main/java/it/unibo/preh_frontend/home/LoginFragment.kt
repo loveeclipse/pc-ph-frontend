@@ -1,17 +1,15 @@
 package it.unibo.preh_frontend.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.AdapterView
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Spinner
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import it.unibo.preh_frontend.R
-import kotlinx.android.synthetic.main.fragment_login.*
 
 
 class LoginFragment : Fragment() {
@@ -23,45 +21,31 @@ class LoginFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_login, container, false)
-
         val medicSpinner = root.findViewById<Spinner>(R.id.medicSpinner)
-        medicSpinner.onItemSelectedListener= object : AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                toggleConfigButton()
-            }
-        }
         val vehicleSpinner = root.findViewById<Spinner>(R.id.vehicleSpinner)
-        vehicleSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                toggleConfigButton()
-            }
-        }
-
-        val confirm = root.findViewById<Button>(R.id.confirmButton)
-        confirm.isEnabled = false
-        confirm.setOnClickListener {
-            setApplicationSubtitle("Medico: " + medicSpinner.selectedItem.toString() + "     Mezzo: " + vehicleSpinner.selectedItem.toString())
+        root.findViewById<Button>(R.id.confirmButton).setOnClickListener {
+            setDoctorAndVehicle("Dott. " + medicSpinner.selectedItem.toString(), vehicleSpinner.selectedItem.toString())
             //Cambia fragment con quello HOME
             findNavController().navigate(R.id.action_login_to_home)
         }
 
-
         return root
     }
 
-    private fun setApplicationSubtitle(subtitle: String){
-        (activity as AppCompatActivity).supportActionBar?.subtitle = subtitle
-    }
-    private fun toggleConfigButton(){
-        confirmButton.isEnabled = !(medicSpinner.selectedItemPosition == 0 || vehicleSpinner.selectedItemPosition == 0)
+    private fun setDoctorAndVehicle(doctor: String, vehicle: String){
+        requireActivity().findViewById<TextView>(R.id.doctor).text = doctor
+        requireActivity().findViewById<TextView>(R.id.vehicle).text = vehicle
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.home, menu)
+        requireActivity().findViewById<TextView>(R.id.title).text = getString(R.string.title)
+
+        requireActivity().findViewById<TextView>(R.id.title).visibility = View.VISIBLE
+        requireActivity().findViewById<TextView>(R.id.doctor).visibility = View.INVISIBLE
+        requireActivity().findViewById<TextView>(R.id.vehicle).visibility = View.INVISIBLE
+        requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
+        requireActivity().findViewById<Button>(R.id.finish).visibility = View.INVISIBLE
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

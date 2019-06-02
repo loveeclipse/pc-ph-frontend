@@ -2,14 +2,25 @@ package it.unibo.preh_frontend.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import it.unibo.preh_frontend.R
 
 class HomeFragment : Fragment() {
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -45,5 +56,13 @@ class HomeFragment : Fragment() {
             }
         })
         return root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        requireActivity().findViewById<TextView>(R.id.title).visibility = View.VISIBLE
+        requireActivity().findViewById<TextView>(R.id.doctor).visibility = View.VISIBLE
+        requireActivity().findViewById<TextView>(R.id.vehicle).visibility = View.VISIBLE
+        requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
+        requireActivity().findViewById<Button>(R.id.finish).visibility = View.VISIBLE
     }
 }
