@@ -1,11 +1,13 @@
 package it.unibo.preh_frontend.home
 
+import android.opengl.Visibility
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -44,7 +46,7 @@ class LoginFragment : Fragment() {
         val confirm = root.findViewById<Button>(R.id.confirmButton)
         confirm.isEnabled = false
         confirm.setOnClickListener {
-            setApplicationSubtitle("Medico: " + medicSpinner.selectedItem.toString() + "     Mezzo: " + vehicleSpinner.selectedItem.toString())
+            setDoctorAndVehicle("Dott. " + medicSpinner.selectedItem.toString(), vehicleSpinner.selectedItem.toString())
             //Cambia fragment con quello HOME
             findNavController().navigate(R.id.action_login_to_home)
         }
@@ -53,15 +55,22 @@ class LoginFragment : Fragment() {
         return root
     }
 
-    private fun setApplicationSubtitle(subtitle: String){
-        (activity as AppCompatActivity).supportActionBar?.subtitle = subtitle
+    private fun setDoctorAndVehicle(doctor: String, vehicle: String){
+        requireActivity().findViewById<TextView>(R.id.doctor).text = doctor
+        requireActivity().findViewById<TextView>(R.id.vehicle).text = vehicle
     }
     private fun toggleConfigButton(){
         confirmButton.isEnabled = !(medicSpinner.selectedItemPosition == 0 || vehicleSpinner.selectedItemPosition == 0)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.home, menu)
+        requireActivity().findViewById<TextView>(R.id.title).text = getString(R.string.title)
+
+        requireActivity().findViewById<TextView>(R.id.title).visibility = View.VISIBLE
+        requireActivity().findViewById<TextView>(R.id.doctor).visibility = View.INVISIBLE
+        requireActivity().findViewById<TextView>(R.id.vehicle).visibility = View.INVISIBLE
+        requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
+        requireActivity().findViewById<Button>(R.id.finish).visibility = View.INVISIBLE
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

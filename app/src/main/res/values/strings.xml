@@ -6,6 +6,9 @@
     <string name="conferma">Conferma</string>
     <string name="mezzo">Mezzo</string>
     <string name="medico">Medico</string>
+    <string name="terminazione">Termina Pre-H</string>
+    <string name="centralizzazione">CENTRALIZZAZIONE</string>
+    <string name="title">Pre-H assistant</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
