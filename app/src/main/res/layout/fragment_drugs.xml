@@ -7,25 +7,122 @@
                                                    tools:context=".home.DrugsFragment"
                                                    android:id="@+id/constraintLayout">
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="274dp" tools:layout_editor_absoluteX="0dp" android:layout_marginTop="80dp"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
-
+            android:layout_width="579dp"
+            android:layout_height="223dp" android:layout_marginTop="80dp"
+            android:background="@drawable/box"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" android:id="@+id/constraintLayout3"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="14dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp">
         <Button
-                android:text="Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/button2" tools:layout_editor_absoluteY="0dp"
-                tools:layout_editor_absoluteX="30dp"/>
+                android:text="@string/succinilcolina"
+                android:layout_width="175dp"
+                android:layout_height="67dp"
+                android:id="@+id/succi_button" android:layout_marginTop="20dp"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20dp"/>
+        <Button
+                android:text="@string/midazolam"
+                android:layout_width="175dp"
+                android:layout_height="67dp"
+                android:id="@+id/midazolam_button" android:layout_marginTop="20dp"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@+id/fentanil_button"
+                android:layout_marginEnd="20dp" app:layout_constraintStart_toEndOf="@+id/succi_button"
+                android:layout_marginStart="20dp"/>
+        <Button
+                android:text="@string/fentanil"
+                android:layout_width="175dp"
+                android:layout_height="67dp"
+                android:id="@+id/fentanil_button" android:layout_marginTop="20dp"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="20dp"/>
+        <Button
+                android:text="@string/ketamina"
+                android:layout_width="175dp"
+                android:layout_height="67dp"
+                android:id="@+id/ketamina_button" android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20dp"/>
+        <Button
+                android:text="@string/curaro"
+                android:layout_width="175dp"
+                android:layout_height="67dp"
+                android:id="@+id/curaro_button" android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ketamina_button"
+                android:layout_marginStart="20dp" app:layout_constraintEnd_toStartOf="@+id/acido_button"
+                android:layout_marginEnd="20dp"/>
+        <Button
+                android:text="@string/acido_tranexamico"
+                android:layout_width="175dp"
+                android:layout_height="67dp"
+                android:id="@+id/acido_button" android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="20dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="274dp" tools:layout_editor_absoluteX="0dp" android:layout_marginTop="80dp"
-            app:layout_constraintTop_toTopOf="parent" android:id="@+id/constraintLayout2">
-
+            android:layout_width="581dp"
+            android:layout_height="211dp" android:layout_marginTop="80dp"
+            android:background="@drawable/box"
+            app:layout_constraintTop_toTopOf="parent" android:id="@+id/constraintLayout2"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="12dp">
         <Button
-                android:text="Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" tools:layout_editor_absoluteY="16dp"
-                tools:layout_editor_absoluteX="16dp" android:id="@+id/button"/>
+                android:text="@string/fibrinogeno"
+                android:layout_width="175dp"
+                android:layout_height="67dp"
+                android:id="@+id/fibrinogeno_button" android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toEndOf="@+id/emazie_button"
+                android:layout_marginStart="20dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="30dp"/>
+        <Button
+                android:text="@string/emazie_concentrate"
+                android:layout_width="175dp"
+                android:layout_height="67dp"
+                android:id="@+id/emazie_button" android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="89dp"/>
+        <Button
+                android:text="@string/mannitolo"
+                android:layout_width="175dp"
+                android:layout_height="67dp"
+                android:id="@+id/mannitolo_button" android:layout_marginTop="20dp"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toEndOf="@+id/cristalloidi_button"
+                android:layout_marginStart="20dp" app:layout_constraintEnd_toStartOf="@+id/ipertonica_button"
+                android:layout_marginEnd="20dp"/>
+        <Button
+                android:text="@string/soluzione_ipertonica"
+                android:layout_width="175dp"
+                android:layout_height="67dp"
+                android:id="@+id/ipertonica_button"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp" app:layout_constraintTop_toTopOf="parent"
+        />
+        <Button
+                android:text="@string/cristalloidi"
+                android:layout_width="175dp"
+                android:layout_height="67dp"
+                android:id="@+id/cristalloidi_button" android:layout_marginTop="20dp"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+            android:text="@string/infusioni"
+            android:layout_width="136dp"
+            android:layout_height="28dp"
+            android:textSize="20dp"
+            android:textAllCaps="true"
+            android:id="@+id/textView5"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="52dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"/>
+    <TextView
+            android:text="@string/generici"
+            android:layout_width="125dp"
+            android:layout_height="27dp"
+            android:textSize="20dp"
+            android:textAllCaps="true"
+            android:id="@+id/textView6"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout3" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" android:layout_marginTop="53dp"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

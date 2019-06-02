@@ -10,7 +10,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="storico">Storico</string>
-    <string name="dett_missione">Dett. Missione</string>
+    <string name="dett_missione">Dettagli Missione</string>
     <string name="stato_paziente">Stato Paziente</string>
     <string name="farmaci">Farmaci</string>
     <string name="manovre">Manovre</string>
@@ -19,4 +19,23 @@
     <string name="parametri_vitali">Parametri Vitali</string>
     <string name="new_pc_car">New PC Car</string>
     <string name="note">Note</string>
+    <string name="infusioni">Infusioni</string>
+    <string name="generici">Generici</string>
+    <string name="mannitolo">MANNITOLO 10%</string>
+    <string name="soluzione_ipertonica">SOLUZIONE IPERTONICA NaCl 3%</string>
+    <string name="cristalloidi">CRISTALLOIDI</string>
+    <string name="fibrinogeno">FIBRINOGENO</string>
+    <string name="emazie_concentrate">EMAZIE CONCENTRATE</string>
+    <string name="succinilcolina">SUCCINILCOLINA</string>
+    <string name="midazolam">MIDAZOLAM</string>
+    <string name="fentanil">FENTANIL</string>
+    <string name="ketamina">KETAMINA</string>
+    <string name="curaro">CURARO</string>
+    <string name="acido_tranexamico">ACIDO TRANEXAMICO</string>
+    <string name="sonda_vescicale">Sonda Vescicale</string>
+    <string name="sonda_gastrica">Sonda Gastrica</string>
+    <string name="cardioversione_elettrica_sincronizzata">Cardioversione Elettrica Sincronizzata</string>
+    <string name="immobilizzazione">Immobilizzazione</string>
+    <string name="pacing_transcutaneo">Pacing Transcutaneo</string>
+    <string name="collare_cervicale">Collare Cervicale</string>
 </resources>
