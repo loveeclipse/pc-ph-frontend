@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="vehicleSpinnerItems">
-        <item/>
         <item>HotelBravo</item>
         <item>Elimike</item>
     </string-array>
     <string-array name="medicSpinnerItems">
-        <item/>
         <item>Marco Benni</item>
     </string-array>
 </resources>
