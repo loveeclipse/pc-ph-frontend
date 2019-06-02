@@ -9,8 +9,6 @@
     <string name="terminazione">Termina Pre-H</string>
     <string name="centralizzazione">CENTRALIZZAZIONE</string>
     <string name="title">Pre-H assistant</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="storico">Storico</string>
     <string name="dett_missione">Dettagli Missione</string>
@@ -47,4 +45,29 @@
     <string name="rianimazione_cardio_polmonare">Rianimazione Cardio-Polmonare</string>
     <string name="vie_aeree">Vie Aeree</string>
     <string name="respiro">Respiro</string>
+    <string name="neuroprotezione">Neuroprotezione</string>
+    <string name="protezione_termica">Protezione Termica</string>
+    <string name="periferica">Periferica</string>
+    <string name="centrale">Centrale</string>
+    <string name="emostasi">Emostasi</string>
+    <string name="intraossea">Intraossea</string>
+    <string name="tourniquet">Tourniquet</string>
+    <string name="pelvic_binder">Pelvic Binder</string>
+    <string name="reboa">Reboa</string>
+    <string name="inizia_reboa_zona_1">Inizia Reboa Zona 1</string>
+    <string name="inizia_reboa_zona_3">Inizia Reboa Zona 3</string>
+    <string name="ossigenoterapia_i_min">OssigenoTerapia (I/min)</string>
+    <string name="ambu">Ambu</string>
+    <string name="mini_toracotomia">Mini Toracotomia</string>
+    <string name="ippv">IPPV</string>
+    <string name="sublussazione_mandibola">Sublussazione Mandibola</string>
+    <string name="guedel">Guedel</string>
+    <string name="crico_tirotomia">Crico-Tirotomia</string>
+    <string name="tubo_tracheale">Tubo Tracheale</string>
+    <string name="circolo">Circolo</string>
+    <string name="calibro">Calibro</string>
+    <string name="tipologia">Tipologia</string>
+    <string name="gauge">Gauge</string>
+    <string name="french">French</string>
+    <string name="size">Size</string>
 </resources>
