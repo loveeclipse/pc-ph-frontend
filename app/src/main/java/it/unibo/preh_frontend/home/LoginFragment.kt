@@ -10,6 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import it.unibo.preh_frontend.R
+import android.widget.ArrayAdapter
+
+
 
 
 class LoginFragment : Fragment() {
@@ -28,7 +31,6 @@ class LoginFragment : Fragment() {
             setDoctorAndVehicle("Dott. " + medicSpinner.selectedItem.toString(), vehicleSpinner.selectedItem.toString())
             findNavController().navigate(R.id.action_login_to_home)
         }
-
         return root
     }
 
