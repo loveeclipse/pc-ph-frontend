@@ -70,4 +70,19 @@
     <string name="gauge">Gauge</string>
     <string name="french">French</string>
     <string name="size">Size</string>
+    <string name="arresto_cardio_circolatorio">Arresto cardio-circolatorio</string>
+    <string name="deterioramento_stato_di_coscenza">Deterioramento stato di coscenza</string>
+    <string name="anisocoria_midriasi">Anisocoria / Midriasi</string>
+    <string name="insufficienza_respiratoria">Insufficienza respiratoria</string>
+    <string name="shock_cardiocircolatorio">Shock cardiocircolatorio</string>
+    <string name="atterraggio_in_itinere_per_manovra_terapeutica">Atterraggio in itinere per manovra terapeutica
+    </string>
+    <string name="in_itinere">In Itinere</string>
+    <string name="decesso">Decesso:</string>
+    <string name="all_arrivo_in_ps">All\'arrivo in PS</string>
+    <string name="new_pc_car_text">New PC-Car</string>
+    <string name="partenza_dell_equipaggio">Partenza dell\'equipaggio</string>
+    <string name="arrivo_sul_luogo_dell_incidente">Arrivo sul luogo dell\'incidente</string>
+    <string name="partenza_dal_luogo_dell_incidente">Partenza dal luogo dell\'incidente</string>
+    <string name="atterraggio_in_eliporto">Atterraggio in eliporto</string>
 </resources>

@@ -26,7 +26,6 @@ class LoginFragment : Fragment() {
 
         root.findViewById<Button>(R.id.confirmButton).setOnClickListener {
             setDoctorAndVehicle("Dott. " + medicSpinner.selectedItem.toString(), vehicleSpinner.selectedItem.toString())
-            //Cambia fragment con quello HOME
             findNavController().navigate(R.id.action_login_to_home)
         }
 
@@ -63,7 +62,7 @@ class LoginFragment : Fragment() {
             DialogFragmentExample().show(requireActivity().supportFragmentManager, "dialog_fragment")
         }
         root.findViewById<View>(R.id.button2).setOnClickListener {
-            BottomSheetFragmentExample().show(requireActivity().supportFragmentManager, "bottom_dialog_fragment")
+            NewPcCarBottomSheetFragment().show(requireActivity().supportFragmentManager, "bottom_dialog_fragment")
         }
         root.findViewById<Button>(R.id.button3).setOnClickListener {
             AlertDialog.Builder(requireContext())

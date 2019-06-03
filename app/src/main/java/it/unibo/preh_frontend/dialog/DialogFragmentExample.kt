@@ -1,15 +1,14 @@
-package it.unibo.preh_frontend.about
+package it.unibo.preh_frontend.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
 
-class AboutFragment : Fragment() {
+class DialogFragmentExample : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_about, container, false)
-        return root
+        return inflater.inflate(R.layout.fragment_pccar, container, false)
     }
 }

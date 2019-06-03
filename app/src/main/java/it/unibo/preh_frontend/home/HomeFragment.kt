@@ -7,10 +7,9 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.FrameLayout
+import it.unibo.preh_frontend.dialog.*
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import it.unibo.preh_frontend.R
@@ -25,6 +24,11 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
+
+        val pcCarButton = root.findViewById<Button>(R.id.pcCar_button)
+        pcCarButton.setOnClickListener{
+           NewPcCarBottomSheetFragment().show(requireActivity().supportFragmentManager, "bottom_dialog_fragment")
+        }
 
         val manager = fragmentManager
         val transaction = manager!!.beginTransaction()

@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
     <style name="TabText" parent="TextAppearance.Design.Tab">
@@ -13,5 +14,14 @@
     </style>
     <style name="ToolbarSubtitleAppearance" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
         <item name="android:textColor">@color/colorWhite</item>
+    </style>
+    <style name="AppBottomSheetDialogTheme"
+           parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle"
+           parent="Widget.Design.BottomSheet.Modal">
+        <item name="behavior_peekHeight">900dp</item>
     </style>
 </resources>
