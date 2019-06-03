@@ -27,6 +27,9 @@ class LoginFragment : Fragment() {
         val medicSpinner = root.findViewById<Spinner>(R.id.medicSpinner)
         val vehicleSpinner = root.findViewById<Spinner>(R.id.vehicleSpinner)
 
+        medicSpinner.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.medicSpinnerItems, R.layout.spinner_layout)
+        vehicleSpinner.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.vehicleSpinnerItems, R.layout.spinner_layout)
+
         root.findViewById<Button>(R.id.confirmButton).setOnClickListener {
             setDoctorAndVehicle("Dott. " + medicSpinner.selectedItem.toString(), vehicleSpinner.selectedItem.toString())
             findNavController().navigate(R.id.action_login_to_home)

@@ -66,7 +66,7 @@ class HomeFragment : Fragment() {
         requireActivity().findViewById<TextView>(R.id.title).visibility = View.VISIBLE
         requireActivity().findViewById<TextView>(R.id.doctor).visibility = View.VISIBLE
         requireActivity().findViewById<TextView>(R.id.vehicle).visibility = View.VISIBLE
-        requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
+        requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
         requireActivity().findViewById<Button>(R.id.finish).visibility = View.VISIBLE
     }
 }
