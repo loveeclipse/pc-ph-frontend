@@ -22,7 +22,7 @@
             android:id="@+id/consciousness_deteriorarion_switch"
             android:text="@string/deterioramento_stato_di_coscenza"
             android:textSize="17dp"
-            android:layout_marginTop="24dp" app:layout_constraintTop_toBottomOf="@+id/arrest_switch"
+            android:layout_marginTop="30dp" app:layout_constraintTop_toBottomOf="@+id/arrest_switch"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="128dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="129dp"/>
     <Switch
@@ -71,18 +71,21 @@
             android:id="@+id/textView2" android:layout_marginTop="70dp"
             app:layout_constraintTop_toBottomOf="@+id/atterraggio_switch" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="74dp"/>
-    <CheckBox
+    <Button
             android:text="@string/in_itinere"
             android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:textSize="17sp"
-            android:id="@+id/inItinere_checkBox" android:layout_marginTop="60dp"
-            app:layout_constraintTop_toBottomOf="@+id/atterraggio_switch" app:layout_constraintEnd_toStartOf="@+id/inPs_checkBox"/>
-    <CheckBox
+            android:layout_height="60dp"
+            android:id="@+id/button" android:layout_marginStart="62dp"
+            app:layout_constraintStart_toEndOf="@+id/textView2" android:layout_marginTop="60dp"
+            app:layout_constraintTop_toBottomOf="@+id/atterraggio_switch"
+            app:layout_constraintEnd_toStartOf="@+id/button3"/>
+    <Button
             android:text="@string/all_arrivo_in_ps"
             android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:textSize="17sp"
-            android:id="@+id/inPs_checkBox" android:layout_marginEnd="60dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="60dp" app:layout_constraintTop_toBottomOf="@+id/atterraggio_switch"/>
+            android:layout_height="60dp"
+            android:id="@+id/button3" android:layout_marginTop="60dp"
+            app:layout_constraintTop_toBottomOf="@+id/atterraggio_switch"
+            app:layout_constraintStart_toEndOf="@+id/button"
+            android:backgroundTint="@color/colorPrimaryDark" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="75dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
