@@ -85,4 +85,9 @@
     <string name="arrivo_sul_luogo_dell_incidente">Arrivo sul luogo dell\'incidente</string>
     <string name="partenza_dal_luogo_dell_incidente">Partenza dal luogo dell\'incidente</string>
     <string name="atterraggio_in_eliporto">Atterraggio in eliporto</string>
+    <string name="frequenza_di_cattura">Frequenza di cattura</string>
+    <string name="amperaggio">Amperaggio</string>
+    <string name="conferma_pacing_transcutaneo">CONFERMA PACING TRANSCUTANEO</string>
+    <string name="ma">mA</string>
+    <string name="bpm">bpm</string>
 </resources>
