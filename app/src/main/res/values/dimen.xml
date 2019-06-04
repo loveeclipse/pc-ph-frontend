@@ -4,17 +4,22 @@
     <dimen name="bigSize">20sp</dimen>
     <dimen name="normalSize">18sp</dimen>
     <dimen name="smallSize">16sp</dimen>
+
     <dimen name="minButtonHeight">60dp</dimen>
     <dimen name="minButtonWidth">170dp</dimen>
     <dimen name="buttonPadding">16dp</dimen>
-    <dimen name="lateralMargin">8dp</dimen>
+
     <dimen name="alertDimension">70dp</dimen>
+
+    <dimen name="lateralMargin">8dp</dimen>
+
     <dimen name="homeButtonHorizontalMargin">30dp</dimen>
     <dimen name="homeButtonVerticalMargin">20dp</dimen>
     <dimen name="homeButtonHorizontalSpace">15dp</dimen>
     <dimen name="homeButtonVerticalSpace">2dp</dimen>
-    <dimen name="drugsButtonHorizontalMargin">18dp</dimen>
+
+    <dimen name="drugsButtonHorizontalMargin">16dp</dimen>
     <dimen name="drugsButtonVerticalMargin">8dp</dimen>
-    <dimen name="drugsButtonHorizontalSpace">9dp</dimen>
+    <dimen name="drugsButtonHorizontalSpace">8dp</dimen>
     <dimen name="drugsButtonVerticalSpace">2dp</dimen>
 </resources>
