@@ -19,39 +19,46 @@
                 android:layout_height="match_parent">
             <TextView
                     android:id="@+id/title"
-                    android:textSize="26sp"
+                    android:textSize="@dimen/hugeSize"
                     android:layout_width="wrap_content"
-                    android:layout_height="34dp" android:layout_marginTop="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/lateralMargin"
+                    android:textColor="@color/colorWhite"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"/>
+                    app:layout_constraintStart_toStartOf="parent"/>
             <TextView
                     android:id="@+id/doctor"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/normalSize"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@+id/title"
-                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    app:layout_constraintTop_toBottomOf="@+id/title"
+                    app:layout_constraintStart_toStartOf="parent"/>
             <TextView
                     android:id="@+id/vehicle"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/normalSize"
                     android:paddingBottom="6dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@+id/doctor"
-                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    app:layout_constraintTop_toBottomOf="@+id/doctor"
+                    app:layout_constraintStart_toStartOf="parent"/>
             <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="@dimen/alertDimension"
+                    android:layout_height="@dimen/alertDimension"
                     app:srcCompat="@drawable/ic_warning_24dp"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/alert"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:id="@+id/alert"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:contentDescription="@string/centralizzazione"/>
             <Button
                     android:text="@string/terminazione"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:padding="16dp"
+                    android:textSize="@dimen/normalSize"
+                    android:padding="@dimen/buttonPadding"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:id="@+id/finish"
                     app:layout_constraintEnd_toEndOf="parent"
