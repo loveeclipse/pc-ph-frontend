@@ -27,7 +27,13 @@ class HomeFragment : Fragment() {
 
         val pcCarButton = root.findViewById<Button>(R.id.pcCar_button)
         pcCarButton.setOnClickListener{
-           NewPcCarBottomSheetFragment().show(requireActivity().supportFragmentManager, "bottom_dialog_fragment")
+           //NewPcCarBottomSheetFragment().show(requireActivity().supportFragmentManager, "bottom_dialog_fragment")
+            NewPcCarDialogFragment().show(requireActivity().supportFragmentManager, "pcCar_dialog_fragment")
+        }
+        val noteButton = root.findViewById<Button>(R.id.note_button)
+        noteButton.setOnClickListener{
+            //NewPcCarBottomSheetFragment().show(requireActivity().supportFragmentManager, "bottom_dialog_fragment")
+            NoteDialogFragment().show(requireActivity().supportFragmentManager, "note_dialog_fragment")
         }
 
         val manager = fragmentManager

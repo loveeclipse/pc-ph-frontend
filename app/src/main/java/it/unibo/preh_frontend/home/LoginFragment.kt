@@ -64,7 +64,7 @@ class LoginFragment : Fragment() {
 
         }
         root.findViewById<View>(R.id.button1).setOnClickListener {
-            DialogFragmentExample().show(requireActivity().supportFragmentManager, "dialog_fragment")
+            NewPcCarDialogFragment().show(requireActivity().supportFragmentManager, "dialog_fragment")
         }
         root.findViewById<View>(R.id.button2).setOnClickListener {
             NewPcCarBottomSheetFragment().show(requireActivity().supportFragmentManager, "bottom_dialog_fragment")
@@ -83,7 +83,7 @@ class LoginFragment : Fragment() {
         }
         root.findViewById<FloatingActionButton>(R.id.fab).apply {
             setOnClickListener {
-                DialogFragmentExample().show(requireActivity().supportFragmentManager, "banana_dialog")
+                NewPcCarDialogFragment().show(requireActivity().supportFragmentManager, "banana_dialog")
                 //Toast.makeText(requireContext(), "banana", Toast.LENGTH_SHORT).show()
                 //Snackbar.make(findViewById(R.id.root), "Sei sicuro", Snackbar.LENGTH_SHORT).show()
             }
