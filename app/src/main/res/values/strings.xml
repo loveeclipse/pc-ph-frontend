@@ -88,7 +88,7 @@
     <string name="frequenza_di_cattura">Frequenza di cattura</string>
     <string name="amperaggio">Amperaggio</string>
     <string name="conferma_pacing_transcutaneo">CONFERMA PACING TRANSCUTANEO</string>
-    
+
     <string name="pervie">Pervie</string>
     <string name="non_pervie">Non pervie</string>
     <string name="frequenza_respiratoria">Frequenza Respiratoria</string>
@@ -115,12 +115,12 @@
     <string name="midriasi">Midriasi</string>
     <string name="fotoreagente">Fotoreagente</string>
     <string name="temperatura_corporea">Temperatura corporea</string>
-    
+
     <string name="ma">mA</string>
     <string name="bpm">bpm</string>
     <string name="mmHg">mmHg</string>
     <string name="percent">%</string>
     <string name="atti_min">atti/min</string>
 
-    
+
 </resources>

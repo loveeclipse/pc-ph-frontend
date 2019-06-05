@@ -25,6 +25,11 @@ class HomeFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
+        val patientStatusButton = root.findViewById<Button>(R.id.stato_paziente_button)
+        patientStatusButton.setOnClickListener{
+            PatientStatusDialogFragment().show(requireActivity().supportFragmentManager, "patient_status_dialog_fragment")
+        }
+
         val pcCarButton = root.findViewById<Button>(R.id.pcCar_button)
         pcCarButton.setOnClickListener{
            //NewPcCarBottomSheetFragment().show(requireActivity().supportFragmentManager, "bottom_dialog_fragment")
