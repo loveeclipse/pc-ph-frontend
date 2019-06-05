@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         vitalParameterButton.setOnClickListener{
             VitalParametersDialogFragment().show(requireActivity().supportFragmentManager, "vital_parameters_fragment")
         }
-        
+
         val manager = fragmentManager
         val transaction = manager!!.beginTransaction()
         transaction.replace(R.id.tabFrame, DrugsFragment())

@@ -88,6 +88,39 @@
     <string name="frequenza_di_cattura">Frequenza di cattura</string>
     <string name="amperaggio">Amperaggio</string>
     <string name="conferma_pacing_transcutaneo">CONFERMA PACING TRANSCUTANEO</string>
+    
+    <string name="pervie">Pervie</string>
+    <string name="non_pervie">Non pervie</string>
+    <string name="frequenza_respiratoria">Frequenza Respiratoria</string>
+    <string name="saturazione_periferica">Saturazione Periferica O2</string>
+    <string name="pressione_arteriosa_sistolica">Pressione arteriosa sistolica</string>
+    <string name="frequenza_cardiaca">Frequenza cardiaca</string>
+    <string name="ritmico">Ritmico</string>
+    <string name="aritmico">Aritmico</string>
+    <string name="tempo_riempimento_capillare">Tempo riempimento capillare</string>
+    <string name="normale">Normale</string>
+    <string name="aumentato">Aumentato</string>
+    <string name="nullo">Nullo</string>
+    <string name="colorito_cute_mucose">Colorito cute-mucose</string>
+    <string name="pallido">Pallido</string>
+    <string name="cianotico">Cianotico</string>
+    <string name="GCS_15">GCS = 15</string>
+    <string name="apertura_occhi">Apertura Occhi</string>
+    <string name="risposta_verbale">Risposta Verbale</string>
+    <string name="risposta_motoria">Risposta motoria</string>
+    <string name="pupille">Pupille</string>
+    <string name="sx">SX</string>
+    <string name="dx">DX</string>
+    <string name="miosi">Miosi</string>
+    <string name="midriasi">Midriasi</string>
+    <string name="fotoreagente">Fotoreagente</string>
+    <string name="temperatura_corporea">Temperatura corporea</string>
+    
     <string name="ma">mA</string>
     <string name="bpm">bpm</string>
+    <string name="mmHg">mmHg</string>
+    <string name="percent">%</string>
+    <string name="atti_min">atti/min</string>
+
+    
 </resources>
