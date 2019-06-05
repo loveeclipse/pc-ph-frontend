@@ -35,7 +35,11 @@ class HomeFragment : Fragment() {
             //NewPcCarBottomSheetFragment().show(requireActivity().supportFragmentManager, "bottom_dialog_fragment")
             NoteDialogFragment().show(requireActivity().supportFragmentManager, "note_dialog_fragment")
         }
-
+        val vitalParameterButton = root.findViewById<Button>(R.id.param_vitali_button)
+        vitalParameterButton.setOnClickListener{
+            VitalParametersDialogFragment().show(requireActivity().supportFragmentManager, "vital_parameters_fragment")
+        }
+        
         val manager = fragmentManager
         val transaction = manager!!.beginTransaction()
         transaction.replace(R.id.tabFrame, DrugsFragment())
