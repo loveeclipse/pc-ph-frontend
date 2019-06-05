@@ -169,6 +169,9 @@
             android:layout_width="wrap_content"
             android:textSize="27sp"
             android:textStyle="bold"
-            android:layout_height="wrap_content" tools:layout_editor_absoluteY="16dp"
-            tools:layout_editor_absoluteX="269dp" android:id="@+id/textView31"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/textView31" app:layout_constraintStart_toEndOf="@+id/guideline43"
+            android:layout_marginStart="88dp" app:layout_constraintEnd_toStartOf="@+id/guideline44"
+            android:layout_marginEnd="95dp" android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="43dp" app:layout_constraintBottom_toTopOf="@+id/guideline45"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

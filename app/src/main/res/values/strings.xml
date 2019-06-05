@@ -121,6 +121,31 @@
     <string name="mmHg">mmHg</string>
     <string name="percent">%</string>
     <string name="atti_min">atti/min</string>
+    <string name="penetrante">Penetrante</string>
+    <string name="tetraparesi">tetraparesi</string>
+    <string name="paraparesi">paraparesi</string>
+    <string name="parestesia">parestesia</string>
+    <string name="negativo">negativo</string>
+    <string name="bacino_instabile_deformato">bacino instabile / deformato</string>
+    <string name="amputazione_subamputazione">Amputazione / subamputazione</string>
+    <string name="casco_cintura">Casco / Cintura</string>
+    <string name="otorragia">otorragia</string>
+    <string name="volet_costale_deformit_torace">Volet costale /deformità torace</string>
+    <string name="tchipnea_dispnea">Tchipnea / dispnea</string>
+    <string name="emorragia_esterna_in_atto">Emorragia esterna in atto</string>
+    <string name="chiuso">Chiuso</string>
+    <string name="positivo">positivo</string>
+    <string name="vie_aeree_non_pervie">Vie aeree non pervie</string>
+    <string name="infossata">infossata</string>
+    <string name="shock_index_o_shock_index_pedriatic_age_adjusted">Shock Index o Shock Index Pedriatic Age-Adjusted
+    </string>
+    <string name="criterio_anatomico">Criterio Anatomico</string>
+    <string name="criterio_dinamico">Criterio Dinamico</string>
+    <string name="giudizio_clinico">Giudizio Clinico</string>
+    <string name="criterio_fisiologico">Criterio Fisiologico</string>
+    <string name="ecofast">Ecofast</string>
+    <string name="frattura_cranica">Frattura cranica</string>
+    <string name="tipo_trauma">Tipo Trauma</string>
 
 
 </resources>
