@@ -30,9 +30,8 @@
                 android:text="@string/frequenza_di_cattura"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normalSize"
-                android:textStyle="bold"
                 android:id="@+id/textView18"
+                android:textAppearance="?textAppearanceBody1"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/textView19"
                 app:layout_constraintStart_toEndOf="@id/guideline39"/>

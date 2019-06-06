@@ -82,10 +82,13 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        requireActivity().findViewById<TextView>(R.id.title).visibility = View.VISIBLE
-        requireActivity().findViewById<TextView>(R.id.doctor).visibility = View.VISIBLE
-        requireActivity().findViewById<TextView>(R.id.vehicle).visibility = View.VISIBLE
-        requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
-        requireActivity().findViewById<Button>(R.id.finish).visibility = View.VISIBLE
+        requireActivity().apply {
+            findViewById<TextView>(R.id.title).visibility = View.VISIBLE
+            findViewById<TextView>(R.id.doctor).visibility = View.VISIBLE
+            findViewById<TextView>(R.id.vehicle).visibility = View.VISIBLE
+            findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
+            findViewById<Button>(R.id.finish).visibility = View.VISIBLE
+        }
+
     }
 }

@@ -43,13 +43,15 @@ class LoginFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        requireActivity().findViewById<TextView>(R.id.title).text = getString(R.string.title)
+        requireActivity().apply {
+            findViewById<TextView>(R.id.title).text = getString(R.string.title)
+            findViewById<TextView>(R.id.title).visibility = View.VISIBLE
+            findViewById<TextView>(R.id.doctor).visibility = View.INVISIBLE
+            findViewById<TextView>(R.id.vehicle).visibility = View.INVISIBLE
+            findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
+            findViewById<Button>(R.id.finish).visibility = View.INVISIBLE
+        }
 
-        requireActivity().findViewById<TextView>(R.id.title).visibility = View.VISIBLE
-        requireActivity().findViewById<TextView>(R.id.doctor).visibility = View.INVISIBLE
-        requireActivity().findViewById<TextView>(R.id.vehicle).visibility = View.INVISIBLE
-        requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
-        requireActivity().findViewById<Button>(R.id.finish).visibility = View.INVISIBLE
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
