@@ -148,10 +148,9 @@
                         android:textStyle="bold"
                         android:id="@+id/textView13"
                         android:layout_marginTop="11dp" app:layout_constraintTop_toBottomOf="@+id/guideline20"
-                        android:layout_marginBottom="210dp" app:layout_constraintBottom_toTopOf="@+id/textView16"
-                        app:layout_constraintVertical_bias="1.0" app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline19"
-                        android:layout_marginEnd="183dp"/>
+                        android:layout_marginEnd="183dp" android:layout_marginStart="5dp"/>
                 <TextView
                         android:text="@string/reboa"
                         android:layout_width="wrap_content"
@@ -159,28 +158,25 @@
                         android:textSize="18dp"
                         android:textStyle="bold"
                         android:id="@+id/textView16" app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline19"
-                        android:layout_marginEnd="311dp"
-                        android:layout_marginBottom="8dp"
-                        app:layout_constraintBottom_toTopOf="@+id/reboaZ1_button"
-                        app:layout_constraintHorizontal_bias="0.118"/>
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="5dp" app:layout_constraintBottom_toTopOf="@+id/guideline21"/>
                 <Button
                         android:text="@string/inizia_reboa_zona_1"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:id="@+id/reboaZ1_button"
-                        app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="30dp"
+                        app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="20dp"
                         android:layout_marginBottom="10dp" app:layout_constraintBottom_toTopOf="@+id/guideline22"
-                        android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/guideline21"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline19" android:layout_marginEnd="30dp"/>
+                        android:layout_marginTop="10dp" app:layout_constraintTop_toBottomOf="@+id/guideline21"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline19" android:layout_marginEnd="20dp"/>
                 <Button
                         android:text="@string/inizia_reboa_zona_3"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:id="@+id/reboaZ3_button"
-                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="30dp"
-                        android:layout_marginStart="30dp"
-                        app:layout_constraintStart_toEndOf="@+id/guideline19" android:layout_marginTop="15dp"
+                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="20dp"
+                        android:layout_marginStart="20dp"
+                        app:layout_constraintStart_toEndOf="@+id/guideline19" android:layout_marginTop="10dp"
                         app:layout_constraintTop_toBottomOf="@+id/guideline21" android:layout_marginBottom="10dp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline22"/>
                 <TextView
@@ -300,13 +296,15 @@
                     app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="10dp">
                 <Button
                         android:text="@string/ossigenoterapia_i_min"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:id="@+id/ossigenoterapia_button"
-                        app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="15dp"
-                        app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="30dp"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline11" android:layout_marginEnd="30dp"
-                        android:layout_marginBottom="15dp" app:layout_constraintBottom_toTopOf="@+id/guideline13"/>
+                        app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="5dp"
+                        android:layout_marginBottom="10dp" app:layout_constraintBottom_toTopOf="@+id/guideline13"
+                        app:layout_constraintVertical_bias="0.722" android:layout_marginEnd="40dp"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+                        app:layout_constraintHorizontal_bias="0.254"/>
                 <Button
                         android:text="@string/ambu"
                         android:layout_width="0dp"
@@ -340,9 +338,9 @@
                         android:text="SX"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:id="@+id/button4" android:layout_marginStart="30dp"
-                        app:layout_constraintStart_toEndOf="@+id/guideline11" android:layout_marginTop="15dp"
-                        app:layout_constraintTop_toBottomOf="@+id/guideline13" android:layout_marginBottom="15dp"
+                        android:id="@+id/button4" android:layout_marginStart="20dp"
+                        app:layout_constraintStart_toEndOf="@+id/guideline11" android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@+id/guideline13" android:layout_marginBottom="10dp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline15"
                         app:layout_constraintEnd_toStartOf="@+id/button5" android:layout_marginEnd="1dp"/>
                 <Button
@@ -352,29 +350,29 @@
                         android:id="@+id/button5"
                         android:textColorLink="@color/colorPrimaryDark" android:background="@color/colorPrimaryDark"
                         android:backgroundTint="@color/colorPrimaryDark"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline12" android:layout_marginEnd="30dp"
-                        android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/guideline13"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline12" android:layout_marginEnd="20dp"
+                        android:layout_marginTop="10dp" app:layout_constraintTop_toBottomOf="@+id/guideline13"
                         app:layout_constraintStart_toEndOf="@+id/button4" android:layout_marginStart="1dp"
-                        android:layout_marginBottom="15dp" app:layout_constraintBottom_toTopOf="@+id/guideline15"/>
+                        android:layout_marginBottom="10dp" app:layout_constraintBottom_toTopOf="@+id/guideline15"/>
                 <androidx.constraintlayout.widget.Guideline
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" app:layout_constraintGuide_percent="0.35"
+                        android:layout_height="wrap_content" app:layout_constraintGuide_percent="0.40"
                         android:id="@+id/guideline11"/>
                 <androidx.constraintlayout.widget.Guideline
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" app:layout_constraintGuide_percent="0.65"
+                        android:layout_height="wrap_content" app:layout_constraintGuide_percent="0.70"
                         android:id="@+id/guideline12"/>
                 <androidx.constraintlayout.widget.Guideline
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" app:layout_constraintGuide_percent="0.33"
+                        android:layout_height="wrap_content" app:layout_constraintGuide_percent="0.35"
                         android:id="@+id/guideline13"/>
                 <androidx.constraintlayout.widget.Guideline
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" app:layout_constraintGuide_percent="0.66"
+                        android:layout_height="wrap_content" app:layout_constraintGuide_percent="0.70"
                         android:id="@+id/guideline15"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout

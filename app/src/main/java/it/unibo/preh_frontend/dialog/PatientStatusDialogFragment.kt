@@ -17,14 +17,12 @@ class PatientStatusDialogFragment : DialogFragment() {
 
         return root
     }
+
     override fun onResume() {
         super.onResume()
-        //TODO !!PROTOTYPE!! FIND A BETTER IMPLEMENTATION (IF IT EXISTS)
-        val displayMetrics = context!!.getResources().displayMetrics
-        val dpHeight = (displayMetrics.heightPixels / displayMetrics.density.toInt())
-        val dpWidth = displayMetrics.widthPixels / displayMetrics.density.toInt()
-        val window = dialog!!.window
-        window!!.setLayout(dpWidth-100, dpHeight-200)
-        window.setGravity(Gravity.CENTER)
+        val metrics = resources.displayMetrics
+        val width = (metrics.widthPixels)
+        val height = (metrics.heightPixels)
+        dialog!!.window!!.setLayout(9 * width / 10,height)
     }
 }
