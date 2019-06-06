@@ -23,10 +23,10 @@ class NewPcCarDialogFragment : DialogFragment() {
         super.onResume()
         //TODO !!PROTOTYPE!! FIND A BETTER IMPLEMENTATION (IF IT EXISTS)
         val displayMetrics = context!!.getResources().displayMetrics
-        val dpHeight = (displayMetrics.heightPixels / displayMetrics.density.toInt())
-        val dpWidth = displayMetrics.widthPixels / displayMetrics.density.toInt()
+        val dpHeight = (displayMetrics.heightPixels / displayMetrics.density.toInt())*3/4
+        val dpWidth = displayMetrics.widthPixels / displayMetrics.density.toInt()*3/4
         val window = dialog!!.window
-        window!!.setLayout(dpWidth-100, dpHeight-200)
+        window!!.setLayout(dpWidth, dpHeight)
         window.setGravity(Gravity.CENTER)
     }
 }

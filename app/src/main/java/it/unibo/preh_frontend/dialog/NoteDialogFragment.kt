@@ -21,7 +21,7 @@ class NoteDialogFragment : DialogFragment() {
         val dpHeight = (displayMetrics.heightPixels / displayMetrics.density.toInt())
         val dpWidth = displayMetrics.widthPixels / displayMetrics.density.toInt()
         val window = dialog!!.window
-        window!!.setLayout(dpWidth-100, dpHeight-200)
+        window!!.setLayout(dpWidth, dpHeight)
         window.setGravity(Gravity.CENTER)
     }
 }

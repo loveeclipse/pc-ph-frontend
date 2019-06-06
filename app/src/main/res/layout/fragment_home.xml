@@ -130,10 +130,9 @@
                     android:text="@string/complicanze_in_itinere"/>
         </com.google.android.material.tabs.TabLayout>
         <FrameLayout
-                android:id="@+id/tabFrame"
+                android:id="@+id/home_tabFrame"
                 android:layout_width="match_parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline5"
-                android:layout_marginTop="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/guideline6">
 

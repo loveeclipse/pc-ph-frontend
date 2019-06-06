@@ -29,6 +29,10 @@ class HomeFragment : Fragment() {
         patientStatusButton.setOnClickListener{
             PatientStatusDialogFragment().show(requireActivity().supportFragmentManager, "patient_status_dialog_fragment")
         }
+        val missionButton = root.findViewById<Button>(R.id.dett_missione_button)
+        missionButton.setOnClickListener{
+            MissionDialogFragment().show(requireActivity().supportFragmentManager, "mission_dialog_fragment")
+        }
 
         val pcCarButton = root.findViewById<Button>(R.id.pcCar_button)
         pcCarButton.setOnClickListener{
@@ -47,7 +51,7 @@ class HomeFragment : Fragment() {
 
         val manager = fragmentManager
         val transaction = manager!!.beginTransaction()
-        transaction.replace(R.id.tabFrame, DrugsFragment())
+        transaction.replace(R.id.home_tabFrame, DrugsFragment())
         transaction.commit()
 
         val homeTabs = root.findViewById<TabLayout>(R.id.home_tabs)
@@ -66,9 +70,9 @@ class HomeFragment : Fragment() {
                         newFragment = DrugsFragment()
                     }
                 }
-                val transaction = manager!!.beginTransaction()
-                transaction.replace(R.id.tabFrame, newFragment)
-                transaction.commit()
+                val newTransaction = manager.beginTransaction()
+                newTransaction.replace(R.id.home_tabFrame, newFragment)
+                newTransaction.commit()
             }
 
             override fun onTabReselected(p0: TabLayout.Tab?) {
