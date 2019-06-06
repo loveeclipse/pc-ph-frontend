@@ -97,7 +97,7 @@
     <string name="frequenza_cardiaca">Frequenza cardiaca</string>
     <string name="ritmico">Ritmico</string>
     <string name="aritmico">Aritmico</string>
-    <string name="tempo_riempimento_capillare">Tempo riempimento capillare</string>
+    <string name="tempo_riempimento_capillare">Tempo riempimento \ncapillare</string>
     <string name="normale">Normale</string>
     <string name="aumentato">Aumentato</string>
     <string name="nullo">Nullo</string>
@@ -121,6 +121,8 @@
     <string name="mmHg">mmHg</string>
     <string name="percent">%</string>
     <string name="atti_min">atti/min</string>
+    <string name="degrees">°C</string>
+
     <string name="penetrante">Penetrante</string>
     <string name="tetraparesi">tetraparesi</string>
     <string name="paraparesi">paraparesi</string>
