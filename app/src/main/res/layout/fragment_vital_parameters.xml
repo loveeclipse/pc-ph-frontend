@@ -24,10 +24,8 @@
                 android:layout_height="45dp"
                 android:id="@+id/closeAndSave_button"
                 android:backgroundTint="@color/common_google_signin_btn_tint"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginBottom="@dimen/lateralMargin"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@android:drawable/ic_delete"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -59,215 +57,275 @@
                 android:id="@+id/textView29"
                 android:layout_marginStart="@dimen/lateralMargin"
                 android:layout_marginEnd="@dimen/lateralMargin"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/guideline60"
-                app:layout_constraintBottom_toTopOf="@+id/textView33"
-                app:layout_constraintEnd_toStartOf="@+id/radioGroup2"/>
+                app:layout_constraintBottom_toTopOf="@id/textView33"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/radioGroup2"/>
         <RadioGroup
-                android:layout_width="240dp"
-                android:layout_height="39dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginEnd="@dimen/lateralMargin"
                 android:id="@+id/radioGroup2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline60">
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintBottom_toTopOf="@id/textView43"
+                app:layout_constraintTop_toBottomOf="@+id/guideline60"
+                app:layout_constraintStart_toEndOf="@id/textView29"
+                app:layout_constraintEnd_toEndOf="parent">
             <RadioButton
                     android:text="@string/pervie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/radioButton"
-                    android:layout_weight="1"/>
+                    android:id="@+id/radioButton"/>
             <RadioButton
                     android:text="@string/non_pervie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/radioButton1"
-                    android:layout_weight="1"/>
+                    android:id="@+id/radioButton1"/>
         </RadioGroup>
         <TextView
                 android:text="@string/frequenza_respiratoria"
                 android:textSize="@dimen/normalSize"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView33"
-                android:layout_marginBottom="@dimen/lateralMargin"
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/spinner1"
                 app:layout_constraintBottom_toTopOf="@+id/textView34"
                 app:layout_constraintTop_toBottomOf="@+id/textView29"/>
         <Spinner
-                android:layout_width="100dp"
-                android:layout_height="35dp"
-                android:id="@+id/requenzaresp_spinner1"
-                tools:layout_editor_absoluteY="152dp"
-                tools:layout_editor_absoluteX="352dp"/>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner1"
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toEndOf="@id/textView33"
+                app:layout_constraintEnd_toStartOf="@id/textView43"
+                app:layout_constraintBottom_toTopOf="@+id/editText1"
+                app:layout_constraintTop_toBottomOf="@id/radioGroup2"/>
         <TextView
                 android:text="@string/atti_min"
                 android:textSize="@dimen/normalSize"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView43"
-                tools:layout_editor_absoluteY="162dp"
-                tools:layout_editor_absoluteX="452dp"/>
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toEndOf="@id/spinner1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/textView44"
+                app:layout_constraintTop_toBottomOf="@id/radioGroup2"/>
         <TextView
                 android:text="@string/saturazione_periferica"
                 android:textSize="@dimen/normalSize"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView34"
                 android:layout_marginStart="@dimen/lateralMargin"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/textView38"/>
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/editText1"
+                app:layout_constraintTop_toBottomOf="@+id/textView33"
+                app:layout_constraintBottom_toTopOf="@id/textView38"/>
         <EditText
-                android:layout_width="73dp"
-                android:layout_height="26dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:inputType="number"
                 android:id="@+id/editText1"
-                tools:layout_editor_absoluteX="379dp"
-                tools:layout_editor_absoluteY="193dp"/>
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toEndOf="@id/textView34"
+                app:layout_constraintEnd_toStartOf="@id/textView44"
+                app:layout_constraintBottom_toTopOf="@+id/textView45"
+                app:layout_constraintTop_toBottomOf="@id/spinner1"/>
         <TextView
                 android:text="@string/percent"
                 android:textSize="@dimen/normalSize"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView44"
-                tools:layout_editor_absoluteY="194dp"
-                tools:layout_editor_absoluteX="465dp"/>
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toEndOf="@id/editText1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/radioGroup3"
+                app:layout_constraintTop_toBottomOf="@id/textView43"/>
         <TextView
                 android:text="@string/frequenza_cardiaca"
                 android:textSize="@dimen/normalSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView38"
-                tools:layout_editor_absoluteY="233dp"
-                tools:layout_editor_absoluteX="83dp"/>
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/editText2"
+                app:layout_constraintTop_toBottomOf="@id/textView34"
+                app:layout_constraintBottom_toTopOf="@+id/textView39"/>
         <EditText
-                android:layout_width="73dp"
-                android:layout_height="26dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:inputType="number"
                 android:id="@+id/editText2"
-                tools:layout_editor_absoluteX="244dp"
-                tools:layout_editor_absoluteY="232dp"/>
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toEndOf="@id/textView38"
+                app:layout_constraintEnd_toStartOf="@id/textView45"
+                app:layout_constraintTop_toBottomOf="@id/textView34"
+                app:layout_constraintBottom_toTopOf="@+id/textView39"/>
         <TextView
                 android:text="@string/bpm"
                 android:textSize="@dimen/normalSize"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView45"
-                tools:layout_editor_absoluteY="232dp"
-                tools:layout_editor_absoluteX="317dp"/>
-        <Button
-                android:text="@string/ritmico"
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toEndOf="@id/editText2"
+                app:layout_constraintEnd_toStartOf="@id/button4"
+                app:layout_constraintTop_toBottomOf="@id/editText1"
+                app:layout_constraintBottom_toTopOf="@+id/editText3"/>
+        <RadioGroup
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normalSize"
-                android:id="@+id/button4"
-                tools:layout_editor_absoluteY="216dp"
-                app:layout_constraintEnd_toStartOf="@+id/button5"/>
-        <Button
-                android:text="@string/aritmico"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/normalSize"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:id="@+id/button5"
-                android:layout_marginEnd="4dp"
-                android:layout_marginTop="120dp"
+                android:orientation="horizontal"
+                android:id="@+id/radioGroup3"
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toEndOf="@id/textView45"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline60"/>
+                app:layout_constraintTop_toBottomOf="@id/textView44"
+                app:layout_constraintBottom_toTopOf="@+id/textView46">
+            <RadioButton
+                    android:text="@string/ritmico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButton8"/>
+            <RadioButton
+                    android:text="@string/aritmico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButton9"/>
+        </RadioGroup>
         <TextView
                 android:text="@string/pressione_arteriosa_sistolica"
                 android:textSize="@dimen/normalSize"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView39"
-                tools:layout_editor_absoluteY="268dp"
-                tools:layout_editor_absoluteX="83dp"/>
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/editText3"
+                app:layout_constraintTop_toBottomOf="@id/textView38"
+                app:layout_constraintBottom_toTopOf="@id/textView40"/>
         <EditText
-                android:layout_width="73dp"
-                android:layout_height="26dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:inputType="number"
                 android:id="@+id/editText3"
-                tools:layout_editor_absoluteX="327dp"
-                tools:layout_editor_absoluteY="268dp"/>
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toEndOf="@id/textView39"
+                app:layout_constraintEnd_toStartOf="@id/textView46"
+                app:layout_constraintTop_toBottomOf="@id/radioGroup3"
+                app:layout_constraintBottom_toTopOf="@id/textView40"/>
         <TextView
                 android:text="@string/mmHg"
                 android:textSize="@dimen/normalSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView46"
-                tools:layout_editor_absoluteY="269dp"
-                tools:layout_editor_absoluteX="411dp"/>
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toEndOf="@id/editText3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/radioGroup3"
+                app:layout_constraintBottom_toTopOf="@id/textView40"/>
         <TextView
                 android:text="@string/tempo_riempimento_capillare"
                 android:textSize="@dimen/normalSize"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView40"
-                tools:layout_editor_absoluteY="301dp"
-                tools:layout_editor_absoluteX="84dp"/>
-        <Button
-                android:text="@string/normale"
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/radioGroup4"
+                app:layout_constraintTop_toBottomOf="@id/textView39"
+                app:layout_constraintBottom_toTopOf="@id/textView41"/>
+        <RadioGroup
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normalSize"
-                android:id="@+id/button6"
-                tools:layout_editor_absoluteY="301dp"
-                app:layout_constraintEnd_toStartOf="@+id/button7"/>
-        <Button
-                android:text="@string/aumentato"
-                android:layout_width="144dp"
-                android:layout_height="45dp"
-                android:textSize="@dimen/normalSize"
-                android:id="@+id/button7"
-                tools:layout_editor_absoluteY="302dp"
-                app:layout_constraintEnd_toStartOf="@+id/button8"/>
-        <Button
-                android:text="@string/nullo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/normalSize"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:id="@+id/button8"
-                android:layout_marginTop="204dp"
+                android:orientation="horizontal"
+                android:id="@+id/radioGroup4"
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toEndOf="@id/textView40"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline60"/>
+                app:layout_constraintTop_toBottomOf="@id/editText3"
+                app:layout_constraintBottom_toTopOf="@+id/radioGroup5">
+            <RadioButton
+                    android:text="@string/normale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButton10"/>
+            <RadioButton
+                    android:text="@string/aumentato"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButton11"/>
+            <RadioButton
+                    android:text="@string/nullo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButton12"/>
+        </RadioGroup>
         <TextView
                 android:text="@string/colorito_cute_mucose"
                 android:textSize="@dimen/normalSize"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView41"
-                tools:layout_editor_absoluteY="369dp"
-                tools:layout_editor_absoluteX="83dp"/>
-        <Button
-                android:text="@string/normale"
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/radioGroup5"
+                app:layout_constraintTop_toBottomOf="@id/textView40"
+                app:layout_constraintBottom_toTopOf="@id/guideline88"/>
+        <RadioGroup
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normalSize"
-                android:id="@+id/button9"
-                tools:layout_editor_absoluteY="362dp"
-                app:layout_constraintEnd_toStartOf="@+id/button10"/>
-        <Button
-                android:text="@string/pallido"
-                android:layout_width="144dp"
-                android:layout_height="45dp"
-                android:textSize="@dimen/normalSize"
-                android:id="@+id/button10"
-                tools:layout_editor_absoluteY="362dp"
-                app:layout_constraintEnd_toStartOf="@+id/button11"/>
-        <Button
-                android:text="@string/cianotico"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/normalSize"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:id="@+id/button11"
-                android:layout_marginTop="268dp"
+                android:orientation="horizontal"
+                android:id="@+id/radioGroup5"
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toEndOf="@id/textView41"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline60"/>
+                app:layout_constraintTop_toBottomOf="@id/radioGroup4"
+                app:layout_constraintBottom_toTopOf="@+id/guideline88">
+            <RadioButton
+                    android:text="@string/normale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButton13"/>
+            <RadioButton
+                    android:text="@string/pallido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButton14"/>
+            <RadioButton
+                    android:text="@string/cianotico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButton15"/>
+        </RadioGroup>
+
         <TextView
                 android:text="@string/GCS_15"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/bigSize"
                 android:textStyle="bold"
@@ -277,8 +335,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/guideline88"/>
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="584dp"
-                android:layout_height="126dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:background="@drawable/box"
                 android:layout_marginStart="@dimen/lateralMargin"
                 android:layout_marginEnd="@dimen/lateralMargin"
@@ -373,7 +431,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView51"
-                app:layout_constraintBottom_toTopOf="@+id/textView42">
+                app:layout_constraintBottom_toTopOf="@+id/guideline94">
             <TextView
                     android:text="@string/dx"
                     android:layout_width="wrap_content"
@@ -495,26 +553,37 @@
         <TextView
                 android:text="@string/temperatura_corporea"
                 android:textSize="@dimen/normalSize"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView42"
-                tools:layout_editor_absoluteY="810dp"
-                tools:layout_editor_absoluteX="88dp"/>
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/editText4"
+                app:layout_constraintTop_toTopOf="@id/guideline94"/>
         <EditText
-                android:layout_width="73dp"
-                android:layout_height="26dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:inputType="number"
                 android:id="@+id/editText4"
-                tools:layout_editor_absoluteX="279dp"
-                tools:layout_editor_absoluteY="809dp"/>
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                app:layout_constraintStart_toEndOf="@id/textView42"
+                app:layout_constraintEnd_toStartOf="@id/textView47"
+                app:layout_constraintTop_toTopOf="@id/guideline94"/>
         <TextView
                 android:text="@string/degrees"
                 android:textSize="@dimen/normalSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView47"
-                tools:layout_editor_absoluteY="810dp"
-                tools:layout_editor_absoluteX="367dp"/>
+                android:layout_marginStart="@dimen/lateralMargin"
+                android:layout_marginEnd="@dimen/lateralMargin"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toEndOf="@id/editText4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/guideline94"/>
         <androidx.constraintlayout.widget.Guideline
                 android:orientation="horizontal"
                 android:layout_width="0dp"
@@ -528,5 +597,11 @@
                 android:id="@+id/guideline89"
                 app:layout_constraintGuide_percent="0.67"
         />
+        <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline94"
+                app:layout_constraintGuide_percent="0.9"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
