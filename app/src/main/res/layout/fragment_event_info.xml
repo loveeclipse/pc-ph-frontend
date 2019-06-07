@@ -3,5 +3,78 @@
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
                                                    tools:context=".home.EventInfoFragment"
-                                                   android:id="@+id/frameLayout7"/>
+                                                   android:id="@+id/frameLayout7">
+    <TextView
+            android:text="@string/codice_invio"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:id="@+id/textView54"
+            android:textSize="@dimen/normalSize"
+            android:layout_marginStart="@dimen/lateralMargin"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textView55"/>
+    <TextView
+            android:text="@string/dinamica"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView55"
+            android:textSize="@dimen/normalSize"
+            android:layout_marginStart="@dimen/lateralMargin"
+            android:layout_marginEnd="@dimen/lateralMargin"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="id/textView54"
+            app:layout_constraintBottom_toTopOf="@id/textView56"/>
+    <TextView
+            android:text="@string/secondario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView56"
+            android:textSize="@dimen/normalSize"
+            android:layout_marginStart="@dimen/lateralMargin"
+            android:layout_marginEnd="@dimen/lateralMargin"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="id/textView55"
+            app:layout_constraintBottom_toTopOf="@id/textView57"/>
+    <TextView
+            android:text="@string/indirizzo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView57"
+            android:textSize="@dimen/normalSize"
+            android:layout_marginStart="@dimen/lateralMargin"
+            android:layout_marginEnd="@dimen/lateralMargin"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="id/textView56"
+            app:layout_constraintBottom_toTopOf="@id/textView58"/>
+    <TextView
+            android:text="@string/mezzi_coinvolti"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView58"
+            android:textSize="@dimen/normalSize"
+            android:layout_marginStart="@dimen/lateralMargin"
+            android:layout_marginEnd="@dimen/lateralMargin"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="id/textView57"
+            app:layout_constraintBottom_toTopOf="@id/textView59"/>
+    <TextView
+            android:text="@string/numero_pazienti"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView59"
+            android:textSize="@dimen/normalSize"
+            android:layout_marginStart="@dimen/lateralMargin"
+            android:layout_marginEnd="@dimen/lateralMargin"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="id/textView58"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

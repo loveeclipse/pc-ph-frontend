@@ -148,6 +148,10 @@
     <string name="ecofast">Ecofast</string>
     <string name="frattura_cranica">Frattura cranica</string>
     <string name="tipo_trauma">Tipo Trauma</string>
-
-
+    <string name="codice_invio">Codice invio</string>
+    <string name="dinamica">Dinamica</string>
+    <string name="secondario">Secondario</string>
+    <string name="indirizzo">Indirizzo</string>
+    <string name="mezzi_coinvolti">Mezzi coinvolti</string>
+    <string name="numero_pazienti">Numero pazieti</string>
 </resources>
