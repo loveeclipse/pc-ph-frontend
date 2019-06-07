@@ -15,8 +15,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="@dimen/lateralMargin"
-            android:layout_marginStart="@dimen/lateralMargin">
+            android:layout_marginEnd="@dimen/horizontalMargin"
+            android:layout_marginStart="@dimen/horizontalMargin">
         <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -72,7 +72,8 @@
                 android:text="@string/conferma_pacing_transcutaneo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/buttonPadding"
+                android:paddingVertical="@dimen/buttonVerticalPadding"
+                android:paddingHorizontal="@dimen/buttonHorizontalPadding"
                 android:id="@+id/button2"
                 android:textSize="@dimen/normalSize"
                 app:layout_constraintTop_toBottomOf="@id/guideline41"
@@ -128,8 +129,8 @@
             app:layout_constraintBottom_toTopOf="@id/guideline37"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="@dimen/lateralMargin"
-            android:layout_marginEnd="@dimen/lateralMargin">
+            android:layout_marginStart="@dimen/horizontalMargin"
+            android:layout_marginEnd="@dimen/horizontalMargin">
         <Switch
                 android:text="@string/sonda_vescicale"
                 android:layout_width="0dp"

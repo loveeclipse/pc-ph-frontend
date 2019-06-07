@@ -7,4 +7,5 @@
 
 
     <color name="emoColor">@android:color/holo_red_light</color>
+    <color name="toolbarTextColor">@android:color/white</color>
 </resources>
