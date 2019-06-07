@@ -8,6 +8,8 @@
     <dimen name="buttonHorizontalPadding">14dp</dimen>
     <dimen name="buttonVerticalPadding">8dp</dimen>
 
+    <dimen name="spinnerPadding">8dp</dimen>
+
     <dimen name="horizontalMargin">4dp</dimen>
     <dimen name="verticalMargin">4dp</dimen>
 
