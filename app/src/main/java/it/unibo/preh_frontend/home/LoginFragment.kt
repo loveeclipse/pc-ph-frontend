@@ -27,8 +27,13 @@ class LoginFragment : Fragment() {
         val medicSpinner = root.findViewById<Spinner>(R.id.medicSpinner)
         val vehicleSpinner = root.findViewById<Spinner>(R.id.vehicleSpinner)
 
-        medicSpinner.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.medicSpinnerItems, R.layout.spinner_layout)
-        vehicleSpinner.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.vehicleSpinnerItems, R.layout.spinner_layout)
+        var adapter = ArrayAdapter.createFromResource(requireContext(), R.array.medicSpinnerItems, R.layout.spinner_layout)
+        adapter.setDropDownViewResource(R.layout.dropdown_spinner_layout)
+        medicSpinner.adapter = adapter
+
+        adapter = ArrayAdapter.createFromResource(requireContext(), R.array.vehicleSpinnerItems, R.layout.spinner_layout)
+        adapter.setDropDownViewResource(R.layout.dropdown_spinner_layout)
+        vehicleSpinner.adapter = adapter
 
         root.findViewById<Button>(R.id.confirmButton).setOnClickListener {
             setDoctorAndVehicle("Dott. " + medicSpinner.selectedItem.toString(), vehicleSpinner.selectedItem.toString())

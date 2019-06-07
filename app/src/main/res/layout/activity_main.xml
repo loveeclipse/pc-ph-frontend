@@ -10,38 +10,35 @@
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             android:theme="?attr/actionBarTheme"
-            android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="@color/colorWhite"
-            app:layout_constraintTop_toTopOf="parent"
-            app:subtitleTextColor="@color/colorWhite">
+            app:layout_constraintTop_toTopOf="parent">
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
             <TextView
                     android:id="@+id/title"
-                    android:textAppearance="?textAppearanceHeadline6"
+                    android:textAppearance="@style/ToolbarTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/lateralMargin"
-                    android:textColor="@color/colorWhite"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/doctor"
                     app:layout_constraintStart_toStartOf="parent"/>
             <TextView
                     android:id="@+id/doctor"
-                    android:textSize="@dimen/normalSize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorWhite"
+                    android:textAppearance="@style/ToolbarSubtitle"
                     app:layout_constraintTop_toBottomOf="@+id/title"
+                    app:layout_constraintBottom_toTopOf="@+id/vehicle"
                     app:layout_constraintStart_toStartOf="parent"/>
             <TextView
                     android:id="@+id/vehicle"
-                    android:paddingBottom="6dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorWhite"
+                    android:textAppearance="@style/ToolbarSubtitle"
                     app:layout_constraintTop_toBottomOf="@+id/doctor"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginBottom="@dimen/verticalMargin"/>
             <ImageView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -56,29 +53,13 @@
                     android:text="@string/terminazione"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/buttonPadding"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:id="@+id/finish"
+                    android:paddingVertical="@dimen/buttonVerticalPadding"
+                    android:paddingHorizontal="@dimen/buttonHorizontalPadding"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-            <androidx.constraintlayout.widget.Guideline
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintGuide_percent="0.45"
-                    android:id="@+id/guideline85"/>
-            <androidx.constraintlayout.widget.Guideline
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintGuide_percent="0.55"
-                    android:id="@+id/guideline86"/>
-            <androidx.constraintlayout.widget.Guideline
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintGuide_percent="0.70"
-                    android:id="@+id/guideline87"/>
+                    android:layout_marginEnd="@dimen/horizontalMargin"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.Toolbar>
     <fragment
@@ -88,6 +69,7 @@
 
             app:navGraph="@navigation/navigation"
             app:defaultNavHost="true"
-            android:id="@+id/nav_host_fragment" android:layout_width="match_parent"
+            android:id="@+id/nav_host_fragment"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 </LinearLayout>

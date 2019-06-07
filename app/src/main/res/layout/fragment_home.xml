@@ -5,111 +5,94 @@
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
                                                    tools:context=".home.HomeFragment" android:id="@+id/frameLayout5">
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
         <Button
                 android:text="@string/note"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:minWidth="@dimen/minButtonWidth"
-                android:minHeight="@dimen/minButtonHeight"
                 android:id="@+id/note_button"
-                app:layout_constraintTop_toBottomOf="@+id/guideline3"
+                app:layout_constraintTop_toBottomOf="@+id/storico_button"
+                app:layout_constraintBottom_toTopOf="@id/guideline4"
                 app:layout_constraintStart_toEndOf="@+id/guideline2"
-                android:layout_marginStart="@dimen/homeButtonHorizontalSpace"
-                android:layout_marginBottom="@dimen/homeButtonVerticalMargin"
-                app:layout_constraintBottom_toTopOf="@+id/guideline4"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="@dimen/homeButtonHorizontalMargin"
-                android:layout_marginTop="@dimen/homeButtonVerticalSpace"/>
+                android:layout_marginTop="@dimen/homeButtonVerticalSpace"
+                android:layout_marginBottom="@dimen/homeButtonVerticalMargin"
+                android:layout_marginStart="@dimen/homeButtonHorizontalSpace"
+                android:layout_marginEnd="@dimen/homeButtonHorizontalMargin"/>
         <Button
                 android:text="@string/new_pc_car"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:minWidth="@dimen/minButtonWidth"
-                android:minHeight="@dimen/minButtonHeight"
                 android:id="@+id/pcCar_button"
-                app:layout_constraintTop_toBottomOf="@+id/guideline3"
+                app:layout_constraintTop_toBottomOf="@+id/dett_missione_button"
+                app:layout_constraintBottom_toTopOf="@id/guideline4"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                android:layout_marginStart="@dimen/homeButtonHorizontalSpace"
-                android:layout_marginEnd="@dimen/homeButtonHorizontalSpace"
+                android:layout_marginTop="@dimen/homeButtonVerticalSpace"
                 android:layout_marginBottom="@dimen/homeButtonVerticalMargin"
-                app:layout_constraintBottom_toTopOf="@+id/guideline4"
-                android:layout_marginTop="@dimen/homeButtonVerticalSpace"/>
+                android:layout_marginStart="@dimen/homeButtonHorizontalSpace"
+                android:layout_marginEnd="@dimen/homeButtonHorizontalSpace"/>
         <Button
                 android:text="@string/parametri_vitali"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:minWidth="@dimen/minButtonWidth"
-                android:minHeight="@dimen/minButtonHeight"
                 android:id="@+id/param_vitali_button"
-                app:layout_constraintTop_toBottomOf="@+id/guideline3"
+                app:layout_constraintTop_toBottomOf="@+id/stato_paziente_button"
+                app:layout_constraintBottom_toTopOf="@id/guideline4"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="@dimen/homeButtonHorizontalMargin"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
-                android:layout_marginEnd="@dimen/homeButtonHorizontalSpace"
+                android:layout_marginTop="@dimen/homeButtonVerticalSpace"
                 android:layout_marginBottom="@dimen/homeButtonVerticalMargin"
-                app:layout_constraintBottom_toTopOf="@+id/guideline4"
-                android:layout_marginTop="@dimen/homeButtonVerticalSpace"/>
+                android:layout_marginStart="@dimen/homeButtonHorizontalMargin"
+                android:layout_marginEnd="@dimen/homeButtonHorizontalSpace"/>
         <Button
                 android:text="@string/storico"
                 android:layout_width="0dp"
-                android:minWidth="@dimen/minButtonWidth"
-                android:minHeight="@dimen/minButtonHeight"
-                android:id="@+id/storico_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="@dimen/homeButtonHorizontalMargin"
-                android:layout_marginTop="@dimen/homeButtonVerticalMargin"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/guideline2"
-                android:layout_marginStart="@dimen/homeButtonHorizontalSpace"
                 android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline3"
-                android:layout_marginBottom="@dimen/homeButtonVerticalSpace"/>
+                android:id="@+id/storico_button"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/note_button"
+                app:layout_constraintStart_toEndOf="@+id/guideline2"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/homeButtonVerticalMargin"
+                android:layout_marginBottom="@dimen/homeButtonVerticalSpace"
+                android:layout_marginStart="@dimen/homeButtonHorizontalSpace"
+                android:layout_marginEnd="@dimen/homeButtonHorizontalMargin"/>
         <Button
                 android:text="@string/dett_missione"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:minWidth="@dimen/minButtonWidth"
-                android:minHeight="@dimen/minButtonHeight"
                 android:id="@+id/dett_missione_button"
-                app:layout_constraintBottom_toTopOf="@+id/guideline3"
-                android:layout_marginTop="@dimen/homeButtonVerticalMargin"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/pcCar_button"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
-                android:layout_marginStart="@dimen/homeButtonHorizontalSpace"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                android:layout_marginEnd="@dimen/homeButtonHorizontalSpace"
-                android:layout_marginBottom="@dimen/homeButtonVerticalSpace"/>
+                android:layout_marginTop="@dimen/homeButtonVerticalMargin"
+                android:layout_marginBottom="@dimen/homeButtonVerticalSpace"
+                android:layout_marginStart="@dimen/homeButtonHorizontalSpace"
+                android:layout_marginEnd="@dimen/homeButtonHorizontalSpace"/>
         <Button
                 android:text="@string/stato_paziente"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:minWidth="@dimen/minButtonWidth"
-                android:minHeight="@dimen/minButtonHeight"
                 android:id="@+id/stato_paziente_button"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="@dimen/homeButtonHorizontalMargin"
-                android:layout_marginTop="@dimen/homeButtonVerticalMargin"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/guideline3"
-                android:layout_marginEnd="@dimen/homeButtonHorizontalSpace"
+                app:layout_constraintBottom_toTopOf="@id/param_vitali_button"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
-                android:layout_marginBottom="@dimen/homeButtonVerticalSpace"/>
+                android:layout_marginTop="@dimen/homeButtonVerticalMargin"
+                android:layout_marginBottom="@dimen/homeButtonVerticalSpace"
+                android:layout_marginStart="@dimen/homeButtonHorizontalMargin"
+                android:layout_marginEnd="@dimen/homeButtonHorizontalSpace"/>
         <com.google.android.material.tabs.TabLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:tabTextAppearance="@style/TabText"
                 app:tabGravity="fill"
                 android:id="@+id/home_tabs"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline4"
-                app:layout_constraintBottom_toTopOf="@+id/guideline5">
-
+                app:layout_constraintBottom_toTopOf="@+id/guideline5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
             <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -127,14 +110,14 @@
             <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/complicanze_in_itinere"/>
+                    android:text="@string/complicanze"/>
         </com.google.android.material.tabs.TabLayout>
         <FrameLayout
                 android:id="@+id/home_tabFrame"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/guideline5"
                 android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline6">
+                app:layout_constraintTop_toBottomOf="@+id/guideline5"
+                app:layout_constraintBottom_toBottomOf="parent">
 
         </FrameLayout>
         <androidx.constraintlayout.widget.Guideline
@@ -153,25 +136,12 @@
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.12"
-                android:id="@+id/guideline3"/>
-        <androidx.constraintlayout.widget.Guideline
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.24"
+                app:layout_constraintGuide_percent="0.25"
                 android:id="@+id/guideline4"/>
         <androidx.constraintlayout.widget.Guideline
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.34"
+                app:layout_constraintGuide_percent="0.35"
                 android:id="@+id/guideline5"/>
-        <androidx.constraintlayout.widget.Guideline
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.99"
-                android:id="@+id/guideline6"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

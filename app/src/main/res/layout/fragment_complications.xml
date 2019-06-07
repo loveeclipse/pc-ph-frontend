@@ -14,8 +14,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="@dimen/lateralMargin"
-            android:layout_marginEnd="@dimen/lateralMargin">
+            android:layout_marginStart="@dimen/horizontalMargin"
+            android:layout_marginEnd="@dimen/horizontalMargin">
         <Switch
                 android:text="@string/arresto_cardio_circolatorio"
                 android:layout_width="0dp"
