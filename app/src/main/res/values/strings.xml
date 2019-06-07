@@ -16,7 +16,7 @@
     <string name="farmaci">Farmaci</string>
     <string name="manovre">Manovre</string>
     <string name="trattamenti">Trattamenti</string>
-    <string name="complicanze_in_itinere">Complicanze \nin itinere</string>
+    <string name="complicanze">Complicanze</string>
     <string name="parametri_vitali">Parametri Vitali</string>
     <string name="new_pc_car">New PC Car</string>
     <string name="note">Note</string>
