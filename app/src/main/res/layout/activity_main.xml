@@ -66,7 +66,6 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:name="androidx.navigation.fragment.NavHostFragment"
-
             app:navGraph="@navigation/navigation"
             app:defaultNavHost="true"
             android:id="@+id/nav_host_fragment"
