@@ -29,6 +29,12 @@ class HomeFragment : Fragment() {
         patientStatusButton.setOnClickListener{
             PatientStatusDialogFragment().show(requireActivity().supportFragmentManager, "patient_status_dialog_fragment")
         }
+
+        val historyButton = root.findViewById<Button>(R.id.storico_button)
+        historyButton.setOnClickListener{
+            HistoryDialogFragment().show(requireActivity().supportFragmentManager, "history_dialog_fragment")
+        }
+
         val missionButton = root.findViewById<Button>(R.id.dett_missione_button)
         missionButton.setOnClickListener{
             MissionDialogFragment().show(requireActivity().supportFragmentManager, "mission_dialog_fragment")
