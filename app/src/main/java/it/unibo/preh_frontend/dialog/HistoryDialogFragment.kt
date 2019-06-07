@@ -17,19 +17,19 @@ class HistoryDialogFragment : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+
         val root =  inflater.inflate(R.layout.fragment_history_dialog, container, false)
 
 
-        val listView = root.findViewById<ListView>(R.id.history_list);
+        val listView = root.findViewById<ListView>(R.id.history_list)
         val initialList = ArrayList<String>()
-        val mAdapter =  ArrayAdapter(requireContext(), R.layout.abc_list_menu_item_layout, initialList)
+        val mAdapter =  ArrayAdapter(requireContext(), R.layout.list_item,R.id.list_text, initialList)
         listView.adapter = mAdapter
 
         val buttonTest = root.findViewById<ImageButton>(R.id.imageButton4)
         buttonTest.setOnClickListener{
-            mAdapter.add("balblalblalbla")
-
+            initialList.add("ucucucucucuc")
+            mAdapter.notifyDataSetChanged()
         }
 
 
