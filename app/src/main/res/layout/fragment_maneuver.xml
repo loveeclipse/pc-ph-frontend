@@ -8,14 +8,13 @@
                                                    tools:context=".home.ManeuverFragment"
                                                    android:id="@+id/frameLayout">
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:id="@+id/constraintLayout3"
             android:background="@drawable/box"
             app:layout_constraintTop_toBottomOf="@+id/textView6"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/verticalMargin"
             android:layout_marginEnd="@dimen/horizontalMargin"
             android:layout_marginStart="@dimen/horizontalMargin">
         <EditText
@@ -127,7 +126,7 @@
             android:layout_height="0dp"
             android:id="@+id/constraintLayout2"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/guideline37"
+            app:layout_constraintBottom_toTopOf="@id/textView6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="@dimen/horizontalMargin"
@@ -187,24 +186,10 @@
             android:text="@string/pacing_transcutaneo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/bigSize"
-            android:textStyle="bold"
-            android:textAllCaps="true"
+            style="@style/BigTextStyle"
             android:id="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/guideline37"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="10dp"/>
-    <androidx.constraintlayout.widget.Guideline
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintGuide_percent="0.5"
-            android:id="@+id/guideline37"/>
-    <androidx.constraintlayout.widget.Guideline
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintGuide_percent="1"
-            android:id="@+id/guideline38"/>
+            android:layout_marginStart="@dimen/horizontalMargin"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

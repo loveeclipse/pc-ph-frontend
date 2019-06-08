@@ -58,7 +58,7 @@
     </style>
 
     <!-- Text of login fragment -->
-    <style name="NormalTextStyle" parent="TextAppearance.MaterialComponents.Body1">
+    <style name="BigTextStyle" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textSize">@dimen/bigSize</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textStyle">bold</item>
