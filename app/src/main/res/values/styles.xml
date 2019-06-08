@@ -32,6 +32,10 @@
         <item name="backgroundTint">@color/colorSecondary</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
+    <style name="AccentButtonStyle" parent="AppButtonStyle">
+        <item name="backgroundTint">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 
     <style name="NormalTextStyle" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textSize">@dimen/bigSize</item>

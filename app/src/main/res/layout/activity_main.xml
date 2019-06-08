@@ -53,6 +53,7 @@
                     android:text="@string/terminazione"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/AccentButtonStyle"
                     android:id="@+id/finish"
                     android:paddingVertical="@dimen/buttonVerticalPadding"
                     android:paddingHorizontal="@dimen/buttonHorizontalPadding"
