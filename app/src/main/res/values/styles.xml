@@ -10,9 +10,13 @@
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
         <item name="materialButtonStyle">@style/AppButtonStyle</item>
     </style>
+
+    <!-- Tab Layout -->
     <style name="TabText" parent="TextAppearance.MaterialComponents.Tab">
         <item name="android:textSize">@dimen/normalSize</item>
     </style>
+
+    <!-- ActionBar -->
     <style name="ToolbarTitle" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:textSize">@dimen/hugeSize</item>
         <item name="android:textColor">@color/toolbarTextColor</item>
@@ -21,12 +25,16 @@
         <item name="android:textSize">@dimen/normalSize</item>
         <item name="android:textColor">@color/toolbarTextColor</item>
     </style>
+
+    <!-- BottomSheetDialog -->
     <style name="AppBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/AppModalStyle</item>
     </style>
     <style name="AppModalStyle" parent="Widget.MaterialComponents.BottomSheet.Modal">
         <item name="behavior_peekHeight">@dimen/peekHeightBottomSheet</item>
     </style>
+
+    <!-- Button -->
     <style name="AppButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:textSize">@dimen/normalSize</item>
         <item name="backgroundTint">@color/colorSecondary</item>
@@ -36,16 +44,31 @@
         <item name="backgroundTint">@color/colorAccent</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
-
-    <style name="NormalTextStyle" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:textSize">@dimen/bigSize</item>
+    <style name="InfusionButtonStyle" parent="AppButtonStyle">
+        <item name="backgroundTint">@color/infusionColor</item>
+    </style>
+    <style name="EmoButtonStyle" parent="AppButtonStyle">
+        <item name="backgroundTint">@color/emoColor</item>
+    </style>
+    <style name="GenericDrugsButtonStyle1" parent="AppButtonStyle">
+        <item name="backgroundTint">@color/drugColor1</item>
+    </style>
+    <style name="GenericDrugsButtonStyle2" parent="AppButtonStyle">
+        <item name="backgroundTint">@color/drugColor2</item>
     </style>
 
+    <!-- Text of login fragment -->
+    <style name="NormalTextStyle" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">@dimen/bigSize</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Constraint Layout -->
     <style name="BoxStyle">
         <item name="android:background">@drawable/box</item>
     </style>
     <style name="BackgroundFragmentStyle">
         <item name="android:background">@color/backgroundFragmentColor</item>
     </style>
-
 </resources>
