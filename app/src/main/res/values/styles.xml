@@ -7,10 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
-        <item name="textAppearanceButton">@style/AppButtonStyle</item>
+        <item name="materialButtonStyle">@style/AppButtonStyle</item>
     </style>
-
     <style name="TabText" parent="TextAppearance.MaterialComponents.Tab">
         <item name="android:textSize">@dimen/normalSize</item>
     </style>
@@ -28,8 +26,9 @@
     <style name="AppModalStyle" parent="Widget.MaterialComponents.BottomSheet.Modal">
         <item name="behavior_peekHeight">900dp</item>
     </style>
-    <style name="AppButtonStyle" parent="TextAppearance.MaterialComponents.Button">
+    <style name="AppButtonStyle" parent="Widget.AppCompat.Button.Colored">
         <item name="android:textSize">@dimen/normalSize</item>
+        <item name="backgroundTint">@color/colorSecondary</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
 
@@ -40,7 +39,6 @@
     <style name="BoxStyle">
         <item name="android:background">@drawable/box</item>
     </style>
-
     <style name="BackgroundFragmentStyle">
         <item name="android:background">@color/backgroundFragmentColor</item>
     </style>
