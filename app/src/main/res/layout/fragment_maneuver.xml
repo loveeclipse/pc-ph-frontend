@@ -22,17 +22,16 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:id="@+id/editText7"
-                app:layout_constraintBottom_toTopOf="@+id/guideline41"
                 app:layout_constraintTop_toBottomOf="@+id/editText5"
+                app:layout_constraintBottom_toTopOf="@+id/guideline41"
                 app:layout_constraintStart_toStartOf="@+id/guideline32"
                 app:layout_constraintEnd_toStartOf="@+id/guideline42"/>
         <TextView
                 android:text="@string/frequenza_di_cattura"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/PacingTextStyle"
                 android:id="@+id/textView18"
-                android:textStyle="bold"
-                android:textAppearance="?textAppearanceBody1"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/textView19"
                 app:layout_constraintStart_toEndOf="@id/guideline39"/>
@@ -40,8 +39,7 @@
                 android:text="@string/amperaggio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textAppearance="?textAppearanceBody1"
+                style="@style/PacingTextStyle"
                 android:id="@+id/textView19"
                 app:layout_constraintTop_toBottomOf="@+id/textView18"
                 app:layout_constraintBottom_toTopOf="@id/guideline41"
@@ -50,24 +48,20 @@
                 android:text="@string/bpm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normalSize"
-                android:textStyle="bold"
+                style="@style/PacingTextStyle"
                 android:id="@+id/textView20"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/textView21"
-                app:layout_constraintStart_toEndOf="@id/guideline42"
-                app:layout_constraintEnd_toStartOf="@id/guideline40"/>
+                app:layout_constraintStart_toEndOf="@id/guideline42"/>
         <TextView
                 android:text="@string/ma"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normalSize"
+                style="@style/PacingTextStyle"
                 android:id="@+id/textView21"
-                android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/textView20"
                 app:layout_constraintBottom_toTopOf="@id/guideline41"
-                app:layout_constraintStart_toEndOf="@id/guideline42"
-                app:layout_constraintEnd_toStartOf="@id/guideline40"/>
+                app:layout_constraintStart_toEndOf="@id/guideline42"/>
         <Button
                 android:text="@string/conferma_pacing_transcutaneo"
                 android:layout_width="0dp"
@@ -75,7 +69,6 @@
                 android:paddingVertical="@dimen/buttonVerticalPadding"
                 android:paddingHorizontal="@dimen/buttonHorizontalPadding"
                 android:id="@+id/button2"
-                android:textSize="@dimen/normalSize"
                 app:layout_constraintTop_toBottomOf="@id/guideline41"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/guideline39"
@@ -122,60 +115,48 @@
                 android:id="@+id/guideline42"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:id="@+id/constraintLayout2"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/textView6"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginEnd="@dimen/horizontalMargin">
         <Switch
                 android:text="@string/sonda_vescicale"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/vescicale_switch"
                 app:layout_constraintTop_toBottomOf="@+id/gastrica_switch"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"/>
         <Switch
                 android:text="@string/sonda_gastrica"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/gastrica_switch"
                 app:layout_constraintTop_toBottomOf="@+id/ces_switch"
-                app:layout_constraintBottom_toTopOf="@+id/vescicale_switch"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintBottom_toTopOf="@+id/vescicale_switch"/>
         <Switch
                 android:text="@string/cardioversione_elettrica_sincronizzata"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/ces_switch"
                 app:layout_constraintTop_toBottomOf="@+id/imm_switch"
-                app:layout_constraintBottom_toTopOf="@+id/gastrica_switch"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintBottom_toTopOf="@+id/gastrica_switch"/>
         <Switch
                 android:text="@string/immobilizzazione"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/imm_switch"
                 app:layout_constraintTop_toBottomOf="@+id/cervicale_switch"
-                app:layout_constraintBottom_toTopOf="@+id/ces_switch"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintBottom_toTopOf="@+id/ces_switch"/>
         <Switch
                 android:text="@string/collare_cervicale"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/cervicale_switch"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/imm_switch"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintBottom_toTopOf="@id/imm_switch"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
             android:text="@string/pacing_transcutaneo"
@@ -186,5 +167,6 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
             app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/verticalMargin"
             android:layout_marginStart="@dimen/horizontalMargin"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

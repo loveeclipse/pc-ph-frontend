@@ -77,4 +77,9 @@
     <style name="AppSwitchStyle" parent="Widget.AppCompat.CompoundButton.Switch">
         <item name="android:textSize">@dimen/normalSize</item>
     </style>
+
+    <!-- Switch -->
+    <style name="PacingTextStyle" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">@dimen/normalSize</item>
+    </style>
 </resources>
