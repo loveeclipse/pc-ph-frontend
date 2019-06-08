@@ -43,8 +43,10 @@ class LoginFragment : Fragment() {
     }
 
     private fun setDoctorAndVehicle(doctor: String, vehicle: String){
-        requireActivity().findViewById<TextView>(R.id.doctor).text = doctor
-        requireActivity().findViewById<TextView>(R.id.vehicle).text = vehicle
+        requireActivity().apply {
+            findViewById<TextView>(R.id.doctor).text = doctor
+            findViewById<TextView>(R.id.vehicle).text = vehicle
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

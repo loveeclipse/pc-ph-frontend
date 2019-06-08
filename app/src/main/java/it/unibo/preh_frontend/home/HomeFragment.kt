@@ -57,8 +57,10 @@ class HomeFragment : Fragment() {
 
         val manager = fragmentManager
         val transaction = manager!!.beginTransaction()
-        transaction.replace(R.id.home_tabFrame, DrugsFragment())
-        transaction.commit()
+        transaction.apply {
+            replace(R.id.home_tabFrame, DrugsFragment())
+            commit()
+        }
 
         val homeTabs = root.findViewById<TabLayout>(R.id.home_tabs)
         homeTabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -72,13 +74,13 @@ class HomeFragment : Fragment() {
                     1 -> newFragment = ManeuverFragment()
                     2 -> newFragment = TreatmentFragment()
                     3 -> newFragment = ComplicationsFragment()
-                    else -> {
-                        newFragment = DrugsFragment()
-                    }
+                    else -> newFragment = DrugsFragment()
                 }
                 val newTransaction = manager.beginTransaction()
-                newTransaction.replace(R.id.home_tabFrame, newFragment)
-                newTransaction.commit()
+                newTransaction.apply {
+                    replace(R.id.home_tabFrame, newFragment)
+                    commit()
+                }
             }
 
             override fun onTabReselected(p0: TabLayout.Tab?) {
