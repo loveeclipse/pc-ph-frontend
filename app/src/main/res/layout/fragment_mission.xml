@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".dialog.MissionDialogFragment">
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   style="@style/BackgroundFragmentStyle"
+                                                   tools:context=".dialog.MissionDialogFragment">
 
 
     <com.google.android.material.tabs.TabLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="15dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="10dp" android:layout_marginStart="10dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/mission_tabFrame" android:id="@+id/mission_tabs"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/mission_tabFrame"
+            android:id="@+id/mission_tabs"
             app:layout_constraintHorizontal_bias="0.0">
 
         <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Anagrafica Paziente"/>
+                android:text="@string/anagrafica_paziente"/>
 
         <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Info Evento"/>
+                android:text="@string/info_evento"/>
     </com.google.android.material.tabs.TabLayout>
     <FrameLayout
             android:layout_width="match_parent"
@@ -40,8 +46,12 @@
             android:layout_width="69dp"
             android:layout_height="54dp"
             android:id="@+id/imageButton3"
-            android:backgroundTint="@color/common_google_signin_btn_tint" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="14dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
-            app:layout_constraintStart_toEndOf="@+id/mission_tabs" android:layout_marginStart="211dp"
+            android:backgroundTint="@color/common_google_signin_btn_tint"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toEndOf="@+id/mission_tabs"
+            android:layout_marginStart="211dp"
             app:layout_constraintBottom_toTopOf="@+id/mission_tabFrame"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

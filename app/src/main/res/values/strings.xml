@@ -19,7 +19,6 @@
     <string name="complicanze">Complicanze</string>
     <string name="parametri_vitali">Parametri Vitali</string>
     <string name="new_pc_car">New PC Car</string>
-    <string name="note">Note</string>
     <string name="infusioni">Infusioni</string>
     <string name="generici">Generici</string>
     <string name="mannitolo">MANNITOLO 10%</string>
@@ -154,6 +153,8 @@
     <string name="indirizzo">Indirizzo</string>
     <string name="mezzi_coinvolti">Mezzi coinvolti</string>
     <string name="numero_pazienti">Numero pazieti</string>
-
+    <string name="note">Note</string>
     <string name="inizia_tourniquet">Inizia Tourniquet</string>
+    <string name="anagrafica_paziente">Anagrafica Paziente</string>
+    <string name="info_evento">Info Evento</string>
 </resources>
