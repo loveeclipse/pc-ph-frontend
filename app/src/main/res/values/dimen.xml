@@ -23,5 +23,15 @@
     <dimen name="drugsButtonHorizontalSpace">4dp</dimen>
     <dimen name="drugsButtonVerticalSpace">1dp</dimen>
 
+    <dimen name="treatmentButtonHorizontalMargin">8dp</dimen>
+    <dimen name="treatmentButtonVerticalMargin">4dp</dimen>
+    <dimen name="treatmentButtonHorizontalSpace">4dp</dimen>
+    <dimen name="treatmentButtonVerticalSpace">1dp</dimen>
+
+    <dimen name="treatmentTimerHorizontalMargin">75dp</dimen>
+    <dimen name="treatmentTimerVerticalMargin">4dp</dimen>
+    <dimen name="treatmentTimerHorizontalSpace">40dp</dimen>
+    <dimen name="treatmentTimerVerticalSpace">4dp</dimen>
+
     <dimen name="peekHeightBottomSheet">450dp</dimen>
 </resources>
