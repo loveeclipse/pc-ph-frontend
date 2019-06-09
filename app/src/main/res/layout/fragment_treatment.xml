@@ -312,7 +312,7 @@
                 <Button
                         android:text="@string/ossigenoterapia_i_min"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:id="@+id/ossigenoterapia_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalMargin"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
@@ -326,7 +326,7 @@
                 <Button
                         android:text="@string/ambu"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="0dp"
                         android:id="@+id/ambu_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalMargin"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
@@ -406,7 +406,7 @@
                 <Button
                         android:text="@string/sublussazione_mandibola"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:id="@+id/sublussazione_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalMargin"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
@@ -419,7 +419,7 @@
                 <Button
                         android:text="@string/guedel"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="0dp"
                         android:id="@+id/guedel_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalMargin"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
@@ -432,7 +432,7 @@
                 <Button
                         android:text="@string/crico_tirotomia"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="0dp"
                         android:id="@+id/tirotomia_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalSpace"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
@@ -445,7 +445,7 @@
                 <Button
                         android:text="@string/tubo_tracheale"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="0dp"
                         android:id="@+id/tubotrach_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalSpace"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
@@ -481,7 +481,7 @@
                 <Button
                         android:text="@string/andrenalina_1mg"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:id="@+id/adrenalina_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalMargin"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
@@ -494,7 +494,7 @@
                 <Button
                         android:text="@string/esegui_shock"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:id="@+id/shock_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalMargin"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
@@ -507,7 +507,7 @@
                 <Button
                         android:text="@string/inizio_rianimazione"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:id="@+id/rianimazione_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalSpace"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
@@ -520,7 +520,7 @@
                 <TextView
                         android:text="00:00"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:textSize="@dimen/normalSize"
                         android:id="@+id/textView8"
                         android:layout_marginTop="@dimen/treatmentTimerVerticalMargin"
