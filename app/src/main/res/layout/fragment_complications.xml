@@ -81,12 +81,11 @@
                 android:text="@string/decesso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normalSize"
-                android:textStyle="bold"
+                style="@style/PacingTextStyle"
                 android:id="@+id/textView2"
                 app:layout_constraintTop_toBottomOf="@+id/guideline45"
-                app:layout_constraintBottom_toTopOf="@+id/guideline46"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"/>
         <Button
                 android:text="@string/in_itinere"
                 android:layout_width="0dp"
@@ -95,9 +94,10 @@
                 android:id="@+id/button"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 app:layout_constraintTop_toBottomOf="@+id/guideline45"
-                app:layout_constraintBottom_toTopOf="@+id/guideline46"
                 app:layout_constraintStart_toEndOf="@id/guideline43"
-                app:layout_constraintEnd_toStartOf="@+id/guideline44"/>
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button3" android:layout_marginStart="10dp"/>
         <Button
                 android:text="@string/all_arrivo_in_ps"
                 android:layout_width="0dp"
@@ -106,8 +106,8 @@
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:id="@+id/button3"
                 app:layout_constraintTop_toBottomOf="@+id/guideline45"
-                app:layout_constraintBottom_toTopOf="@+id/guideline46"
-                app:layout_constraintStart_toEndOf="@+id/guideline44"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"/>
         <androidx.constraintlayout.widget.Guideline
                 android:orientation="vertical"
@@ -116,22 +116,10 @@
                 app:layout_constraintGuide_percent="0.20"
                 android:id="@+id/guideline43"/>
         <androidx.constraintlayout.widget.Guideline
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.60"
-                android:id="@+id/guideline44"/>
-        <androidx.constraintlayout.widget.Guideline
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintGuide_percent="0.8"
                 android:id="@+id/guideline45"/>
-        <androidx.constraintlayout.widget.Guideline
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="1"
-                android:id="@+id/guideline46"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

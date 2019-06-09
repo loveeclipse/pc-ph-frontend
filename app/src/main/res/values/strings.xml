@@ -154,4 +154,7 @@
     <string name="mezzi_coinvolti">Mezzi coinvolti</string>
     <string name="numero_pazienti">Numero pazieti</string>
     <string name="note">Note</string>
+    <string name="inizia_tourniquet">Inizia Tourniquet</string>
+    <string name="anagrafica_paziente">Anagrafica Paziente</string>
+    <string name="info_evento">Info Evento</string>
 </resources>

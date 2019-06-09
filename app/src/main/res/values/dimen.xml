@@ -33,5 +33,9 @@
     <dimen name="treatmentTimerHorizontalSpace">40dp</dimen>
     <dimen name="treatmentTimerVerticalSpace">4dp</dimen>
 
+    <dimen name="treatmentTextHorizontalMargin">10dp</dimen>
+    <dimen name="treatmentTextVerticalMargin">8dp</dimen>
+
+
     <dimen name="peekHeightBottomSheet">450dp</dimen>
 </resources>
