@@ -343,8 +343,8 @@
                         app:layout_constraintBottom_toTopOf="@+id/guideline13"/>
                 <TextView
                         android:text="@string/mini_toracotomia"
-                        android:layout_width="159dp"
-                        android:layout_height="26dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:id="@+id/textView11"
                         android:textSize="@dimen/normalSize"
                         android:textStyle="bold"
