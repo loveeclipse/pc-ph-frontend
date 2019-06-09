@@ -64,6 +64,8 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <!-- Dialog tittle -->
     <style name="DialogTitleTextStyle" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textSize">@dimen/hugeSize</item>
         <item name="android:textAllCaps">false</item>
