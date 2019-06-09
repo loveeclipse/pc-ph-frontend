@@ -121,7 +121,7 @@
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/pelvicbind_button"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline20"/>
+                        app:layout_constraintBottom_toTopOf="@+id/view1"/>
                 <Button
                         android:text="@string/pelvic_binder"
                         android:layout_width="0dp"
@@ -132,14 +132,15 @@
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
                         app:layout_constraintStart_toEndOf="@+id/emostasi_button"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline20"/>
+                        app:layout_constraintBottom_toTopOf="@+id/view1"/>
                 <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="2dp"
+                        android:id="@+id/view1"
                         android:background="@android:color/darker_gray"
                         app:layout_constraintStart_toEndOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline20"/>
+                        app:layout_constraintBottom_toBottomOf="@+id/emostasi_button"/>
                 <TextView
                         android:text="@string/tourniquet"
                         android:layout_width="0dp"
@@ -148,15 +149,17 @@
                         android:textStyle="bold"
                         android:id="@+id/textView13"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintTop_toBottomOf="@+id/guideline20"
+                        app:layout_constraintTop_toBottomOf="@+id/view1"
+                        app:layout_constraintBottom_toTopOf="@id/button24"
                         app:layout_constraintStart_toStartOf="parent"/>
                 <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="2dp"
+                        android:id="@+id/view2"
                         android:background="@android:color/darker_gray"
                         app:layout_constraintStart_toEndOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline21"/>
+                        app:layout_constraintTop_toBottomOf="@+id/button24"/>
                 <TextView
                         android:text="@string/reboa"
                         android:layout_width="0dp"
@@ -166,12 +169,12 @@
                         android:id="@+id/textView16"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/guideline21"
+                        app:layout_constraintTop_toBottomOf="@+id/view2"
                         app:layout_constraintBottom_toTopOf="@id/reboaZ1_button"/>
                 <Button
                         android:text="@string/inizia_reboa_zona_1"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:id="@+id/reboaZ1_button"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalSpace"
@@ -182,7 +185,7 @@
                 <Button
                         android:text="@string/inizia_reboa_zona_3"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:id="@+id/reboaZ3_button"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
@@ -198,6 +201,7 @@
                         android:textStyle="bold"
                         android:id="@+id/textView17"
                         android:layout_marginStart="@dimen/treatmentTimerHorizontalMargin"
+                        android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/textView22"
                         app:layout_constraintTop_toBottomOf="@+id/reboaZ1_button"
@@ -210,6 +214,7 @@
                         android:textStyle="bold"
                         android:id="@+id/textView22"
                         android:layout_marginEnd="@dimen/treatmentTimerHorizontalMargin"
+                        android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
                         app:layout_constraintStart_toEndOf="@id/textView17"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/reboaZ3_button"
@@ -274,29 +279,18 @@
                         app:layout_constraintEnd_toStartOf="@id/intraossea_button"
                         app:layout_constraintTop_toBottomOf="@+id/textView26"
                         app:layout_constraintBottom_toTopOf="@id/emostasi_button"/>
-                <androidx.constraintlayout.widget.Guideline
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/guideline20"
-                        app:layout_constraintGuide_percent="0.5"/>
-                <androidx.constraintlayout.widget.Guideline
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/guideline21"
-                        app:layout_constraintGuide_percent="0.7"/>
                 <Button
                         android:text="@string/inizia_tourniquet"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:id="@+id/button24"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
+                        android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView13"
-                        app:layout_constraintBottom_toTopOf="@id/guideline21"/>
+                        app:layout_constraintBottom_toTopOf="@id/view2"/>
                 <TextView
                         android:text="00:00"
                         android:layout_width="wrap_content"
@@ -309,7 +303,7 @@
                         android:layout_marginBottom="@dimen/treatmentTimerVerticalSpace"
                         app:layout_constraintStart_toEndOf="@id/textView13"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/guideline20"
+                        app:layout_constraintTop_toBottomOf="@+id/view1"
                         app:layout_constraintBottom_toTopOf="@id/button24"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
