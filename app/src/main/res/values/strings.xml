@@ -166,4 +166,5 @@
     <string name="anamnesi">Anamnesi</string>
     <string name="anticoagulanti">Anticoagulanti</string>
     <string name="antipiastrine">Antipiastrine</string>
+    <string name="emptyText">-------------</string>
 </resources>
