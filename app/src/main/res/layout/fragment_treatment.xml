@@ -181,7 +181,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/textView16"/>
                 <TextView
-                        android:text="00:00"
+                        android:text="@string/starting_timer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/TreatmentTextStyle"
@@ -192,7 +192,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/reboaZ1_button"
                         app:layout_constraintBottom_toBottomOf="parent"/>
                 <TextView
-                        android:text="00:00"
+                        android:text="@string/starting_timer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/TreatmentTextStyle"
@@ -272,7 +272,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView13"
                         app:layout_constraintBottom_toTopOf="@id/view2"/>
                 <TextView
-                        android:text="00:00"
+                        android:text="@string/starting_timer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView56"
@@ -301,29 +301,29 @@
                 <Button
                         android:text="@string/ossigenoterapia_i_min"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:id="@+id/ossigenoterapia_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalMargin"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalSpace"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/ambu_button"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline13"/>
+                        app:layout_constraintBottom_toTopOf="@+id/button4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ambu_button"/>
                 <Button
                         android:text="@string/ambu"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:id="@+id/ambu_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalMargin"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintStart_toEndOf="@+id/ossigenoterapia_button"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline13"/>
+                        app:layout_constraintBottom_toTopOf="@+id/button4"
+                        app:layout_constraintStart_toEndOf="@+id/ossigenoterapia_button"
+                        app:layout_constraintEnd_toEndOf="parent"/>
                 <TextView
                         android:text="@string/mini_toracotomia"
                         android:layout_width="wrap_content"
@@ -334,13 +334,13 @@
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalSpace"
+                        app:layout_constraintTop_toBottomOf="@+id/ossigenoterapia_button"
+                        app:layout_constraintBottom_toTopOf="@+id/ippv_button"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/button4"
-                        app:layout_constraintTop_toBottomOf="@+id/guideline13"
-                        app:layout_constraintBottom_toTopOf="@+id/ippv_button"/>
+                        app:layout_constraintEnd_toStartOf="@id/button4"/>
                 <Button
                         android:text="@string/ippv"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/ippv_button"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
@@ -348,35 +348,29 @@
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/button4"
                         app:layout_constraintBottom_toBottomOf="parent"/>
                 <Button
                         android:text="@string/sx"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        style="@style/UnselectedButtonStyle"
                         android:id="@+id/button4"
+                        app:layout_constraintTop_toBottomOf="@+id/ossigenoterapia_button"
+                        app:layout_constraintBottom_toTopOf="@id/ippv_button"
                         app:layout_constraintStart_toEndOf="@+id/textView11"
-                        app:layout_constraintEnd_toStartOf="@+id/button5"
-                        app:layout_constraintTop_toBottomOf="@+id/guideline13"
-                        app:layout_constraintBottom_toTopOf="@id/ippv_button"/>
+                        app:layout_constraintEnd_toStartOf="@+id/button5"/>
                 <Button
                         android:text="@string/dx"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        style="@style/SelectedButtonStyle"
                         android:id="@+id/button5"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
-                        android:textColorLink="@color/colorPrimaryDark"
-                        android:background="@color/colorPrimaryDark"
-                        android:backgroundTint="@color/colorPrimaryDark"
+                        app:layout_constraintTop_toBottomOf="@+id/ambu_button"
+                        app:layout_constraintBottom_toTopOf="@id/ippv_button"
                         app:layout_constraintStart_toEndOf="@+id/button4"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/guideline13"
-                        app:layout_constraintBottom_toTopOf="@id/ippv_button"/>
-                <androidx.constraintlayout.widget.Guideline
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/guideline13"
-                        app:layout_constraintGuide_percent="0.35"/>
+                        app:layout_constraintEnd_toEndOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
