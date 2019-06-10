@@ -7,14 +7,18 @@
     <string-array name="medicSpinnerItems">
         <item>Marco Benni</item>
     </string-array>
-    <integer-array name="gaugeSpinnerItems">
-        <item>6</item>
-        <item>68</item>
-    </integer-array>
-    <integer-array name="frenchSpinnerItems">
-        <item>66</item>
-        <item>64</item>
-    </integer-array>
+    <string-array name="gaugeSpinnerItems">
+        <item>14</item>
+        <item>16</item>
+        <item>18</item>
+        <item>20</item>
+        <item>22</item>
+        <item>24</item>
+    </string-array>
+    <string-array name="frenchSpinnerItems">
+        <item>8</item>
+        <item>10</item>
+    </string-array>
     <string-array name="sizeSpinnerItems">
         <item>S</item>
         <item>M</item>

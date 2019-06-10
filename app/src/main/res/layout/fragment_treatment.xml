@@ -51,22 +51,22 @@
                 <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/centrale_spinner"
+                        android:id="@+id/central_spinner"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/textView26"
                         app:layout_constraintTop_toBottomOf="@+id/periferica_spinner"
-                        app:layout_constraintBottom_toTopOf="@id/intraossea_spinner"/>
+                        app:layout_constraintBottom_toTopOf="@id/intraosseous_spinner"/>
                 <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/intraossea_spinner"
+                        android:id="@+id/intraosseous_spinner"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/textView27"
-                        app:layout_constraintTop_toBottomOf="@+id/centrale_spinner"
+                        app:layout_constraintTop_toBottomOf="@+id/central_spinner"
                         app:layout_constraintBottom_toTopOf="@id/emostasi_button"/>
                 <Spinner
                         android:layout_width="wrap_content"
@@ -77,7 +77,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/textView25"
                         app:layout_constraintTop_toBottomOf="@+id/textView23"
-                        app:layout_constraintBottom_toTopOf="@id/centrale_spinner"/>
+                        app:layout_constraintBottom_toTopOf="@id/central_spinner"/>
                 <Button
                         android:text="@string/periferica"
                         android:layout_width="0dp"
@@ -88,28 +88,28 @@
                         app:layout_constraintStart_toEndOf="@id/guideline5"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/textView24"
-                        app:layout_constraintBottom_toTopOf="@id/centrale_button"/>
+                        app:layout_constraintBottom_toTopOf="@id/central_button"/>
                 <Button
                         android:text="@string/centrale"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/centrale_button"
+                        android:id="@+id/central_button"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
                         app:layout_constraintStart_toEndOf="@id/guideline5"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/periferica_button"
-                        app:layout_constraintBottom_toTopOf="@id/intraossea_button"/>
+                        app:layout_constraintBottom_toTopOf="@id/intraosseous_button"/>
                 <Button
                         android:text="@string/intraossea"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/intraossea_button"
+                        android:id="@+id/intraosseous_button"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
                         app:layout_constraintStart_toEndOf="@id/guideline5"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/centrale_button"
+                        app:layout_constraintTop_toBottomOf="@+id/central_button"
                         app:layout_constraintBottom_toTopOf="@id/pelvicbind_button"/>
                 <Button
                         android:text="@string/emostasi"
@@ -253,7 +253,7 @@
                         android:textStyle="bold"
                         android:textSize="@dimen/normalSize"
                         android:layout_marginEnd="@dimen/treatmentTextHorizontalMargin"
-                        app:layout_constraintStart_toEndOf="@+id/centrale_spinner"
+                        app:layout_constraintStart_toEndOf="@+id/central_spinner"
                         app:layout_constraintEnd_toStartOf="@id/guideline5"
                         app:layout_constraintTop_toBottomOf="@+id/textView25"
                         app:layout_constraintBottom_toTopOf="@id/textView27"/>
@@ -266,7 +266,7 @@
                         android:id="@+id/textView27"
                         android:layout_marginStart="@dimen/treatmentTextHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentTextHorizontalMargin"
-                        app:layout_constraintStart_toEndOf="@+id/intraossea_spinner"
+                        app:layout_constraintStart_toEndOf="@+id/intraosseous_spinner"
                         app:layout_constraintEnd_toStartOf="@id/guideline5"
                         app:layout_constraintTop_toBottomOf="@+id/textView26"
                         app:layout_constraintBottom_toTopOf="@id/emostasi_button"/>
