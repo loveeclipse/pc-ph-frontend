@@ -5,7 +5,6 @@
     <color name="colorSecondary">#4FC3F7</color>
     <color name="colorAccent">#E040FB</color>
     <color name="colorLightGray">#E7E7E7</color>
-
     <color name="backgroundFragmentColor">@color/colorLightGray</color>
     <color name="backgroundBoxColor">@android:color/white</color>
     <color name="borderBoxColor">@android:color/darker_gray</color>
