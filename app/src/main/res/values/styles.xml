@@ -57,11 +57,13 @@
     <style name="GenericDrugsButtonStyle2" parent="AppButtonStyle">
         <item name="backgroundTint">@color/drugColor2</item>
     </style>
-    <style name="SelectedButtonStyle" parent="AppButtonStyle">
-        <item name="backgroundTint">@color/colorPrimaryDark</item>
-    </style>
     <style name="UnselectedButtonStyle" parent="AppButtonStyle">
-        <item name="backgroundTint">@android:color/white</item>
+        <item name="cornerRadius">0dp</item>
+        <item name="backgroundTint">@color/buttonUnselectedBackgroundColor</item>
+    </style>
+    <style name="SelectedButtonStyle" parent="AppButtonStyle">
+        <item name="cornerRadius">0dp</item>
+        <item name="backgroundTint">@color/buttonSelectedBackgroundColor</item>
     </style>
 
     <!-- Text style -->

@@ -14,4 +14,6 @@
     <color name="emoColor">@android:color/holo_red_light</color>
     <color name="drugColor1">@android:color/holo_orange_light</color>
     <color name="drugColor2">@android:color/holo_green_dark</color>
+    <color name="buttonSelectedBackgroundColor">@color/colorPrimaryDark</color>
+    <color name="buttonUnselectedBackgroundColor">@android:color/white</color>
 </resources>
