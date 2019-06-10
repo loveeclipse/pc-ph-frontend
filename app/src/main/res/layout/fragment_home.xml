@@ -13,7 +13,7 @@
                 android:id="@+id/note_button"
                 app:layout_constraintTop_toBottomOf="@+id/storico_button"
                 app:layout_constraintBottom_toTopOf="@id/guideline4"
-                app:layout_constraintStart_toEndOf="@+id/guideline2"
+                app:layout_constraintStart_toEndOf="@+id/pcCar_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="@dimen/homeButtonVerticalSpace"
                 android:layout_marginBottom="@dimen/homeButtonVerticalMargin"
@@ -26,8 +26,8 @@
                 android:id="@+id/pcCar_button"
                 app:layout_constraintTop_toBottomOf="@+id/dett_missione_button"
                 app:layout_constraintBottom_toTopOf="@id/guideline4"
-                app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toEndOf="@+id/param_vitali_button"
+                app:layout_constraintEnd_toStartOf="@+id/note_button"
                 android:layout_marginTop="@dimen/homeButtonVerticalSpace"
                 android:layout_marginBottom="@dimen/homeButtonVerticalMargin"
                 android:layout_marginStart="@dimen/homeButtonHorizontalSpace"
@@ -40,7 +40,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/stato_paziente_button"
                 app:layout_constraintBottom_toTopOf="@id/guideline4"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintEnd_toStartOf="@+id/pcCar_button"
                 android:layout_marginTop="@dimen/homeButtonVerticalSpace"
                 android:layout_marginBottom="@dimen/homeButtonVerticalMargin"
                 android:layout_marginStart="@dimen/homeButtonHorizontalMargin"
@@ -52,7 +52,7 @@
                 android:id="@+id/storico_button"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/note_button"
-                app:layout_constraintStart_toEndOf="@+id/guideline2"
+                app:layout_constraintStart_toEndOf="@+id/dett_missione_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="@dimen/homeButtonVerticalMargin"
                 android:layout_marginBottom="@dimen/homeButtonVerticalSpace"
@@ -65,8 +65,8 @@
                 android:id="@+id/dett_missione_button"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/pcCar_button"
-                app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toEndOf="@+id/stato_paziente_button"
+                app:layout_constraintEnd_toStartOf="@+id/storico_button"
                 android:layout_marginTop="@dimen/homeButtonVerticalMargin"
                 android:layout_marginBottom="@dimen/homeButtonVerticalSpace"
                 android:layout_marginStart="@dimen/homeButtonHorizontalSpace"
@@ -79,7 +79,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/param_vitali_button"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintEnd_toStartOf="@+id/dett_missione_button"
                 android:layout_marginTop="@dimen/homeButtonVerticalMargin"
                 android:layout_marginBottom="@dimen/homeButtonVerticalSpace"
                 android:layout_marginStart="@dimen/homeButtonHorizontalMargin"
@@ -115,20 +115,7 @@
                 style="@style/BackgroundFragmentStyle"
                 app:layout_constraintTop_toBottomOf="@id/home_tabs"
                 app:layout_constraintBottom_toBottomOf="parent">
-
         </FrameLayout>
-        <androidx.constraintlayout.widget.Guideline
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.33"
-                android:id="@+id/guideline"/>
-        <androidx.constraintlayout.widget.Guideline
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.66"
-                android:id="@+id/guideline2"/>
         <androidx.constraintlayout.widget.Guideline
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
