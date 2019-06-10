@@ -9,17 +9,14 @@
 
 
     <com.google.android.material.tabs.TabLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/mission_tabFrame"
+            android:layout_marginStart="5dp"
             android:id="@+id/mission_tabs"
-            app:layout_constraintHorizontal_bias="0.0">
+            app:layout_constraintEnd_toStartOf="@+id/imageButton3" android:layout_marginEnd="20dp">
 
         <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -35,23 +32,20 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:id="@+id/mission_tabFrame"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mission_tabs">
 
     </FrameLayout>
     <ImageButton
             android:src="@android:drawable/ic_delete"
-            android:layout_width="69dp"
-            android:layout_height="54dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:id="@+id/imageButton3"
             android:backgroundTint="@color/common_google_signin_btn_tint"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="16dp"
-            app:layout_constraintStart_toEndOf="@+id/mission_tabs"
-            android:layout_marginStart="211dp"
-            app:layout_constraintBottom_toTopOf="@+id/mission_tabFrame"/>
+            app:layout_constraintBottom_toTopOf="@+id/mission_tabFrame"
+            app:layout_constraintStart_toEndOf="@+id/mission_tabs"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

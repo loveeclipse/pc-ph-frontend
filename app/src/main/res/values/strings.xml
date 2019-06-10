@@ -157,4 +157,13 @@
     <string name="inizia_tourniquet">Inizia Tourniquet</string>
     <string name="anagrafica_paziente">Anagrafica Paziente</string>
     <string name="info_evento">Info Evento</string>
+    <string name="nome">Nome</string>
+    <string name="cognome">Cognome</string>
+    <string name="residenza">Residenza</string>
+    <string name="luogo_di_nascita">Luogo di nascita</string>
+    <string name="sesso">Sesso</string>
+    <string name="data_di_nascita">Data di nascita</string>
+    <string name="anamnesi">Anamnesi</string>
+    <string name="anticoagulanti">Anticoagulanti</string>
+    <string name="antipiastrine">Antipiastrine</string>
 </resources>
