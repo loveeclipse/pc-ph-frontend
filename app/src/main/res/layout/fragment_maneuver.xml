@@ -125,35 +125,35 @@
         <Switch
                 android:text="@string/sonda_vescicale"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/vescicale_switch"
                 app:layout_constraintTop_toBottomOf="@+id/gastrica_switch"
                 app:layout_constraintBottom_toBottomOf="parent"/>
         <Switch
                 android:text="@string/sonda_gastrica"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/gastrica_switch"
                 app:layout_constraintTop_toBottomOf="@+id/ces_switch"
                 app:layout_constraintBottom_toTopOf="@+id/vescicale_switch"/>
         <Switch
                 android:text="@string/cardioversione_elettrica_sincronizzata"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/ces_switch"
                 app:layout_constraintTop_toBottomOf="@+id/imm_switch"
                 app:layout_constraintBottom_toTopOf="@+id/gastrica_switch"/>
         <Switch
                 android:text="@string/immobilizzazione"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/imm_switch"
                 app:layout_constraintTop_toBottomOf="@+id/cervicale_switch"
                 app:layout_constraintBottom_toTopOf="@+id/ces_switch"/>
         <Switch
                 android:text="@string/collare_cervicale"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/cervicale_switch"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/imm_switch"/>
