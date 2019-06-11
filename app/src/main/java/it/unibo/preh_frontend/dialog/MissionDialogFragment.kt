@@ -6,6 +6,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
@@ -30,6 +31,11 @@ class MissionDialogFragment : DialogFragment() {
         val transaction = manager.beginTransaction()
         transaction.replace(R.id.mission_tabFrame,AnagraficFragment())
         transaction.commit()
+
+        val exitAndSaveButton = root.findViewById<ImageButton>(R.id.mission_image_button)
+        exitAndSaveButton.setOnClickListener{
+            //TODO SAVE THE CURRENT STATE AND EXIT
+        }
 
         val missionTabs = root.findViewById<TabLayout>(R.id.mission_tabs)
         missionTabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {

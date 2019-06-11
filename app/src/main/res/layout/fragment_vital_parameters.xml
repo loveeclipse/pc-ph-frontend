@@ -16,7 +16,7 @@
             <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/closeAndSave_button"
+                    android:id="@+id/parameters_image_button"
                     android:backgroundTint="@color/common_google_signin_btn_tint"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@android:drawable/ic_delete"

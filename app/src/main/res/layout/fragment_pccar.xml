@@ -68,7 +68,7 @@
             android:layout_width="105dp"
             android:layout_height="106dp"
             app:srcCompat="@android:drawable/ic_delete"
-            android:id="@+id/closeAndSave_button"
+            android:id="@+id/pcCar_image_button"
             android:backgroundTint="@color/common_google_signin_btn_tint"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="30dp"
