@@ -4,7 +4,7 @@
                                                    android:id="@+id/pc_car"
                                                    style="@style/BackgroundFragmentStyle"
                                                    android:layout_width="match_parent"
-                                                   android:layout_height="wrap_content">
+                                                   android:layout_height="match_parent">
 
     <TextView
             android:text="@string/new_pc_car_text"
@@ -65,8 +65,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/closeAndSave_button"
+            android:src="@drawable/ic_close_24dp"
             android:backgroundTint="@color/common_google_signin_btn_tint"
-            app:srcCompat="@drawable/ic_close_24dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
