@@ -1,10 +1,10 @@
 package it.unibo.preh_frontend.dialog
 
 import android.app.Dialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,13 +18,21 @@ class NoteDialogFragment : DialogFragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var parentDialog: Dialog
-    private lateinit var textualNoteView: TextView
+    private lateinit var noteEditText: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_note, container, false)
+        sharedPreferences = requireContext().getSharedPreferences("historyData", Context.MODE_PRIVATE)
+        parentDialog = dialog!!
+        noteEditText = root.findViewById(R.id.note_edit_text)
 
-        textualNoteView = root.findViewById<TextView>(R.id.editText3)
 
+        val savedSet = sharedPreferences.getString("notes", null)
+        if(savedSet != null) {
+            noteEditText.text = savedSet
+        }else {
+
+        }
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.note_image_button)
         saveAndExitButton.setOnClickListener {
             val builder1 = AlertDialog.Builder(requireContext())
@@ -33,13 +41,13 @@ class NoteDialogFragment : DialogFragment() {
 
             builder1.setPositiveButton(
                     "Si"
-            ) { dialog, id ->
+            ) { dialog, _ ->
                 dialog.cancel()
                 parentDialog.dismiss()
             }
             builder1.setNegativeButton(
                     "No"
-            ) { dialog, id -> dialog.cancel() }
+            ) { dialog, _ -> dialog.cancel() }
 
             val alert11 = builder1.create()
             alert11.show()
@@ -51,7 +59,7 @@ class NoteDialogFragment : DialogFragment() {
     override fun onCancel(dialog: DialogInterface) {
         //SAVE NOTES TO SHAREDPREFERENCES
 
-        sharedPreferences.edit().putString("historyList",textualNoteView.text.toString()).apply()
+        sharedPreferences.edit().putString("notes",noteEditText.text.toString()).apply()
         dialog.cancel()
     }
 
