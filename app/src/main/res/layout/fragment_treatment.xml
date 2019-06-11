@@ -41,32 +41,26 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/central_spinner"
-                        android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
-                        android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/textView26"
                         app:layout_constraintTop_toBottomOf="@+id/periferica_spinner"
-                        app:layout_constraintBottom_toTopOf="@id/intraosseous_spinner"/>
+                        app:layout_constraintBottom_toTopOf="@id/intraosseous_spinner"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/textView26"/>
                 <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/intraosseous_spinner"
-                        android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
-                        android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/textView27"
                         app:layout_constraintTop_toBottomOf="@+id/central_spinner"
-                        app:layout_constraintBottom_toTopOf="@id/emostasi_button"/>
+                        app:layout_constraintBottom_toTopOf="@id/emostasi_button"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/textView27"/>
                 <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/periferica_spinner"
-                        android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
-                        android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/textView25"
                         app:layout_constraintTop_toBottomOf="@+id/textView23"
-                        app:layout_constraintBottom_toTopOf="@id/central_spinner"/>
+                        app:layout_constraintBottom_toTopOf="@id/central_spinner"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/textView25"/>
                 <Button
                         android:text="@string/periferica"
                         android:layout_width="0dp"
@@ -74,10 +68,10 @@
                         android:id="@+id/periferica_button"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintStart_toEndOf="@id/guideline5"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/textView24"
-                        app:layout_constraintBottom_toTopOf="@id/central_button"/>
+                        app:layout_constraintBottom_toTopOf="@id/central_button"
+                        app:layout_constraintStart_toEndOf="@id/guideline5"
+                        app:layout_constraintEnd_toEndOf="parent"/>
                 <Button
                         android:text="@string/centrale"
                         android:layout_width="0dp"
@@ -85,10 +79,10 @@
                         android:id="@+id/central_button"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintStart_toEndOf="@id/guideline5"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/periferica_button"
-                        app:layout_constraintBottom_toTopOf="@id/intraosseous_button"/>
+                        app:layout_constraintBottom_toTopOf="@id/intraosseous_button"
+                        app:layout_constraintStart_toEndOf="@id/guideline5"
+                        app:layout_constraintEnd_toEndOf="parent"/>
                 <Button
                         android:text="@string/intraossea"
                         android:layout_width="0dp"
@@ -96,10 +90,10 @@
                         android:id="@+id/intraosseous_button"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintStart_toEndOf="@id/guideline5"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/central_button"
-                        app:layout_constraintBottom_toTopOf="@id/pelvicbind_button"/>
+                        app:layout_constraintBottom_toTopOf="@id/pelvicbind_button"
+                        app:layout_constraintStart_toEndOf="@id/guideline5"
+                        app:layout_constraintEnd_toEndOf="parent"/>
                 <Button
                         android:text="@string/emostasi"
                         android:layout_width="0dp"
@@ -108,9 +102,10 @@
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
+                        app:layout_constraintTop_toBottomOf="@id/intraosseous_button"
+                        app:layout_constraintBottom_toTopOf="@id/view1"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/guideline5"
-                        app:layout_constraintBottom_toTopOf="@+id/view1"/>
+                        app:layout_constraintEnd_toStartOf="@id/guideline5"/>
                 <Button
                         android:text="@string/pelvic_binder"
                         android:layout_width="0dp"
@@ -119,20 +114,20 @@
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
+                        app:layout_constraintTop_toBottomOf="@id/intraosseous_button"
+                        app:layout_constraintBottom_toTopOf="@id/view1"
                         app:layout_constraintStart_toEndOf="@+id/guideline5"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/view1"/>
+                        app:layout_constraintEnd_toEndOf="parent"/>
                 <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:id="@+id/view1"
                         android:background="@android:color/darker_gray"
-                        app:layout_constraintStart_toEndOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="@+id/emostasi_button"/>
+                        app:layout_constraintTop_toBottomOf="@+id/emostasi_button"
+                        app:layout_constraintBottom_toTopOf="@id/textView13"/>
                 <TextView
                         android:text="@string/tourniquet"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/TreatmentTextStyle"
                         android:id="@+id/textView13"
@@ -145,19 +140,18 @@
                         android:layout_height="2dp"
                         android:id="@+id/view2"
                         android:background="@android:color/darker_gray"
-                        app:layout_constraintStart_toEndOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/button24"/>
+                        app:layout_constraintTop_toBottomOf="@+id/button24"
+                        app:layout_constraintBottom_toTopOf="@id/textView16"/>
                 <TextView
                         android:text="@string/reboa"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/TreatmentTextStyle"
                         android:id="@+id/textView16"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/view2"
-                        app:layout_constraintBottom_toTopOf="@id/reboaZ1_button"/>
+                        app:layout_constraintBottom_toTopOf="@id/reboaZ1_button"
+                        app:layout_constraintStart_toStartOf="parent"/>
                 <Button
                         android:text="@string/inizia_reboa_zona_1"
                         android:layout_width="0dp"
@@ -165,10 +159,10 @@
                         android:id="@+id/reboaZ1_button"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalSpace"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/guideline5"
                         app:layout_constraintTop_toBottomOf="@+id/textView16"
-                        app:layout_constraintBottom_toTopOf="@id/textView17"/>
+                        app:layout_constraintBottom_toTopOf="@id/textView17"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/guideline5"/>
                 <Button
                         android:text="@string/inizia_reboa_zona_3"
                         android:layout_width="0dp"
@@ -176,10 +170,10 @@
                         android:id="@+id/reboaZ3_button"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintStart_toEndOf="@id/guideline5"
+                        app:layout_constraintTop_toBottomOf="@id/textView16"
                         app:layout_constraintBottom_toTopOf="@id/textView22"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textView16"/>
+                        app:layout_constraintStart_toEndOf="@id/guideline5"
+                        app:layout_constraintEnd_toEndOf="parent"/>
                 <TextView
                         android:text="@string/starting_timer"
                         android:layout_width="wrap_content"
@@ -187,10 +181,10 @@
                         style="@style/TreatmentTextStyle"
                         android:id="@+id/textView17"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/guideline5"
                         app:layout_constraintTop_toBottomOf="@+id/reboaZ1_button"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/guideline5"/>
                 <TextView
                         android:text="@string/starting_timer"
                         android:layout_width="wrap_content"
@@ -198,10 +192,10 @@
                         style="@style/TreatmentTextStyle"
                         android:id="@+id/textView22"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
-                        app:layout_constraintStart_toEndOf="@id/guideline5"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/reboaZ3_button"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/guideline5"
+                        app:layout_constraintEnd_toEndOf="parent"/>
                 <TextView
                         android:text="@string/calibro"
                         android:layout_width="wrap_content"
@@ -209,9 +203,10 @@
                         style="@style/TreatmentTextStyle"
                         android:id="@+id/textView23"
                         android:layout_marginTop="@dimen/treatmentTextVerticalMargin"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/periferica_button"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/guideline5"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintEnd_toStartOf="@id/guideline5"/>
                 <TextView
                         android:text="@string/tipologia"
                         android:layout_width="wrap_content"
@@ -219,56 +214,49 @@
                         android:id="@+id/textView24"
                         style="@style/TreatmentTextStyle"
                         android:layout_marginTop="@dimen/treatmentTextVerticalMargin"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/periferica_button"
                         app:layout_constraintStart_toEndOf="@id/guideline5"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintEnd_toEndOf="parent"/>
                 <TextView
                         android:text="@string/gauge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView25"
-                        android:textSize="@dimen/normalSize"
-                        android:textStyle="bold"
-                        android:layout_marginEnd="@dimen/treatmentTextHorizontalMargin"
-                        app:layout_constraintStart_toEndOf="@+id/periferica_spinner"
-                        app:layout_constraintEnd_toStartOf="@id/guideline5"
+                        style="@style/TreatmentTextStyle"
                         app:layout_constraintTop_toBottomOf="@id/textView23"
-                        app:layout_constraintBottom_toTopOf="@id/textView26"/>
+                        app:layout_constraintBottom_toTopOf="@id/textView26"
+                        app:layout_constraintStart_toEndOf="@+id/periferica_spinner"
+                        app:layout_constraintEnd_toStartOf="@id/guideline5"/>
                 <TextView
                         android:text="@string/french"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView26"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/normalSize"
-                        android:layout_marginEnd="@dimen/treatmentTextHorizontalMargin"
-                        app:layout_constraintStart_toEndOf="@+id/central_spinner"
-                        app:layout_constraintEnd_toStartOf="@id/guideline5"
+                        style="@style/TreatmentTextStyle"
                         app:layout_constraintTop_toBottomOf="@+id/textView25"
-                        app:layout_constraintBottom_toTopOf="@id/textView27"/>
+                        app:layout_constraintBottom_toTopOf="@id/textView27"
+                        app:layout_constraintStart_toEndOf="@+id/central_spinner"
+                        app:layout_constraintEnd_toStartOf="@id/guideline5"/>
                 <TextView
                         android:text="@string/size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/normalSize"
-                        android:textStyle="bold"
+                        style="@style/TreatmentTextStyle"
                         android:id="@+id/textView27"
                         android:layout_marginStart="@dimen/treatmentTextHorizontalMargin"
-                        android:layout_marginEnd="@dimen/treatmentTextHorizontalMargin"
-                        app:layout_constraintStart_toEndOf="@+id/intraosseous_spinner"
-                        app:layout_constraintEnd_toStartOf="@id/guideline5"
                         app:layout_constraintTop_toBottomOf="@+id/textView26"
-                        app:layout_constraintBottom_toTopOf="@id/emostasi_button"/>
+                        app:layout_constraintBottom_toTopOf="@id/emostasi_button"
+                        app:layout_constraintStart_toEndOf="@+id/intraosseous_spinner"
+                        app:layout_constraintEnd_toStartOf="@id/guideline5"/>
                 <Button
                         android:text="@string/inizia_tourniquet"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/button24"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView13"
                         app:layout_constraintBottom_toTopOf="@id/view2"/>
                 <TextView
@@ -277,13 +265,10 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/textView56"
                         style="@style/TreatmentTextStyle"
-                        android:layout_marginEnd="@dimen/treatmentTimerHorizontalMargin"
-                        android:layout_marginTop="@dimen/treatmentTimerVerticalMargin"
-                        android:layout_marginBottom="@dimen/treatmentTimerVerticalSpace"
-                        app:layout_constraintStart_toEndOf="@id/textView13"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/view1"
-                        app:layout_constraintBottom_toTopOf="@id/button24"/>
+                        app:layout_constraintBottom_toTopOf="@id/button24"
+                        app:layout_constraintStart_toEndOf="@id/textView13"
+                        app:layout_constraintEnd_toEndOf="parent"/>
                 <androidx.constraintlayout.widget.Guideline
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
@@ -484,10 +469,6 @@
                         android:layout_height="wrap_content"
                         style="@style/TreatmentTextStyle"
                         android:id="@+id/textView8"
-                        android:layout_marginTop="@dimen/treatmentTimerVerticalMargin"
-                        android:layout_marginBottom="@dimen/treatmentTimerVerticalSpace"
-                        android:layout_marginStart="@dimen/treatmentTimerHorizontalSpace"
-                        android:layout_marginEnd="@dimen/treatmentTimerHorizontalMargin"
                         app:layout_constraintTop_toBottomOf="@id/shock_button"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/guideline2"

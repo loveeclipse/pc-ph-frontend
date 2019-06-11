@@ -31,11 +31,6 @@
     <dimen name="treatmentButtonHorizontalSpace">4dp</dimen>
     <dimen name="treatmentButtonVerticalSpace">1dp</dimen>
 
-    <dimen name="treatmentTimerHorizontalMargin">75dp</dimen>
-    <dimen name="treatmentTimerVerticalMargin">4dp</dimen>
-    <dimen name="treatmentTimerHorizontalSpace">40dp</dimen>
-    <dimen name="treatmentTimerVerticalSpace">4dp</dimen>
-
     <dimen name="treatmentTextHorizontalMargin">10dp</dimen>
     <dimen name="treatmentTextVerticalMargin">8dp</dimen>
 
