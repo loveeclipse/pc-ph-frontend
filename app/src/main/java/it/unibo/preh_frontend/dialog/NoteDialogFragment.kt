@@ -57,8 +57,6 @@ class NoteDialogFragment : DialogFragment() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        //SAVE NOTES TO SHAREDPREFERENCES
-
         sharedPreferences.edit().putString("notes",noteEditText.text.toString()).apply()
         dialog.cancel()
     }
