@@ -38,7 +38,7 @@ class TreatmentFragment : Fragment() {
         adapter.setDropDownViewResource(R.layout.dropdown_spinner_layout)
         intraosseousSpinner.adapter = adapter
 
-        root.findViewById<Button>(R.id.periferica_button).setOnClickListener {
+       /* root.findViewById<Button>(R.id.periferica_button).setOnClickListener {
             setPeripheral(peripheralSpinner.selectedItem.toString())
         }
         root.findViewById<Button>(R.id.central_button).setOnClickListener {
@@ -46,11 +46,11 @@ class TreatmentFragment : Fragment() {
         }
         root.findViewById<Button>(R.id.intraosseous_button).setOnClickListener {
             setIntraosseous(intraosseousSpinner.selectedItem.toString())
-        }
+        }*/
         return root
     }
 
-    private fun setPeripheral(peripheral: String){
+    /*private fun setPeripheral(peripheral: String){
         requireActivity().apply {
             findViewById<TextView>(R.id.periferica_spinner).text = peripheral
         }
@@ -65,7 +65,7 @@ class TreatmentFragment : Fragment() {
         requireActivity().apply {
             findViewById<TextView>(R.id.intraosseous_spinner).text = intraosseous
         }
-    }
+    }*/
 
 /*
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

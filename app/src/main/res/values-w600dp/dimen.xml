@@ -22,6 +22,4 @@
     <dimen name="drugsButtonVerticalMargin">8dp</dimen>
     <dimen name="drugsButtonHorizontalSpace">8dp</dimen>
     <dimen name="drugsButtonVerticalSpace">2dp</dimen>
-
-    <dimen name="peekHeightBottomSheet">700dp</dimen>
 </resources>

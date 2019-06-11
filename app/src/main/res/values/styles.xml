@@ -7,7 +7,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
         <item name="materialButtonStyle">@style/AppButtonStyle</item>
         <item name="switchStyle">@style/AppSwitchStyle</item>
     </style>
@@ -25,14 +24,6 @@
     <style name="ToolbarSubtitle" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textSize">@dimen/normalSize</item>
         <item name="android:textColor">@color/toolbarTextColor</item>
-    </style>
-
-    <!-- BottomSheetDialog -->
-    <style name="AppBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/AppModalStyle</item>
-    </style>
-    <style name="AppModalStyle" parent="Widget.MaterialComponents.BottomSheet.Modal">
-        <item name="behavior_peekHeight">@dimen/peekHeightBottomSheet</item>
     </style>
 
     <!-- Button -->
@@ -78,6 +69,7 @@
 
     <!-- Dialog title -->
     <style name="DialogTitleTextStyle" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textSize">@dimen/hugeSize</item>
         <item name="android:textStyle">bold</item>
     </style>
 
