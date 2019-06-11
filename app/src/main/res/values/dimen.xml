@@ -30,6 +30,4 @@
     <dimen name="treatmentButtonVerticalMargin">4dp</dimen>
     <dimen name="treatmentButtonHorizontalSpace">4dp</dimen>
     <dimen name="treatmentButtonVerticalSpace">1dp</dimen>
-
-    <dimen name="peekHeightBottomSheet">450dp</dimen>
 </resources>
