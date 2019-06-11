@@ -31,9 +31,5 @@
     <dimen name="treatmentButtonHorizontalSpace">4dp</dimen>
     <dimen name="treatmentButtonVerticalSpace">1dp</dimen>
 
-    <dimen name="treatmentTextHorizontalMargin">10dp</dimen>
-    <dimen name="treatmentTextVerticalMargin">8dp</dimen>
-
-
     <dimen name="peekHeightBottomSheet">450dp</dimen>
 </resources>
