@@ -35,6 +35,7 @@ class MissionDialogFragment : DialogFragment() {
         val exitAndSaveButton = root.findViewById<ImageButton>(R.id.mission_image_button)
         exitAndSaveButton.setOnClickListener{
             //TODO SAVE THE CURRENT STATE AND EXIT
+            //MUST SAVE THE CHILDRENFRAGMENT STATE
         }
 
         val missionTabs = root.findViewById<TabLayout>(R.id.mission_tabs)
