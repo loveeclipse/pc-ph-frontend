@@ -31,13 +31,13 @@
         <item>L</item>
     </string-array>
 
-    <string-array name="respiratoryFrequency">
+    <string-array name="respiratoryFrequencyItems">
         <item>&#60;10</item>
         <item>10&#45;29</item>
         <item>&#62;29</item>
     </string-array>
     
-    <string-array name="eyeOpening">
+    <string-array name="eyeOpeningItems">
         <item>4 &#45; Spontanea</item>
         <item>3 &#45; Stimolo Sonoro</item>
         <item>2 &#45; Stimolo Pressorio</item>
@@ -45,7 +45,7 @@
         <item>ND &#45; Non Determinabile</item>
     </string-array>
 
-    <string-array name="verbalResponse">
+    <string-array name="verbalResponseItems">
         <item>5 &#45; Orientata</item>
         <item>4 &#45; Confusa</item>
         <item>3 &#45; Parole</item>
@@ -54,7 +54,7 @@
         <item>ND &#45; Non Determinabile</item>
     </string-array>
 
-    <string-array name="motorResponse">
+    <string-array name="motorResponseItems">
         <item>6 &#45; Esegue Ordini</item>
         <item>5 &#45; Localizza</item>
         <item>4 &#45; Flessione Normale</item>

@@ -4,13 +4,11 @@ package it.unibo.preh_frontend.dialog
 import android.app.Dialog
 import android.content.DialogInterface
 import android.content.SharedPreferences
-import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.PatientStatusData
@@ -42,7 +40,7 @@ class VitalParametersDialogFragment : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_vital_parameters, container, false)
-        parentDialog = dialog!!
+        /*parentDialog = dialog!!
         dialog!!.setCanceledOnTouchOutside(false)
 
         vieAeree = root.findViewById(R.id.vie_aeree_switch)
@@ -97,7 +95,27 @@ class VitalParametersDialogFragment : DialogFragment() {
 
             val alert11 = builder1.create()
             alert11.show()
-        }
+        }*/
+        val respiratoryFrequencySpinner = root.findViewById<Spinner>(R.id.freq_resp_spinner)
+        val eyesOpeningSpinner = root.findViewById<Spinner>(R.id.apertura_occhi_spinner)
+        val verbalResponseSpinner = root.findViewById<Spinner>(R.id.risposta_verbale_spinner)
+        val motoryResponseSpinner = root.findViewById<Spinner>(R.id.risposta_motoria_spinner)
+
+        var adapter = ArrayAdapter.createFromResource(requireContext(), R.array.respiratoryFrequencyItems, R.layout.spinner_layout)
+        adapter.setDropDownViewResource(R.layout.spinner_layout)
+        respiratoryFrequencySpinner.adapter = adapter
+
+        adapter = ArrayAdapter.createFromResource(requireContext(), R.array.eyeOpeningItems, R.layout.spinner_layout)
+        adapter.setDropDownViewResource(R.layout.spinner_layout)
+        eyesOpeningSpinner.adapter = adapter
+
+        adapter = ArrayAdapter.createFromResource(requireContext(), R.array.verbalResponseItems, R.layout.spinner_layout)
+        adapter.setDropDownViewResource(R.layout.spinner_layout)
+        verbalResponseSpinner.adapter = adapter
+
+        adapter = ArrayAdapter.createFromResource(requireContext(), R.array.motorResponseItems, R.layout.spinner_layout)
+        adapter.setDropDownViewResource(R.layout.spinner_layout)
+        motoryResponseSpinner.adapter = adapter
 
         return root
     }
