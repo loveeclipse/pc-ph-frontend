@@ -82,31 +82,35 @@ class VitalParametersDialogFragment : DialogFragment() {
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
         saveAndExitButton.setOnClickListener {
-            val builder1 = AlertDialog.Builder(requireContext())
-            builder1.setTitle("Vuoi uscire senza salvare?")
-            builder1.setMessage("Devi compilare ancora dei campi")
-            builder1.setCancelable(true)
+            if (!checkEveryField()) {
+                val builder1 = AlertDialog.Builder(requireContext())
+                builder1.setTitle("Vuoi uscire senza salvare?")
+                builder1.setMessage("Devi compilare ancora dei campi")
+                builder1.setCancelable(true)
 
-            builder1.setPositiveButton(
-                    "Si"
-            ) { dialog, _ ->
-                dialog.cancel()
+                builder1.setPositiveButton(
+                        "Si"
+                ) { dialog, _ ->
+                    dialog.cancel()
+                    parentDialog.dismiss()
+                }
+                builder1.setNegativeButton(
+                        "No"
+                ) { dialog, _ -> dialog.cancel() }
+
+                val alert11 = builder1.create()
+                alert11.show()
+            } else {
                 parentDialog.dismiss()
             }
-            builder1.setNegativeButton(
-                    "No"
-            ) { dialog, _ -> dialog.cancel() }
-
-            val alert11 = builder1.create()
-            alert11.show()
         }
-
         return root
     }
 
+
     private fun checkEveryField(): Boolean{
         return (vieAeree.checkedRadioButtonId != -1 &&
-                freqRespiratoria.selectedItemPosition != null &&
+                freqRespiratoria.selectedItemPosition != -1 &&
                 saturazione.text.toString() != "" &&
                 freqCaridaca.text.toString() != "" &&
                 tipoBattito.checkedRadioButtonId != -1 &&
@@ -114,8 +118,8 @@ class VitalParametersDialogFragment : DialogFragment() {
                 tempRiempCapillare.checkedRadioButtonId != -1 &&
                 colorCuteMucose.checkedRadioButtonId != -1 &&
                 aperturaOcchi.selectedItemPosition != -1 &&
-                rispostaVerbale.selectedItemPosition != null &&
-                rispostaMotoria.selectedItemPosition != null &&
+                rispostaVerbale.selectedItemPosition != -1 &&
+                rispostaMotoria.selectedItemPosition != -1 &&
                 pupilleSx.checkedRadioButtonId != -1 &&
                 pupilleDx.checkedRadioButtonId != -1 &&
                 tempCorporea.text.toString() != "")
@@ -124,7 +128,6 @@ class VitalParametersDialogFragment : DialogFragment() {
 
     override fun onCancel(dialog: DialogInterface) {
         //SALVA PARAMETRI VITALI
-
         val saveState = VitalParametersData(vieAeree.checkedRadioButtonId,
                                             freqRespiratoria.selectedItemPosition,
                                             Integer.parseInt(saturazione.text.toString()),
