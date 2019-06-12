@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/arrest_switch"
+            android:textAppearance="@style/NormalTextStyle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/consciousness_deteriorarion_switch"/>
     <Switch
@@ -21,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/consciousness_deteriorarion_switch"
+            android:textAppearance="@style/NormalTextStyle"
             app:layout_constraintTop_toBottomOf="@+id/arrest_switch"
             app:layout_constraintBottom_toTopOf="@id/aniso_midriasi_switch"/>
     <Switch
@@ -28,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/aniso_midriasi_switch"
+            android:textAppearance="@style/NormalTextStyle"
             app:layout_constraintTop_toBottomOf="@+id/consciousness_deteriorarion_switch"
             app:layout_constraintBottom_toTopOf="@id/insufResp_switch"/>
     <Switch
@@ -35,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/insufResp_switch"
+            android:textAppearance="@style/NormalTextStyle"
             app:layout_constraintTop_toBottomOf="@+id/aniso_midriasi_switch"
             app:layout_constraintBottom_toTopOf="@id/shockCard_switch"/>
     <Switch
@@ -42,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/shockCard_switch"
+            android:textAppearance="@style/NormalTextStyle"
             app:layout_constraintTop_toBottomOf="@+id/insufResp_switch"
             app:layout_constraintBottom_toTopOf="@id/atterraggio_switch"/>
     <Switch
@@ -49,13 +54,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/atterraggio_switch"
+            android:textAppearance="@style/NormalTextStyle"
             app:layout_constraintTop_toBottomOf="@+id/shockCard_switch"
             app:layout_constraintBottom_toTopOf="@id/button"/>
     <TextView
             android:text="@string/decesso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/NormalTextStyle"
             android:id="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/atterraggio_switch"
             app:layout_constraintBottom_toBottomOf="parent"

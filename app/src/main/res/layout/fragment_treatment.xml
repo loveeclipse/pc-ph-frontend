@@ -38,29 +38,29 @@
                     app:layout_constraintTop_toBottomOf="@id/textView12"
                     app:layout_constraintBottom_toTopOf="@id/neuroprot_button">
                 <Spinner
-                        android:layout_width="wrap_content"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/periferica_spinner"
+                        app:layout_constraintTop_toBottomOf="@+id/textView24"
+                        app:layout_constraintBottom_toTopOf="@+id/central_button"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/textView25"/>
+                <Spinner
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/central_spinner"
-                        app:layout_constraintTop_toBottomOf="@+id/periferica_spinner"
-                        app:layout_constraintBottom_toTopOf="@id/intraosseous_spinner"
+                        app:layout_constraintTop_toBottomOf="@+id/periferica_button"
+                        app:layout_constraintBottom_toTopOf="@+id/intraosseous_button"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/textView26"/>
                 <Spinner
-                        android:layout_width="wrap_content"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/intraosseous_spinner"
-                        app:layout_constraintTop_toBottomOf="@+id/central_spinner"
-                        app:layout_constraintBottom_toTopOf="@id/emostasi_button"
+                        app:layout_constraintTop_toBottomOf="@+id/central_button"
+                        app:layout_constraintBottom_toTopOf="@+id/pelvicbind_button"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/textView27"/>
-                <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/periferica_spinner"
-                        app:layout_constraintTop_toBottomOf="@+id/textView23"
-                        app:layout_constraintBottom_toTopOf="@id/central_spinner"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/textView25"/>
                 <Button
                         android:text="@string/periferica"
                         android:layout_width="0dp"
@@ -220,56 +220,56 @@
                         app:layout_constraintEnd_toEndOf="parent"/>
                 <TextView
                         android:text="@string/gauge"
-                        android:layout_width="wrap_content"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView25"
                         style="@style/TreatmentTextStyle"
-                        app:layout_constraintTop_toBottomOf="@id/textView23"
-                        app:layout_constraintBottom_toTopOf="@id/textView26"
+                        app:layout_constraintTop_toBottomOf="@id/textView24"
+                        app:layout_constraintBottom_toTopOf="@+id/central_button"
                         app:layout_constraintStart_toEndOf="@+id/periferica_spinner"
                         app:layout_constraintEnd_toStartOf="@id/guideline5"/>
                 <TextView
                         android:text="@string/french"
-                        android:layout_width="wrap_content"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView26"
                         style="@style/TreatmentTextStyle"
-                        app:layout_constraintTop_toBottomOf="@+id/textView25"
-                        app:layout_constraintBottom_toTopOf="@id/textView27"
+                        app:layout_constraintTop_toBottomOf="@+id/periferica_button"
+                        app:layout_constraintBottom_toTopOf="@+id/intraosseous_button"
                         app:layout_constraintStart_toEndOf="@+id/central_spinner"
                         app:layout_constraintEnd_toStartOf="@id/guideline5"/>
                 <TextView
                         android:text="@string/size"
-                        android:layout_width="wrap_content"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         style="@style/TreatmentTextStyle"
                         android:id="@+id/textView27"
-                        android:layout_marginStart="@dimen/horizontalMargin"
-                        android:layout_marginEnd="@dimen/horizontalMargin"
-                        app:layout_constraintTop_toBottomOf="@+id/textView26"
-                        app:layout_constraintBottom_toTopOf="@id/emostasi_button"
+                        app:layout_constraintTop_toBottomOf="@+id/central_button"
+                        app:layout_constraintBottom_toTopOf="@+id/pelvicbind_button"
                         app:layout_constraintStart_toEndOf="@+id/intraosseous_spinner"
                         app:layout_constraintEnd_toStartOf="@id/guideline5"/>
                 <Button
                         android:text="@string/inizia_tourniquet"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/button24"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
                         app:layout_constraintTop_toBottomOf="@+id/textView13"
-                        app:layout_constraintBottom_toTopOf="@id/view2"/>
+                        app:layout_constraintBottom_toTopOf="@id/view2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/guideline5"/>
                 <TextView
                         android:text="@string/starting_timer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView56"
                         style="@style/TreatmentTextStyle"
-                        app:layout_constraintTop_toBottomOf="@+id/view1"
-                        app:layout_constraintBottom_toTopOf="@id/button24"
-                        app:layout_constraintStart_toEndOf="@id/textView13"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
+                        app:layout_constraintTop_toTopOf="@+id/button24"
+                        app:layout_constraintBottom_toBottomOf="@id/button24"
+                        app:layout_constraintStart_toEndOf="@id/guideline5"/>
                 <androidx.constraintlayout.widget.Guideline
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
@@ -470,10 +470,10 @@
                         android:layout_height="wrap_content"
                         style="@style/TreatmentTextStyle"
                         android:id="@+id/textView8"
+                        android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         app:layout_constraintTop_toBottomOf="@id/shock_button"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/guideline2"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        app:layout_constraintStart_toEndOf="@+id/guideline2"/>
                 <androidx.constraintlayout.widget.Guideline
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
@@ -487,6 +487,7 @@
                     android:layout_height="wrap_content"
                     style="@style/BigTextStyle"
                     android:id="@+id/textView7"
+                    android:layout_marginTop="@dimen/verticalMargin"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout6"
                     app:layout_constraintStart_toStartOf="parent"/>

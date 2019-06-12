@@ -168,4 +168,11 @@
     <string name="antipiastrine">Antipiastrine</string>
     <string name="emptyText">-------------</string>
     <string name="starting_timer">00:00</string>
+    <string name="note_multimediali">Note Multimediali</string>
+    <string name="note_testuali">Note Testuali</string>
+    <string name="galleria">Apri Galleria</string>
+    <string name="nota_vocale">Registra Nota Vocale</string>
+    <string name="aggiungi_foto">Aggiungi Foto</string>
+    <string name="aggiungi_video">Aggiungi Video</string>
+    <string name="dettagli_missione">Dettagli missione</string>
 </resources>

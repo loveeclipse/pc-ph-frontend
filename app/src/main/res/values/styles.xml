@@ -8,7 +8,7 @@
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="materialButtonStyle">@style/AppButtonStyle</item>
-        <item name="switchStyle">@style/AppSwitchStyle</item>
+        <item name="android:textViewStyle">@style/TextViewStyle</item>
     </style>
 
     <!-- Tab Layout -->
@@ -57,6 +57,11 @@
         <item name="backgroundTint">@color/buttonSelectedBackgroundColor</item>
     </style>
 
+    <!-- TextView style -->
+    <style name="TextViewStyle" parent="android:style/Widget.Material.TextView">
+        <item name="android:textAppearance">@style/NormalTextStyle</item>
+    </style>
+
     <!-- Text style -->
     <style name="BigTextStyle" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textSize">@dimen/bigSize</item>
@@ -75,7 +80,7 @@
 
     <!-- Text of treatment fragment -->
     <style name="TreatmentTextStyle" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:textSize">@dimen/bigSize</item>
+        <item name="android:textSize">@dimen/normalSize</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -85,10 +90,5 @@
     </style>
     <style name="BackgroundFragmentStyle">
         <item name="android:background">@color/backgroundFragmentColor</item>
-    </style>
-
-    <!-- Switch -->
-    <style name="AppSwitchStyle" parent="Widget.AppCompat.CompoundButton.Switch">
-        <item name="android:textSize">@dimen/normalSize</item>
     </style>
 </resources>
