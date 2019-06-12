@@ -24,7 +24,6 @@
                     android:layout_marginBottom="@dimen/verticalMargin"
                     android:layout_marginStart="@dimen/horizontalMargin"
                     app:layout_constraintTop_toBottomOf="@+id/textView32"
-                    app:layout_constraintBottom_toTopOf="@+id/switch1"
                     app:layout_constraintStart_toEndOf="@+id/button10"
                     app:layout_constraintEnd_toEndOf="parent"/>
             <Button
@@ -157,7 +156,6 @@
                     android:layout_marginBottom="@dimen/verticalMargin"
                     android:layout_marginEnd="@dimen/horizontalMargin"
                     app:layout_constraintTop_toBottomOf="@+id/textView32"
-                    app:layout_constraintBottom_toTopOf="@+id/switch1"
                     app:layout_constraintStart_toEndOf="@+id/guideline62"
                     app:layout_constraintEnd_toStartOf="@+id/button11"/>
             <androidx.constraintlayout.widget.Guideline
