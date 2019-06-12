@@ -67,7 +67,7 @@ class HistoryDialogFragment : DialogFragment() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        aList.add(aList[aList.size-1]+"n")  //SIMULAZIONE AGGIUNTA STORICO
+        //aList.add(aList[aList.size]+"n")  //SIMULAZIONE AGGIUNTA STORICO
         mAdapter.notifyDataSetChanged()
         val saveDataSet = aList.toHashSet()
         sharedPreferences.edit().putStringSet("historyList",saveDataSet).apply()
