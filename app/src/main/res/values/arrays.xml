@@ -45,7 +45,7 @@
         <item>ND &#45; Non Determinabile</item>
     </string-array>
 
-    <string-array name="verbalResponde">
+    <string-array name="verbalResponse">
         <item>5 &#45; Orientata</item>
         <item>4 &#45; Confusa</item>
         <item>3 &#45; Parole</item>
@@ -54,7 +54,7 @@
         <item>ND &#45; Non Determinabile</item>
     </string-array>
 
-    <string-array name="motorResponde">
+    <string-array name="motorResponse">
         <item>6 &#45; Esegue Ordini</item>
         <item>5 &#45; Localizza</item>
         <item>4 &#45; Flessione Normale</item>
