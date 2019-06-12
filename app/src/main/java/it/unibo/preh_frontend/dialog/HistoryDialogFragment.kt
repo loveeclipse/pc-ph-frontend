@@ -47,7 +47,7 @@ class HistoryDialogFragment : DialogFragment() {
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.history_image_button)
         saveAndExitButton.setOnClickListener {
             val builder1 = AlertDialog.Builder(requireContext())
-            builder1.setMessage("Vuoi uscire senza salvare?")
+            builder1.setTitle("Vuoi uscire senza salvare?")
             builder1.setCancelable(true)
 
             builder1.setPositiveButton(
