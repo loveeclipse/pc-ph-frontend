@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+                                                   xmlns:tools="http://schemas.android.com/tools" style="@style/BackgroundFragmentStyle"
                                                    android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
->
+                                                   android:layout_height="match_parent">
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/horizontalMargin"
+                android:layout_marginEnd="@dimen/horizontalMargin">
             <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/parameters_image_button"
+                    android:src="@drawable/ic_close_24dp"
                     android:backgroundTint="@color/common_google_signin_btn_tint"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/ic_delete"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"/>
+                    app:layout_constraintEnd_toEndOf="parent"/>
             <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -30,24 +28,24 @@
                     android:layout_marginEnd="@dimen/horizontalMargin"
                     app:layout_constraintEnd_toStartOf="@id/textView47"
                     app:layout_constraintStart_toStartOf="@+id/guideline6"
-                    android:layout_marginStart="5dp" android:layout_marginTop="15dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="15dp"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout13"/>
             <androidx.constraintlayout.widget.Guideline
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/guideline6"
-                    app:layout_constraintGuide_percent="0.5"/>
+                    app:layout_constraintGuide_percent="0.3"/>
             <TextView
                     android:text="@string/mmHg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/NormalTextStyle"
                     android:id="@+id/textView46"
-                    android:layout_marginEnd="5dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tipo_battito_radiogroup"
-                    android:layout_marginTop="25dp"/>
+                    app:layout_constraintTop_toTopOf="@id/textView39"
+                    app:layout_constraintBottom_toBottomOf="@id/textView39"
+                    app:layout_constraintStart_toEndOf="@id/pres_arter_edittext"
+                    app:layout_constraintEnd_toEndOf="parent"/>
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -144,15 +142,15 @@
                     android:layout_marginTop="30dp" app:layout_constraintTop_toBottomOf="@+id/textView41"/>
             <TextView
                     android:text="@string/frequenza_cardiaca"
-                    style="@style/NormalTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView38"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="@dimen/verticalMargin"
+                    android:layout_marginBottom="@dimen/verticalMargin"
+                    app:layout_constraintTop_toBottomOf="@+id/textView34"
+                    app:layout_constraintBottom_toTopOf="@id/textView39"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/guideline6"
-                    app:layout_constraintTop_toBottomOf="@id/textView34"
-                    android:layout_marginEnd="10dp" android:layout_marginTop="35dp"/>
+                    app:layout_constraintEnd_toStartOf="@id/guideline6"/>
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -278,30 +276,28 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/guideline90"
                         app:layout_constraintGuide_percent="0.5"/>
-
             </androidx.constraintlayout.widget.ConstraintLayout>
             <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:id="@+id/freq_cardiaca_edittext"
-                    android:layout_marginStart="@dimen/horizontalMargin"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    app:layout_constraintTop_toTopOf="@id/textView38"
+                    app:layout_constraintBottom_toBottomOf="@id/textView38"
                     app:layout_constraintStart_toEndOf="@id/guideline6"
-                    app:layout_constraintEnd_toStartOf="@id/textView45"
-                    app:layout_constraintTop_toBottomOf="@id/saturazione_edittext"
-                    android:layout_marginTop="15dp"/>
+                    app:layout_constraintEnd_toStartOf="@id/textView45"/>
             <TextView
                     android:text="@string/colorito_cute_mucose"
-                    style="@style/NormalTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView41"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="@dimen/verticalMargin"
+                    android:layout_marginBottom="@dimen/verticalMargin"
+                    app:layout_constraintTop_toBottomOf="@+id/textView40"
+                    app:layout_constraintBottom_toTopOf="@id/textView6"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/guideline6"
-                    app:layout_constraintTop_toBottomOf="@id/textView40"
-                    android:layout_marginEnd="10dp" android:layout_marginTop="35dp"/>
+                    app:layout_constraintEnd_toStartOf="@id/guideline6"/>
             <TextView
                     android:text="@string/pupille"
                     android:layout_width="wrap_content"
@@ -313,16 +309,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout12" android:layout_marginTop="30dp"/>
             <TextView
                     android:text="@string/bpm"
-                    style="@style/NormalTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView45"
-                    android:layout_marginStart="@dimen/horizontalMargin"
                     android:layout_marginEnd="@dimen/horizontalMargin"
+                    app:layout_constraintTop_toTopOf="@id/textView38"
+                    app:layout_constraintBottom_toBottomOf="@id/textView38"
                     app:layout_constraintStart_toEndOf="@id/freq_cardiaca_edittext"
-                    app:layout_constraintEnd_toStartOf="@id/tipo_battito_radiogroup"
-                    app:layout_constraintTop_toBottomOf="@id/saturazione_edittext"
-                    android:layout_marginTop="25dp"/>
+                    app:layout_constraintEnd_toStartOf="@id/tipo_battito_radiogroup"/>
             <TextView
                     android:text="@string/temperatura_corporea"
                     style="@style/NormalTextStyle"
@@ -336,21 +330,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/freq_resp_spinner"
-                    app:layout_constraintStart_toEndOf="@id/guideline6"
-                    app:layout_constraintTop_toBottomOf="@id/vieaeree_radiogroup" android:layout_marginTop="30dp"
-                    android:layout_marginStart="30dp"/>
+                    app:layout_constraintTop_toTopOf="@id/textView33"
+                    app:layout_constraintBottom_toBottomOf="@id/textView33"
+                    app:layout_constraintStart_toEndOf="@id/guideline6"/>
             <RadioGroup
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:gravity="center"
                     android:id="@+id/cute_mucose_radiogroup"
-                    android:layout_marginEnd="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/riempimento_capillare_radiogroup"
-                    android:layout_marginTop="25dp">
+                    app:layout_constraintTop_toTopOf="@id/textView41"
+                    app:layout_constraintBottom_toBottomOf="@id/textView41"
+                    app:layout_constraintStart_toEndOf="@id/guideline6"
+                    app:layout_constraintEnd_toEndOf="parent">
                 <RadioButton
                         android:text="@string/normale"
-                        android:textSize="@dimen/normalSize"
+                        android:textAppearance="@style/NormalTextStyle"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
@@ -358,7 +353,7 @@
                         android:id="@+id/color_normale_radio"/>
                 <RadioButton
                         android:text="@string/pallido"
-                        android:textSize="@dimen/normalSize"
+                        android:textAppearance="@style/NormalTextStyle"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
@@ -366,7 +361,7 @@
                         android:id="@+id/pallido_radio"/>
                 <RadioButton
                         android:text="@string/cianotico"
-                        android:textSize="@dimen/normalSize"
+                        android:textAppearance="@style/NormalTextStyle"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
@@ -374,16 +369,18 @@
                         android:id="@+id/cianotico_radio"/>
             </RadioGroup>
             <RadioGroup
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:gravity="center"
                     android:id="@+id/riempimento_capillare_radiogroup"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="10dp" android:layout_marginTop="30dp"
-                    app:layout_constraintTop_toBottomOf="@+id/pres_arter_edittext">
+                    app:layout_constraintTop_toTopOf="@id/textView40"
+                    app:layout_constraintBottom_toBottomOf="@id/textView40"
+                    app:layout_constraintStart_toEndOf="@id/guideline6"
+                    app:layout_constraintEnd_toEndOf="parent">
                 <RadioButton
                         android:text="@string/normale"
-                        android:textSize="@dimen/normalSize"
+                        android:textAppearance="@style/NormalTextStyle"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
@@ -391,7 +388,7 @@
                         android:id="@+id/normale_radio"/>
                 <RadioButton
                         android:text="@string/aumentato"
-                        android:textSize="@dimen/normalSize"
+                        android:textAppearance="@style/NormalTextStyle"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
@@ -399,7 +396,7 @@
                         android:id="@+id/aumentato_radio"/>
                 <RadioButton
                         android:text="@string/nullo"
-                        android:textSize="@dimen/normalSize"
+                        android:textAppearance="@style/NormalTextStyle"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
@@ -408,47 +405,47 @@
             </RadioGroup>
             <TextView
                     android:text="@string/pressione_arteriosa_sistolica"
-                    style="@style/NormalTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView39"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="@dimen/verticalMargin"
+                    android:layout_marginBottom="@dimen/verticalMargin"
+                    app:layout_constraintTop_toBottomOf="@+id/textView38"
+                    app:layout_constraintBottom_toTopOf="@id/textView40"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/guideline6"
-                    app:layout_constraintTop_toBottomOf="@id/textView38"
-                    android:layout_marginEnd="10dp" android:layout_marginTop="35dp"/>
+                    app:layout_constraintEnd_toStartOf="@id/guideline6"/>
             <TextView
                     android:text="@string/atti_min"
-                    style="@style/NormalTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView43"
+                    app:layout_constraintTop_toTopOf="@id/textView33"
+                    app:layout_constraintBottom_toBottomOf="@id/textView33"
                     app:layout_constraintStart_toEndOf="@id/freq_resp_spinner"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/vieaeree_radiogroup" android:layout_marginTop="30dp"/>
+                    app:layout_constraintEnd_toEndOf="parent"/>
             <TextView
                     android:text="@string/saturazione_periferica"
-                    style="@style/NormalTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView34"
-                    android:layout_marginStart="10dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/guideline6"
+                    android:layout_marginTop="@dimen/verticalMargin"
+                    android:layout_marginBottom="@dimen/verticalMargin"
                     app:layout_constraintTop_toBottomOf="@+id/textView33"
-                    android:layout_marginEnd="10dp" android:layout_marginTop="35dp"/>
+                    app:layout_constraintBottom_toTopOf="@id/textView38"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/guideline6"/>
             <RadioGroup
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:id="@+id/tipo_battito_radiogroup"
-                    android:layout_marginEnd="10dp"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
-                    app:layout_constraintStart_toEndOf="@+id/textView45" android:layout_marginTop="24dp"
-                    app:layout_constraintTop_toBottomOf="@+id/saturazione_edittext">
+                    app:layout_constraintTop_toTopOf="@+id/textView45"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView45"
+                    app:layout_constraintStart_toEndOf="@+id/textView45"
+                    app:layout_constraintEnd_toEndOf="parent">
                 <RadioButton
                         android:text="@string/ritmico"
-                        android:textSize="@dimen/normalSize"
+                        android:textAppearance="@style/NormalTextStyle"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
@@ -456,7 +453,7 @@
                         android:id="@+id/ritmico_radio"/>
                 <RadioButton
                         android:text="@string/aritmico"
-                        android:textSize="@dimen/normalSize"
+                        android:textAppearance="@style/NormalTextStyle"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
@@ -465,101 +462,103 @@
             </RadioGroup>
             <TextView
                     android:text="@string/parametri_vitali"
-                    style="@style/DialogTitleTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/DialogTitleTextStyle"
                     android:id="@+id/textView15"
+                    android:layout_marginTop="@dimen/verticalMargin"
+                    android:layout_marginBottom="@dimen/verticalMargin"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="20dp"/>
+                    app:layout_constraintEnd_toEndOf="parent"/>
             <TextView
                     android:text="@string/frequenza_respiratoria"
-                    style="@style/NormalTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView33"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="@dimen/verticalMargin"
+                    android:layout_marginBottom="@dimen/verticalMargin"
+                    app:layout_constraintTop_toBottomOf="@+id/textView29"
+                    app:layout_constraintBottom_toTopOf="@id/textView34"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/guideline6"
-                    app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="35dp"
-                    app:layout_constraintTop_toBottomOf="@+id/textView29" android:layout_marginEnd="10dp"/>
+                    app:layout_constraintEnd_toStartOf="@id/guideline6"/>
             <TextView
                     android:text="@string/tempo_riempimento_capillare"
-                    style="@style/NormalTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView40"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="@dimen/verticalMargin"
+                    android:layout_marginBottom="@dimen/verticalMargin"
+                    app:layout_constraintTop_toBottomOf="@+id/textView39"
+                    app:layout_constraintBottom_toTopOf="@id/textView41"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/guideline6"
-                    app:layout_constraintTop_toBottomOf="@id/textView39"
-                    android:layout_marginEnd="10dp" android:layout_marginTop="35dp"/>
+                    app:layout_constraintEnd_toStartOf="@id/guideline6"/>
             <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:id="@+id/saturazione_edittext"
                     android:layout_marginEnd="@dimen/horizontalMargin"
-                    app:layout_constraintEnd_toStartOf="@id/textView44"
-                    app:layout_constraintTop_toBottomOf="@id/freq_resp_spinner" android:layout_marginTop="20dp"
-                    app:layout_constraintStart_toStartOf="@+id/guideline6" android:layout_marginStart="5dp"/>
+                    app:layout_constraintTop_toTopOf="@id/textView34"
+                    app:layout_constraintBottom_toBottomOf="@id/textView34"
+                    app:layout_constraintStart_toEndOf="@+id/guideline6"
+                    app:layout_constraintEnd_toStartOf="@id/textView44"/>
             <TextView
                     android:text="@string/percent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/NormalTextStyle"
                     android:id="@+id/textView44"
-                    android:layout_marginEnd="5dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textView43" android:layout_marginTop="30dp"/>
+                    app:layout_constraintTop_toTopOf="@id/textView34"
+                    app:layout_constraintBottom_toBottomOf="@id/textView34"
+                    app:layout_constraintEnd_toEndOf="parent"/>
             <RadioGroup
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:gravity="center"
                     android:id="@+id/vieaeree_radiogroup"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
+                    app:layout_constraintTop_toTopOf="@id/textView29"
+                    app:layout_constraintBottom_toBottomOf="@id/textView29"
                     app:layout_constraintStart_toEndOf="@id/guideline6"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="80dp" app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintEnd_toEndOf="parent">
                 <RadioButton
                         android:text="@string/pervie"
-                        android:textSize="@dimen/normalSize"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
+                        android:textAppearance="@style/NormalTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/pervie_radio"/>
                 <RadioButton
                         android:text="@string/non_pervie"
-                        android:textSize="@dimen/normalSize"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
+                        android:textAppearance="@style/NormalTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/nonpervie_radio"/>
             </RadioGroup>
             <TextView
                     android:text="@string/vie_aeree"
-                    style="@style/NormalTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView29"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="@dimen/verticalMargin"
+                    android:layout_marginBottom="@dimen/verticalMargin"
+                    app:layout_constraintTop_toBottomOf="@id/textView15"
+                    app:layout_constraintBottom_toTopOf="@id/textView33"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/guideline6"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="80dp"/>
+                    app:layout_constraintEnd_toStartOf="@id/guideline6"/>
             <EditText
-                    android:layout_width="227dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:ems="10"
                     android:id="@+id/pres_arter_edittext"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@+id/freq_cardiaca_edittext"
-                    app:layout_constraintStart_toEndOf="@+id/guideline6" android:layout_marginStart="5dp"
-                    app:layout_constraintEnd_toStartOf="@+id/textView46" android:layout_marginEnd="8dp"/>
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    app:layout_constraintTop_toTopOf="@+id/textView39"
+                    app:layout_constraintBottom_toBottomOf="@id/textView39"
+                    app:layout_constraintStart_toEndOf="@+id/guideline6"
+                    app:layout_constraintEnd_toStartOf="@+id/textView46"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
