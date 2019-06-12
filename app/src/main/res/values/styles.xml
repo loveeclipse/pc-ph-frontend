@@ -9,7 +9,6 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="materialButtonStyle">@style/AppButtonStyle</item>
         <item name="android:textViewStyle">@style/TextViewStyle</item>
-        <item name="switchStyle">@style/AppSwitchStyle</item>
     </style>
 
     <!-- Tab Layout -->
@@ -91,10 +90,5 @@
     </style>
     <style name="BackgroundFragmentStyle">
         <item name="android:background">@color/backgroundFragmentColor</item>
-    </style>
-
-    <!-- Switch -->
-    <style name="AppSwitchStyle" parent="Widget.AppCompat.CompoundButton.Switch">
-        <item name="android:textSize">@dimen/normalSize</item>
     </style>
 </resources>
