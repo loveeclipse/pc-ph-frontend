@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:orientation="vertical"
+                                                   xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
 >
@@ -27,7 +26,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:id="@+id/editText4"
+                    android:id="@+id/temp_corporea_edittext"
                     android:layout_marginEnd="@dimen/horizontalMargin"
                     app:layout_constraintEnd_toStartOf="@id/textView47"
                     app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -47,7 +46,7 @@
                     android:id="@+id/textView46"
                     android:layout_marginEnd="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/radioGroup3"
+                    app:layout_constraintTop_toBottomOf="@id/tipo_battito_radiogroup"
                     android:layout_marginTop="25dp"/>
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="0dp"
@@ -71,11 +70,11 @@
                 <Spinner
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/spinner2"
+                        android:id="@+id/apertura_occhi_spinner"
                         android:layout_marginStart="@dimen/horizontalMargin"
                         android:layout_marginEnd="@dimen/horizontalMargin"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/spinner3"
+                        app:layout_constraintBottom_toTopOf="@+id/risposta_verbale_spinner"
                         app:layout_constraintStart_toStartOf="@+id/guideline87"
                         app:layout_constraintEnd_toEndOf="parent"/>
                 <TextView
@@ -90,11 +89,11 @@
                 <Spinner
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/spinner3"
+                        android:id="@+id/risposta_verbale_spinner"
                         android:layout_marginEnd="@dimen/horizontalMargin"
                         android:layout_marginStart="@dimen/horizontalMargin"
-                        app:layout_constraintTop_toBottomOf="@id/spinner2"
-                        app:layout_constraintBottom_toTopOf="@id/spinner4"
+                        app:layout_constraintTop_toBottomOf="@id/apertura_occhi_spinner"
+                        app:layout_constraintBottom_toTopOf="@id/risposta_motoria_spinner"
                         app:layout_constraintStart_toStartOf="@+id/guideline87"
                         app:layout_constraintEnd_toEndOf="parent"/>
                 <TextView
@@ -111,10 +110,10 @@
                 <Spinner
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/spinner4"
+                        android:id="@+id/risposta_motoria_spinner"
                         android:layout_marginEnd="@dimen/horizontalMargin"
                         android:layout_marginStart="@dimen/horizontalMargin"
-                        app:layout_constraintTop_toBottomOf="@id/spinner3"
+                        app:layout_constraintTop_toBottomOf="@id/risposta_verbale_spinner"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/guideline87"
                         app:layout_constraintEnd_toEndOf="parent"/>
@@ -176,7 +175,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:id="@+id/radioGroup1"
+                        android:id="@+id/pupilleDx_radiogroup"
                         android:layout_marginTop="15dp"
                         app:layout_constraintTop_toBottomOf="@+id/textView53" app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginEnd="60dp" app:layout_constraintStart_toEndOf="@+id/guideline90"
@@ -190,7 +189,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/horizontalMargin"
                             android:layout_marginEnd="@dimen/horizontalMargin"
-                            android:id="@+id/radioButton5"/>
+                            android:id="@+id/miosiDx_radio"/>
                     <RadioButton
                             android:text="@string/midriasi"
                             android:textSize="@dimen/normalSize"
@@ -198,7 +197,7 @@
                             android:scaleY="0.8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/radioButton6"/>
+                            android:id="@+id/midriasiDx_radio"/>
                     <RadioButton
                             android:text="@string/normale"
                             android:textSize="@dimen/normalSize"
@@ -206,17 +205,17 @@
                             android:scaleY="0.8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/radioButton7"/>
+                            android:id="@+id/normaleDx_radio"/>
                 </RadioGroup>
                 <Switch
                         android:text="@string/fotoreagente"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/switch4"
+                        android:id="@+id/fotoreagenteDx_switch"
                         android:layout_marginEnd="30dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginBottom="30dp" app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/radioGroup1"
+                        android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/pupilleDx_radiogroup"
                         app:layout_constraintStart_toStartOf="@+id/guideline90" android:layout_marginStart="10dp"/>
                 <TextView
                         android:text="@string/sx"
@@ -232,7 +231,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:id="@+id/radioGroup"
+                        android:id="@+id/pupilleSx_radiogroup"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/textView52"
                         android:layout_marginStart="60dp"
@@ -244,7 +243,7 @@
                             android:scaleY="0.8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/radioButton2"/>
+                            android:id="@+id/miosiSx_radio"/>
                     <RadioButton
                             android:text="@string/midriasi"
                             android:textSize="@dimen/normalSize"
@@ -252,7 +251,7 @@
                             android:scaleY="0.8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/radioButton4"/>
+                            android:id="@+id/midriasiSx_radio"/>
                     <RadioButton
                             android:text="@string/normale"
                             android:textSize="@dimen/normalSize"
@@ -260,18 +259,18 @@
                             android:scaleY="0.8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/radioButton3"/>
+                            android:id="@+id/normaleSx_button"/>
                 </RadioGroup>
                 <Switch
                         android:text="@string/fotoreagente"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/switch3"
+                        android:id="@+id/fotoreagenteSx_switch"
                         android:layout_marginBottom="30dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginStart="30dp" android:layout_marginTop="15dp"
-                        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+                        app:layout_constraintTop_toBottomOf="@+id/pupilleSx_radiogroup"
                         app:layout_constraintEnd_toStartOf="@+id/guideline90" android:layout_marginEnd="10dp"/>
                 <androidx.constraintlayout.widget.Guideline
                         android:orientation="vertical"
@@ -285,12 +284,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:id="@+id/editText2"
+                    android:id="@+id/freq_cardiaca_edittext"
                     android:layout_marginStart="@dimen/horizontalMargin"
                     android:layout_marginEnd="5dp"
                     app:layout_constraintStart_toEndOf="@id/guideline6"
                     app:layout_constraintEnd_toStartOf="@id/textView45"
-                    app:layout_constraintTop_toBottomOf="@id/editText1"
+                    app:layout_constraintTop_toBottomOf="@id/saturazione_edittext"
                     android:layout_marginTop="15dp"/>
             <TextView
                     android:text="@string/colorito_cute_mucose"
@@ -320,9 +319,9 @@
                     android:id="@+id/textView45"
                     android:layout_marginStart="@dimen/horizontalMargin"
                     android:layout_marginEnd="@dimen/horizontalMargin"
-                    app:layout_constraintStart_toEndOf="@id/editText2"
-                    app:layout_constraintEnd_toStartOf="@id/radioGroup3"
-                    app:layout_constraintTop_toBottomOf="@id/editText1"
+                    app:layout_constraintStart_toEndOf="@id/freq_cardiaca_edittext"
+                    app:layout_constraintEnd_toStartOf="@id/tipo_battito_radiogroup"
+                    app:layout_constraintTop_toBottomOf="@id/saturazione_edittext"
                     android:layout_marginTop="25dp"/>
             <TextView
                     android:text="@string/temperatura_corporea"
@@ -336,18 +335,18 @@
             <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/spinner1"
+                    android:id="@+id/freq_resp_spinner"
                     app:layout_constraintStart_toEndOf="@id/guideline6"
-                    app:layout_constraintTop_toBottomOf="@id/radioGroup2" android:layout_marginTop="30dp"
+                    app:layout_constraintTop_toBottomOf="@id/vieaeree_radiogroup" android:layout_marginTop="30dp"
                     android:layout_marginStart="30dp"/>
             <RadioGroup
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:id="@+id/radioGroup5"
+                    android:id="@+id/cute_mucose_radiogroup"
                     android:layout_marginEnd="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/radioGroup4"
+                    app:layout_constraintTop_toBottomOf="@id/riempimento_capillare_radiogroup"
                     android:layout_marginTop="25dp">
                 <RadioButton
                         android:text="@string/normale"
@@ -356,7 +355,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/radioButton13"/>
+                        android:id="@+id/color_normale_radio"/>
                 <RadioButton
                         android:text="@string/pallido"
                         android:textSize="@dimen/normalSize"
@@ -364,7 +363,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/radioButton14"/>
+                        android:id="@+id/pallido_radio"/>
                 <RadioButton
                         android:text="@string/cianotico"
                         android:textSize="@dimen/normalSize"
@@ -372,16 +371,16 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/radioButton15"/>
+                        android:id="@+id/cianotico_radio"/>
             </RadioGroup>
             <RadioGroup
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:id="@+id/radioGroup4"
+                    android:id="@+id/riempimento_capillare_radiogroup"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginEnd="10dp" android:layout_marginTop="30dp"
-                    app:layout_constraintTop_toBottomOf="@+id/editText9">
+                    app:layout_constraintTop_toBottomOf="@+id/pres_arter_edittext">
                 <RadioButton
                         android:text="@string/normale"
                         android:textSize="@dimen/normalSize"
@@ -389,7 +388,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/radioButton10"/>
+                        android:id="@+id/normale_radio"/>
                 <RadioButton
                         android:text="@string/aumentato"
                         android:textSize="@dimen/normalSize"
@@ -397,7 +396,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/radioButton11"/>
+                        android:id="@+id/aumentato_radio"/>
                 <RadioButton
                         android:text="@string/nullo"
                         android:textSize="@dimen/normalSize"
@@ -405,7 +404,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/radioButton12"/>
+                        android:id="@+id/nullo_radio"/>
             </RadioGroup>
             <TextView
                     android:text="@string/pressione_arteriosa_sistolica"
@@ -424,9 +423,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView43"
-                    app:layout_constraintStart_toEndOf="@id/spinner1"
+                    app:layout_constraintStart_toEndOf="@id/freq_resp_spinner"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/radioGroup2" android:layout_marginTop="30dp"/>
+                    app:layout_constraintTop_toBottomOf="@id/vieaeree_radiogroup" android:layout_marginTop="30dp"/>
             <TextView
                     android:text="@string/saturazione_periferica"
                     style="@style/NormalTextStyle"
@@ -442,11 +441,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:id="@+id/radioGroup3"
+                    android:id="@+id/tipo_battito_radiogroup"
                     android:layout_marginEnd="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textView44"
-                    android:layout_marginTop="35dp">
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toEndOf="@+id/textView45" android:layout_marginTop="24dp"
+                    app:layout_constraintTop_toBottomOf="@+id/saturazione_edittext">
                 <RadioButton
                         android:text="@string/ritmico"
                         android:textSize="@dimen/normalSize"
@@ -454,7 +453,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/radioButton8"/>
+                        android:id="@+id/ritmico_radio"/>
                 <RadioButton
                         android:text="@string/aritmico"
                         android:textSize="@dimen/normalSize"
@@ -462,7 +461,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/radioButton9"/>
+                        android:id="@+id/aritmico_radio"/>
             </RadioGroup>
             <TextView
                     android:text="@string/parametri_vitali"
@@ -499,10 +498,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:id="@+id/editText1"
+                    android:id="@+id/saturazione_edittext"
                     android:layout_marginEnd="@dimen/horizontalMargin"
                     app:layout_constraintEnd_toStartOf="@id/textView44"
-                    app:layout_constraintTop_toBottomOf="@id/spinner1" android:layout_marginTop="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/freq_resp_spinner" android:layout_marginTop="20dp"
                     app:layout_constraintStart_toStartOf="@+id/guideline6" android:layout_marginStart="5dp"/>
             <TextView
                     android:text="@string/percent"
@@ -517,7 +516,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:id="@+id/radioGroup2"
+                    android:id="@+id/vieaeree_radiogroup"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     app:layout_constraintStart_toEndOf="@id/guideline6"
@@ -530,7 +529,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/radioButton"/>
+                        android:id="@+id/pervie_radio"/>
                 <RadioButton
                         android:text="@string/non_pervie"
                         android:textSize="@dimen/normalSize"
@@ -538,7 +537,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/radioButton1"/>
+                        android:id="@+id/nonpervie_radio"/>
             </RadioGroup>
             <TextView
                     android:text="@string/vie_aeree"
@@ -552,14 +551,15 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginTop="80dp"/>
             <EditText
-                    android:layout_width="0dp"
+                    android:layout_width="227dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
-                    android:id="@+id/editText9" android:layout_marginTop="20dp"
-                    app:layout_constraintTop_toBottomOf="@+id/textView45" android:layout_marginStart="5dp"
-                    app:layout_constraintStart_toStartOf="@+id/guideline6" android:layout_marginEnd="8dp"
-                    app:layout_constraintEnd_toStartOf="@+id/textView46"/>
+                    android:id="@+id/pres_arter_edittext"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@+id/freq_cardiaca_edittext"
+                    app:layout_constraintStart_toEndOf="@+id/guideline6" android:layout_marginStart="5dp"
+                    app:layout_constraintEnd_toStartOf="@+id/textView46" android:layout_marginEnd="8dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

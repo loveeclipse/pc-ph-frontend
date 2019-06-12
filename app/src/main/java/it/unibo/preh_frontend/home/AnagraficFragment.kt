@@ -17,5 +17,7 @@ class AnagraficFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_anagrafic, container, false)
     }
 
+    //SAVE THE DATA IN SHARED PREFERENCES
+
 
 }
