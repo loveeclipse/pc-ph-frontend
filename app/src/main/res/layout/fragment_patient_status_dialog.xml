@@ -68,7 +68,7 @@
                     app:layout_constraintTop_toBottomOf="@id/button20"
                     app:layout_constraintBottom_toTopOf="@id/constraintLayout11"
                     app:layout_constraintStart_toEndOf="@id/button22"
-                    app:layout_constraintEnd_toEndOf="parent"/>/>
+                    app:layout_constraintEnd_toEndOf="parent"/>
             <Button
                     android:text="@string/negativo"
                     android:layout_width="0dp"
