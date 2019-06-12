@@ -250,24 +250,26 @@
                         app:layout_constraintEnd_toStartOf="@id/guideline5"/>
                 <Button
                         android:text="@string/inizia_tourniquet"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/button24"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
                         app:layout_constraintTop_toBottomOf="@+id/textView13"
-                        app:layout_constraintBottom_toTopOf="@id/view2"/>
+                        app:layout_constraintBottom_toTopOf="@id/view2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/guideline5"/>
                 <TextView
                         android:text="@string/starting_timer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView56"
                         style="@style/TreatmentTextStyle"
-                        app:layout_constraintTop_toBottomOf="@+id/view1"
-                        app:layout_constraintBottom_toTopOf="@id/button24"
-                        app:layout_constraintStart_toEndOf="@id/textView13"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
+                        app:layout_constraintTop_toTopOf="@+id/button24"
+                        app:layout_constraintBottom_toBottomOf="@id/button24"
+                        app:layout_constraintStart_toEndOf="@id/guideline5"/>
                 <androidx.constraintlayout.widget.Guideline
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
