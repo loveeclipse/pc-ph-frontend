@@ -8,6 +8,7 @@
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="materialButtonStyle">@style/AppButtonStyle</item>
+        <item name="android:textViewStyle">@style/TextViewStyle</item>
         <item name="switchStyle">@style/AppSwitchStyle</item>
     </style>
 
@@ -55,6 +56,11 @@
     <style name="SelectedButtonStyle" parent="AppButtonStyle">
         <item name="cornerRadius">0dp</item>
         <item name="backgroundTint">@color/buttonSelectedBackgroundColor</item>
+    </style>
+
+    <!-- TextView style -->
+    <style name="TextViewStyle" parent="android:style/Widget.Material.TextView">
+        <item name="android:textAppearance">@style/NormalTextStyle</item>
     </style>
 
     <!-- Text style -->

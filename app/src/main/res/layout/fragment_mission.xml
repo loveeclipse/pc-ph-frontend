@@ -6,23 +6,32 @@
                                                    android:layout_height="match_parent"
                                                    style="@style/BackgroundFragmentStyle"
                                                    tools:context=".dialog.MissionDialogFragment">
-
-
-    <com.google.android.material.tabs.TabLayout
-            android:layout_width="0dp"
+    <TextView
+            android:text="@string/dettagli_missione"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            style="@style/DialogTitleTextStyle"
+            android:layout_marginTop="@dimen/verticalMargin"
+            android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="5dp"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/mission_tabs"
-            app:layout_constraintEnd_toStartOf="@+id/mission_image_button" android:layout_marginEnd="20dp">
-
+            android:layout_marginTop="@dimen/verticalMargin"
+            android:layout_marginStart="@dimen/horizontalMargin"
+            android:layout_marginEnd="@dimen/horizontalMargin"
+            app:tabTextAppearance="@style/TabText"
+            app:tabGravity="fill"
+            app:layout_constraintTop_toBottomOf="@id/textView"
+            app:layout_constraintBottom_toTopOf="@id/mission_tabFrame">
         <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/anagrafica_paziente"/>
-
         <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -32,20 +41,16 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:id="@+id/mission_tabFrame"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mission_tabs">
+            app:layout_constraintTop_toBottomOf="@+id/mission_tabs"
+            app:layout_constraintBottom_toBottomOf="parent">
 
     </FrameLayout>
     <ImageButton
-            android:src="@android:drawable/ic_delete"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close_24dp"
             android:id="@+id/mission_image_button"
             android:backgroundTint="@color/common_google_signin_btn_tint"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="14dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/mission_tabFrame"
-            app:layout_constraintStart_toEndOf="@+id/mission_tabs"/>
+            app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
