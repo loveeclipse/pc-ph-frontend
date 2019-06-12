@@ -22,8 +22,8 @@
                     android:id="@+id/button11"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    android:layout_marginStart="@dimen/horizontalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/textView32"
+                    app:layout_constraintTop_toTopOf="@+id/button10"
+                    app:layout_constraintBottom_toBottomOf="@+id/button10"
                     app:layout_constraintStart_toEndOf="@+id/button10"
                     app:layout_constraintEnd_toEndOf="parent"/>
             <Button
@@ -47,8 +47,8 @@
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
                     android:layout_marginEnd="@dimen/horizontalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/button19"
-                    app:layout_constraintBottom_toTopOf="@id/constraintLayout11"
+                    app:layout_constraintTop_toTopOf="@+id/button22"
+                    app:layout_constraintBottom_toBottomOf="@+id/button22"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/button22"/>
             <androidx.constraintlayout.widget.Guideline
@@ -65,40 +65,10 @@
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
                     android:layout_marginStart="@dimen/horizontalMargin"
-                    app:layout_constraintTop_toBottomOf="@id/button20"
-                    app:layout_constraintBottom_toTopOf="@id/constraintLayout11"
+                    app:layout_constraintTop_toTopOf="@+id/button22"
+                    app:layout_constraintBottom_toBottomOf="@+id/button22"
                     app:layout_constraintStart_toEndOf="@id/button22"
-                    app:layout_constraintEnd_toEndOf="parent"/>/>
-            <Button
-                    android:text="@string/negativo"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button16"
-                    android:layout_marginTop="@dimen/verticalMargin"
-                    android:layout_marginBottom="@dimen/verticalMargin"
-                    android:layout_marginStart="@dimen/horizontalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/switch5"
-                    app:layout_constraintBottom_toTopOf="@id/button17"
-                    app:layout_constraintStart_toEndOf="@id/button15"
                     app:layout_constraintEnd_toEndOf="parent"/>
-            <Button
-                    android:text="@string/bacino_instabile_deformato"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button17"
-                    android:layout_marginTop="@dimen/verticalMargin"
-                    android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@id/button15"
-                    app:layout_constraintBottom_toTopOf="@id/button18"/>
-            <Button
-                    android:text="@string/amputazione_subamputazione"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button18"
-                    android:layout_marginTop="@dimen/verticalMargin"
-                    android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@id/button17"
-                    app:layout_constraintBottom_toTopOf="@id/button19"/>
             <Switch
                     android:text="@string/casco_cintura"
                     android:layout_width="0dp"
@@ -108,7 +78,7 @@
                     android:layout_marginBottom="@dimen/verticalMargin"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button10"
+                    app:layout_constraintTop_toBottomOf="@+id/button11"
                     app:layout_constraintBottom_toTopOf="@+id/switch2"/>
             <Switch
                     android:text="@string/emorragia_esterna_in_atto"
@@ -152,6 +122,28 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/switch4"
                     app:layout_constraintBottom_toTopOf="@+id/button15"/>
+            <Switch
+                    android:text="@string/bacino_instabile_deformato"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/switch6"
+                    android:layout_marginTop="@dimen/verticalMargin"
+                    android:layout_marginBottom="@dimen/verticalMargin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button16"
+                    app:layout_constraintBottom_toTopOf="@+id/switch7"/>
+            <Switch
+                    android:text="@string/amputazione_subamputazione"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/switch7"
+                    android:layout_marginTop="@dimen/verticalMargin"
+                    android:layout_marginBottom="@dimen/verticalMargin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/switch6"
+                    app:layout_constraintBottom_toTopOf="@+id/button20"/>
             <Button
                     android:text="@string/otorragia"
                     android:layout_width="0dp"
@@ -159,9 +151,8 @@
                     android:id="@+id/button20"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    android:layout_marginStart="@dimen/horizontalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/button18"
-                    app:layout_constraintBottom_toTopOf="@id/button22"
+                    app:layout_constraintTop_toTopOf="@+id/button19"
+                    app:layout_constraintBottom_toBottomOf="@id/button19"
                     app:layout_constraintStart_toEndOf="@+id/button19"
                     app:layout_constraintEnd_toEndOf="parent"/>
             <Button
@@ -171,6 +162,7 @@
                     android:id="@+id/button10"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
+                    android:layout_marginStart="@dimen/horizontalMargin"
                     android:layout_marginEnd="@dimen/horizontalMargin"
                     app:layout_constraintTop_toBottomOf="@+id/textView32"
                     app:layout_constraintStart_toEndOf="@+id/guideline62"
@@ -188,11 +180,23 @@
                     android:id="@+id/button15"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    android:layout_marginStart="@dimen/horizontalMargin"
                     app:layout_constraintTop_toBottomOf="@+id/switch5"
-                    app:layout_constraintBottom_toTopOf="@id/button17"
+                    app:layout_constraintBottom_toTopOf="@id/switch6"
                     app:layout_constraintStart_toEndOf="@+id/guideline62"
                     app:layout_constraintEnd_toStartOf="@+id/button16"/>
+            <Button
+                    android:text="@string/negativo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button16"
+                    android:layout_marginTop="@dimen/verticalMargin"
+                    android:layout_marginBottom="@dimen/verticalMargin"
+                    android:layout_marginStart="@dimen/horizontalMargin"
+                    app:layout_constraintTop_toTopOf="@+id/button15"
+                    app:layout_constraintBottom_toBottomOf="@+id/button15"
+                    app:layout_constraintStart_toEndOf="@id/button15"
+                    app:layout_constraintEnd_toEndOf="parent"/>
             <Button
                     android:text="@string/infossata"
                     android:layout_width="0dp"
@@ -200,8 +204,9 @@
                     android:id="@+id/button19"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
+                    android:layout_marginStart="@dimen/horizontalMargin"
                     android:layout_marginEnd="@dimen/horizontalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/button18"
+                    app:layout_constraintTop_toBottomOf="@+id/switch7"
                     app:layout_constraintBottom_toTopOf="@id/button22"
                     app:layout_constraintStart_toEndOf="@+id/guideline62"
                     app:layout_constraintEnd_toStartOf="@+id/button20"/>
@@ -309,8 +314,8 @@
                     style="@style/NormalTextStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/switch5"
-                    app:layout_constraintBottom_toTopOf="@id/button17"
+                    app:layout_constraintTop_toTopOf="@+id/button15"
+                    app:layout_constraintBottom_toBottomOf="@+id/button15"
                     app:layout_constraintStart_toStartOf="parent"/>
             <TextView
                     android:text="@string/frattura_cranica"
@@ -320,8 +325,8 @@
                     style="@style/NormalTextStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/button18"
-                    app:layout_constraintBottom_toTopOf="@id/button21"
+                    app:layout_constraintTop_toTopOf="@+id/button19"
+                    app:layout_constraintBottom_toBottomOf="@id/button19"
                     app:layout_constraintStart_toStartOf="parent"/>
             <TextView
                     android:text="@string/tipo_trauma"
