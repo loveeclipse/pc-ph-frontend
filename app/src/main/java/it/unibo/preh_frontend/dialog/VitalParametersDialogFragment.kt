@@ -78,7 +78,26 @@ class VitalParametersDialogFragment : DialogFragment() {
 
         tempCorporea = root.findViewById(R.id.temp_corporea_edittext)
 
+        val respiratoryFrequencySpinner = root.findViewById<Spinner>(R.id.freq_resp_spinner)
+        val eyesOpeningSpinner = root.findViewById<Spinner>(R.id.apertura_occhi_spinner)
+        val verbalResponseSpinner = root.findViewById<Spinner>(R.id.risposta_verbale_spinner)
+        val motoryResponseSpinner = root.findViewById<Spinner>(R.id.risposta_motoria_spinner)
 
+        var adapter = ArrayAdapter.createFromResource(requireContext(), R.array.respiratoryFrequencyItems, R.layout.spinner_layout)
+        adapter.setDropDownViewResource(R.layout.spinner_layout)
+        respiratoryFrequencySpinner.adapter = adapter
+
+        adapter = ArrayAdapter.createFromResource(requireContext(), R.array.eyeOpeningItems, R.layout.spinner_layout)
+        adapter.setDropDownViewResource(R.layout.spinner_layout)
+        eyesOpeningSpinner.adapter = adapter
+
+        adapter = ArrayAdapter.createFromResource(requireContext(), R.array.verbalResponseItems, R.layout.spinner_layout)
+        adapter.setDropDownViewResource(R.layout.spinner_layout)
+        verbalResponseSpinner.adapter = adapter
+
+        adapter = ArrayAdapter.createFromResource(requireContext(), R.array.motorResponseItems, R.layout.spinner_layout)
+        adapter.setDropDownViewResource(R.layout.spinner_layout)
+        motoryResponseSpinner.adapter = adapter
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
         saveAndExitButton.setOnClickListener {
@@ -110,16 +129,16 @@ class VitalParametersDialogFragment : DialogFragment() {
 
     private fun checkEveryField(): Boolean{
         return (vieAeree.checkedRadioButtonId != -1 &&
-                freqRespiratoria.selectedItemPosition != -1 &&
+                freqRespiratoria.selectedItemPosition != 0 &&
                 saturazione.text.toString() != "" &&
                 freqCaridaca.text.toString() != "" &&
                 tipoBattito.checkedRadioButtonId != -1 &&
                 presArteriosa.text.toString() != "" &&
                 tempRiempCapillare.checkedRadioButtonId != -1 &&
                 colorCuteMucose.checkedRadioButtonId != -1 &&
-                aperturaOcchi.selectedItemPosition != -1 &&
-                rispostaVerbale.selectedItemPosition != -1 &&
-                rispostaMotoria.selectedItemPosition != -1 &&
+                aperturaOcchi.selectedItemPosition != 0 &&
+                rispostaVerbale.selectedItemPosition != 0 &&
+                rispostaMotoria.selectedItemPosition != 0 &&
                 pupilleSx.checkedRadioButtonId != -1 &&
                 pupilleDx.checkedRadioButtonId != -1 &&
                 tempCorporea.text.toString() != "")
