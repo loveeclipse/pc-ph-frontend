@@ -260,7 +260,7 @@
                 <Button
                         android:text="@string/criterio_fisiologico"
                         android:layout_width="0dp"
-                        android:layout_height="51dp"
+                        android:layout_height="wrap_content"
                         android:id="@+id/button25"
                         android:layout_marginTop="@dimen/verticalMargin"
                         android:layout_marginBottom="@dimen/verticalMargin"
@@ -268,8 +268,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toTopOf="@id/button29"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintVertical_chainStyle="spread_inside"/>
+                        app:layout_constraintEnd_toEndOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
                     android:text="0"
