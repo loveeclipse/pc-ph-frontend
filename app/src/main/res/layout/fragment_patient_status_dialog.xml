@@ -50,12 +50,12 @@
                     app:layout_constraintTop_toBottomOf="@+id/button19"
                     app:layout_constraintBottom_toTopOf="@id/constraintLayout11"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/button22"/>
+                    app:layout_constraintEnd_toStartOf="@id/button22"/>
             <androidx.constraintlayout.widget.Guideline
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintGuide_percent="0.7"
+                    app:layout_constraintGuide_percent="0.66"
                     android:id="@+id/guideline63"/>
             <Button
                     android:text="@string/parestesia"
@@ -65,7 +65,7 @@
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
                     android:layout_marginStart="@dimen/horizontalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/button20"
+                    app:layout_constraintTop_toBottomOf="@id/button20"
                     app:layout_constraintBottom_toTopOf="@id/constraintLayout11"
                     app:layout_constraintStart_toEndOf="@id/button22"
                     app:layout_constraintEnd_toEndOf="parent"/>/>
@@ -77,9 +77,9 @@
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
                     android:layout_marginStart="@dimen/horizontalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/button14"
+                    app:layout_constraintTop_toBottomOf="@+id/switch5"
                     app:layout_constraintBottom_toTopOf="@id/button17"
-                    app:layout_constraintStart_toEndOf="@+id/button15"
+                    app:layout_constraintStart_toEndOf="@id/button15"
                     app:layout_constraintEnd_toEndOf="parent"/>
             <Button
                     android:text="@string/bacino_instabile_deformato"
@@ -88,7 +88,7 @@
                     android:id="@+id/button17"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/button15"
+                    app:layout_constraintTop_toBottomOf="@id/button15"
                     app:layout_constraintBottom_toTopOf="@id/button18"/>
             <Button
                     android:text="@string/amputazione_subamputazione"
@@ -97,17 +97,61 @@
                     android:id="@+id/button18"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/button17"
+                    app:layout_constraintTop_toBottomOf="@id/button17"
                     app:layout_constraintBottom_toTopOf="@id/button19"/>
             <Switch
                     android:text="@string/casco_cintura"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/switch1"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/button10"
-                    app:layout_constraintBottom_toTopOf="@id/button12"/>
+                    app:layout_constraintBottom_toTopOf="@+id/switch2"/>
+            <Switch
+                    android:text="@string/emorragia_esterna_in_atto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/switch2"
+                    android:layout_marginTop="@dimen/verticalMargin"
+                    android:layout_marginBottom="@dimen/verticalMargin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/switch1"
+                    app:layout_constraintBottom_toTopOf="@+id/switch3"/>
+            <Switch
+                    android:text="@string/vie_aeree_non_pervie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/switch3"
+                    android:layout_marginTop="@dimen/verticalMargin"
+                    android:layout_marginBottom="@dimen/verticalMargin"
+                    app:layout_constraintTop_toBottomOf="@+id/switch2"
+                    app:layout_constraintBottom_toTopOf="@+id/switch4"/>
+            <Switch
+                    android:text="@string/tachipnea_dispnea"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/switch4"
+                    android:layout_marginTop="@dimen/verticalMargin"
+                    android:layout_marginBottom="@dimen/verticalMargin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/switch3"
+                    app:layout_constraintBottom_toTopOf="@+id/switch5"/>
+            <Switch
+                    android:text="@string/volet_costale_deformit_torace"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/switch5"
+                    android:layout_marginTop="@dimen/verticalMargin"
+                    android:layout_marginBottom="@dimen/verticalMargin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/switch4"
+                    app:layout_constraintBottom_toTopOf="@+id/button15"/>
             <Button
                     android:text="@string/otorragia"
                     android:layout_width="0dp"
@@ -120,33 +164,6 @@
                     app:layout_constraintBottom_toTopOf="@id/button22"
                     app:layout_constraintStart_toEndOf="@+id/button19"
                     app:layout_constraintEnd_toEndOf="parent"/>
-            <Button
-                    android:text="@string/volet_costale_deformit_torace"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button14"
-                    android:layout_marginTop="@dimen/verticalMargin"
-                    android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/button13"
-                    app:layout_constraintBottom_toTopOf="@id/button15"/>
-            <Button
-                    android:text="@string/tachipnea_dispnea"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button13"
-                    android:layout_marginTop="@dimen/verticalMargin"
-                    android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/switch2"
-                    app:layout_constraintBottom_toTopOf="@id/button14"/>
-            <Button
-                    android:text="@string/emorragia_esterna_in_atto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button12"
-                    android:layout_marginTop="@dimen/verticalMargin"
-                    android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/switch1"
-                    app:layout_constraintBottom_toTopOf="@id/switch2"/>
             <Button
                     android:text="@string/chiuso"
                     android:layout_width="0dp"
@@ -162,7 +179,7 @@
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintGuide_percent="0.3"
+                    app:layout_constraintGuide_percent="0.33"
                     android:id="@+id/guideline62"/>
             <Button
                     android:text="@string/positivo"
@@ -172,19 +189,10 @@
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
                     android:layout_marginEnd="@dimen/horizontalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/button14"
+                    app:layout_constraintTop_toBottomOf="@+id/switch5"
                     app:layout_constraintBottom_toTopOf="@id/button17"
                     app:layout_constraintStart_toEndOf="@+id/guideline62"
                     app:layout_constraintEnd_toStartOf="@+id/button16"/>
-            <Switch
-                    android:text="@string/vie_aeree_non_pervie"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/switch2"
-                    android:layout_marginTop="@dimen/verticalMargin"
-                    android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/button12"
-                    app:layout_constraintBottom_toTopOf="@id/button13"/>
             <Button
                     android:text="@string/infossata"
                     android:layout_width="0dp"
@@ -216,6 +224,8 @@
                     android:id="@+id/constraintLayout11"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
+                    android:paddingTop="@dimen/verticalMargin"
+                    android:paddingBottom="@dimen/verticalMargin"
                     app:layout_constraintTop_toBottomOf="@+id/button22"
                     app:layout_constraintBottom_toTopOf="@id/textView30">
 
@@ -299,7 +309,7 @@
                     style="@style/NormalTextStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/button14"
+                    app:layout_constraintTop_toBottomOf="@+id/switch5"
                     app:layout_constraintBottom_toTopOf="@id/button17"
                     app:layout_constraintStart_toStartOf="parent"/>
             <TextView
