@@ -73,14 +73,14 @@ class PatientStatusDialogFragment : DialogFragment() {
             this.saveState.cascoCintura = state
         }
 
-        emorragiaButton = root.findViewById(R.id.emorragia_esterna_button)
+        emorragiaButton = root.findViewById(R.id.emorragia_esterna_switch)
         vieAereeSwitch = root.findViewById(R.id.vie_aeree_switch)
-        tachipneaButton = root.findViewById(R.id.tachipnea_button)
-        voletButton = root.findViewById(R.id.volet_button)
+        tachipneaButton = root.findViewById(R.id.tachipnea_switch)
+        voletButton = root.findViewById(R.id.volet_switch)
         positivoButton = root.findViewById(R.id.positivo_button)
         negativoButton = root.findViewById(R.id.negativo_button)
-        bacinoInstabileButton = root.findViewById(R.id.bacino_instabile_button)
-        amputazioneButton = root.findViewById(R.id.amputazione_button)
+        bacinoInstabileButton = root.findViewById(R.id.bacino_instabile_switch)
+        amputazioneButton = root.findViewById(R.id.amputazione_switch)
         infossataButton = root.findViewById(R.id.infossata_button)
         otorragiaButton = root.findViewById(R.id.otorragia_button)
         paraparesiButton = root.findViewById(R.id.paraparesi_button)
