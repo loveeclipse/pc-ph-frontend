@@ -80,7 +80,7 @@
 
     <!-- Text of treatment fragment -->
     <style name="TreatmentTextStyle" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:textSize">@dimen/bigSize</item>
+        <item name="android:textSize">@dimen/normalSize</item>
         <item name="android:textStyle">bold</item>
     </style>
 
