@@ -13,7 +13,5 @@ class VitalParametersData(var vieAeree: Int,
                           var rispostaMotore: Int,
                           var pupilleSx: Int,
                           var pupilleDx: Int,
-                          var fotoreagenteSx: Boolean,
-                          var fotoreagenteDx: Boolean,
                           var temperature: Int) {
 }

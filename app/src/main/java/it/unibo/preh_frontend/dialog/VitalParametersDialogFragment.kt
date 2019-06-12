@@ -6,14 +6,16 @@ import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.media.Image
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import com.google.gson.Gson
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.model.PatientStatusData
+import it.unibo.preh_frontend.model.VitalParametersData
 
 
 class VitalParametersDialogFragment : DialogFragment() {
@@ -37,15 +39,14 @@ class VitalParametersDialogFragment : DialogFragment() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var parentDialog: Dialog
 
-    private var saveState = PatientStatusData()
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_vital_parameters, container, false)
         parentDialog = dialog!!
         dialog!!.setCanceledOnTouchOutside(false)
 
-        vieAeree = root.findViewById(R.id.vie_aeree_switch)
+
+        vieAeree = root.findViewById(R.id.vieaeree_radiogroup)
 
         freqRespiratoria = root.findViewById(R.id.freq_resp_spinner)
 
@@ -82,7 +83,8 @@ class VitalParametersDialogFragment : DialogFragment() {
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
         saveAndExitButton.setOnClickListener {
             val builder1 = AlertDialog.Builder(requireContext())
-            builder1.setMessage("Vuoi uscire senza salvare?")
+            builder1.setTitle("Vuoi uscire senza salvare?")
+            builder1.setMessage("Devi compilare ancora dei campi")
             builder1.setCancelable(true)
 
             builder1.setPositiveButton(
@@ -102,9 +104,45 @@ class VitalParametersDialogFragment : DialogFragment() {
         return root
     }
 
+    private fun checkEveryField(): Boolean{
+        return (vieAeree.checkedRadioButtonId != -1 &&
+                freqRespiratoria.selectedItemPosition != null &&
+                saturazione.text.toString() != "" &&
+                freqCaridaca.text.toString() != "" &&
+                tipoBattito.checkedRadioButtonId != -1 &&
+                presArteriosa.text.toString() != "" &&
+                tempRiempCapillare.checkedRadioButtonId != -1 &&
+                colorCuteMucose.checkedRadioButtonId != -1 &&
+                aperturaOcchi.selectedItemPosition != -1 &&
+                rispostaVerbale.selectedItemPosition != null &&
+                rispostaMotoria.selectedItemPosition != null &&
+                pupilleSx.checkedRadioButtonId != -1 &&
+                pupilleDx.checkedRadioButtonId != -1 &&
+                tempCorporea.text.toString() != "")
+    }
+
 
     override fun onCancel(dialog: DialogInterface) {
         //SALVA PARAMETRI VITALI
+
+        val saveState = VitalParametersData(vieAeree.checkedRadioButtonId,
+                                            freqRespiratoria.selectedItemPosition,
+                                            Integer.parseInt(saturazione.text.toString()),
+                                            Integer.parseInt(freqCaridaca.text.toString()),
+                                            tipoBattito.checkedRadioButtonId,
+                                            Integer.parseInt(presArteriosa.text.toString()),
+                                            tempRiempCapillare.checkedRadioButtonId,
+                                            colorCuteMucose.checkedRadioButtonId,
+                                            aperturaOcchi.selectedItemPosition,
+                                            rispostaVerbale.selectedItemPosition,
+                                            rispostaMotoria.selectedItemPosition,
+                                            pupilleSx.checkedRadioButtonId,
+                                            pupilleDx.checkedRadioButtonId,
+                                            Integer.parseInt(tempCorporea.text.toString())
+                                            )
+        val gson = Gson()
+        val stateAsJson = gson.toJson(saveState)
+        sharedPreferences.edit().putString("vitalParameters",stateAsJson).apply()
         dialog.cancel()
     }
 
