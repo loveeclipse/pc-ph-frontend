@@ -2,11 +2,10 @@ package it.unibo.preh_frontend.dialog
 
 
 import android.app.Dialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
-import android.media.Image
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +15,8 @@ import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.VitalParametersData
+
+
 
 
 class VitalParametersDialogFragment : DialogFragment() {
@@ -45,6 +46,7 @@ class VitalParametersDialogFragment : DialogFragment() {
         parentDialog = dialog!!
         dialog!!.setCanceledOnTouchOutside(false)
 
+        sharedPreferences = requireContext().getSharedPreferences("vitalParameters", Context.MODE_PRIVATE)
 
         vieAeree = root.findViewById(R.id.vieaeree_radiogroup)
 
@@ -99,28 +101,42 @@ class VitalParametersDialogFragment : DialogFragment() {
         adapter.setDropDownViewResource(R.layout.spinner_layout)
         motoryResponseSpinner.adapter = adapter
 
+        setSharedPreferences()
+
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
         saveAndExitButton.setOnClickListener {
             if (!checkEveryField()) {
-                val builder1 = AlertDialog.Builder(requireContext())
-                builder1.setTitle("Vuoi uscire senza salvare?")
-                builder1.setMessage("Devi compilare ancora dei campi")
-                builder1.setCancelable(true)
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle("Torna Indietro")
+                builder.setMessage("Devi compilare ancora dei campi")
+                builder.setCancelable(true)
 
-                builder1.setPositiveButton(
+                builder.setNeutralButton(
+                        "Indietro"
+                ){ dialog, _ ->
+                    dialog.cancel()
+                }
+
+                val alert11 = builder.create()
+                alert11.show()
+            } else {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle("Conferma Parametri Vitali")
+                builder.setMessage("Vuoi confermare i parametri inseriti?")
+                builder.setCancelable(true)
+
+                builder.setPositiveButton(
                         "Si"
                 ) { dialog, _ ->
                     dialog.cancel()
-                    parentDialog.dismiss()
+                    parentDialog.cancel()
                 }
-                builder1.setNegativeButton(
+                builder.setNegativeButton(
                         "No"
                 ) { dialog, _ -> dialog.cancel() }
 
-                val alert11 = builder1.create()
+                val alert11 = builder.create()
                 alert11.show()
-            } else {
-                parentDialog.dismiss()
             }
         }
         return root
@@ -144,6 +160,35 @@ class VitalParametersDialogFragment : DialogFragment() {
                 tempCorporea.text.toString() != "")
     }
 
+    private fun setSharedPreferences(){
+        Thread(Runnable {
+            val gson = Gson()
+            val newSaveState = gson.fromJson(sharedPreferences.getString("vitalParameters",null),VitalParametersData::class.java)
+            this.activity!!.runOnUiThread {
+                if (newSaveState != null) {
+                    vieAeree.check(newSaveState.vieAeree)
+                    freqRespiratoria.setSelection(newSaveState.frequenzaRespiratoria)
+                    saturazione.setText(newSaveState.saturazionePeriferica.toString())
+                    freqCaridaca.setText(newSaveState.frequenzaCaridaca.toString())
+                    tipoBattito.check(newSaveState.tipoBattito)
+                    presArteriosa.setText(newSaveState.pressioneArteriosa.toString())
+                    tempRiempCapillare.check(newSaveState.tempoRiempimentoCapillare)
+                    colorCuteMucose.check(newSaveState.coloritoCuteMucose)
+                    aperturaOcchi.setSelection(newSaveState.aperturaOcchi)
+                    rispostaVerbale.setSelection(newSaveState.rispostaVerbale)
+                    rispostaMotoria.setSelection(newSaveState.rispostaMotoria)
+                    pupilleSx.check(newSaveState.pupilleSx)
+                    pupilleDx.check(newSaveState.pupilleDx)
+                    fotoreagenteSx.isChecked = newSaveState.fotoreagenteSx
+                    fotoreagenteDx.isChecked = newSaveState.fotoreagenteDx
+                    tempCorporea.setText(newSaveState.temperature.toString())
+                }
+            }
+            }).start()
+
+
+    }
+
 
     override fun onCancel(dialog: DialogInterface) {
         //SALVA PARAMETRI VITALI
@@ -160,6 +205,8 @@ class VitalParametersDialogFragment : DialogFragment() {
                                             rispostaMotoria.selectedItemPosition,
                                             pupilleSx.checkedRadioButtonId,
                                             pupilleDx.checkedRadioButtonId,
+                                            fotoreagenteSx.isChecked,
+                                            fotoreagenteDx.isChecked,
                                             Integer.parseInt(tempCorporea.text.toString())
                                             )
         val gson = Gson()

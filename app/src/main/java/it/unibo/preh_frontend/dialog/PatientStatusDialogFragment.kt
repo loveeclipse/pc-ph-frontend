@@ -52,7 +52,8 @@ class PatientStatusDialogFragment : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_patient_status_dialog, container, false)
-        sharedPreferences = requireContext().getSharedPreferences("historyData", Context.MODE_PRIVATE)
+
+        sharedPreferences = requireContext().getSharedPreferences("patientState", Context.MODE_PRIVATE)
         parentDialog = dialog!!
 
         chiusoButton = root.findViewById(R.id.chiuso_button)
@@ -138,7 +139,7 @@ class PatientStatusDialogFragment : DialogFragment() {
 
     private fun setSharedPreferences(){
         val gson = Gson()
-        val newSaveState = gson.fromJson(sharedPreferences.getString("patientState",null),PatientStatusData().javaClass)
+        val newSaveState = gson.fromJson(sharedPreferences.getString("patientState",null),PatientStatusData::class.java)
         if(newSaveState != null) {
             if (newSaveState.traumaType) {
                 chiusoButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)

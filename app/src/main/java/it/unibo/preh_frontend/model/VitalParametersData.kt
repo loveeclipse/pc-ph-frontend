@@ -10,8 +10,10 @@ class VitalParametersData(var vieAeree: Int,
                           var coloritoCuteMucose: Int,
                           var aperturaOcchi: Int,
                           var rispostaVerbale: Int,
-                          var rispostaMotore: Int,
+                          var rispostaMotoria: Int,
                           var pupilleSx: Int,
                           var pupilleDx: Int,
+                          var fotoreagenteSx: Boolean,
+                          var fotoreagenteDx: Boolean,
                           var temperature: Int) {
 }
