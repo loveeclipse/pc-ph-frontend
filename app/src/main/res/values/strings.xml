@@ -175,4 +175,6 @@
     <string name="aggiungi_foto">Aggiungi Foto</string>
     <string name="aggiungi_video">Aggiungi Video</string>
     <string name="dettagli_missione">Dettagli missione</string>
+    <string name="male">M</string>
+    <string name="female">F</string>
 </resources>
