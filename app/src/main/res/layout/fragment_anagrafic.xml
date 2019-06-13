@@ -17,7 +17,7 @@
             android:layout_marginTop="@dimen/verticalMargin"
             android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/editText"
+            app:layout_constraintEnd_toStartOf="@id/name_editText"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/textView34"/>
     <TextView
@@ -30,7 +30,7 @@
             android:layout_marginTop="@dimen/verticalMargin"
             android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/editText2"
+            app:layout_constraintEnd_toStartOf="@id/surname_editText"
             app:layout_constraintTop_toBottomOf="@+id/textView33"
             app:layout_constraintBottom_toTopOf="@id/textView38"/>
     <TextView
@@ -43,7 +43,7 @@
             android:layout_marginTop="@dimen/verticalMargin"
             android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/editText4"
+            app:layout_constraintEnd_toStartOf="@id/residence_editText"
             app:layout_constraintTop_toBottomOf="@+id/textView34"
             app:layout_constraintBottom_toTopOf="@id/textView39"/>
     <TextView
@@ -56,7 +56,7 @@
             android:layout_marginTop="@dimen/verticalMargin"
             android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/editText6"
+            app:layout_constraintEnd_toStartOf="@id/birthplace_editText"
             app:layout_constraintTop_toBottomOf="@+id/textView38"
             app:layout_constraintBottom_toTopOf="@id/textView40"/>
     <TextView
@@ -69,7 +69,7 @@
             android:layout_marginTop="@dimen/verticalMargin"
             android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/editText8"
+            app:layout_constraintEnd_toStartOf="@id/birthday_editText"
             app:layout_constraintTop_toBottomOf="@+id/textView39"
             app:layout_constraintBottom_toTopOf="@id/textView41"/>
     <TextView
@@ -82,7 +82,7 @@
             android:layout_marginTop="@dimen/verticalMargin"
             android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/radioButton"
+            app:layout_constraintEnd_toStartOf="@id/gender_radiogroup"
             app:layout_constraintTop_toBottomOf="@+id/textView40"
             app:layout_constraintBottom_toTopOf="@id/guideline1"/>
     <TextView
@@ -109,32 +109,32 @@
                 android:text="@string/anticoagulanti"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/switch3"
+                android:id="@+id/anticoagulants_switch"
                 android:textAppearance="@style/NormalTextStyle"
                 android:layout_marginStart="@dimen/horizontalMargin"
                 android:layout_marginEnd="@dimen/horizontalMargin"
                 android:layout_marginTop="@dimen/verticalMargin"
                 android:layout_marginBottom="@dimen/verticalMargin"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/switch4"/>
+                app:layout_constraintBottom_toTopOf="@+id/antiplatelets_switch"/>
         <Switch
                 android:text="@string/antipiastrine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/switch4"
+                android:id="@+id/antiplatelets_switch"
                 android:textAppearance="@style/NormalTextStyle"
                 android:layout_marginStart="@dimen/horizontalMargin"
                 android:layout_marginEnd="@dimen/horizontalMargin"
                 android:layout_marginTop="@dimen/verticalMargin"
                 android:layout_marginBottom="@dimen/verticalMargin"
-                app:layout_constraintTop_toBottomOf="@+id/switch3"
+                app:layout_constraintTop_toBottomOf="@+id/anticoagulants_switch"
                 app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:id="@+id/editText"
+            android:id="@+id/name_editText"
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginEnd="@dimen/horizontalMargin"
             app:layout_constraintStart_toEndOf="@id/textView33"
@@ -145,7 +145,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:id="@+id/editText2"
+            android:id="@+id/surname_editText"
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginEnd="@dimen/horizontalMargin"
             app:layout_constraintStart_toEndOf="@id/textView34"
@@ -156,7 +156,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:id="@+id/editText4"
+            android:id="@+id/residence_editText"
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginEnd="@dimen/horizontalMargin"
             app:layout_constraintStart_toEndOf="@id/textView38"
@@ -167,7 +167,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:id="@+id/editText6"
+            android:id="@+id/birthplace_editText"
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginEnd="@dimen/horizontalMargin"
             app:layout_constraintStart_toEndOf="@id/textView39"
@@ -178,7 +178,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="date"
-            android:id="@+id/editText8"
+            android:id="@+id/birthday_editText"
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginEnd="@dimen/horizontalMargin"
             app:layout_constraintStart_toEndOf="@id/textView40"
@@ -189,7 +189,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:id="@id/radioButton"
+            android:id="@+id/gender_radiogroup"
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginEnd="@dimen/horizontalMargin"
             app:layout_constraintStart_toEndOf="@id/textView41"
@@ -200,14 +200,14 @@
                 android:text="@string/male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioButton2"
+                android:id="@+id/male_radio"
                 android:textAppearance="@style/NormalTextStyle"
                 android:layout_weight="1"/>
         <RadioButton
                 android:text="@string/female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioButton"
+                android:id="@+id/female_radio"
                 android:textAppearance="@style/NormalTextStyle"
                 android:layout_weight="1"/>
     </RadioGroup>
