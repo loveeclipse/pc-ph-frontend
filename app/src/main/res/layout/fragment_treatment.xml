@@ -306,8 +306,8 @@
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/button4"
+                        app:layout_constraintTop_toTopOf="@+id/ossigenoterapia_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/ossigenoterapia_button"
                         app:layout_constraintStart_toEndOf="@+id/ossigenoterapia_button"
                         app:layout_constraintEnd_toEndOf="parent"/>
                 <TextView
@@ -413,8 +413,8 @@
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintTop_toBottomOf="@+id/guedel_button"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tirotomia_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/tirotomia_button"
                         app:layout_constraintStart_toEndOf="@+id/tirotomia_button"
                         app:layout_constraintEnd_toEndOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
