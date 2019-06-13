@@ -1,6 +1,5 @@
 package it.unibo.preh_frontend.dialog
 
-
 import android.app.Dialog
 import android.os.Bundle
 import android.content.Context
@@ -18,7 +17,7 @@ import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
 
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.model.*
+import it.unibo.preh_frontend.model.PatientStatusData
 
 class PatientStatusDialogFragment : DialogFragment() {
 
@@ -56,20 +55,20 @@ class PatientStatusDialogFragment : DialogFragment() {
         parentDialog = dialog!!
 
         chiusoButton = root.findViewById(R.id.chiuso_button)
-        chiusoButton.setOnClickListener{
+        chiusoButton.setOnClickListener {
             chiusoButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)
             penetranteButton.backgroundTintList = resources.getColorStateList(R.color.colorSecondary)
             this.saveState.traumaType = true // Chiuso
         }
         penetranteButton = root.findViewById(R.id.penetrante_button)
-        penetranteButton.setOnClickListener{
+        penetranteButton.setOnClickListener {
             penetranteButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)
             chiusoButton.backgroundTintList = resources.getColorStateList(R.color.colorSecondary)
             this.saveState.traumaType = false // Penetrante
         }
 
         cascoCinturaSwitch = root.findViewById(R.id.casco_cintura_switch)
-        cascoCinturaSwitch.setOnCheckedChangeListener{ _, state ->
+        cascoCinturaSwitch.setOnCheckedChangeListener { _, state ->
             this.saveState.cascoCintura = state
         }
 
@@ -95,8 +94,6 @@ class PatientStatusDialogFragment : DialogFragment() {
         shockIndexText = root.findViewById(R.id.shock_index_text)
 
         setSharedPreferences()
-
-
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.patient_image_button)
         saveAndExitButton.setOnClickListener {
@@ -126,23 +123,23 @@ class PatientStatusDialogFragment : DialogFragment() {
         val metrics = resources.displayMetrics
         val width = (metrics.widthPixels)
         val height = (metrics.heightPixels)
-        dialog!!.window!!.setLayout(9 * width / 10,height)
+        dialog!!.window!!.setLayout(9 * width / 10, height)
     }
 
     override fun onCancel(dialog: DialogInterface) {
         Thread(Runnable {
             val gson = Gson()
             val stateAsJson = gson.toJson(saveState)
-            sharedPreferences.edit().putString("patientState",stateAsJson).apply()
+            sharedPreferences.edit().putString("patientState", stateAsJson).apply()
             super.onCancel(dialog)
         })
     }
 
-    private fun setSharedPreferences(){
+    private fun setSharedPreferences() {
         Thread(Runnable {
             val gson = Gson()
-            val newSaveState = gson.fromJson(sharedPreferences.getString("patientState",null),PatientStatusData::class.java)
-            if(newSaveState != null) {
+            val newSaveState = gson.fromJson(sharedPreferences.getString("patientState", null), PatientStatusData::class.java)
+            if (newSaveState != null) {
                 this.activity!!.runOnUiThread {
                     if (newSaveState.traumaType) {
                         chiusoButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)
@@ -155,7 +152,7 @@ class PatientStatusDialogFragment : DialogFragment() {
                     cascoCinturaSwitch.isChecked = newSaveState.cascoCintura
                 }
                 saveState = newSaveState
-            }else {
+            } else {
                 saveState = PatientStatusData()
             }
         }).start()
@@ -164,7 +161,6 @@ class PatientStatusDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return object : Dialog(activity!!, theme) {
             override fun onBackPressed() {
-
             }
         }
     }

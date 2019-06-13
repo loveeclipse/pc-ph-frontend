@@ -26,7 +26,6 @@ class PreHMessagingService : FirebaseMessagingService() {
         Log.d(TAG, "From: " + remoteMessage!!.from)
         Log.d(TAG, "Notification Message Body: " + remoteMessage.notification?.body!!)
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // Create the NotificationChannel
             val name = "PreHNotifiche"

@@ -1,6 +1,5 @@
 package it.unibo.preh_frontend.home
 
-
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -31,8 +30,11 @@ class ComplicationsFragment : Fragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_complications, container, false)
 
@@ -53,38 +55,37 @@ class ComplicationsFragment : Fragment() {
 
     override fun onStart() {
         val gson = Gson()
-        val savedState = gson.fromJson(sharedPreferences.getString("complicationsData",null),ComplicationsData::class.java)
-        if(savedState != null){
+        val savedState = gson.fromJson(sharedPreferences.getString("complicationsData", null), ComplicationsData::class.java)
+        if (savedState != null) {
             applySharedPreferences(savedState)
         }
         super.onStart()
     }
 
-    private fun applySharedPreferences(savedState: ComplicationsData){
+    private fun applySharedPreferences(savedState: ComplicationsData) {
         arrestoCardioSwitch.isChecked = savedState.arrestoCardiocircolatorio
         deterioramentoSwitch.isChecked = savedState.deterioramento
         anisocoriaSwitch.isChecked = savedState.anisocoria
         insuffRespiratoriaSwitch.isChecked = savedState.insuffRespiratoria
         cardioShockSwitch.isChecked = savedState.cardioShock
         atterraggioSwitch.isChecked = savedState.atterraggio
-        if(savedState.itinere){
-            //cambia colore a itinerebutton come attivo e disattiva arrivoPsButton
+        if (savedState.itinere) {
+            // cambia colore a itinerebutton come attivo e disattiva arrivoPsButton
         }
-        if(savedState.arrivoPs){
-            //cambia colore a arrivoPsButton come attivo e disattiva itinerebutton
+        if (savedState.arrivoPs) {
+            // cambia colore a arrivoPsButton come attivo e disattiva itinerebutton
         }
     }
 
-    fun getData():ComplicationsData{
-        return  ComplicationsData(arrestoCardioSwitch.isChecked,
-                                  deterioramentoSwitch.isChecked,
-                                  anisocoriaSwitch.isChecked,
-                                  insuffRespiratoriaSwitch.isChecked,
-                                  arrestoCardioSwitch.isChecked,
-                                  atterraggioSwitch.isChecked,
-                                  itinereActive,
-                                  arrivoPsActive)
+    fun getData(): ComplicationsData {
+        return ComplicationsData(
+                arrestoCardioSwitch.isChecked,
+                deterioramentoSwitch.isChecked,
+                anisocoriaSwitch.isChecked,
+                insuffRespiratoriaSwitch.isChecked,
+                arrestoCardioSwitch.isChecked,
+                atterraggioSwitch.isChecked,
+                itinereActive,
+                arrivoPsActive)
     }
-
-
 }

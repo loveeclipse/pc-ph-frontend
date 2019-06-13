@@ -1,7 +1,12 @@
 package it.unibo.preh_frontend.home
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Spinner
@@ -11,9 +16,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import it.unibo.preh_frontend.R
 import android.widget.ArrayAdapter
-
-
-
 
 class LoginFragment : Fragment() {
 
@@ -42,7 +44,7 @@ class LoginFragment : Fragment() {
         return root
     }
 
-    private fun setDoctorAndVehicle(doctor: String, vehicle: String){
+    private fun setDoctorAndVehicle(doctor: String, vehicle: String) {
         requireActivity().apply {
             findViewById<TextView>(R.id.doctor).text = doctor
             findViewById<TextView>(R.id.vehicle).text = vehicle
@@ -58,15 +60,12 @@ class LoginFragment : Fragment() {
             findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
             findViewById<Button>(R.id.finish).visibility = View.INVISIBLE
         }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return NavigationUI.onNavDestinationSelected(item, findNavController())
     }
 }
-
-
 
 /* val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {

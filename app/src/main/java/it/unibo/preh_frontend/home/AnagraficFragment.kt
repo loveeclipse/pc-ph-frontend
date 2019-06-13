@@ -1,10 +1,8 @@
 package it.unibo.preh_frontend.home
 
-
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,17 +24,18 @@ class AnagraficFragment : Fragment() {
     private lateinit var birthdayEditText: EditText
 
     private lateinit var genderRadioGroup: RadioGroup
-    private lateinit var anticoagulantsSwitch : Switch
+    private lateinit var anticoagulantsSwitch: Switch
     private lateinit var antiplateletsSwitch: Switch
 
     private lateinit var sharedPreferences: SharedPreferences
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-
-        val root =  inflater.inflate(R.layout.fragment_anagrafic, container, false)
-
+        val root = inflater.inflate(R.layout.fragment_anagrafic, container, false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
@@ -53,31 +52,31 @@ class AnagraficFragment : Fragment() {
         return root
     }
 
-
-    fun setSharedPreferences(){
+    fun setSharedPreferences() {
         Thread(Runnable {
             val gson = Gson()
-            val newSavedState = gson.fromJson(sharedPreferences.getString("anagraphicData",null),AnagraphicData::class.java)
-               this.activity!!.runOnUiThread {
+            val newSavedState = gson.fromJson(sharedPreferences.getString("anagraphicData", null), AnagraphicData::class.java)
+                this.activity!!.runOnUiThread {
                     if (newSavedState != null) {
                         applySharedPreferences(newSavedState)
                     }
                 }
-       }).start()
+            }
+        ).start()
     }
 
-    override fun onStart(){
+    override fun onStart() {
         val gson = Gson()
-        val snapshot = gson.fromJson(sharedPreferences.getString("anagraphicDataSnapshot",null),AnagraphicData::class.java)
-        if(snapshot != null){
+        val snapshot = gson.fromJson(sharedPreferences.getString("anagraphicDataSnapshot", null), AnagraphicData::class.java)
+        if (snapshot != null) {
             applySharedPreferences(snapshot)
-        }else{
+        } else {
             setSharedPreferences()
         }
         super.onStart()
     }
 
-    private fun applySharedPreferences(anagraphicData: AnagraphicData){
+    private fun applySharedPreferences(anagraphicData: AnagraphicData) {
         nameEditText.setText(anagraphicData.name)
         surnameEditText.setText(anagraphicData.surname)
         residenceEditText.setText(anagraphicData.residence)
@@ -89,8 +88,7 @@ class AnagraficFragment : Fragment() {
         antiplateletsSwitch.isChecked = anagraphicData.antiplatelets
     }
 
-
-    fun getAnagraphicData(): AnagraphicData{
+    fun getAnagraphicData(): AnagraphicData {
         return AnagraphicData(nameEditText.text.toString(),
                 surnameEditText.text.toString(),
                 residenceEditText.text.toString(),
@@ -100,6 +98,4 @@ class AnagraficFragment : Fragment() {
                 anticoagulantsSwitch.isChecked,
                 antiplateletsSwitch.isChecked)
     }
-
-
 }

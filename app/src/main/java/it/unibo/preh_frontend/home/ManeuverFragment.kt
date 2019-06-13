@@ -1,10 +1,8 @@
 package it.unibo.preh_frontend.home
 
-
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,9 +26,11 @@ class ManeuverFragment : Fragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_maneuver, container, false)
 
@@ -55,14 +55,14 @@ class ManeuverFragment : Fragment() {
 
     override fun onStart() {
         val gson = Gson()
-        val savedState = gson.fromJson(sharedPreferences.getString("maneuversData",null),ManeuverData::class.java)
-        if(savedState != null){
+        val savedState = gson.fromJson(sharedPreferences.getString("maneuversData", null), ManeuverData::class.java)
+        if (savedState != null) {
             applySharedPreferences(savedState)
         }
         super.onStart()
     }
 
-    private fun applySharedPreferences(savedState: ManeuverData){
+    private fun applySharedPreferences(savedState: ManeuverData) {
         collareCervicaleSwitch.isChecked = savedState.collare
         immobilizzazioneSwitch.isChecked = savedState.immobilizzazione
         cardioversioneSwitch.isChecked = savedState.cardioversione
@@ -73,14 +73,14 @@ class ManeuverFragment : Fragment() {
         amperaggioEditText.setText(savedState.amperaggio)
     }
 
-    fun getData():ManeuverData{
-         return ManeuverData(collareCervicaleSwitch.isChecked,
-                                        immobilizzazioneSwitch.isChecked,
-                                        cardioversioneSwitch.isChecked,
-                                        sondaGastricaSwitch.isChecked,
-                                        sondaVescicaleSwitch.isChecked,
-                                        frequenzaCatturaEditText.text.toString(),
-                                        amperaggioEditText.text.toString())
+    fun getData(): ManeuverData {
+        return ManeuverData(
+                collareCervicaleSwitch.isChecked,
+                immobilizzazioneSwitch.isChecked,
+                cardioversioneSwitch.isChecked,
+                sondaGastricaSwitch.isChecked,
+                sondaVescicaleSwitch.isChecked,
+                frequenzaCatturaEditText.text.toString(),
+                amperaggioEditText.text.toString())
     }
-
 }

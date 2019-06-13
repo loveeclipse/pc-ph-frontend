@@ -1,6 +1,5 @@
 package it.unibo.preh_frontend.dialog
 
-
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
@@ -9,37 +8,38 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.RadioGroup
+import android.widget.Spinner
+import android.widget.Switch
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.model.*
-
-
-
+import it.unibo.preh_frontend.model.VitalParametersData
 
 class VitalParametersDialogFragment : DialogFragment() {
-    private lateinit var vieAeree : RadioGroup
-    private lateinit var freqRespiratoria : Spinner
-    private lateinit var saturazione : EditText
+    private lateinit var vieAeree: RadioGroup
+    private lateinit var freqRespiratoria: Spinner
+    private lateinit var saturazione: EditText
     private lateinit var freqCaridaca: EditText
-    private lateinit var tipoBattito : RadioGroup
-    private lateinit var presArteriosa : EditText
-    private lateinit var tempRiempCapillare : RadioGroup
-    private lateinit var colorCuteMucose : RadioGroup
-    private lateinit var aperturaOcchi : Spinner
-    private lateinit var rispostaVerbale : Spinner
-    private lateinit var rispostaMotoria : Spinner
-    private lateinit var pupilleSx : RadioGroup
-    private lateinit var pupilleDx : RadioGroup
-    private lateinit var fotoreagenteSx : Switch
-    private lateinit var fotoreagenteDx : Switch
-    private lateinit var tempCorporea : EditText
+    private lateinit var tipoBattito: RadioGroup
+    private lateinit var presArteriosa: EditText
+    private lateinit var tempRiempCapillare: RadioGroup
+    private lateinit var colorCuteMucose: RadioGroup
+    private lateinit var aperturaOcchi: Spinner
+    private lateinit var rispostaVerbale: Spinner
+    private lateinit var rispostaMotoria: Spinner
+    private lateinit var pupilleSx: RadioGroup
+    private lateinit var pupilleDx: RadioGroup
+    private lateinit var fotoreagenteSx: Switch
+    private lateinit var fotoreagenteDx: Switch
+    private lateinit var tempCorporea: EditText
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var parentDialog: Dialog
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_vital_parameters, container, false)
@@ -114,7 +114,7 @@ class VitalParametersDialogFragment : DialogFragment() {
 
                 builder.setNeutralButton(
                         "Indietro"
-                ){ dialog, _ ->
+                ) { dialog, _ ->
                     dialog.cancel()
                 }
 
@@ -143,8 +143,7 @@ class VitalParametersDialogFragment : DialogFragment() {
         return root
     }
 
-
-    private fun checkEveryField(): Boolean{
+    private fun checkEveryField(): Boolean {
         return (vieAeree.checkedRadioButtonId != -1 &&
                 freqRespiratoria.selectedItemPosition != 0 &&
                 saturazione.text.toString() != "" &&
@@ -161,10 +160,10 @@ class VitalParametersDialogFragment : DialogFragment() {
                 tempCorporea.text.toString() != "")
     }
 
-    private fun setSharedPreferences(){
+    private fun setSharedPreferences() {
         Thread(Runnable {
             val gson = Gson()
-            val newSaveState = gson.fromJson(sharedPreferences.getString("vitalParameters",null),VitalParametersData::class.java)
+            val newSaveState = gson.fromJson(sharedPreferences.getString("vitalParameters", null), VitalParametersData::class.java)
             if (newSaveState != null) {
                 this.activity!!.runOnUiThread {
                     vieAeree.check(newSaveState.vieAeree)
@@ -187,7 +186,6 @@ class VitalParametersDialogFragment : DialogFragment() {
             }
         }).start()
     }
-
 
     override fun onCancel(dialog: DialogInterface) {
         Thread(Runnable {
@@ -220,13 +218,12 @@ class VitalParametersDialogFragment : DialogFragment() {
         val metrics = resources.displayMetrics
         val width = (metrics.widthPixels)
         val height = (metrics.heightPixels)
-        dialog!!.window!!.setLayout(9 * width / 10,height)
+        dialog!!.window!!.setLayout(9 * width / 10, height)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return object : Dialog(activity!!, theme) {
             override fun onBackPressed() {
-
             }
         }
     }

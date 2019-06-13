@@ -26,12 +26,10 @@ class NoteDialogFragment : DialogFragment() {
         parentDialog = dialog!!
         noteEditText = root.findViewById(R.id.note_edit_text)
 
-
         val savedSet = sharedPreferences.getString("notes", null)
-        if(savedSet != null) {
+        if (savedSet != null) {
             noteEditText.text = savedSet
-        }else {
-
+        } else {
         }
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.note_image_button)
         saveAndExitButton.setOnClickListener {
@@ -57,7 +55,7 @@ class NoteDialogFragment : DialogFragment() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        sharedPreferences.edit().putString("notes",noteEditText.text.toString()).apply()
+        sharedPreferences.edit().putString("notes", noteEditText.text.toString()).apply()
         super.onCancel(dialog)
     }
 
@@ -66,13 +64,12 @@ class NoteDialogFragment : DialogFragment() {
         val metrics = resources.displayMetrics
         val width = (metrics.widthPixels)
         val height = (metrics.heightPixels)
-        dialog!!.window!!.setLayout(9 * width / 10,height)
+        dialog!!.window!!.setLayout(9 * width / 10, height)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return object : Dialog(activity!!, theme) {
             override fun onBackPressed() {
-
             }
         }
     }

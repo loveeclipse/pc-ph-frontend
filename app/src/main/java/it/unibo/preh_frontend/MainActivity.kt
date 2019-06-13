@@ -17,8 +17,8 @@ class MainActivity : AppCompatActivity() {
         navController = findNavController(R.id.nav_host_fragment)
         setSupportActionBar(findViewById(R.id.toolbar))
         val endPreHButton = findViewById<Button>(R.id.finish)
-        endPreHButton.setOnClickListener{
-            //FINISCE L'EVENTO DI PREH, ELIMINA LE SHAREDPREFERENCES E FAI LE ULTIME OPERAZIONI
+        endPreHButton.setOnClickListener {
+            // FINISCE L'EVENTO DI PREH, ELIMINA LE SHAREDPREFERENCES E FAI LE ULTIME OPERAZIONI
 
             val sharedPreferences = getSharedPreferences("preHData", Context.MODE_PRIVATE)
             sharedPreferences.edit().clear().apply()
@@ -30,5 +30,4 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp() = navController.navigateUp()
 
     override fun onBackPressed() {}
-
 }
