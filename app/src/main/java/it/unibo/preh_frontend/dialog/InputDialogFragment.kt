@@ -14,7 +14,12 @@ class InputDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.input_dialog, container, false)
 
-        val saveAndExitButton = root.findViewById<ImageButton>(R.id.input_dialog_image_button)
+        val saveAndExitButton2 = root.findViewById<ImageButton>(R.id.input_dialog_image_button)
+        saveAndExitButton2.setOnClickListener {
+            dialog!!.cancel()
+        }
+
+        val saveAndExitButton = root.findViewById<Button>(R.id.back_button)
         saveAndExitButton.setOnClickListener {
             dialog!!.cancel()
         }
@@ -27,7 +32,7 @@ class InputDialogFragment : DialogFragment() {
         val metrics = resources.displayMetrics
         val width = (metrics.widthPixels)
         val height = (metrics.heightPixels)
-        dialog!!.window!!.setLayout(80 * width / 100, 50 * height / 100)
+        dialog!!.window!!.setLayout(70 * width / 100, 40 * height / 100)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
