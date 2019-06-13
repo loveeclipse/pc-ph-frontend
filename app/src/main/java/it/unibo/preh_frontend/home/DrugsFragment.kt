@@ -19,6 +19,21 @@ class DrugsFragment : Fragment() {
         insertCrystalloid.setOnClickListener {
             InputDialogFragment().show(requireActivity().supportFragmentManager, "layout/input_dialog.xml")
         }
+
+        val insertSuccinylcholine =  root.findViewById<Button>(R.id.succinylcholine_button)
+        insertSuccinylcholine.setOnClickListener {
+            InputDialogFragment().show(requireActivity().supportFragmentManager, "layout/input_dialog.xml")
+        }
+
+        val insertFentanil =  root.findViewById<Button>(R.id.fentanil_button)
+        insertFentanil.setOnClickListener {
+            InputDialogFragment().show(requireActivity().supportFragmentManager, "layout/input_dialog.xml")
+        }
+
+        val insertKetamine =  root.findViewById<Button>(R.id.ketamine_button)
+        insertKetamine.setOnClickListener {
+            InputDialogFragment().show(requireActivity().supportFragmentManager, "layout/input_dialog.xml")
+        }
         // Inflate the layout for this fragment
         return root
     }
