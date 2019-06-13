@@ -88,7 +88,6 @@ class VitalParametersDialogFragment : DialogFragment() {
         var adapter = ArrayAdapter.createFromResource(requireContext(), R.array.respiratoryFrequencyItems, R.layout.spinner_layout)
         adapter.setDropDownViewResource(R.layout.spinner_layout)
         respiratoryFrequencySpinner.adapter = adapter
-        respiratoryFrequencySpinner.setSelection(1)
 
         adapter = ArrayAdapter.createFromResource(requireContext(), R.array.eyeOpeningItems, R.layout.spinner_layout)
         adapter.setDropDownViewResource(R.layout.spinner_layout)

@@ -51,7 +51,7 @@ class LoginFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         requireActivity().apply {
-            findViewById<TextView>(R.id.title).text = getString(R.string.title)
+            findViewById<TextView>(R.id.title).text = getString(R.string.app_name)
             findViewById<TextView>(R.id.title).visibility = View.VISIBLE
             findViewById<TextView>(R.id.doctor).visibility = View.INVISIBLE
             findViewById<TextView>(R.id.vehicle).visibility = View.INVISIBLE

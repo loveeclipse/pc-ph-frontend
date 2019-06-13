@@ -1,74 +1,78 @@
 <resources>
-    <string name="app_name">PreH-Assistant</string>
-    <string name="cancel">Annulla</string>
-    <string name="settings">Settings</string>
-    <string name="about">About</string>
-    <string name="conferma">Conferma</string>
-    <string name="mezzo">Mezzo</string>
-    <string name="medico">Medico</string>
+    <string name="app_name">Pre-H assistant</string>
     <string name="terminazione">Termina Pre-H</string>
     <string name="centralizzazione">CENTRALIZZAZIONE</string>
-    <string name="title">Pre-H assistant</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="mezzo">Mezzo</string>
+    <string name="medico">Medico</string>
+    <string name="conferma">Conferma</string>
+
     <string name="storico">Storico</string>
     <string name="dett_missione">Dettagli Missione</string>
-    <string name="stato_paziente">Stato Paziente</string>
-    <string name="farmaci">Farmaci</string>
-    <string name="manovre">Manovre</string>
-    <string name="trattamenti">Trattamenti</string>
-    <string name="complicanze">Complicanze</string>
-    <string name="parametri_vitali">Parametri Vitali</string>
     <string name="new_pc_car">New PC Car</string>
+
+    <string name="farmaci">Farmaci</string>
     <string name="infusioni">Infusioni</string>
-    <string name="generici">Generici</string>
     <string name="mannitolo">MANNITOLO 10%</string>
     <string name="soluzione_ipertonica">SOLUZIONE IPERTONICA NaCl 3%</string>
     <string name="cristalloidi">CRISTALLOIDI</string>
     <string name="fibrinogeno">FIBRINOGENO</string>
     <string name="emazie_concentrate">EMAZIE CONCENTRATE</string>
+    <string name="generici">Generici</string>
     <string name="succinilcolina">SUCCINILCOLINA</string>
     <string name="midazolam">MIDAZOLAM</string>
     <string name="fentanil">FENTANIL</string>
     <string name="ketamina">KETAMINA</string>
     <string name="curaro">CURARO</string>
     <string name="acido_tranexamico">ACIDO TRANEXAMICO</string>
+
+    <string name="manovre">Manovre</string>
     <string name="sonda_vescicale">Sonda Vescicale</string>
     <string name="sonda_gastrica">Sonda Gastrica</string>
     <string name="cardioversione_elettrica_sincronizzata">Cardioversione Elettrica Sincronizzata</string>
     <string name="immobilizzazione">Immobilizzazione</string>
-    <string name="pacing_transcutaneo">Pacing Transcutaneo</string>
     <string name="collare_cervicale">Collare Cervicale</string>
+    <string name="pacing_transcutaneo">Pacing Transcutaneo</string>
+    <string name="frequenza_di_cattura">Frequenza di cattura</string>
+    <string name="amperaggio">Amperaggio</string>
+    <string name="conferma_pacing_transcutaneo">CONFERMA PACING TRANSCUTANEO</string>
+
+    <string name="trattamenti">Trattamenti</string>
+    <string name="rianimazione_cardio_polmonare">Rianimazione Cardio-Polmonare</string>
     <string name="andrenalina_1mg">Andrenalina 1mg</string>
     <string name="esegui_shock">Esegui Shock</string>
     <string name="inizio_rianimazione">Inizio Rianimazione</string>
-    <string name="rianimazione_cardio_polmonare">Rianimazione Cardio-Polmonare</string>
     <string name="vie_aeree">Vie Aeree</string>
-    <string name="respiro">Respiro</string>
-    <string name="neuroprotezione">Neuroprotezione</string>
-    <string name="protezione_termica">Protezione Termica</string>
-    <string name="periferica">Periferica</string>
-    <string name="centrale">Centrale</string>
-    <string name="emostasi">Emostasi</string>
-    <string name="intraossea">Intraossea</string>
-    <string name="tourniquet">Tourniquet</string>
-    <string name="pelvic_binder">Pelvic Binder</string>
-    <string name="reboa">Reboa</string>
-    <string name="inizia_reboa_zona_1">Inizia Reboa Zona 1</string>
-    <string name="inizia_reboa_zona_3">Inizia Reboa Zona 3</string>
-    <string name="ossigenoterapia_i_min">OssigenoTerapia (I/min)</string>
-    <string name="ambu">Ambu</string>
-    <string name="mini_toracotomia">Mini Toracotomia</string>
-    <string name="ippv">IPPV</string>
     <string name="sublussazione_mandibola">Sublussazione Mandibola</string>
     <string name="guedel">Guedel</string>
     <string name="crico_tirotomia">Crico-Tirotomia</string>
     <string name="tubo_tracheale">Tubo Tracheale</string>
+    <string name="respiro">Respiro</string>
+    <string name="ossigenoterapia_i_min">OssigenoTerapia (I/min)</string>
+    <string name="ambu">Ambu</string>
+    <string name="mini_toracotomia">Mini Toracotomia</string>
+    <string name="ippv">IPPV</string>
     <string name="circolo">Circolo</string>
     <string name="calibro">Calibro</string>
     <string name="tipologia">Tipologia</string>
     <string name="gauge">Gauge</string>
     <string name="french">French</string>
     <string name="size">Size</string>
+    <string name="periferica">Periferica</string>
+    <string name="centrale">Centrale</string>
+    <string name="intraossea">Intraossea</string>
+    <string name="emostasi">Emostasi</string>
+    <string name="pelvic_binder">Pelvic Binder</string>
+    <string name="tourniquet">Tourniquet</string>
+    <string name="inizia_tourniquet">Inizia Tourniquet</string>
+    <string name="reboa">Reboa</string>
+    <string name="inizia_reboa_zona_1">Inizia Reboa Zona 1</string>
+    <string name="inizia_reboa_zona_3">Inizia Reboa Zona 3</string>
+    <string name="neuroprotezione">Neuroprotezione</string>
+    <string name="protezione_termica">Protezione Termica</string>
+    <string name="starting_timer">00:00</string>
+
+    <string name="complicanze">Complicanze</string>
     <string name="arresto_cardio_circolatorio">Arresto cardio-circolatorio</string>
     <string name="deterioramento_stato_di_coscenza">Deterioramento stato di coscenza</string>
     <string name="anisocoria_midriasi">Anisocoria / Midriasi</string>
@@ -76,18 +80,17 @@
     <string name="shock_cardiocircolatorio">Shock cardiocircolatorio</string>
     <string name="atterraggio_in_itinere_per_manovra_terapeutica">Atterraggio in itinere per manovra terapeutica
     </string>
-    <string name="in_itinere">In Itinere</string>
     <string name="decesso">Decesso:</string>
+    <string name="in_itinere">In Itinere</string>
     <string name="all_arrivo_in_ps">All\'arrivo in PS</string>
+
     <string name="new_pc_car_text">New PC-Car</string>
     <string name="partenza_dell_equipaggio">Partenza dell\'equipaggio</string>
     <string name="arrivo_sul_luogo_dell_incidente">Arrivo sul luogo dell\'incidente</string>
     <string name="partenza_dal_luogo_dell_incidente">Partenza dal luogo dell\'incidente</string>
     <string name="atterraggio_in_eliporto">Atterraggio in eliporto</string>
-    <string name="frequenza_di_cattura">Frequenza di cattura</string>
-    <string name="amperaggio">Amperaggio</string>
-    <string name="conferma_pacing_transcutaneo">CONFERMA PACING TRANSCUTANEO</string>
 
+    <string name="parametri_vitali">Parametri Vitali</string>
     <string name="pervie">Pervie</string>
     <string name="non_pervie">Non pervie</string>
     <string name="frequenza_respiratoria">Frequenza Respiratoria</string>
@@ -122,6 +125,7 @@
     <string name="atti_min">atti/min</string>
     <string name="degrees">°C</string>
 
+    <string name="stato_paziente">Stato Paziente</string>
     <string name="penetrante">Penetrante</string>
     <string name="tetraparesi">tetraparesi</string>
     <string name="paraparesi">paraparesi</string>
@@ -147,27 +151,17 @@
     <string name="ecofast">Ecofast</string>
     <string name="frattura_cranica">Frattura cranica</string>
     <string name="tipo_trauma">Tipo Trauma</string>
+
+    <string name="info_evento">Info Evento</string>
     <string name="codice_invio">Codice invio</string>
     <string name="dinamica">Dinamica</string>
     <string name="secondario">Secondario</string>
     <string name="indirizzo">Indirizzo</string>
     <string name="mezzi_coinvolti">Mezzi coinvolti</string>
     <string name="numero_pazienti">Numero pazieti</string>
-    <string name="note">Note</string>
-    <string name="inizia_tourniquet">Inizia Tourniquet</string>
-    <string name="anagrafica_paziente">Anagrafica Paziente</string>
-    <string name="info_evento">Info Evento</string>
-    <string name="nome">Nome</string>
-    <string name="cognome">Cognome</string>
-    <string name="residenza">Residenza</string>
-    <string name="luogo_di_nascita">Luogo di nascita</string>
-    <string name="sesso">Sesso</string>
-    <string name="data_di_nascita">Data di nascita</string>
-    <string name="anamnesi">Anamnesi</string>
-    <string name="anticoagulanti">Anticoagulanti</string>
-    <string name="antipiastrine">Antipiastrine</string>
     <string name="emptyText">-------------</string>
-    <string name="starting_timer">00:00</string>
+
+    <string name="note">Note</string>
     <string name="note_multimediali">Note Multimediali</string>
     <string name="note_testuali">Note Testuali</string>
     <string name="galleria">Apri Galleria</string>
@@ -175,6 +169,17 @@
     <string name="aggiungi_foto">Aggiungi Foto</string>
     <string name="aggiungi_video">Aggiungi Video</string>
     <string name="dettagli_missione">Dettagli missione</string>
+
+    <string name="anagrafica_paziente">Anagrafica Paziente</string>
+    <string name="nome">Nome</string>
+    <string name="cognome">Cognome</string>
+    <string name="residenza">Residenza</string>
     <string name="male">M</string>
     <string name="female">F</string>
+    <string name="luogo_di_nascita">Luogo di nascita</string>
+    <string name="sesso">Sesso</string>
+    <string name="data_di_nascita">Data di nascita</string>
+    <string name="anamnesi">Anamnesi</string>
+    <string name="anticoagulanti">Anticoagulanti</string>
+    <string name="antipiastrine">Antipiastrine</string>
 </resources>

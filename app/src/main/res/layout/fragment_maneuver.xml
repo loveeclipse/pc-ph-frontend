@@ -152,8 +152,8 @@
             android:layout_height="wrap_content"
             style="@style/BigTextStyle"
             android:id="@+id/textView6"
+            android:layout_marginTop="@dimen/verticalMargin"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="@dimen/verticalMargin"/>
+            app:layout_constraintStart_toStartOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
