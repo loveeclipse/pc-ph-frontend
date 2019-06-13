@@ -102,7 +102,7 @@ class PatientStatusDialogFragment : DialogFragment() {
             builder1.setCancelable(true)
 
             builder1.setPositiveButton(
-                    "Si"
+                    "Sì"
             ) { dialog, _ ->
                 dialog.cancel()
                 parentDialog.dismiss()
