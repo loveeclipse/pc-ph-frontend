@@ -14,7 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.model.VitalParametersData
+import it.unibo.preh_frontend.model.*
 
 
 
@@ -165,8 +165,8 @@ class VitalParametersDialogFragment : DialogFragment() {
         Thread(Runnable {
             val gson = Gson()
             val newSaveState = gson.fromJson(sharedPreferences.getString("vitalParameters",null),VitalParametersData::class.java)
-            this.activity!!.runOnUiThread {
-                if (newSaveState != null) {
+            if (newSaveState != null) {
+                this.activity!!.runOnUiThread {
                     vieAeree.check(newSaveState.vieAeree)
                     freqRespiratoria.setSelection(newSaveState.frequenzaRespiratoria)
                     saturazione.setText(newSaveState.saturazionePeriferica.toString())
@@ -185,9 +185,7 @@ class VitalParametersDialogFragment : DialogFragment() {
                     tempCorporea.setText(newSaveState.temperature.toString())
                 }
             }
-            }).start()
-
-
+        }).start()
     }
 
 
@@ -213,7 +211,7 @@ class VitalParametersDialogFragment : DialogFragment() {
             val gson = Gson()
             val stateAsJson = gson.toJson(saveState)
             sharedPreferences.edit().putString("vitalParameters", stateAsJson).apply()
-            dialog.cancel()
+            super.onCancel(dialog)
         }).start()
     }
 

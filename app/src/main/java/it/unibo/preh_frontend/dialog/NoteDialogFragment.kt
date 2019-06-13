@@ -24,7 +24,6 @@ class NoteDialogFragment : DialogFragment() {
         val root = inflater.inflate(R.layout.fragment_note, container, false)
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         parentDialog = dialog!!
-        isCancelable = false
         noteEditText = root.findViewById(R.id.note_edit_text)
 
 
@@ -59,7 +58,7 @@ class NoteDialogFragment : DialogFragment() {
 
     override fun onCancel(dialog: DialogInterface) {
         sharedPreferences.edit().putString("notes",noteEditText.text.toString()).apply()
-        dialog.cancel()
+        super.onCancel(dialog)
     }
 
     override fun onResume() {

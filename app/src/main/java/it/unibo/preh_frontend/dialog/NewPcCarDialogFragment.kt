@@ -3,12 +3,11 @@ package it.unibo.preh_frontend.dialog
 
 import android.app.Dialog
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import androidx.appcompat.app.AlertDialog
+import it.unibo.preh_frontend.model.*
 import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
 
@@ -19,7 +18,6 @@ import it.unibo.preh_frontend.R
 class NewPcCarDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_pccar, container, false)
-        isCancelable = false
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.pcCar_image_button)
         saveAndExitButton.setOnClickListener {

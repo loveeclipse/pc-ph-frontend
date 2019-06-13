@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +18,7 @@ import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
 
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.model.PatientStatusData
+import it.unibo.preh_frontend.model.*
 
 class PatientStatusDialogFragment : DialogFragment() {
 
@@ -54,7 +53,6 @@ class PatientStatusDialogFragment : DialogFragment() {
         val root = inflater.inflate(R.layout.fragment_patient_status_dialog, container, false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-        isCancelable = false
         parentDialog = dialog!!
 
         chiusoButton = root.findViewById(R.id.chiuso_button)
@@ -136,7 +134,7 @@ class PatientStatusDialogFragment : DialogFragment() {
             val gson = Gson()
             val stateAsJson = gson.toJson(saveState)
             sharedPreferences.edit().putString("patientState",stateAsJson).apply()
-            dialog.cancel()
+            super.onCancel(dialog)
         })
     }
 
@@ -160,7 +158,7 @@ class PatientStatusDialogFragment : DialogFragment() {
             }else {
                 saveState = PatientStatusData()
             }
-        })
+        }).start()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

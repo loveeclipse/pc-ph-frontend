@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.DialogFragment
-
+import it.unibo.preh_frontend.model.*
 import it.unibo.preh_frontend.R
 import android.widget.ArrayAdapter
 import android.widget.ListView
@@ -72,7 +72,7 @@ class HistoryDialogFragment : DialogFragment() {
         mAdapter.notifyDataSetChanged()
         val saveDataSet = aList.toHashSet()
         sharedPreferences.edit().putStringSet("historyList",saveDataSet).apply()
-        dialog.cancel()
+        super.onCancel(dialog)
     }
 
     override fun onResume() {
