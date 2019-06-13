@@ -24,6 +24,6 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
         val metrics = resources.displayMetrics
         val width = (metrics.widthPixels)
         val height = (metrics.heightPixels)
-        dialog!!.window!!.setLayout(70 * width / 100, 40 * height / 100)
+        dialog!!.window!!.setLayout(95 * width / 100, 60 * height / 100)
     }
 }
