@@ -54,6 +54,7 @@
         <item name="strokeColor">@color/buttonSelectedBackgroundColor</item>
         <item name="android:textColor">@color/buttonSelectedBackgroundColor</item>
         <item name="backgroundTint">@color/buttonUnselectedBackgroundColor</item>
+        <item name="android:minHeight">0dp</item>
     </style>
     <style name="SelectedButtonStyle" parent="AppButtonStyle">
         <item name="cornerRadius">0dp</item>
@@ -61,6 +62,7 @@
         <item name="strokeColor">@color/buttonSelectedBackgroundColor</item>
         <item name="android:textColor">@color/buttonUnselectedBackgroundColor</item>
         <item name="backgroundTint">@color/buttonSelectedBackgroundColor</item>
+        <item name="android:minHeight">0dp</item>
     </style>
 
     <!-- TextView style -->
