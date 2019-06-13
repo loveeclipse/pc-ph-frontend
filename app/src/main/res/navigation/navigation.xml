@@ -5,7 +5,9 @@
 
     <fragment android:id="@+id/home" android:name="it.unibo.preh_frontend.home.HomeFragment"
               android:layout="@layout/fragment_home"
-              android:label="@string/app_name" tools:layout="@layout/fragment_home"/>
+              android:label="@string/app_name" tools:layout="@layout/fragment_home">
+        <action android:id="@+id/action_home_to_login" app:destination="@id/login"/>
+    </fragment>
     <fragment android:id="@+id/login" android:name="it.unibo.preh_frontend.home.LoginFragment"
               android:layout="@layout/fragment_login"
               android:label="@string/app_name">
