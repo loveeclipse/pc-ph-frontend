@@ -20,7 +20,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:id="@+id/editText7"
+                android:id="@+id/amperaggio_edittext"
                 android:layout_marginEnd="@dimen/horizontalMargin"
                 app:layout_constraintTop_toTopOf="@+id/textView19"
                 app:layout_constraintBottom_toBottomOf="@+id/textView19"
@@ -47,16 +47,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView20"
-                app:layout_constraintTop_toTopOf="@id/editText5"
-                app:layout_constraintBottom_toBottomOf="@id/editText5"
+                app:layout_constraintTop_toTopOf="@id/freqcattura_edittext"
+                app:layout_constraintBottom_toBottomOf="@id/freqcattura_edittext"
                 app:layout_constraintStart_toEndOf="@id/guideline42"/>
         <TextView
                 android:text="@string/ma"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView21"
-                app:layout_constraintTop_toTopOf="@+id/editText7"
-                app:layout_constraintBottom_toBottomOf="@id/editText7"
+                app:layout_constraintTop_toTopOf="@+id/amperaggio_edittext"
+                app:layout_constraintBottom_toBottomOf="@id/amperaggio_edittext"
                 app:layout_constraintStart_toEndOf="@id/guideline42"/>
         <Button
                 android:text="@string/conferma_pacing_transcutaneo"
@@ -74,7 +74,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:id="@+id/editText5"
+                android:id="@+id/freqcattura_edittext"
                 android:layout_marginEnd="@dimen/horizontalMargin"
                 app:layout_constraintTop_toTopOf="@id/textView18"
                 app:layout_constraintBottom_toBottomOf="@id/textView18"

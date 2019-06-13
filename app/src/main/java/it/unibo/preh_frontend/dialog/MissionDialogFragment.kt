@@ -103,7 +103,6 @@ class MissionDialogFragment : DialogFragment() {
         Thread(Runnable {
             val saveState = anagraficFragment.getAnagraphicData()
             val gson = Gson()
-            Log.d("TEST","WRROOOOOM")
             val anagraphicAsJson = gson.toJson(saveState)
             sharedPreferences.edit().putString("anagraphicData",anagraphicAsJson).apply()
 
@@ -116,7 +115,6 @@ class MissionDialogFragment : DialogFragment() {
             val saveState = anagraficFragment.getAnagraphicData()
             val gson = Gson()
             val anagraphicAsJson = gson.toJson(saveState)
-            Log.d("TEST","YAYAYAYAYAYAYAYAYAYAYAYAYAYAYA")
             sharedPreferences.edit().putString("anagraphicDataSnapshot",anagraphicAsJson).apply()
         }).start()
     }

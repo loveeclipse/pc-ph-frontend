@@ -70,17 +70,14 @@ class AnagraficFragment : Fragment() {
         val gson = Gson()
         val snapshot = gson.fromJson(sharedPreferences.getString("anagraphicDataSnapshot",null),AnagraphicData::class.java)
         if(snapshot != null){
-            Log.d("TEST","KKKIIKIIKIKI")
             applySharedPreferences(snapshot)
         }else{
-            Log.d("TEST","LALILU")
             setSharedPreferences()
         }
         super.onStart()
     }
 
     private fun applySharedPreferences(anagraphicData: AnagraphicData){
-        Log.d("TEST","SETTAGGIO CAMPI")
         nameEditText.setText(anagraphicData.name)
         surnameEditText.setText(anagraphicData.surname)
         residenceEditText.setText(anagraphicData.residence)

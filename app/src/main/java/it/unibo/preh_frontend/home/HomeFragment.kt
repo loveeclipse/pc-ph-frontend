@@ -1,5 +1,6 @@
 package it.unibo.preh_frontend.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -15,6 +16,9 @@ import com.google.android.material.tabs.TabLayout
 import it.unibo.preh_frontend.R
 
 class HomeFragment : Fragment() {
+
+    private val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+    private lateinit var previousDisplayedFragment: Fragment
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -57,8 +61,10 @@ class HomeFragment : Fragment() {
 
         val manager = fragmentManager
         val transaction = manager!!.beginTransaction()
+        val initialFragment = DrugsFragment()
+        previousDisplayedFragment = initialFragment
         transaction.apply {
-            replace(R.id.home_tabFrame, DrugsFragment())
+            replace(R.id.home_tabFrame, initialFragment)
             commit()
         }
 
@@ -70,11 +76,25 @@ class HomeFragment : Fragment() {
             override fun onTabSelected(p0: TabLayout.Tab?) {
                 val newFragment: Fragment
                 when (homeTabs.selectedTabPosition) {
-                    0 -> newFragment = DrugsFragment()
-                    1 -> newFragment = ManeuverFragment()
-                    2 -> newFragment = TreatmentFragment()
-                    3 -> newFragment = ComplicationsFragment()
-                    else -> newFragment = DrugsFragment()
+                    0 -> {
+                        newFragment = DrugsFragment()
+                        savePreviousFragment()
+                    }
+                    1 -> {
+                        newFragment = ManeuverFragment()
+                        savePreviousFragment()
+                    }
+                    2 -> {
+                        newFragment = TreatmentFragment()
+                        savePreviousFragment()
+                    }
+                    3 -> {
+                        newFragment = ComplicationsFragment()
+                        savePreviousFragment()
+                    }
+                    else -> {
+                        newFragment = DrugsFragment()
+                    }
                 }
                 val newTransaction = manager.beginTransaction()
                 newTransaction.apply {
@@ -98,5 +118,14 @@ class HomeFragment : Fragment() {
             findViewById<Button>(R.id.finish).visibility = View.VISIBLE
         }
 
+    }
+
+    private fun savePreviousFragment(){
+        when (previousDisplayedFragment::class.java){
+            //DrugsFragment::class.java ->  sharedPreferences.edit().putString("drugsData",(previousDisplayedFragment as DrugsFragment).getData()).apply()
+            ManeuverFragment::class.java -> sharedPreferences.edit().putString("maneuverData",(previousDisplayedFragment as ManeuverFragment).getData()).apply()
+            //TreatmentFragment::class.java -> sharedPreferences.edit().putString("treatmentData",(previousDisplayedFragment as TreatmentFragment).getData()).apply()
+            //ComplicationsFragment::class.java -> sharedPreferences.edit().putString("anagraphicData",(previousDisplayedFragment as ComplicationsFragment).getData()).apply()
+        }
     }
 }

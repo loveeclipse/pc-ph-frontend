@@ -12,7 +12,11 @@ class EventInfoFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_event_info, container, false)
+        val root = inflater.inflate(R.layout.fragment_event_info, container, false)
+
+        //GET THE PCCAR DATA (MOCK)
+
+        return root
     }
 
 
