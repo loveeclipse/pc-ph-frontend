@@ -1,14 +1,14 @@
 package it.unibo.preh_frontend.dialog
 
 
+import android.app.Dialog
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
-import androidx.appcompat.app.AlertDialog
+import it.unibo.preh_frontend.model.*
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import it.unibo.preh_frontend.R
@@ -40,5 +40,13 @@ class NewPcCarDialogFragment : DialogFragment() {
         val width = (metrics.widthPixels)
         val height = (metrics.heightPixels)
         dialog!!.window!!.setLayout(95 * width / 100, 60 * height / 100)
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return object : Dialog(activity!!, theme) {
+            override fun onBackPressed() {
+
+            }
+        }
     }
 }

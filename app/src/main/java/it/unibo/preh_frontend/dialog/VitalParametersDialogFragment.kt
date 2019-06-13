@@ -14,7 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.model.VitalParametersData
+import it.unibo.preh_frontend.model.*
 
 
 
@@ -44,9 +44,10 @@ class VitalParametersDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_vital_parameters, container, false)
         parentDialog = dialog!!
+        isCancelable = false
         dialog!!.setCanceledOnTouchOutside(false)
 
-        sharedPreferences = requireContext().getSharedPreferences("vitalParameters", Context.MODE_PRIVATE)
+        sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
         vieAeree = root.findViewById(R.id.vieaeree_radiogroup)
 
@@ -164,8 +165,8 @@ class VitalParametersDialogFragment : DialogFragment() {
         Thread(Runnable {
             val gson = Gson()
             val newSaveState = gson.fromJson(sharedPreferences.getString("vitalParameters",null),VitalParametersData::class.java)
-            this.activity!!.runOnUiThread {
-                if (newSaveState != null) {
+            if (newSaveState != null) {
+                this.activity!!.runOnUiThread {
                     vieAeree.check(newSaveState.vieAeree)
                     freqRespiratoria.setSelection(newSaveState.frequenzaRespiratoria)
                     saturazione.setText(newSaveState.saturazionePeriferica.toString())
@@ -184,35 +185,34 @@ class VitalParametersDialogFragment : DialogFragment() {
                     tempCorporea.setText(newSaveState.temperature.toString())
                 }
             }
-            }).start()
-
-
+        }).start()
     }
 
 
     override fun onCancel(dialog: DialogInterface) {
-        //SALVA PARAMETRI VITALI
-        val saveState = VitalParametersData(vieAeree.checkedRadioButtonId,
-                                            freqRespiratoria.selectedItemPosition,
-                                            Integer.parseInt(saturazione.text.toString()),
-                                            Integer.parseInt(freqCaridaca.text.toString()),
-                                            tipoBattito.checkedRadioButtonId,
-                                            Integer.parseInt(presArteriosa.text.toString()),
-                                            tempRiempCapillare.checkedRadioButtonId,
-                                            colorCuteMucose.checkedRadioButtonId,
-                                            aperturaOcchi.selectedItemPosition,
-                                            rispostaVerbale.selectedItemPosition,
-                                            rispostaMotoria.selectedItemPosition,
-                                            pupilleSx.checkedRadioButtonId,
-                                            pupilleDx.checkedRadioButtonId,
-                                            fotoreagenteSx.isChecked,
-                                            fotoreagenteDx.isChecked,
-                                            Integer.parseInt(tempCorporea.text.toString())
-                                            )
-        val gson = Gson()
-        val stateAsJson = gson.toJson(saveState)
-        sharedPreferences.edit().putString("vitalParameters",stateAsJson).apply()
-        dialog.cancel()
+        Thread(Runnable {
+            val saveState = VitalParametersData(vieAeree.checkedRadioButtonId,
+                    freqRespiratoria.selectedItemPosition,
+                    Integer.parseInt(saturazione.text.toString()),
+                    Integer.parseInt(freqCaridaca.text.toString()),
+                    tipoBattito.checkedRadioButtonId,
+                    Integer.parseInt(presArteriosa.text.toString()),
+                    tempRiempCapillare.checkedRadioButtonId,
+                    colorCuteMucose.checkedRadioButtonId,
+                    aperturaOcchi.selectedItemPosition,
+                    rispostaVerbale.selectedItemPosition,
+                    rispostaMotoria.selectedItemPosition,
+                    pupilleSx.checkedRadioButtonId,
+                    pupilleDx.checkedRadioButtonId,
+                    fotoreagenteSx.isChecked,
+                    fotoreagenteDx.isChecked,
+                    Integer.parseInt(tempCorporea.text.toString())
+            )
+            val gson = Gson()
+            val stateAsJson = gson.toJson(saveState)
+            sharedPreferences.edit().putString("vitalParameters", stateAsJson).apply()
+            super.onCancel(dialog)
+        }).start()
     }
 
     override fun onResume() {
@@ -221,5 +221,13 @@ class VitalParametersDialogFragment : DialogFragment() {
         val width = (metrics.widthPixels)
         val height = (metrics.heightPixels)
         dialog!!.window!!.setLayout(9 * width / 10,height)
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return object : Dialog(activity!!, theme) {
+            override fun onBackPressed() {
+
+            }
+        }
     }
 }
