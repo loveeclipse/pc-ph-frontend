@@ -182,4 +182,8 @@
     <string name="anamnesi">Anamnesi</string>
     <string name="anticoagulanti">Anticoagulanti</string>
     <string name="antipiastrine">Antipiastrine</string>
+
+    <string name="inserimento_luogo_e_orario">Inserimento luogo e orario</string>
+    <string name="luogo">Luogo</string>
+    <string name="orario">Orario</string>
 </resources>
