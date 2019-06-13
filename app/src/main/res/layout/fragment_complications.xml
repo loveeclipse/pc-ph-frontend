@@ -62,8 +62,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/atterraggio_switch"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button"
+            app:layout_constraintBottom_toBottomOf="@+id/button"
             app:layout_constraintStart_toStartOf="parent"/>
     <Button
             android:text="@string/in_itinere"
@@ -79,10 +79,10 @@
             android:text="@string/all_arrivo_in_ps"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/SelectedButtonStyle"
+            style="@style/UnselectedButtonStyle"
             android:id="@+id/button3"
-            app:layout_constraintTop_toBottomOf="@+id/atterraggio_switch"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button"
+            app:layout_constraintBottom_toBottomOf="@+id/button"
             app:layout_constraintStart_toEndOf="@id/button"
             app:layout_constraintEnd_toEndOf="parent"/>
     <androidx.constraintlayout.widget.Guideline
