@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.ComplicationsData
-import it.unibo.preh_frontend.model.ManeuverData
 
 class ComplicationsFragment : Fragment() {
 
@@ -76,17 +75,15 @@ class ComplicationsFragment : Fragment() {
         }
     }
 
-    fun getData():String{
-        val gson = Gson()
-        val complicationsData = ComplicationsData(arrestoCardioSwitch.isChecked,
-                                                  deterioramentoSwitch.isChecked,
-                                                  anisocoriaSwitch.isChecked,
-                                                  insuffRespiratoriaSwitch.isChecked,
-                                                  arrestoCardioSwitch.isChecked,
-                                                  atterraggioSwitch.isChecked,
-                                                  itinereActive,
-                                                  arrivoPsActive)
-        return gson.toJson(complicationsData)
+    fun getData():ComplicationsData{
+        return  ComplicationsData(arrestoCardioSwitch.isChecked,
+                                  deterioramentoSwitch.isChecked,
+                                  anisocoriaSwitch.isChecked,
+                                  insuffRespiratoriaSwitch.isChecked,
+                                  arrestoCardioSwitch.isChecked,
+                                  atterraggioSwitch.isChecked,
+                                  itinereActive,
+                                  arrivoPsActive)
     }
 
 
