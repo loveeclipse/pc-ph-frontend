@@ -32,39 +32,41 @@
     </string-array>
 
     <string-array name="respiratoryFrequencyItems">
-        <item></item>
         <item>&#60;10</item>
         <item>10&#45;29</item>
         <item>&#62;29</item>
     </string-array>
     
     <string-array name="eyeOpeningItems">
-        <item></item>
-        <item>ND &#45; Non Determinabile</item>
-        <item>1 &#45; Nessuna</item>
         <item>4 &#45; Spontanea</item>
         <item>3 &#45; Stimolo Sonoro</item>
         <item>2 &#45; Stimolo Pressorio</item>
+        <item>1 &#45; Nessuna</item>
+        <item>ND &#45; Non Determinabile</item>
     </string-array>
 
     <string-array name="verbalResponseItems">
-        <item></item>
-        <item>ND &#45; Non Determinabile</item>
-        <item>1 &#45; Nessuna</item>
-        <item>2 &#45; Suoni</item>
-        <item>3 &#45; Parole</item>
-        <item>4 &#45; Confusa</item>
         <item>5 &#45; Orientata</item>
+        <item>4 &#45; Confusa</item>
+        <item>3 &#45; Parole</item>
+        <item>2 &#45; Suoni</item>
+        <item>1 &#45; Nessuna</item>
+        <item>ND &#45; Non Determinabile</item>
     </string-array>
 
     <string-array name="motorResponseItems">
-        <item></item>
-        <item>ND &#45; Non Determinabile</item>
-        <item>1 &#45; Nessuna</item>
-        <item>2 &#45; Estensione</item>
-        <item>3 &#45; Flessione Anormale</item>
-        <item>4 &#45; Flessione Normale</item>
-        <item>5 &#45; Localizza</item>
         <item>6 &#45; Esegue Ordini</item>
+        <item>5 &#45; Localizza</item>
+        <item>4 &#45; Flessione Normale</item>
+        <item>3 &#45; Flessione Anormale</item>
+        <item>2 &#45; Estensione</item>
+        <item>1 &#45; Nessuna</item>
+        <item>ND &#45; Non Determinabile</item>
+
+
+
+
+
+
     </string-array>
 </resources>
