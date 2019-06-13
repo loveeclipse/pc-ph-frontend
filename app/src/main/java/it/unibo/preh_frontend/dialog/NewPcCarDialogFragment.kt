@@ -1,6 +1,5 @@
 package it.unibo.preh_frontend.dialog
 
-
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,10 +9,6 @@ import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
-
-
-
-
 
 class NewPcCarDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
