@@ -294,7 +294,7 @@
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalSpace"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/button4"
+                        app:layout_constraintBottom_toTopOf="@+id/minitoracotomiaSx_button"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/ambu_button"/>
                 <Button
@@ -307,7 +307,7 @@
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/button4"
+                        app:layout_constraintBottom_toTopOf="@+id/minitoracotomiaSx_button"
                         app:layout_constraintStart_toEndOf="@+id/ossigenoterapia_button"
                         app:layout_constraintEnd_toEndOf="parent"/>
                 <TextView
@@ -323,7 +323,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/ossigenoterapia_button"
                         app:layout_constraintBottom_toTopOf="@+id/ippv_button"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/button4"/>
+                        app:layout_constraintEnd_toStartOf="@id/minitoracotomiaSx_button"/>
                 <Button
                         android:text="@string/ippv"
                         android:layout_width="match_parent"
@@ -334,28 +334,28 @@
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/button4"
+                        app:layout_constraintTop_toBottomOf="@id/minitoracotomiaSx_button"
                         app:layout_constraintBottom_toBottomOf="parent"/>
                 <Button
                         android:text="@string/sx"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         style="@style/UnselectedButtonStyle"
-                        android:id="@+id/button4"
+                        android:id="@+id/minitoracotomiaSx_button"
                         app:layout_constraintTop_toBottomOf="@+id/ossigenoterapia_button"
                         app:layout_constraintBottom_toTopOf="@id/ippv_button"
                         app:layout_constraintStart_toEndOf="@+id/textView11"
-                        app:layout_constraintEnd_toStartOf="@+id/button5"/>
+                        app:layout_constraintEnd_toStartOf="@+id/minitoracotomiaDx_button"/>
                 <Button
                         android:text="@string/dx"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         style="@style/UnselectedButtonStyle"
-                        android:id="@+id/button5"
+                        android:id="@+id/minitoracotomiaDx_button"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
                         app:layout_constraintTop_toBottomOf="@+id/ambu_button"
                         app:layout_constraintBottom_toTopOf="@id/ippv_button"
-                        app:layout_constraintStart_toEndOf="@+id/button4"
+                        app:layout_constraintStart_toEndOf="@+id/minitoracotomiaSx_button"
                         app:layout_constraintEnd_toEndOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout

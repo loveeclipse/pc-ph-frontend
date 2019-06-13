@@ -2,6 +2,7 @@ package it.unibo.preh_frontend.home
 
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,30 +14,17 @@ import it.unibo.preh_frontend.model.ManeuverData
 
 class DrugsFragment : Fragment() {
 
-    private val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_drugs, container, false)
+        val root = inflater.inflate(R.layout.fragment_drugs, container, false)
+
+        sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+
+        return root
     }
-
-    override fun onStart() {
-        val gson = Gson()
-        val savedState = gson.fromJson(sharedPreferences.getString("maneuversData",null), ManeuverData::class.java)
-        if(savedState != null){
-            applySharedPreferences(savedState)
-        }
-        super.onStart()
-    }
-
-    private fun applySharedPreferences(savedState: ManeuverData){
-    }
-
-    /*fun getData():String{
-        val gson = Gson()
-
-    }*/
 
 
 }

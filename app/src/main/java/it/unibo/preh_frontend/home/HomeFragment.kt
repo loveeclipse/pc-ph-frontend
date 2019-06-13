@@ -1,7 +1,9 @@
 package it.unibo.preh_frontend.home
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -13,11 +15,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
+import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 
 class HomeFragment : Fragment() {
 
-    private val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+    private lateinit var sharedPreferences: SharedPreferences
     private lateinit var previousDisplayedFragment: Fragment
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -28,6 +31,8 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
+
+        sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
         val patientStatusButton = root.findViewById<Button>(R.id.stato_paziente_button)
         patientStatusButton.setOnClickListener{
@@ -101,6 +106,7 @@ class HomeFragment : Fragment() {
                     replace(R.id.home_tabFrame, newFragment)
                     commit()
                 }
+                previousDisplayedFragment = newFragment
             }
 
             override fun onTabReselected(p0: TabLayout.Tab?) {
@@ -121,11 +127,23 @@ class HomeFragment : Fragment() {
     }
 
     private fun savePreviousFragment(){
+        val gson = Gson()
         when (previousDisplayedFragment::class.java){
-            //DrugsFragment::class.java ->  sharedPreferences.edit().putString("drugsData",(previousDisplayedFragment as DrugsFragment).getData()).apply()
-            ManeuverFragment::class.java -> sharedPreferences.edit().putString("maneuverData",(previousDisplayedFragment as ManeuverFragment).getData()).apply()
-            //TreatmentFragment::class.java -> sharedPreferences.edit().putString("treatmentData",(previousDisplayedFragment as TreatmentFragment).getData()).apply()
-            //ComplicationsFragment::class.java -> sharedPreferences.edit().putString("anagraphicData",(previousDisplayedFragment as ComplicationsFragment).getData()).apply()
+            ManeuverFragment::class.java -> {
+                val previousFragment = previousDisplayedFragment as ManeuverFragment
+                val saveData = gson.toJson(previousFragment.getData())
+                sharedPreferences.edit().putString("maneuversData",saveData).apply()
+            }
+            TreatmentFragment::class.java -> {
+                val previousFragment = previousDisplayedFragment as TreatmentFragment
+                val saveData = gson.toJson(previousFragment.getData())
+                sharedPreferences.edit().putString("treatmentData",saveData).apply()
+            }
+            ComplicationsFragment::class.java -> {
+                val previousFragment = previousDisplayedFragment as ComplicationsFragment
+                val saveData = gson.toJson(previousFragment.getData())
+                sharedPreferences.edit().putString("complicationsData",saveData).apply()
+            }
         }
     }
 }

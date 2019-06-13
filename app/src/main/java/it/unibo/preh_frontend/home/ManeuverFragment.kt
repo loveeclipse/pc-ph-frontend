@@ -4,6 +4,7 @@ package it.unibo.preh_frontend.home
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,13 +26,15 @@ class ManeuverFragment : Fragment() {
     private lateinit var frequenzaCatturaEditText: EditText
     private lateinit var amperaggioEditText: EditText
 
-    private val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+    private lateinit var sharedPreferences: SharedPreferences
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_maneuver, container, false)
+
+        sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
         collareCervicaleSwitch = root.findViewById(R.id.cervicale_switch)
 
@@ -70,17 +73,14 @@ class ManeuverFragment : Fragment() {
         amperaggioEditText.setText(savedState.amperaggio)
     }
 
-    fun getData():String{
-        val gson = Gson()
-        val maneuverData = ManeuverData(collareCervicaleSwitch.isChecked,
+    fun getData():ManeuverData{
+         return ManeuverData(collareCervicaleSwitch.isChecked,
                                         immobilizzazioneSwitch.isChecked,
                                         cardioversioneSwitch.isChecked,
                                         sondaGastricaSwitch.isChecked,
                                         sondaVescicaleSwitch.isChecked,
                                         frequenzaCatturaEditText.text.toString(),
                                         amperaggioEditText.text.toString())
-        return gson.toJson(maneuverData)
     }
-
 
 }
