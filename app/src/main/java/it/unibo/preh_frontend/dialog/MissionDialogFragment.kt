@@ -50,15 +50,15 @@ class MissionDialogFragment : DialogFragment() {
             builder1.setCancelable(true)
 
             builder1.setPositiveButton(
-                    "Si"
-            ) { dialog, id ->
+                    "Sì"
+            ) { dialog, _ ->
                 dialog.cancel()
                 sharedPreferences.edit().remove("anagraphicDataSnapshot").apply()
                 parentDialog.dismiss()
             }
             builder1.setNegativeButton(
                     "No"
-            ) { dialog, id -> dialog.cancel() }
+            ) { dialog, _ -> dialog.cancel() }
             val alert11 = builder1.create()
             alert11.show()
         }
