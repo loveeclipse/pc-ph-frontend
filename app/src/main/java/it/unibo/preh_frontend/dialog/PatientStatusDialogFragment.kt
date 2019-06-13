@@ -19,6 +19,8 @@ import com.google.gson.Gson
 
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.*
+import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
+import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
 
 class PatientStatusDialogFragment : DialogFragment() {
 
@@ -57,15 +59,23 @@ class PatientStatusDialogFragment : DialogFragment() {
 
         chiusoButton = root.findViewById(R.id.chiuso_button)
         chiusoButton.setOnClickListener{
-            chiusoButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)
-            penetranteButton.backgroundTintList = resources.getColorStateList(R.color.colorSecondary)
-            this.saveState.traumaType = true // Chiuso
+            if (this.saveState.traumaChiuso) {
+                deactivateButton(chiusoButton, resources)
+                this.saveState.traumaChiuso = false
+            } else {
+                activateButton(chiusoButton, resources)
+                this.saveState.traumaChiuso = true
+            }
         }
         penetranteButton = root.findViewById(R.id.penetrante_button)
         penetranteButton.setOnClickListener{
-            penetranteButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)
-            chiusoButton.backgroundTintList = resources.getColorStateList(R.color.colorSecondary)
-            this.saveState.traumaType = false // Penetrante
+            if (this.saveState.traumaPenetrante) {
+                deactivateButton(penetranteButton, resources)
+                this.saveState.traumaPenetrante = false
+            } else {
+                activateButton(penetranteButton, resources)
+                this.saveState.traumaPenetrante = true
+            }
         }
 
         cascoCinturaSwitch = root.findViewById(R.id.casco_cintura_switch)
@@ -144,13 +154,8 @@ class PatientStatusDialogFragment : DialogFragment() {
             val newSaveState = gson.fromJson(sharedPreferences.getString("patientState",null),PatientStatusData::class.java)
             if(newSaveState != null) {
                 this.activity!!.runOnUiThread {
-                    if (newSaveState.traumaType) {
-                        chiusoButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)
-                        penetranteButton.backgroundTintList = resources.getColorStateList(R.color.colorSecondary)
-                    } else {
-                        chiusoButton.backgroundTintList = resources.getColorStateList(R.color.colorSecondary)
-                        penetranteButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)
-                    }
+                    if (newSaveState.traumaChiuso) activateButton(chiusoButton, resources)
+                    if (newSaveState.traumaPenetrante) activateButton(penetranteButton, resources)
 
                     cascoCinturaSwitch.isChecked = newSaveState.cascoCintura
                 }

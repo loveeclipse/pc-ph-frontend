@@ -1,6 +1,7 @@
 package it.unibo.preh_frontend.model
 
-class PatientStatusData(var traumaType: Boolean = false,
+class PatientStatusData(var traumaChiuso: Boolean = false,
+                        var traumaPenetrante: Boolean = false,
                         var cascoCintura: Boolean = true,
                         var emorragia: Boolean = false,
                         var vieAeree: Boolean= false,
@@ -16,10 +17,4 @@ class PatientStatusData(var traumaType: Boolean = false,
                         var criterioFisiologico: Boolean= false,
                         var cariterioAnatomico: Boolean= false,
                         var criterioDinamico: Boolean= false,
-                        var shockIndex: Boolean= false){
-
-
-    override fun toString(): String {
-        return "$traumaType  $cascoCintura"
-    }
-}
+                        var shockIndex: Boolean= false)
