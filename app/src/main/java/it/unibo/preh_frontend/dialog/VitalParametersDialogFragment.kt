@@ -44,9 +44,10 @@ class VitalParametersDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_vital_parameters, container, false)
         parentDialog = dialog!!
+        isCancelable = false
         dialog!!.setCanceledOnTouchOutside(false)
 
-        sharedPreferences = requireContext().getSharedPreferences("vitalParameters", Context.MODE_PRIVATE)
+        sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
         vieAeree = root.findViewById(R.id.vieaeree_radiogroup)
 
@@ -192,28 +193,29 @@ class VitalParametersDialogFragment : DialogFragment() {
 
 
     override fun onCancel(dialog: DialogInterface) {
-        //SALVA PARAMETRI VITALI
-        val saveState = VitalParametersData(vieAeree.checkedRadioButtonId,
-                                            freqRespiratoria.selectedItemPosition,
-                                            Integer.parseInt(saturazione.text.toString()),
-                                            Integer.parseInt(freqCaridaca.text.toString()),
-                                            tipoBattito.checkedRadioButtonId,
-                                            Integer.parseInt(presArteriosa.text.toString()),
-                                            tempRiempCapillare.checkedRadioButtonId,
-                                            colorCuteMucose.checkedRadioButtonId,
-                                            aperturaOcchi.selectedItemPosition,
-                                            rispostaVerbale.selectedItemPosition,
-                                            rispostaMotoria.selectedItemPosition,
-                                            pupilleSx.checkedRadioButtonId,
-                                            pupilleDx.checkedRadioButtonId,
-                                            fotoreagenteSx.isChecked,
-                                            fotoreagenteDx.isChecked,
-                                            Integer.parseInt(tempCorporea.text.toString())
-                                            )
-        val gson = Gson()
-        val stateAsJson = gson.toJson(saveState)
-        sharedPreferences.edit().putString("vitalParameters",stateAsJson).apply()
-        dialog.cancel()
+        Thread(Runnable {
+            val saveState = VitalParametersData(vieAeree.checkedRadioButtonId,
+                    freqRespiratoria.selectedItemPosition,
+                    Integer.parseInt(saturazione.text.toString()),
+                    Integer.parseInt(freqCaridaca.text.toString()),
+                    tipoBattito.checkedRadioButtonId,
+                    Integer.parseInt(presArteriosa.text.toString()),
+                    tempRiempCapillare.checkedRadioButtonId,
+                    colorCuteMucose.checkedRadioButtonId,
+                    aperturaOcchi.selectedItemPosition,
+                    rispostaVerbale.selectedItemPosition,
+                    rispostaMotoria.selectedItemPosition,
+                    pupilleSx.checkedRadioButtonId,
+                    pupilleDx.checkedRadioButtonId,
+                    fotoreagenteSx.isChecked,
+                    fotoreagenteDx.isChecked,
+                    Integer.parseInt(tempCorporea.text.toString())
+            )
+            val gson = Gson()
+            val stateAsJson = gson.toJson(saveState)
+            sharedPreferences.edit().putString("vitalParameters", stateAsJson).apply()
+            dialog.cancel()
+        }).start()
     }
 
     override fun onResume() {
@@ -222,5 +224,13 @@ class VitalParametersDialogFragment : DialogFragment() {
         val width = (metrics.widthPixels)
         val height = (metrics.heightPixels)
         dialog!!.window!!.setLayout(9 * width / 10,height)
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return object : Dialog(activity!!, theme) {
+            override fun onBackPressed() {
+
+            }
+        }
     }
 }

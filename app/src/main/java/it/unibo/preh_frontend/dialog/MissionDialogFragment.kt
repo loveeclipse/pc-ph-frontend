@@ -1,6 +1,7 @@
 package it.unibo.preh_frontend.dialog
 
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -69,6 +70,14 @@ class MissionDialogFragment : DialogFragment() {
         val width = (metrics.widthPixels)
         val height = (metrics.heightPixels)
         dialog!!.window!!.setLayout(9 * width / 10,height)
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return object : Dialog(activity!!, theme) {
+            override fun onBackPressed() {
+
+            }
+        }
     }
 
 

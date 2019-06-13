@@ -53,7 +53,8 @@ class PatientStatusDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_patient_status_dialog, container, false)
 
-        sharedPreferences = requireContext().getSharedPreferences("patientState", Context.MODE_PRIVATE)
+        sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+        isCancelable = false
         parentDialog = dialog!!
 
         chiusoButton = root.findViewById(R.id.chiuso_button)
@@ -131,34 +132,42 @@ class PatientStatusDialogFragment : DialogFragment() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        val gson = Gson()
-        val stateAsJson = gson.toJson(saveState)
-        sharedPreferences.edit().putString("patientState",stateAsJson).apply()
-        dialog.cancel()
+        Thread(Runnable {
+            val gson = Gson()
+            val stateAsJson = gson.toJson(saveState)
+            sharedPreferences.edit().putString("patientState",stateAsJson).apply()
+            dialog.cancel()
+        })
     }
 
     private fun setSharedPreferences(){
-        val gson = Gson()
-        val newSaveState = gson.fromJson(sharedPreferences.getString("patientState",null),PatientStatusData::class.java)
-        if(newSaveState != null) {
-            if (newSaveState.traumaType) {
-                chiusoButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)
-                penetranteButton.backgroundTintList = resources.getColorStateList(R.color.colorSecondary)
-            } else {
-                chiusoButton.backgroundTintList = resources.getColorStateList(R.color.colorSecondary)
-                penetranteButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)
+        Thread(Runnable {
+            val gson = Gson()
+            val newSaveState = gson.fromJson(sharedPreferences.getString("patientState",null),PatientStatusData::class.java)
+            if(newSaveState != null) {
+                this.activity!!.runOnUiThread {
+                    if (newSaveState.traumaType) {
+                        chiusoButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)
+                        penetranteButton.backgroundTintList = resources.getColorStateList(R.color.colorSecondary)
+                    } else {
+                        chiusoButton.backgroundTintList = resources.getColorStateList(R.color.colorSecondary)
+                        penetranteButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)
+                    }
+
+                    cascoCinturaSwitch.isChecked = newSaveState.cascoCintura
+                }
+                saveState = newSaveState
+            }else {
+                saveState = PatientStatusData()
             }
+        })
+    }
 
-            cascoCinturaSwitch.isChecked = newSaveState.cascoCintura
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return object : Dialog(activity!!, theme) {
+            override fun onBackPressed() {
 
-
-            //TODO SET THE OTHER FIELDS
-
-
-            saveState = newSaveState
-            Log.d("TEST",saveState.toString())
-        }else{
-            saveState = PatientStatusData()
+            }
         }
     }
 }

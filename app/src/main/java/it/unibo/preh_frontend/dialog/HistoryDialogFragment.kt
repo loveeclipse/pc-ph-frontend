@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +16,8 @@ import it.unibo.preh_frontend.R
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
+
+
 
 
 class HistoryDialogFragment : DialogFragment() {
@@ -32,9 +33,10 @@ class HistoryDialogFragment : DialogFragment() {
         val root =  inflater.inflate(R.layout.fragment_history_dialog, container, false)
         parentDialog = dialog!!
 
+
         val storiaList = root.findViewById(R.id.history_list) as ListView
 
-        sharedPreferences = requireContext().getSharedPreferences("historyData", Context.MODE_PRIVATE)
+        sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         val savedSet = sharedPreferences.getStringSet("historyList", null)
         if(savedSet != null) {
             aList.addAll(savedSet.asIterable())
@@ -67,7 +69,6 @@ class HistoryDialogFragment : DialogFragment() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        //aList.add(aList[aList.size]+"n")  //SIMULAZIONE AGGIUNTA STORICO
         mAdapter.notifyDataSetChanged()
         val saveDataSet = aList.toHashSet()
         sharedPreferences.edit().putStringSet("historyList",saveDataSet).apply()
@@ -81,6 +82,16 @@ class HistoryDialogFragment : DialogFragment() {
         val height = (metrics.heightPixels)
         dialog!!.window!!.setLayout(9 * width / 10,height)
     }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return object : Dialog(activity!!, theme) {
+            override fun onBackPressed() {
+
+            }
+        }
+    }
+
+
 
 
 }

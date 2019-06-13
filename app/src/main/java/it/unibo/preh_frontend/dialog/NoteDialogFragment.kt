@@ -22,8 +22,9 @@ class NoteDialogFragment : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_note, container, false)
-        sharedPreferences = requireContext().getSharedPreferences("historyData", Context.MODE_PRIVATE)
+        sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         parentDialog = dialog!!
+        isCancelable = false
         noteEditText = root.findViewById(R.id.note_edit_text)
 
 
@@ -67,5 +68,13 @@ class NoteDialogFragment : DialogFragment() {
         val width = (metrics.widthPixels)
         val height = (metrics.heightPixels)
         dialog!!.window!!.setLayout(9 * width / 10,height)
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return object : Dialog(activity!!, theme) {
+            override fun onBackPressed() {
+
+            }
+        }
     }
 }
