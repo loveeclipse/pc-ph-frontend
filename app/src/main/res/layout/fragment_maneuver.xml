@@ -110,6 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/vescicale_switch"
+                android:theme="@style/AppSwitchStyle"
                 android:textAppearance="@style/NormalTextStyle"
                 app:layout_constraintTop_toBottomOf="@+id/gastrica_switch"
                 app:layout_constraintBottom_toBottomOf="parent"/>
@@ -118,6 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/gastrica_switch"
+                android:theme="@style/AppSwitchStyle"
                 android:textAppearance="@style/NormalTextStyle"
                 app:layout_constraintTop_toBottomOf="@+id/ces_switch"
                 app:layout_constraintBottom_toTopOf="@+id/vescicale_switch"/>
@@ -126,6 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/ces_switch"
+                android:theme="@style/AppSwitchStyle"
                 android:textAppearance="@style/NormalTextStyle"
                 app:layout_constraintTop_toBottomOf="@+id/imm_switch"
                 app:layout_constraintBottom_toTopOf="@+id/gastrica_switch"/>
@@ -134,6 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/imm_switch"
+                android:theme="@style/AppSwitchStyle"
                 android:textAppearance="@style/NormalTextStyle"
                 app:layout_constraintTop_toBottomOf="@+id/cervicale_switch"
                 app:layout_constraintBottom_toTopOf="@+id/ces_switch"/>
@@ -142,6 +146,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/cervicale_switch"
+                android:theme="@style/AppSwitchStyle"
                 android:textAppearance="@style/NormalTextStyle"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/imm_switch"/>

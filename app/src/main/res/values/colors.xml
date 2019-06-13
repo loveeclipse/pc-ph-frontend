@@ -13,8 +13,9 @@
     <color name="emoColor">@color/LightSalmon</color>
     <color name="drugColor1">@color/Khaki</color>
     <color name="drugColor2">@color/LightGreen</color>
-    <color name="buttonSelectedBackgroundColor">@color/colorPrimaryDark</color>
+    <color name="buttonSelectedBackgroundColor">@color/colorPrimary</color>
     <color name="buttonUnselectedBackgroundColor">@android:color/white</color>
+    <color name="switchColor">@color/colorPrimary</color>
 
     <!-- x11 official colors -->
     <color name="White">#FFFFFF</color>

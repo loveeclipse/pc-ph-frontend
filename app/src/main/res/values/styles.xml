@@ -99,4 +99,10 @@
     <style name="BackgroundFragmentStyle">
         <item name="android:background">@color/backgroundFragmentColor</item>
     </style>
+
+    <!-- Switch -->
+    <style name="AppSwitchStyle" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/switchColor</item>
+    </style>
+
 </resources>
