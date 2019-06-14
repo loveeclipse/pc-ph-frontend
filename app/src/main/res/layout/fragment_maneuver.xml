@@ -14,7 +14,7 @@
             android:layout_height="0dp"
             android:id="@+id/constraintLayout3"
             android:background="@drawable/box"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/gcs_textview"
             app:layout_constraintBottom_toBottomOf="parent">
         <EditText
                 android:layout_width="0dp"
@@ -104,7 +104,7 @@
             android:layout_height="0dp"
             android:id="@+id/constraintLayout2"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/textView6">
+            app:layout_constraintBottom_toTopOf="@id/gcs_textview">
         <Switch
                 android:text="@string/sonda_vescicale"
                 android:layout_width="match_parent"
@@ -156,7 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/BigTextStyle"
-            android:id="@+id/textView6"
+            android:id="@+id/gcs_textview"
             android:layout_marginTop="@dimen/verticalMargin"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"

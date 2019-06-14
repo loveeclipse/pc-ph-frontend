@@ -124,7 +124,6 @@ class PatientStatusDialogFragment : DialogFragment() {
             val alert11 = builder1.create()
             alert11.show()
         }
-
         return root
     }
 

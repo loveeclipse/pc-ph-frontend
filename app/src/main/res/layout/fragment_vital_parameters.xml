@@ -52,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:background="@drawable/box"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6"
+                    app:layout_constraintTop_toBottomOf="@+id/gcs_textview"
                     android:id="@+id/constraintLayout12">
                 <TextView
                         android:text="@string/apertura_occhi"
@@ -137,7 +137,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/BigTextStyle"
-                    android:id="@+id/textView6"
+                    android:id="@+id/gcs_textview"
                     android:layout_marginStart="@dimen/horizontalMargin"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginTop="30dp" app:layout_constraintTop_toBottomOf="@+id/textView41"/>
@@ -294,7 +294,7 @@
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
                     app:layout_constraintTop_toBottomOf="@+id/textView40"
-                    app:layout_constraintBottom_toTopOf="@id/textView6"
+                    app:layout_constraintBottom_toTopOf="@id/gcs_textview"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/guideline6"/>
             <TextView
@@ -561,14 +561,6 @@
                     app:layout_constraintBottom_toBottomOf="@id/textView39"
                     app:layout_constraintStart_toEndOf="@+id/guideline6"
                     app:layout_constraintEnd_toStartOf="@+id/textView46"/>
-            <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" app:srcCompat="@drawable/baseline_save_black_24dp"
-                    android:id="@+id/save_imagebutton" app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="3dp"
-                    android:backgroundTint="@color/common_google_signin_btn_tint"
-                    app:layout_constraintStart_toEndOf="@+id/textView15" android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/parameters_image_button"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

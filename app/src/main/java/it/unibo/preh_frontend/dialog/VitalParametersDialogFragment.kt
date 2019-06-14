@@ -8,12 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.RadioGroup
-import android.widget.Spinner
-import android.widget.Switch
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
@@ -37,6 +32,7 @@ class VitalParametersDialogFragment : DialogFragment() {
     private lateinit var fotoreagenteSx: Switch
     private lateinit var fotoreagenteDx: Switch
     private lateinit var tempCorporea: EditText
+    private lateinit var gcsTextView: TextView
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var savedState: VitalParametersData
@@ -82,51 +78,44 @@ class VitalParametersDialogFragment : DialogFragment() {
 
         tempCorporea = root.findViewById(R.id.temp_corporea_edittext)
 
-        val respiratoryFrequencySpinner = root.findViewById<Spinner>(R.id.freq_resp_spinner)
-        val eyesOpeningSpinner = root.findViewById<Spinner>(R.id.apertura_occhi_spinner)
-        val verbalResponseSpinner = root.findViewById<Spinner>(R.id.risposta_verbale_spinner)
-        val motoryResponseSpinner = root.findViewById<Spinner>(R.id.risposta_motoria_spinner)
+        gcsTextView = root.findViewById(R.id.gcs_textview)
 
         var adapter = ArrayAdapter.createFromResource(requireContext(), R.array.respiratoryFrequencyItems, R.layout.spinner_layout)
         adapter.setDropDownViewResource(R.layout.spinner_layout)
-        respiratoryFrequencySpinner.adapter = adapter
+        freqRespiratoria.adapter = adapter
+        freqRespiratoria.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                val gcs = calculateGCS()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        }
 
         adapter = ArrayAdapter.createFromResource(requireContext(), R.array.eyeOpeningItems, R.layout.spinner_layout)
         adapter.setDropDownViewResource(R.layout.spinner_layout)
-        eyesOpeningSpinner.adapter = adapter
+        aperturaOcchi.adapter = adapter
+
 
         adapter = ArrayAdapter.createFromResource(requireContext(), R.array.verbalResponseItems, R.layout.spinner_layout)
         adapter.setDropDownViewResource(R.layout.spinner_layout)
-        verbalResponseSpinner.adapter = adapter
+        rispostaVerbale.adapter = adapter
 
         adapter = ArrayAdapter.createFromResource(requireContext(), R.array.motorResponseItems, R.layout.spinner_layout)
         adapter.setDropDownViewResource(R.layout.spinner_layout)
-        motoryResponseSpinner.adapter = adapter
+        rispostaMotoria.adapter = adapter
 
         setSharedPreferences()
 
-        val saveAndExitButton = root.findViewById<ImageButton>(R.id.save_imagebutton)
-        saveAndExitButton.setOnClickListener {
-            if (!checkEveryField()) {
-                val builder = AlertDialog.Builder(requireContext())
-                builder.setTitle("Torna Indietro")
-                builder.setMessage("Devi compilare ancora dei campi")
-                builder.setCancelable(true)
-
-                builder.setNeutralButton(
-                        "Indietro"
-                ) { dialog, _ ->
-                    dialog.cancel()
-                }
-
-                val alert11 = builder.create()
-                alert11.show()
-            } else {
+        val exitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
+        exitButton.setOnClickListener {
+            if (checkEveryField()) {
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setTitle("Conferma Parametri Vitali")
-                builder.setMessage("Vuoi confermare i parametri inseriti?")
+                builder.setMessage("I dati inseriti saranno salvati")
                 builder.setCancelable(true)
-
                 builder.setPositiveButton(
                         "Si"
                 ) { dialog, _ ->
@@ -139,28 +128,26 @@ class VitalParametersDialogFragment : DialogFragment() {
 
                 val alert11 = builder.create()
                 alert11.show()
+            } else {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle("Uscire senza salvare?")
+                builder.setMessage("Inserimento incompleto")
+                builder.setCancelable(true)
+                builder.setPositiveButton(
+                        "Si"
+                ) { dialog, _ ->
+                    dialog.cancel()
+                    parentDialog.dismiss()
+                }
+                builder.setNegativeButton(
+                        "No"
+                ) { dialog, _ -> dialog.cancel() }
+
+                val alert11 = builder.create()
+                alert11.show()
             }
         }
 
-        val exitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
-        exitButton.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Vuoi uscire senza salvare?")
-            builder.setMessage("Eventuali cambiamenti non saranno salvati.")
-            builder.setCancelable(true)
-            builder.setPositiveButton(
-                    "Si"
-            ) { dialog, _ ->
-                dialog.cancel()
-                parentDialog.dismiss()
-            }
-            builder.setNegativeButton(
-                    "No"
-            ) { dialog, _ -> dialog.cancel() }
-
-            val alert11 = builder.create()
-            alert11.show()
-        }
         return root
     }
 
@@ -246,5 +233,36 @@ class VitalParametersDialogFragment : DialogFragment() {
             override fun onBackPressed() {
             }
         }
+    }
+
+    private fun calculateGCS(): Int{
+        var gcsEyes = 0
+        var gcsMotor = 0
+        var gcsVerbal = 0
+        when(aperturaOcchi.selectedItemPosition) {
+            0 -> gcsEyes = 4
+            1 -> gcsEyes = 3
+            2 -> gcsEyes = 2
+            3 -> gcsEyes = 1
+            4 -> gcsEyes = 0
+        }
+        when(rispostaMotoria.selectedItemPosition){
+            0 -> gcsMotor = 5
+            1 -> gcsMotor = 4
+            2 -> gcsMotor = 3
+            3 -> gcsMotor = 2
+            4 -> gcsMotor = 1
+            5 -> gcsMotor = 0
+        }
+        when(rispostaVerbale.selectedItemPosition){
+            0 -> gcsVerbal = 6
+            1 -> gcsVerbal = 5
+            2 -> gcsVerbal = 4
+            3 -> gcsVerbal = 3
+            4 -> gcsVerbal = 2
+            5 -> gcsVerbal = 1
+            6 -> gcsVerbal = 0
+        }
+        return (gcsEyes+gcsMotor+gcsVerbal)
     }
 }

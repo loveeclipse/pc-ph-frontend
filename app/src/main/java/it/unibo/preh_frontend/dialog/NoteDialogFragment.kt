@@ -26,11 +26,11 @@ class NoteDialogFragment : DialogFragment() {
         parentDialog = dialog!!
         dialog!!.setCanceledOnTouchOutside(false)
         noteEditText = root.findViewById(R.id.note_edit_text)
-
         val savedSet = sharedPreferences.getString("notes", null)
         if (savedSet != null) {
             noteEditText.text = savedSet
         } else {
+
         }
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.note_image_button)
         saveAndExitButton.setOnClickListener {
