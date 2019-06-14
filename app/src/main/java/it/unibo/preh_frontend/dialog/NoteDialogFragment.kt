@@ -33,24 +33,8 @@ class NoteDialogFragment : DialogFragment() {
         }
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.note_image_button)
         saveAndExitButton.setOnClickListener {
-            val builder1 = AlertDialog.Builder(requireContext())
-            builder1.setTitle("Vuoi uscire senza salvare?")
-            builder1.setCancelable(true)
-
-            builder1.setPositiveButton(
-                    "Si"
-            ) { dialog, _ ->
-                dialog.cancel()
-                parentDialog.dismiss()
-            }
-            builder1.setNegativeButton(
-                    "No"
-            ) { dialog, _ -> dialog.cancel() }
-
-            val alert11 = builder1.create()
-            alert11.show()
+                parentDialog.cancel()
         }
-
         return root
     }
 

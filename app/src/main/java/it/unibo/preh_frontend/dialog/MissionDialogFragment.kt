@@ -46,22 +46,8 @@ class MissionDialogFragment : DialogFragment() {
 
         val exitAndSaveButton = root.findViewById<ImageButton>(R.id.mission_image_button)
         exitAndSaveButton.setOnClickListener {
-            val builder1 = AlertDialog.Builder(requireContext())
-            builder1.setTitle("Vuoi uscire senza salvare?")
-            builder1.setCancelable(true)
-
-            builder1.setPositiveButton(
-                    "Sì"
-            ) { dialog, _ ->
-                dialog.cancel()
                 sharedPreferences.edit().remove("anagraphicDataSnapshot").apply()
-                parentDialog.dismiss()
-            }
-            builder1.setNegativeButton(
-                    "No"
-            ) { dialog, _ -> dialog.cancel() }
-            val alert11 = builder1.create()
-            alert11.show()
+                parentDialog.cancel()
         }
 
         val missionTabs = root.findViewById<TabLayout>(R.id.mission_tabs)
