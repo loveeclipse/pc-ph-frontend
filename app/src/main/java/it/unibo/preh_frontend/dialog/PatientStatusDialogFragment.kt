@@ -52,7 +52,9 @@ class PatientStatusDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_patient_status_dialog, container, false)
 
+
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+        val localHistoryList = ArrayList<String>()
         parentDialog = dialog!!
         dialog!!.setCanceledOnTouchOutside(false)
 
@@ -61,9 +63,17 @@ class PatientStatusDialogFragment : DialogFragment() {
             if (this.saveState.traumaChiuso) {
                 deactivateButton(chiusoButton, resources)
                 this.saveState.traumaChiuso = false
+
+                localHistoryList.add("Definito Trauma non chiuso")
+                val newHistoryList = localHistoryList.toHashSet()
+                sharedPreferences.edit().putStringSet("historyList",newHistoryList).apply()
             } else {
                 activateButton(chiusoButton, resources)
                 this.saveState.traumaChiuso = true
+
+                localHistoryList.add("Definito trauma chiuso")
+                val newHistoryList = localHistoryList.toHashSet()
+                sharedPreferences.edit().putStringSet("historyList",newHistoryList).apply()
             }
         }
         penetranteButton = root.findViewById(R.id.penetrante_button)

@@ -95,7 +95,6 @@ class VitalParametersDialogFragment : DialogFragment() {
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
         }
@@ -111,7 +110,6 @@ class VitalParametersDialogFragment : DialogFragment() {
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
         }
@@ -126,7 +124,6 @@ class VitalParametersDialogFragment : DialogFragment() {
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
         }
