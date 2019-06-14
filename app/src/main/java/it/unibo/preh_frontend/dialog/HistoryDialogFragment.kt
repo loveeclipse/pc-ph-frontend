@@ -75,7 +75,7 @@ class HistoryDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels , 8*metrics.heightPixels/10)
+        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

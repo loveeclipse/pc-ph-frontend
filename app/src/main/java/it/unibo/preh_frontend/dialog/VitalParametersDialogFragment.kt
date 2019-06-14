@@ -8,7 +8,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.RadioGroup
+import android.widget.Spinner
+import android.widget.Switch
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
@@ -46,133 +53,112 @@ class VitalParametersDialogFragment : DialogFragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
-        vieAeree = root.findViewById(R.id.vieaeree_radiogroup)
+        getComponents(root)
 
-        freqRespiratoria = root.findViewById(R.id.freq_resp_spinner)
-
-        saturazione = root.findViewById(R.id.saturazione_edittext)
-
-        freqCaridaca = root.findViewById(R.id.freq_cardiaca_edittext)
-
-        tipoBattito = root.findViewById(R.id.tipo_battito_radiogroup)
-
-        presArteriosa = root.findViewById(R.id.pres_arter_edittext)
-
-        tempRiempCapillare = root.findViewById(R.id.riempimento_capillare_radiogroup)
-
-        colorCuteMucose = root.findViewById(R.id.cute_mucose_radiogroup)
-
-        aperturaOcchi = root.findViewById(R.id.apertura_occhi_spinner)
-
-        rispostaVerbale = root.findViewById(R.id.risposta_verbale_spinner)
-
-        rispostaMotoria = root.findViewById(R.id.risposta_motoria_spinner)
-
-        pupilleSx = root.findViewById(R.id.pupilleSx_radiogroup)
-
-        pupilleDx = root.findViewById(R.id.pupilleDx_radiogroup)
-
-        fotoreagenteSx = root.findViewById(R.id.fotoreagenteSx_switch)
-
-        fotoreagenteDx = root.findViewById(R.id.fotoreagenteDx_switch)
-
-        tempCorporea = root.findViewById(R.id.temp_corporea_edittext)
-
-        gcsTextView = root.findViewById(R.id.gcs_textview)
-
-        var adapter = ArrayAdapter.createFromResource(requireContext(), R.array.respiratoryFrequencyItems, R.layout.spinner_layout)
-        adapter.setDropDownViewResource(R.layout.spinner_layout)
-        freqRespiratoria.adapter = adapter
-        freqRespiratoria.setSelection(1)
-
-        adapter = ArrayAdapter.createFromResource(requireContext(), R.array.eyeOpeningItems, R.layout.spinner_layout)
-        adapter.setDropDownViewResource(R.layout.spinner_layout)
-        aperturaOcchi.adapter = adapter
-        aperturaOcchi.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val gcs = calculateGCS()
-                gcsTextView.text = "GCS = $gcs"
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-        }
-
-
-        adapter = ArrayAdapter.createFromResource(requireContext(), R.array.verbalResponseItems, R.layout.spinner_layout)
-        adapter.setDropDownViewResource(R.layout.spinner_layout)
-        rispostaVerbale.adapter = adapter
-        rispostaVerbale.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val gcs = calculateGCS()
-                gcsTextView.text = "GCS = $gcs"
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-        }
-
-        adapter = ArrayAdapter.createFromResource(requireContext(), R.array.motorResponseItems, R.layout.spinner_layout)
-        adapter.setDropDownViewResource(R.layout.spinner_layout)
-        rispostaMotoria.adapter = adapter
-        rispostaVerbale.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val gcs = calculateGCS()
-                gcsTextView.text = "GCS = $gcs"
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-        }
+        initSpinner()
 
         setSharedPreferences()
 
         val exitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
         exitButton.setOnClickListener {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setCancelable(true)
             if (checkEveryField()) {
-                val builder = AlertDialog.Builder(requireContext())
-                builder.setTitle("Conferma Parametri Vitali")
-                builder.setMessage("I dati inseriti saranno salvati")
-                builder.setCancelable(true)
-                builder.setPositiveButton(
-                        "Si"
-                ) { dialog, _ ->
-                    dialog.cancel()
-                    parentDialog.cancel()
+                builder.apply {
+                    setTitle("Conferma Parametri Vitali")
+                    setMessage("I dati inseriti saranno salvati")
+                    setPositiveButton("Si") { dialog, _ ->
+                        dialog.cancel()
+                        parentDialog.cancel()
+                    }
+                    setNegativeButton("No") { dialog, _ -> dialog.cancel() }
                 }
-                builder.setNegativeButton(
-                        "No"
-                ) { dialog, _ -> dialog.cancel() }
-
-                val alert11 = builder.create()
-                alert11.show()
             } else {
-                val builder = AlertDialog.Builder(requireContext())
-                builder.setTitle("Uscire senza salvare?")
-                builder.setMessage("Inserimento incompleto")
-                builder.setCancelable(true)
-                builder.setPositiveButton(
-                        "Si"
-                ) { dialog, _ ->
-                    dialog.cancel()
-                    parentDialog.dismiss()
+                builder.apply {
+                    setTitle("Uscire senza salvare?")
+                    setMessage("Inserimento incompleto")
+                    setPositiveButton("Si") { dialog, _ ->
+                        dialog.cancel()
+                        parentDialog.dismiss()
+                    }
+                    setNegativeButton("No") { dialog, _ -> dialog.cancel() }
                 }
-                builder.setNegativeButton(
-                        "No"
-                ) { dialog, _ -> dialog.cancel() }
-
-                val alert11 = builder.create()
-                alert11.show()
             }
+            val alert11 = builder.create()
+            alert11.show()
         }
 
         return root
+    }
+
+    private fun getComponents(root: View) {
+        root.apply {
+            vieAeree = findViewById(R.id.vieaeree_radiogroup)
+            freqRespiratoria = findViewById(R.id.freq_resp_spinner)
+            saturazione = findViewById(R.id.saturazione_edittext)
+            freqCaridaca = findViewById(R.id.freq_cardiaca_edittext)
+            tipoBattito = findViewById(R.id.tipo_battito_radiogroup)
+            presArteriosa = findViewById(R.id.pres_arter_edittext)
+            tempRiempCapillare = findViewById(R.id.riempimento_capillare_radiogroup)
+            colorCuteMucose = findViewById(R.id.cute_mucose_radiogroup)
+            aperturaOcchi = findViewById(R.id.apertura_occhi_spinner)
+            rispostaVerbale = findViewById(R.id.risposta_verbale_spinner)
+            rispostaMotoria = findViewById(R.id.risposta_motoria_spinner)
+            pupilleSx = findViewById(R.id.pupilleSx_radiogroup)
+            pupilleDx = findViewById(R.id.pupilleDx_radiogroup)
+            fotoreagenteSx = findViewById(R.id.fotoreagenteSx_switch)
+            fotoreagenteDx = findViewById(R.id.fotoreagenteDx_switch)
+            tempCorporea = findViewById(R.id.temp_corporea_edittext)
+            gcsTextView = findViewById(R.id.gcs_textview)
+        }
+    }
+
+    private fun initSpinner() {
+        var newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.respiratoryFrequencyItems, R.layout.spinner_layout)
+        newAdapter.setDropDownViewResource(R.layout.spinner_layout)
+        freqRespiratoria.apply {
+            adapter = newAdapter
+            setSelection(1)
+        }
+
+        newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.eyeOpeningItems, R.layout.spinner_layout)
+        newAdapter.setDropDownViewResource(R.layout.spinner_layout)
+        aperturaOcchi.apply {
+            adapter = newAdapter
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    val gcs = "GCS = " + calculateGCS()
+                    gcsTextView.text = gcs
+                }
+                override fun onNothingSelected(p0: AdapterView<*>?) {}
+            }
+        }
+
+        newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.verbalResponseItems, R.layout.spinner_layout)
+        newAdapter.setDropDownViewResource(R.layout.spinner_layout)
+        rispostaVerbale.apply {
+            adapter = newAdapter
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    val gcs = "GCS = " + calculateGCS()
+                    gcsTextView.text = gcs
+                }
+                override fun onNothingSelected(p0: AdapterView<*>?) {}
+            }
+        }
+
+        newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.motorResponseItems, R.layout.spinner_layout)
+        newAdapter.setDropDownViewResource(R.layout.spinner_layout)
+        rispostaMotoria.apply {
+            adapter = newAdapter
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    val gcs = "GCS = " + calculateGCS()
+                    gcsTextView.text = gcs
+                }
+                override fun onNothingSelected(p0: AdapterView<*>?) {}
+            }
+        }
     }
 
     private fun checkEveryField(): Boolean {
@@ -249,7 +235,7 @@ class VitalParametersDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels , 8*metrics.heightPixels/10)
+        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -259,18 +245,18 @@ class VitalParametersDialogFragment : DialogFragment() {
         }
     }
 
-    private fun calculateGCS(): Int{
+    private fun calculateGCS(): Int {
         var gcsEyes = 0
         var gcsMotor = 0
         var gcsVerbal = 0
-        when(aperturaOcchi.selectedItemPosition) {
+        when (aperturaOcchi.selectedItemPosition) {
             0 -> gcsEyes = 4
             1 -> gcsEyes = 3
             2 -> gcsEyes = 2
             3 -> gcsEyes = 1
             4 -> gcsEyes = 0
         }
-        when(rispostaMotoria.selectedItemPosition){
+        when (rispostaMotoria.selectedItemPosition) {
             0 -> gcsMotor = 5
             1 -> gcsMotor = 4
             2 -> gcsMotor = 3
@@ -278,7 +264,7 @@ class VitalParametersDialogFragment : DialogFragment() {
             4 -> gcsMotor = 1
             5 -> gcsMotor = 0
         }
-        when(rispostaVerbale.selectedItemPosition){
+        when (rispostaVerbale.selectedItemPosition) {
             0 -> gcsVerbal = 6
             1 -> gcsVerbal = 5
             2 -> gcsVerbal = 4
@@ -287,6 +273,6 @@ class VitalParametersDialogFragment : DialogFragment() {
             5 -> gcsVerbal = 1
             6 -> gcsVerbal = 0
         }
-        return (gcsEyes+gcsMotor+gcsVerbal)
+        return (gcsEyes + gcsMotor + gcsVerbal)
     }
 }
