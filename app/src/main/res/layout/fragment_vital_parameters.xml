@@ -19,7 +19,7 @@
                     android:src="@drawable/ic_close_24dp"
                     android:backgroundTint="@color/common_google_signin_btn_tint"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="9dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="5dp"
                     android:layout_marginEnd="8dp"/>
             <EditText
                     android:layout_width="0dp"
@@ -565,8 +565,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" app:srcCompat="@drawable/baseline_save_black_24dp"
                     android:id="@+id/save_imagebutton" app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="6dp" app:layout_constraintEnd_toStartOf="@+id/parameters_image_button"
-                    android:layout_marginEnd="36dp" android:backgroundTint="@color/common_google_signin_btn_tint"/>
+                    android:layout_marginTop="3dp"
+                    android:backgroundTint="@color/common_google_signin_btn_tint"
+                    app:layout_constraintStart_toEndOf="@+id/textView15" android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/parameters_image_button"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
