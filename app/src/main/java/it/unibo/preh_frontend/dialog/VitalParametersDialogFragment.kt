@@ -84,9 +84,14 @@ class VitalParametersDialogFragment : DialogFragment() {
         adapter.setDropDownViewResource(R.layout.spinner_layout)
         freqRespiratoria.adapter = adapter
         freqRespiratoria.setSelection(1)
-        freqRespiratoria.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+
+        adapter = ArrayAdapter.createFromResource(requireContext(), R.array.eyeOpeningItems, R.layout.spinner_layout)
+        adapter.setDropDownViewResource(R.layout.spinner_layout)
+        aperturaOcchi.adapter = adapter
+        aperturaOcchi.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 val gcs = calculateGCS()
+                gcsTextView.text = "GCS = $gcs"
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -95,18 +100,36 @@ class VitalParametersDialogFragment : DialogFragment() {
 
         }
 
-        adapter = ArrayAdapter.createFromResource(requireContext(), R.array.eyeOpeningItems, R.layout.spinner_layout)
-        adapter.setDropDownViewResource(R.layout.spinner_layout)
-        aperturaOcchi.adapter = adapter
-
 
         adapter = ArrayAdapter.createFromResource(requireContext(), R.array.verbalResponseItems, R.layout.spinner_layout)
         adapter.setDropDownViewResource(R.layout.spinner_layout)
         rispostaVerbale.adapter = adapter
+        rispostaVerbale.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                val gcs = calculateGCS()
+                gcsTextView.text = "GCS = $gcs"
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        }
 
         adapter = ArrayAdapter.createFromResource(requireContext(), R.array.motorResponseItems, R.layout.spinner_layout)
         adapter.setDropDownViewResource(R.layout.spinner_layout)
         rispostaMotoria.adapter = adapter
+        rispostaVerbale.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                val gcs = calculateGCS()
+                gcsTextView.text = "GCS = $gcs"
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        }
 
         setSharedPreferences()
 
