@@ -1,6 +1,6 @@
 package it.unibo.preh_frontend.model
 
-class PatientStatusData(
+data class PatientStatusData(
     var traumaChiuso: Boolean = false,
     var traumaPenetrante: Boolean = false,
     var cascoCintura: Boolean = true,

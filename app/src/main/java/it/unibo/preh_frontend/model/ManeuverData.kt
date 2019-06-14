@@ -1,6 +1,6 @@
 package it.unibo.preh_frontend.model
 
-class ManeuverData(
+data class ManeuverData(
     var collare: Boolean = false,
     var immobilizzazione: Boolean = false,
     var cardioversione: Boolean = false,

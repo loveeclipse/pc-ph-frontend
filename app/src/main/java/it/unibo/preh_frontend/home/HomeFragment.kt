@@ -40,7 +40,10 @@ class HomeFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-        sharedPreferences.edit().putStringSet("historyList",ArrayList<String>().toHashSet())
+        val gson = Gson()
+        val historyListAsJson = gson.toJson(ArrayList<String>())
+
+        sharedPreferences.edit().putString("historyList",historyListAsJson).apply()
 
         val patientStatusButton = root.findViewById<Button>(R.id.stato_paziente_button)
         patientStatusButton.setOnClickListener {

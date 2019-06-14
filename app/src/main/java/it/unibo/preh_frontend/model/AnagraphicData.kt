@@ -1,6 +1,6 @@
 package it.unibo.preh_frontend.model
 
-class AnagraphicData(
+data class AnagraphicData(
     var name: String = "",
     var surname: String = "",
     var residence: String = "",

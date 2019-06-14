@@ -1,6 +1,6 @@
 package it.unibo.preh_frontend.model
 
-class ComplicationsData(
+data class ComplicationsData(
     var arrestoCardiocircolatorio: Boolean = false,
     var deterioramento: Boolean = false,
     var anisocoria: Boolean = false,

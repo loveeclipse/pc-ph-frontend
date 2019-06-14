@@ -1,6 +1,6 @@
 package it.unibo.preh_frontend.model
 
-class VitalParametersData(
+data class VitalParametersData(
     var vieAeree: Int,
     var frequenzaRespiratoria: Int,
     var saturazionePeriferica: Int,

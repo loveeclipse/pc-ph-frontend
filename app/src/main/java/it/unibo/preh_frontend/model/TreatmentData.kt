@@ -1,6 +1,6 @@
 package it.unibo.preh_frontend.model
 
-class TreatmentData(
+data class TreatmentData(
     var sublussazione: Boolean = false,
     var guedel: Boolean = false,
     var cricoTirotomia: Boolean = false,

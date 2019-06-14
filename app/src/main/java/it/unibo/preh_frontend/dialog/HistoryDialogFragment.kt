@@ -14,6 +14,7 @@ import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import com.google.gson.Gson
 
 class HistoryDialogFragment : DialogFragment() {
 
@@ -29,16 +30,22 @@ class HistoryDialogFragment : DialogFragment() {
 
         val root = inflater.inflate(R.layout.fragment_history_dialog, container, false)
         dialog!!.setCanceledOnTouchOutside(false)
+        val gson = Gson()
 
         val storiaList = root.findViewById(R.id.history_list) as ListView
         mAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, aList)
         storiaList.adapter = mAdapter
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-        val newList = sharedPreferences.getStringSet("historyList", null)
-
+        val newList = gson.fromJson(sharedPreferences.getString("historyList", null),ArrayList<String>()::class.java)
+        for(i in newList){
+            Log.d("TEST",i)
+        }
         if (newList != null) {
-            aList.addAll((newList.asIterable()))
+            aList.addAll(newList)
+            for(i in aList){
+                Log.d("TEST",i)
+            }
             mAdapter.notifyDataSetChanged()
         } else {
         }

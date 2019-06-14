@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,13 +49,13 @@ class PatientStatusDialogFragment : DialogFragment() {
     private lateinit var shockIndexText: TextView
 
     private var saveState = PatientStatusData()
+    private val localHistoryList = ArrayList<String>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_patient_status_dialog, container, false)
 
-
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-        val localHistoryList = ArrayList<String>()
+
         parentDialog = dialog!!
         dialog!!.setCanceledOnTouchOutside(false)
 
@@ -63,17 +64,18 @@ class PatientStatusDialogFragment : DialogFragment() {
             if (this.saveState.traumaChiuso) {
                 deactivateButton(chiusoButton, resources)
                 this.saveState.traumaChiuso = false
-
                 localHistoryList.add("Definito Trauma non chiuso")
-                val newHistoryList = localHistoryList.toHashSet()
-                sharedPreferences.edit().putStringSet("historyList",newHistoryList).apply()
+                for(i in localHistoryList){
+                    Log.d("TEST",i)
+                }
             } else {
                 activateButton(chiusoButton, resources)
                 this.saveState.traumaChiuso = true
 
                 localHistoryList.add("Definito trauma chiuso")
-                val newHistoryList = localHistoryList.toHashSet()
-                sharedPreferences.edit().putStringSet("historyList",newHistoryList).apply()
+                for(i in localHistoryList){
+                    Log.d("TEST",i)
+                }
             }
         }
         penetranteButton = root.findViewById(R.id.penetrante_button)
@@ -117,22 +119,7 @@ class PatientStatusDialogFragment : DialogFragment() {
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.patient_image_button)
         saveAndExitButton.setOnClickListener {
-            val builder1 = AlertDialog.Builder(requireContext())
-            builder1.setTitle("Vuoi uscire senza salvare?")
-            builder1.setCancelable(true)
-
-            builder1.setPositiveButton(
-                    "Sì"
-            ) { dialog, _ ->
-                dialog.cancel()
-                parentDialog.dismiss()
-            }
-            builder1.setNegativeButton(
-                    "No"
-            ) { dialog, _ -> dialog.cancel() }
-
-            val alert11 = builder1.create()
-            alert11.show()
+            parentDialog.cancel()
         }
         return root
     }
@@ -144,12 +131,18 @@ class PatientStatusDialogFragment : DialogFragment() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        Thread(Runnable {
-            val gson = Gson()
-            val stateAsJson = gson.toJson(saveState)
-            sharedPreferences.edit().putString("patientState", stateAsJson).apply()
-            super.onCancel(dialog)
-        })
+        val gson = Gson()
+        val stateAsJson = gson.toJson(saveState,PatientStatusData::class.java)
+        sharedPreferences.edit().putString("patientState", stateAsJson).apply()
+        for(i in localHistoryList){
+            Log.d("TEST",i)
+        }
+        val historyListAsJson = gson.toJson(localHistoryList)
+        for(i in localHistoryList){
+            Log.d("TEST",i)
+        }
+        sharedPreferences.edit().putString("historyList",historyListAsJson).apply()
+        super.onCancel(dialog)
     }
 
     private fun setSharedPreferences() {
