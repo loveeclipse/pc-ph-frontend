@@ -54,6 +54,7 @@ class PatientStatusDialogFragment : DialogFragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         parentDialog = dialog!!
+        dialog!!.setCanceledOnTouchOutside(false)
 
         chiusoButton = root.findViewById(R.id.chiuso_button)
         chiusoButton.setOnClickListener {

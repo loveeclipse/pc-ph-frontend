@@ -13,6 +13,7 @@ import it.unibo.preh_frontend.R
 class NewPcCarDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_pccar, container, false)
+        dialog!!.setCanceledOnTouchOutside(false)
 
         val insertItemsCrewDeparture = root.findViewById<Button>(R.id.crew_departure_button)
         insertItemsCrewDeparture.setOnClickListener {

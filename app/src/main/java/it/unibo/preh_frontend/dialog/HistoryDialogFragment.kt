@@ -30,6 +30,7 @@ class HistoryDialogFragment : DialogFragment() {
 
         val root = inflater.inflate(R.layout.fragment_history_dialog, container, false)
         parentDialog = dialog!!
+        dialog!!.setCanceledOnTouchOutside(false)
 
         val storiaList = root.findViewById(R.id.history_list) as ListView
 
