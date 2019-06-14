@@ -93,8 +93,13 @@
     </style>
 
     <!-- Switch -->
-    <style name="AppSwitchStyle" parent="Theme.AppCompat.Light">
+    <style name="AppSwitchStyle" parent="Theme.MaterialComponents.Light">
         <item name="colorControlActivated">@color/switchColor</item>
+    </style>
+
+    <!-- Radio Buttons -->
+    <style name="RadioStyle" parent="Theme.MaterialComponents.Light">
+        <item name="colorControlActivated">@color/radioColor</item>
     </style>
 
 </resources>

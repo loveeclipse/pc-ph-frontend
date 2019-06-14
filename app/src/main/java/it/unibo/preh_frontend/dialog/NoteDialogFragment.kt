@@ -30,7 +30,6 @@ class NoteDialogFragment : DialogFragment() {
         if (savedSet != null) {
             noteEditText.text = savedSet
         } else {
-
         }
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.note_image_button)
         saveAndExitButton.setOnClickListener {
@@ -63,7 +62,7 @@ class NoteDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels , 8*metrics.heightPixels/10)
+        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
