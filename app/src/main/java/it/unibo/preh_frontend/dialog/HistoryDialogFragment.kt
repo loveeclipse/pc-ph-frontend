@@ -2,10 +2,8 @@ package it.unibo.preh_frontend.dialog
 
 import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,14 +36,8 @@ class HistoryDialogFragment : DialogFragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         val newList = gson.fromJson(sharedPreferences.getString("historyList", null),ArrayList<String>()::class.java)
-        for(i in newList){
-            Log.d("TEST",i)
-        }
         if (newList != null) {
             aList.addAll(newList)
-            for(i in aList){
-                Log.d("TEST",i)
-            }
             mAdapter.notifyDataSetChanged()
         } else {
         }

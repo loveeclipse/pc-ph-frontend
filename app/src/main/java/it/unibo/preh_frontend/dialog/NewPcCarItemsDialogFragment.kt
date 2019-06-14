@@ -18,7 +18,6 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
         saveAndExitButton.setOnClickListener {
             dialog!!.cancel()
         }
-
         return root
     }
 

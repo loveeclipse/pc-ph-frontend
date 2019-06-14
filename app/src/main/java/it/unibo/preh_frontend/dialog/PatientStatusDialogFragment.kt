@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -65,17 +64,11 @@ class PatientStatusDialogFragment : DialogFragment() {
                 deactivateButton(chiusoButton, resources)
                 this.saveState.traumaChiuso = false
                 localHistoryList.add("Definito Trauma non chiuso")
-                for(i in localHistoryList){
-                    Log.d("TEST",i)
-                }
             } else {
                 activateButton(chiusoButton, resources)
                 this.saveState.traumaChiuso = true
 
                 localHistoryList.add("Definito trauma chiuso")
-                for(i in localHistoryList){
-                    Log.d("TEST",i)
-                }
             }
         }
         penetranteButton = root.findViewById(R.id.penetrante_button)
@@ -134,13 +127,7 @@ class PatientStatusDialogFragment : DialogFragment() {
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState,PatientStatusData::class.java)
         sharedPreferences.edit().putString("patientState", stateAsJson).apply()
-        for(i in localHistoryList){
-            Log.d("TEST",i)
-        }
         val historyListAsJson = gson.toJson(localHistoryList)
-        for(i in localHistoryList){
-            Log.d("TEST",i)
-        }
         sharedPreferences.edit().putString("historyList",historyListAsJson).apply()
         super.onCancel(dialog)
     }

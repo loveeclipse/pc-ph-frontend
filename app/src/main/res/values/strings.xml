@@ -185,5 +185,7 @@
 
     <string name="inserimento_luogo_e_orario">Inserimento luogo e orario</string>
     <string name="luogo">Luogo</string>
-    <string name="orario">Orario</string>
+
+    <string name="dosaggio">Dosaggio</string>
+    <string name="cancel_button">Annulla</string>
 </resources>

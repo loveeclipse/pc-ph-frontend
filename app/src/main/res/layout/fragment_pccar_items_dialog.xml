@@ -38,7 +38,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/textView"
-            app:layout_constraintBottom_toTopOf="@id/textView2"/>
+            app:layout_constraintBottom_toBottomOf="parent"/>
     <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -50,36 +50,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView1"
             app:layout_constraintBottom_toBottomOf="@id/textView1"/>
-    <TextView
-            android:text="@string/orario"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            style="@style/NormalTextStyle"
-            android:layout_marginStart="@dimen/horizontalMargin"
-            android:layout_marginTop="@dimen/verticalMargin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/textView1"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-    <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:inputType="time"
-            android:id="@+id/time_editText"
-            app:layout_constraintStart_toEndOf="@id/guideline"
-            app:layout_constraintEnd_toStartOf="@id/editText2"
-            app:layout_constraintTop_toTopOf="@id/textView2"
-            app:layout_constraintBottom_toBottomOf="@id/textView2"/>
-    <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:id="@+id/editText2"
-            app:layout_constraintStart_toEndOf="@id/time_editText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/time_editText"
-            app:layout_constraintBottom_toBottomOf="@id/time_editText"/>
     <androidx.constraintlayout.widget.Guideline
             android:orientation="vertical"
             android:layout_width="wrap_content"

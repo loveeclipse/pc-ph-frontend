@@ -19,7 +19,7 @@ class InputDialogFragment : DialogFragment() {
             dialog!!.cancel()
         }
 
-        val saveAndExitButton = root.findViewById<Button>(R.id.back_button)
+        val saveAndExitButton = root.findViewById<Button>(R.id.cancel_button)
         saveAndExitButton.setOnClickListener {
             dialog!!.cancel()
         }
@@ -30,9 +30,7 @@ class InputDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        val width = (metrics.widthPixels)
-        val height = (metrics.heightPixels)
-        dialog!!.window!!.setLayout(70 * width / 100, 40 * height / 100)
+        dialog!!.window!!.setLayout(metrics.widthPixels, 35*metrics.heightPixels / 100)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
