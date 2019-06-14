@@ -4,23 +4,45 @@
                                                    xmlns:tools="http://schemas.android.com/tools" style="@style/BackgroundFragmentStyle"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent">
+    <TextView
+            android:text="@string/parametri_vitali"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/DialogTitleTextStyle"
+            android:id="@+id/textView15"
+            android:layout_marginTop="@dimen/verticalMargin"
+            android:layout_marginBottom="@dimen/verticalMargin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/parameters_image_button"
+            android:src="@drawable/ic_close_24dp"
+            android:backgroundTint="@color/common_google_signin_btn_tint"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_save_black_24dp"
+            android:id="@+id/save_imagebutton"
+            app:layout_constraintTop_toTopOf="parent"
+            android:backgroundTint="@color/common_google_signin_btn_tint"
+            app:layout_constraintEnd_toStartOf="@+id/parameters_image_button"/>
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="45dp"
+            android:id="@+id/scrollView"
+            app:layout_constraintTop_toBottomOf="@id/textView15"
+            app:layout_constraintBottom_toBottomOf="parent">
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/horizontalMargin"
                 android:layout_marginEnd="@dimen/horizontalMargin">
-            <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/parameters_image_button"
-                    android:src="@drawable/ic_close_24dp"
-                    android:backgroundTint="@color/common_google_signin_btn_tint"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="5dp"
-                    android:layout_marginEnd="8dp"/>
             <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -327,7 +349,8 @@
                     android:layout_marginTop="@dimen/verticalMargin"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/temp_corporea_edittext"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout13"/>
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout13"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
             <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -463,17 +486,6 @@
                         android:id="@+id/aritmico_radio"/>
             </RadioGroup>
             <TextView
-                    android:text="@string/parametri_vitali"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/DialogTitleTextStyle"
-                    android:id="@+id/textView15"
-                    android:layout_marginTop="@dimen/verticalMargin"
-                    android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
-            <TextView
                     android:text="@string/frequenza_respiratoria"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -547,7 +559,7 @@
                     android:id="@+id/textView29"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@id/textView15"
+                    app:layout_constraintTop_toBottomOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/textView33"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/guideline6"/>

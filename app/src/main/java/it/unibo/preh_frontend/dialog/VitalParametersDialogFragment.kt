@@ -83,6 +83,7 @@ class VitalParametersDialogFragment : DialogFragment() {
         var adapter = ArrayAdapter.createFromResource(requireContext(), R.array.respiratoryFrequencyItems, R.layout.spinner_layout)
         adapter.setDropDownViewResource(R.layout.spinner_layout)
         freqRespiratoria.adapter = adapter
+        freqRespiratoria.setSelection(1)
         freqRespiratoria.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 val gcs = calculateGCS()
