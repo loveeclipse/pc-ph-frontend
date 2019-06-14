@@ -45,9 +45,7 @@ class NewPcCarDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        val width = (metrics.widthPixels)
-        val height = (metrics.heightPixels)
-        dialog!!.window!!.setLayout(95 * width / 100, 60 * height / 100)
+        dialog!!.window!!.setLayout(metrics.widthPixels , 8*metrics.heightPixels/10)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
