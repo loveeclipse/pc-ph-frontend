@@ -35,6 +35,7 @@ class MissionDialogFragment : DialogFragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_mission, container, false)
         parentDialog = dialog!!
+        dialog!!.setCanceledOnTouchOutside(false)
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
         val manager = childFragmentManager
