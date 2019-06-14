@@ -26,6 +26,7 @@
             android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintWidth_percent="0.8"
             app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintBottom_toTopOf="@id/arrival_on_site_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
     <Button
@@ -37,6 +38,7 @@
             android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintWidth_percent="0.8"
             app:layout_constraintTop_toBottomOf="@+id/crew_departure_button"
+            app:layout_constraintBottom_toTopOf="@id/departure_from_site_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
     <Button
@@ -48,6 +50,7 @@
             android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintWidth_percent="0.8"
             app:layout_constraintTop_toBottomOf="@+id/arrival_on_site_button"
+            app:layout_constraintBottom_toTopOf="@id/landing_helipad_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
     <Button
@@ -58,9 +61,10 @@
             android:layout_marginTop="@dimen/verticalMargin"
             android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintWidth_percent="0.8"
+            app:layout_constraintTop_toBottomOf="@+id/departure_from_site_button"
+            app:layout_constraintBottom_toBottomOf="@id/guideline7"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/departure_from_site_button"/>
+            app:layout_constraintEnd_toEndOf="parent"/>
     <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,4 +73,10 @@
             android:backgroundTint="@color/common_google_signin_btn_tint"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.constraintlayout.widget.Guideline
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline7"
+            app:layout_constraintGuide_percent="0.5"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
