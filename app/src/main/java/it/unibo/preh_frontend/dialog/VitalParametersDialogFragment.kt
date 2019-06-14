@@ -39,6 +39,7 @@ class VitalParametersDialogFragment : DialogFragment() {
     private lateinit var tempCorporea: EditText
 
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var savedState: VitalParametersData
     private lateinit var parentDialog: Dialog
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -104,7 +105,7 @@ class VitalParametersDialogFragment : DialogFragment() {
 
         setSharedPreferences()
 
-        val saveAndExitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
+        val saveAndExitButton = root.findViewById<ImageButton>(R.id.save_imagebutton)
         saveAndExitButton.setOnClickListener {
             if (!checkEveryField()) {
                 val builder = AlertDialog.Builder(requireContext())
@@ -139,6 +140,26 @@ class VitalParametersDialogFragment : DialogFragment() {
                 val alert11 = builder.create()
                 alert11.show()
             }
+        }
+
+        val exitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
+        exitButton.setOnClickListener {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle("Vuoi uscire senza salvare?")
+            builder.setMessage("Eventuali cambiamenti non saranno salvati.")
+            builder.setCancelable(true)
+            builder.setPositiveButton(
+                    "Si"
+            ) { dialog, _ ->
+                dialog.cancel()
+                parentDialog.dismiss()
+            }
+            builder.setNegativeButton(
+                    "No"
+            ) { dialog, _ -> dialog.cancel() }
+
+            val alert11 = builder.create()
+            alert11.show()
         }
         return root
     }
@@ -183,6 +204,7 @@ class VitalParametersDialogFragment : DialogFragment() {
                     fotoreagenteDx.isChecked = newSaveState.fotoreagenteDx
                     tempCorporea.setText(newSaveState.temperature.toString())
                 }
+                savedState = newSaveState
             }
         }).start()
     }
