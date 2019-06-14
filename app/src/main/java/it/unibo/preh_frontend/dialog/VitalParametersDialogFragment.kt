@@ -163,16 +163,12 @@ class VitalParametersDialogFragment : DialogFragment() {
 
     private fun checkEveryField(): Boolean {
         return (vieAeree.checkedRadioButtonId != -1 &&
-                freqRespiratoria.selectedItemPosition != 0 &&
                 saturazione.text.toString() != "" &&
                 freqCaridaca.text.toString() != "" &&
                 tipoBattito.checkedRadioButtonId != -1 &&
                 presArteriosa.text.toString() != "" &&
                 tempRiempCapillare.checkedRadioButtonId != -1 &&
                 colorCuteMucose.checkedRadioButtonId != -1 &&
-                aperturaOcchi.selectedItemPosition != 0 &&
-                rispostaVerbale.selectedItemPosition != 0 &&
-                rispostaMotoria.selectedItemPosition != 0 &&
                 pupilleSx.checkedRadioButtonId != -1 &&
                 pupilleDx.checkedRadioButtonId != -1 &&
                 tempCorporea.text.toString() != "")
@@ -246,33 +242,8 @@ class VitalParametersDialogFragment : DialogFragment() {
     }
 
     private fun calculateGCS(): Int {
-        var gcsEyes = 0
-        var gcsMotor = 0
-        var gcsVerbal = 0
-        when (aperturaOcchi.selectedItemPosition) {
-            0 -> gcsEyes = 4
-            1 -> gcsEyes = 3
-            2 -> gcsEyes = 2
-            3 -> gcsEyes = 1
-            4 -> gcsEyes = 0
-        }
-        when (rispostaMotoria.selectedItemPosition) {
-            0 -> gcsMotor = 5
-            1 -> gcsMotor = 4
-            2 -> gcsMotor = 3
-            3 -> gcsMotor = 2
-            4 -> gcsMotor = 1
-            5 -> gcsMotor = 0
-        }
-        when (rispostaVerbale.selectedItemPosition) {
-            0 -> gcsVerbal = 6
-            1 -> gcsVerbal = 5
-            2 -> gcsVerbal = 4
-            3 -> gcsVerbal = 3
-            4 -> gcsVerbal = 2
-            5 -> gcsVerbal = 1
-            6 -> gcsVerbal = 0
-        }
-        return (gcsEyes + gcsMotor + gcsVerbal)
+        return 4 - aperturaOcchi.selectedItemPosition +
+                5 - rispostaMotoria.selectedItemPosition +
+                6 - rispostaVerbale.selectedItemPosition
     }
 }
