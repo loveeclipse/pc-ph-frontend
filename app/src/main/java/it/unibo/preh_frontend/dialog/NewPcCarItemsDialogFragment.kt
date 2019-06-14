@@ -5,9 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageButton
 import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class NewPcCarItemsDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -18,6 +22,12 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
         saveAndExitButton.setOnClickListener {
             dialog!!.cancel()
         }
+
+        val time = root.findViewById<EditText>(R.id.time_editText)
+        time.setText(SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time))
+
+        val date = root.findViewById<EditText>(R.id.date_editText)
+        date.setText(SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(Calendar.getInstance().time))
 
         return root
     }

@@ -68,14 +68,14 @@
             android:inputType="time"
             android:id="@+id/time_editText"
             app:layout_constraintStart_toEndOf="@id/guideline"
-            app:layout_constraintEnd_toStartOf="@id/editText2"
+            app:layout_constraintEnd_toStartOf="@id/date_editText"
             app:layout_constraintTop_toTopOf="@id/textView2"
             app:layout_constraintBottom_toBottomOf="@id/textView2"/>
     <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="date"
-            android:id="@+id/editText2"
+            android:id="@+id/date_editText"
             app:layout_constraintStart_toEndOf="@id/time_editText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/time_editText"
