@@ -22,13 +22,6 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
         saveAndExitButton.setOnClickListener {
             dialog!!.cancel()
         }
-
-        val time = root.findViewById<EditText>(R.id.time_editText)
-        time.setText(SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time))
-
-        val date = root.findViewById<EditText>(R.id.date_editText)
-        date.setText(SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(Calendar.getInstance().time))
-
         return root
     }
 
