@@ -12,7 +12,6 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Switch
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
@@ -125,10 +124,10 @@ class PatientStatusDialogFragment : DialogFragment() {
 
     override fun onCancel(dialog: DialogInterface) {
         val gson = Gson()
-        val stateAsJson = gson.toJson(saveState,PatientStatusData::class.java)
+        val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
         sharedPreferences.edit().putString("patientState", stateAsJson).apply()
         val historyListAsJson = gson.toJson(localHistoryList)
-        sharedPreferences.edit().putString("historyList",historyListAsJson).apply()
+        sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
         super.onCancel(dialog)
     }
 

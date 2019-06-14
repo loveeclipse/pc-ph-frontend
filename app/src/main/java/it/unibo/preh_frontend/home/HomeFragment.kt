@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
         val gson = Gson()
         val historyListAsJson = gson.toJson(ArrayList<String>())
 
-        sharedPreferences.edit().putString("historyList",historyListAsJson).apply()
+        sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
 
         val patientStatusButton = root.findViewById<Button>(R.id.stato_paziente_button)
         patientStatusButton.setOnClickListener {

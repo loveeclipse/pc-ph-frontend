@@ -6,16 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
 
 class InputDialogFragment : DialogFragment() {
+
+    private var inputValue = 0
+    private var unitOfMeasurement = ""
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.input_dialog, container, false)
+        dialog!!.setCanceledOnTouchOutside(false)
 
-        val saveAndExitButton2 = root.findViewById<ImageButton>(R.id.input_dialog_image_button)
-        saveAndExitButton2.setOnClickListener {
+        val saveAndExitImage = root.findViewById<ImageButton>(R.id.input_dialog_image_button)
+        saveAndExitImage.setOnClickListener {
             dialog!!.cancel()
         }
 
@@ -23,6 +30,12 @@ class InputDialogFragment : DialogFragment() {
         saveAndExitButton.setOnClickListener {
             dialog!!.cancel()
         }
+
+        val inputValueEditText = root.findViewById<EditText>(R.id.input_edit_text)
+        inputValueEditText.setText(inputValue.toString())
+
+        val unitUnitEditText = root.findViewById<TextView>(R.id.unit_of_measurement)
+        unitUnitEditText.text = unitOfMeasurement
 
         return root
     }
@@ -38,5 +51,10 @@ class InputDialogFragment : DialogFragment() {
             override fun onBackPressed() {
             }
         }
+    }
+
+    fun setInput(value: Int, unit: String) {
+        inputValue = value
+        unitOfMeasurement = unit
     }
 }

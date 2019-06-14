@@ -35,7 +35,7 @@ class HistoryDialogFragment : DialogFragment() {
         storiaList.adapter = mAdapter
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-        val newList = gson.fromJson(sharedPreferences.getString("historyList", null),ArrayList<String>()::class.java)
+        val newList = gson.fromJson(sharedPreferences.getString("historyList", null), ArrayList<String>()::class.java)
         if (newList != null) {
             aList.addAll(newList)
             mAdapter.notifyDataSetChanged()

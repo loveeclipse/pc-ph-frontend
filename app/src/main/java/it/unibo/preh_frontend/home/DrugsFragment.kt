@@ -21,10 +21,12 @@ class DrugsFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_drugs, container, false)
 
+        val dialog = InputDialogFragment()
         val insertCrystalloid = root.findViewById<Button>(R.id.crystalloid_button)
         insertCrystalloid.setOnClickListener {
-            InputDialogFragment().show(requireActivity().supportFragmentManager, "layout/input_dialog.xml")
+            dialog.show(requireActivity().supportFragmentManager, "layout/input_dialog.xml")
         }
+        dialog.setInput(500, "ml")
 
         val insertSuccinylcholine = root.findViewById<Button>(R.id.succinylcholine_button)
         insertSuccinylcholine.setOnClickListener {
