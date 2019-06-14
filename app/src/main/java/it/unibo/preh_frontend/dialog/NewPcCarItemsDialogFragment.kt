@@ -5,13 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.ImageButton
 import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 
 class NewPcCarItemsDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
