@@ -63,9 +63,7 @@ class NoteDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        val width = (metrics.widthPixels)
-        val height = (metrics.heightPixels)
-        dialog!!.window!!.setLayout(9 * width / 10, height)
+        dialog!!.window!!.setLayout(metrics.widthPixels , 8*metrics.heightPixels/10)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
