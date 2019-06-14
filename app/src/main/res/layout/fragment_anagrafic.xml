@@ -192,6 +192,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/gender_radiogroup"
+            android:theme="@style/RadioStyle"
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginEnd="@dimen/horizontalMargin"
             app:layout_constraintStart_toEndOf="@id/textView41"

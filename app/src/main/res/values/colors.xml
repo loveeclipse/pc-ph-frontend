@@ -16,6 +16,7 @@
     <color name="buttonSelectedBackgroundColor">@color/colorPrimary</color>
     <color name="buttonUnselectedBackgroundColor">@android:color/white</color>
     <color name="switchColor">@color/colorPrimary</color>
+    <color name="radioColor">@color/colorPrimary</color>
 
     <!-- x11 official colors -->
     <color name="White">#FFFFFF</color>
