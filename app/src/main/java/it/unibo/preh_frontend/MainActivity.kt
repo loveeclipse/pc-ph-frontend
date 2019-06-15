@@ -27,7 +27,8 @@ class MainActivity : AppCompatActivity() {
 
             navController.navigate(R.id.action_home_to_login)
         }
-        PermissionManager.checkPermission(this, this, Manifest.permission.ACCESS_FINE_LOCATION)
+        PermissionManager.checkPermission(this, this,
+                Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()
