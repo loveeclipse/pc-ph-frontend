@@ -7,8 +7,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
-object PermissionChecker {
-    private fun checkPermission(context: Context, activity: Activity, vararg perm: String) {
+object PermissionManager {
+    fun checkPermission(activity: Activity, context: Context, vararg perm: String): Boolean {
         val havePermissions = perm.toList().all {
             ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
         }
@@ -30,6 +30,8 @@ object PermissionChecker {
             } else {
                 ActivityCompat.requestPermissions(activity, perm, 0)
             }
+            return false
         }
+        return true
     }
 }

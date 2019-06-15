@@ -1,11 +1,13 @@
 package it.unibo.preh_frontend
 
+import android.Manifest
 import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import it.unibo.preh_frontend.utils.PermissionManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
             navController.navigate(R.id.action_home_to_login)
         }
+        PermissionManager.checkPermission(this, this, Manifest.permission.ACCESS_FINE_LOCATION)
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()
