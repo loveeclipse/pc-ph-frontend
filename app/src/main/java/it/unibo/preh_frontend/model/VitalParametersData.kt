@@ -17,4 +17,8 @@ data class VitalParametersData(
     var fotoreagenteSx: Boolean,
     var fotoreagenteDx: Boolean,
     var temperature: Int
-)
+) : PreHData {
+    override fun getDataAsString(): String {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+}

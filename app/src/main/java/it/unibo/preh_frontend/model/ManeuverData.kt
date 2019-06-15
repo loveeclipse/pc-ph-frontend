@@ -8,4 +8,8 @@ data class ManeuverData(
     var sondaVescicale: Boolean = false,
     var freqCattura: String = "",
     var amperaggio: String = ""
-)
+) : PreHData {
+    override fun getDataAsString(): String {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+}
