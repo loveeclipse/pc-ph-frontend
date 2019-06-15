@@ -21,6 +21,11 @@ import it.unibo.preh_frontend.dialog.MissionDialogFragment
 import it.unibo.preh_frontend.dialog.NewPcCarDialogFragment
 import it.unibo.preh_frontend.dialog.NoteDialogFragment
 import it.unibo.preh_frontend.dialog.VitalParametersDialogFragment
+import it.unibo.preh_frontend.model.HistoryData
+import it.unibo.preh_frontend.model.PreHData
+import com.google.gson.reflect.TypeToken
+import it.unibo.preh_frontend.model.PatientStatusData
+
 
 class HomeFragment : Fragment() {
 
@@ -41,7 +46,10 @@ class HomeFragment : Fragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         val gson = Gson()
-        val historyListAsJson = gson.toJson(ArrayList<String>())
+        val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {
+
+        }.type
+        val historyListAsJson = gson.toJson(ArrayList<HistoryData<PreHData>>(),historyType)
 
         sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
 

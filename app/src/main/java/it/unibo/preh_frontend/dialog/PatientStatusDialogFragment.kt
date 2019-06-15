@@ -14,8 +14,11 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import it.unibo.preh_frontend.R
+import it.unibo.preh_frontend.model.HistoryData
 import it.unibo.preh_frontend.model.PatientStatusData
+import it.unibo.preh_frontend.model.PreHData
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
 
@@ -47,7 +50,7 @@ class PatientStatusDialogFragment : DialogFragment() {
     private lateinit var shockIndexText: TextView
 
     private var saveState = PatientStatusData()
-    private val localHistoryList = ArrayList<String>()
+    private lateinit var localHistoryList : ArrayList<HistoryData<PatientStatusData>>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_patient_status_dialog, container, false)
@@ -56,18 +59,20 @@ class PatientStatusDialogFragment : DialogFragment() {
 
         parentDialog = dialog!!
         dialog!!.setCanceledOnTouchOutside(false)
+        val gson = Gson()
+
+        val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {
+        }.type
+        localHistoryList = gson.fromJson(sharedPreferences.getString("historyList", null), historyType)
 
         chiusoButton = root.findViewById(R.id.chiuso_button)
         chiusoButton.setOnClickListener {
             if (this.saveState.traumaChiuso) {
                 deactivateButton(chiusoButton, resources)
                 this.saveState.traumaChiuso = false
-                localHistoryList.add("Definito Trauma non chiuso")
             } else {
                 activateButton(chiusoButton, resources)
                 this.saveState.traumaChiuso = true
-
-                localHistoryList.add("Definito trauma chiuso")
             }
         }
         penetranteButton = root.findViewById(R.id.penetrante_button)
@@ -126,7 +131,12 @@ class PatientStatusDialogFragment : DialogFragment() {
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
         sharedPreferences.edit().putString("patientState", stateAsJson).apply()
-        val historyListAsJson = gson.toJson(localHistoryList)
+        val historyData = HistoryData("Modificato Stato Paziente",saveState,"13:00  15/06/2019")
+        localHistoryList.add(historyData)
+        val historyType = object : TypeToken<ArrayList<HistoryData<PatientStatusData>>>() {
+
+        }.type
+        val historyListAsJson = gson.toJson(localHistoryList,historyType)
         sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
         super.onCancel(dialog)
     }

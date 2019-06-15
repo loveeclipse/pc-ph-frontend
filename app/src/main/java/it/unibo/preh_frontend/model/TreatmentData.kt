@@ -7,4 +7,9 @@ data class TreatmentData(
     var tuboTrachealer: Boolean = false,
     var minitoracotomiaSx: Boolean = false,
     var minitoracotomiaDx: Boolean = false
-) // Aggiungere IPPV values?
+) : PreHData // Aggiungere IPPV values?
+{
+    override fun getDataAsString(): String {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+}

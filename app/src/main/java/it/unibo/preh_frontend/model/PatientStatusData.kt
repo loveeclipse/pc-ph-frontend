@@ -19,4 +19,8 @@ data class PatientStatusData(
     var cariterioAnatomico: Boolean = false,
     var criterioDinamico: Boolean = false,
     var shockIndex: Boolean = false
-)
+) : PreHData {
+    override fun getDataAsString(): String {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+}

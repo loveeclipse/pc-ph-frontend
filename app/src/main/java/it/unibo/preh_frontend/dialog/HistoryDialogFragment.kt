@@ -10,14 +10,19 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
-import android.widget.ArrayAdapter
 import android.widget.ListView
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import it.unibo.preh_frontend.model.HistoryData
+import it.unibo.preh_frontend.model.PatientStatusData
+import it.unibo.preh_frontend.model.PreHData
+import it.unibo.preh_frontend.utils.HistoryListAdapter
 
 class HistoryDialogFragment : DialogFragment() {
 
-    private var aList: ArrayList<String> = ArrayList()
-    private lateinit var mAdapter: ArrayAdapter<String>
+    private var aList: ArrayList<HistoryData<PreHData>> = ArrayList()
+    private lateinit var mAdapter: HistoryListAdapter
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
@@ -30,16 +35,27 @@ class HistoryDialogFragment : DialogFragment() {
         dialog!!.setCanceledOnTouchOutside(false)
         val gson = Gson()
 
-        val storiaList = root.findViewById(R.id.history_list) as ListView
-        mAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, aList)
-        storiaList.adapter = mAdapter
-
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-        val newList = gson.fromJson(sharedPreferences.getString("historyList", null), ArrayList<String>()::class.java)
+        val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {
+
+        }.type
+
+        val newList = gson.fromJson<ArrayList<HistoryData<PreHData>>>(sharedPreferences.getString("historyList", null), historyType)
         if (newList != null) {
             aList.addAll(newList)
-            mAdapter.notifyDataSetChanged()
         } else {
+
+        }
+
+        val storiaList = root.findViewById(R.id.history_list) as ListView
+        mAdapter = HistoryListAdapter(requireActivity(),aList)
+        storiaList.adapter = mAdapter
+
+        storiaList.setOnItemClickListener { parent, view, position, id ->
+                val historyData = aList[position]
+
+                Snackbar.make(view, historyData.event+"\n"+historyData.eventTime, Snackbar.LENGTH_LONG)
+                        .setAction("No action", null).show()
         }
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.history_image_button)
