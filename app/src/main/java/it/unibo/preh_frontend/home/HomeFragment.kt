@@ -24,7 +24,6 @@ import it.unibo.preh_frontend.dialog.VitalParametersDialogFragment
 import it.unibo.preh_frontend.model.HistoryData
 import it.unibo.preh_frontend.model.PreHData
 import com.google.gson.reflect.TypeToken
-import it.unibo.preh_frontend.model.PatientStatusData
 
 
 class HomeFragment : Fragment() {

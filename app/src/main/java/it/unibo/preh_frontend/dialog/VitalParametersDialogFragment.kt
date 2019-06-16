@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,17 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory
 import it.unibo.preh_frontend.R
+import it.unibo.preh_frontend.model.AnagraphicData
+import it.unibo.preh_frontend.model.ComplicationsData
+import it.unibo.preh_frontend.model.HistoryData
+import it.unibo.preh_frontend.model.ManeuverData
+import it.unibo.preh_frontend.model.PatientStatusData
+import it.unibo.preh_frontend.model.PreHData
+import it.unibo.preh_frontend.model.TreatmentData
 import it.unibo.preh_frontend.model.VitalParametersData
 
 class VitalParametersDialogFragment : DialogFragment() {
@@ -45,6 +56,8 @@ class VitalParametersDialogFragment : DialogFragment() {
     private lateinit var savedState: VitalParametersData
     private lateinit var parentDialog: Dialog
 
+    private lateinit var localHistoryList : ArrayList<HistoryData<PreHData>>
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_vital_parameters, container, false)
         parentDialog = dialog!!
@@ -52,6 +65,21 @@ class VitalParametersDialogFragment : DialogFragment() {
         dialog!!.setCanceledOnTouchOutside(false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+
+        val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {}.type
+
+        val typeFactory = RuntimeTypeAdapterFactory
+                .of(PreHData::class.java, "type") // Here you specify which is the parent class and what field particularizes the child class.
+                .registerSubtype(AnagraphicData::class.java) // if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
+                .registerSubtype(ComplicationsData::class.java)
+                .registerSubtype(ManeuverData::class.java)
+                .registerSubtype(PatientStatusData::class.java)
+                .registerSubtype(TreatmentData::class.java)
+                .registerSubtype(VitalParametersData::class.java)
+
+        val gson = GsonBuilder().registerTypeAdapterFactory(typeFactory).create()
+
+        localHistoryList = gson.fromJson<ArrayList<HistoryData<PreHData>>>(sharedPreferences.getString("historyList", null), historyType)
 
         getComponents(root)
 
@@ -224,6 +252,15 @@ class VitalParametersDialogFragment : DialogFragment() {
             val gson = Gson()
             val stateAsJson = gson.toJson(saveState)
             sharedPreferences.edit().putString("vitalParameters", stateAsJson).apply()
+            val historyData = HistoryData<PreHData>("Modificati Parametri Vitali",saveState,"13:00  15/06/2019")
+            localHistoryList.add(historyData)
+            val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {
+
+            }.type
+            val historyListAsJson = gson.toJson(localHistoryList,historyType)
+            sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
+
+
             super.onCancel(dialog)
         }).start()
     }

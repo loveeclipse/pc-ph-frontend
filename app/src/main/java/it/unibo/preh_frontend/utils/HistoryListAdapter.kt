@@ -10,7 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import it.unibo.preh_frontend.model.HistoryData
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.model.PreHData
 
 class HistoryListAdapter(private var activity: Activity, private var items: ArrayList<HistoryData<PreHData>>) : BaseAdapter(){
