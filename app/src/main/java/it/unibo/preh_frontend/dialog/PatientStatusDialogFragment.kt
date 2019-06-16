@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +15,18 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory
 import it.unibo.preh_frontend.R
+import it.unibo.preh_frontend.model.AnagraphicData
+import it.unibo.preh_frontend.model.ComplicationsData
 import it.unibo.preh_frontend.model.HistoryData
+import it.unibo.preh_frontend.model.ManeuverData
 import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.model.PreHData
+import it.unibo.preh_frontend.model.TreatmentData
+import it.unibo.preh_frontend.model.VitalParametersData
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
 
@@ -50,7 +58,7 @@ class PatientStatusDialogFragment : DialogFragment() {
     private lateinit var shockIndexText: TextView
 
     private var saveState = PatientStatusData()
-    private lateinit var localHistoryList : ArrayList<HistoryData<PatientStatusData>>
+    private lateinit var localHistoryList : ArrayList<HistoryData<PreHData>>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_patient_status_dialog, container, false)
@@ -59,11 +67,23 @@ class PatientStatusDialogFragment : DialogFragment() {
 
         parentDialog = dialog!!
         dialog!!.setCanceledOnTouchOutside(false)
-        val gson = Gson()
 
-        val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {
-        }.type
-        localHistoryList = gson.fromJson(sharedPreferences.getString("historyList", null), historyType)
+        val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {}.type
+
+        val typeFactory = RuntimeTypeAdapterFactory
+                .of(PreHData::class.java, "type") // Here you specify which is the parent class and what field particularizes the child class.
+                .registerSubtype(AnagraphicData::class.java) // if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
+                .registerSubtype(ComplicationsData::class.java)
+                .registerSubtype(ManeuverData::class.java)
+                .registerSubtype(PatientStatusData::class.java)
+                .registerSubtype(TreatmentData::class.java)
+                .registerSubtype(VitalParametersData::class.java)
+
+// add the polymorphic specialization
+
+        val gson = GsonBuilder().registerTypeAdapterFactory(typeFactory).create()
+
+        localHistoryList = gson.fromJson<ArrayList<HistoryData<PreHData>>>(sharedPreferences.getString("historyList", null), historyType)
 
         chiusoButton = root.findViewById(R.id.chiuso_button)
         chiusoButton.setOnClickListener {
@@ -131,9 +151,10 @@ class PatientStatusDialogFragment : DialogFragment() {
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
         sharedPreferences.edit().putString("patientState", stateAsJson).apply()
-        val historyData = HistoryData("Modificato Stato Paziente",saveState,"13:00  15/06/2019")
+
+        val historyData = HistoryData<PreHData>("Modificato Stato Paziente",saveState,"13:00  15/06/2019")
         localHistoryList.add(historyData)
-        val historyType = object : TypeToken<ArrayList<HistoryData<PatientStatusData>>>() {
+        val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {
 
         }.type
         val historyListAsJson = gson.toJson(localHistoryList,historyType)

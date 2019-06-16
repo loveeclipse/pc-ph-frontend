@@ -1,16 +1,12 @@
 package it.unibo.preh_frontend.model
 
 data class ComplicationsData(
-    var arrestoCardiocircolatorio: Boolean = false,
-    var deterioramento: Boolean = false,
-    var anisocoria: Boolean = false,
-    var insuffRespiratoria: Boolean = false,
-    var cardioShock: Boolean = false,
-    var atterraggio: Boolean = false,
-    var itinere: Boolean = false,
-    var arrivoPs: Boolean = false
-) : PreHData {
-    override fun getDataAsString(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-}
+        var arrestoCardiocircolatorio: Boolean = false,
+        var deterioramento: Boolean = false,
+        var anisocoria: Boolean = false,
+        var insuffRespiratoria: Boolean = false,
+        var cardioShock: Boolean = false,
+        var atterraggio: Boolean = false,
+        var itinere: Boolean = false,
+        var arrivoPs: Boolean = false
+) : PreHData("ComplicationsData")
