@@ -8,8 +8,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -21,7 +23,7 @@ import java.io.IOException
 import java.util.Locale
 
 class NewPcCarItemsDialogFragment : DialogFragment() {
-    private lateinit var placeEditText: EditText
+    private lateinit var locationText: TextView
     private val reqSetting = LocationRequest.create().apply {
         fastestInterval = 1000
         interval = 1000
@@ -33,12 +35,15 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
         val root = inflater.inflate(R.layout.fragment_pccar_items_dialog, container, false)
         dialog!!.setCanceledOnTouchOutside(false)
 
-        placeEditText = root.findViewById(R.id.place_edit_text)
+        locationText = root.findViewById(R.id.location)
 
         updateLocation()
 
-        val saveAndExitButton = root.findViewById<ImageButton>(R.id.pccar_items_image_button)
-        saveAndExitButton.setOnClickListener {
+        root.findViewById<Button>(R.id.sovrascrivi_button).setOnClickListener {
+            root.findViewById<EditText>(R.id.place_edit_text).setText(locationText.text)
+        }
+
+        root.findViewById<ImageButton>(R.id.pccar_items_image_button).setOnClickListener {
             dialog!!.cancel()
         }
         return root
@@ -75,7 +80,7 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
                             val addresses = geocoder.getFromLocation(latitude, longitude, 1)
                             if (addresses.isNotEmpty()) {
                                 requireActivity().runOnUiThread {
-                                    placeEditText.setText(addresses[0].getAddressLine(0))
+                                    locationText.text = addresses[0].getAddressLine(0)
                                 }
                                 fusedLocationClient?.removeLocationUpdates(locationUpdates)
                             }

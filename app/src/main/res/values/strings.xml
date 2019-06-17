@@ -183,9 +183,11 @@
     <string name="anticoagulanti">Anticoagulanti</string>
     <string name="antipiastrine">Antipiastrine</string>
 
-    <string name="inserimento_luogo_e_orario">Inserimento luogo e orario</string>
+    <string name="inserimento_luogo_e_orario">Inserimento luogo</string>
     <string name="luogo">Luogo</string>
 
     <string name="dosaggio">Dosaggio</string>
     <string name="cancel_button">Annulla</string>
+    <string name="acquisizione_posizione">Acquisizione posizione</string>
+    <string name="sovrascrivi_indirizzo">Sovrascrivi indirizzo</string>
 </resources>
