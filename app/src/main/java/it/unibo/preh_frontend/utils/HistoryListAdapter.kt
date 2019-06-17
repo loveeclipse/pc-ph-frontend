@@ -12,7 +12,7 @@ import it.unibo.preh_frontend.model.HistoryData
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.PreHData
 
-class HistoryListAdapter(private var activity: Activity, private var items: ArrayList<HistoryData<PreHData>>) : BaseAdapter() {
+class HistoryListAdapter(private var activity: Activity, private var items: ArrayList<HistoryData>) : BaseAdapter() {
     private class ViewHolder(row: View?) {
         var eventName: TextView? = null
         var eventDate: TextView? = null
@@ -43,7 +43,7 @@ class HistoryListAdapter(private var activity: Activity, private var items: Arra
         return view
     }
 
-    override fun getItem(i: Int): HistoryData<PreHData> {
+    override fun getItem(i: Int): HistoryData {
         return items[i]
     }
 

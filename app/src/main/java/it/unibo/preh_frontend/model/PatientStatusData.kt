@@ -16,7 +16,7 @@ data class PatientStatusData(
     var tetraparesi: Boolean = false,
     var parestesia: Boolean = false,
     var criterioFisiologico: Boolean = false,
-    var cariterioAnatomico: Boolean = false,
+    var criterioAnatomico: Boolean = false,
     var criterioDinamico: Boolean = false,
     var shockIndex: Boolean = false
 ) : PreHData()

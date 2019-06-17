@@ -1,44 +1,44 @@
 package it.unibo.preh_frontend.model
 
-open class HistoryData<PreHData>(
+open class HistoryData(
     val type: String,
     val event: String,
     val eventData: PreHData,
     val eventTime: String
 )
 
-internal class HistoryAnagraphicData<AnagraphicData>(
+internal class HistoryAnagraphicData(
     event: String,
     eventData: AnagraphicData,
     eventTime: String
-) : HistoryData<AnagraphicData>("AnagraphicData", event, eventData, eventTime)
+) : HistoryData("AnagraphicData", event, eventData, eventTime)
 
-internal class HistoryComplicationsData<ComplicationsData>(
+internal class HistoryComplicationsData(
     event: String,
     eventData: ComplicationsData,
     eventTime: String
-) : HistoryData<ComplicationsData>("ComplicationsData", event, eventData, eventTime)
+) : HistoryData("ComplicationsData", event, eventData, eventTime)
 
-internal class HistoryManeuverData<ManeuverData>(
+internal class HistoryManeuverData(
     event: String,
     eventData: ManeuverData,
     eventTime: String
-) : HistoryData<ManeuverData>("ManeuverData", event, eventData, eventTime)
+) : HistoryData("ManeuverData", event, eventData, eventTime)
 
-internal class HistoryTreatmentData<TreatmentData>(
+internal class HistoryTreatmentData(
     event: String,
     eventData: TreatmentData,
     eventTime: String
-) : HistoryData<TreatmentData>("TreatmentData", event, eventData, eventTime)
+) : HistoryData("TreatmentData", event, eventData, eventTime)
 
-internal class HistoryPatientStatusData<PatientStatusData>(
+internal class HistoryPatientStatusData(
     event: String,
     eventData: PatientStatusData,
     eventTime: String
-) : HistoryData<PatientStatusData>("PatientStatusData", event, eventData, eventTime)
+) : HistoryData("PatientStatusData", event, eventData, eventTime)
 
-internal class HistoryVitalParametersData<VitalParametersData>(
+internal class HistoryVitalParametersData(
     event: String,
     eventData: VitalParametersData,
     eventTime: String
-) : HistoryData<VitalParametersData>("VitalParametersData", event, eventData, eventTime)
+) : HistoryData("VitalParametersData", event, eventData, eventTime)

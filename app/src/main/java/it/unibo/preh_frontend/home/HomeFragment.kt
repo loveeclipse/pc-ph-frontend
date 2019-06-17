@@ -44,9 +44,9 @@ class HomeFragment : Fragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         val gson = Gson()
-        val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {
+        val historyType = object : TypeToken<ArrayList<HistoryData>>() {
         }.type
-        val historyListAsJson = gson.toJson(ArrayList<HistoryData<PreHData>>(), historyType)
+        val historyListAsJson = gson.toJson(ArrayList<HistoryData>(), historyType)
 
         sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
 

@@ -59,18 +59,17 @@ class PatientStatusDialogFragment : DialogFragment() {
     private lateinit var shockIndexText: TextView
 
     private var saveState = PatientStatusData()
-    private lateinit var localHistoryList: ArrayList<HistoryData<PreHData>>
+    private lateinit var localHistoryList: ArrayList<HistoryData>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_patient_status_dialog, container, false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-        Log.d("TEST", sharedPreferences.getString("historyList", null))
 
         parentDialog = dialog!!
         dialog!!.setCanceledOnTouchOutside(false)
 
-        val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {}.type
+        val historyType = object : TypeToken<ArrayList<HistoryData>>() {}.type
 
         val typeFactory = RuntimeTypeAdapterFactory
                 .of(HistoryData::class.java, "type")
@@ -152,9 +151,9 @@ class PatientStatusDialogFragment : DialogFragment() {
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
         sharedPreferences.edit().putString("patientState", stateAsJson).apply()
 
-        val historyData: HistoryData<PreHData> = HistoryPatientStatusData("Modificato Stato Paziente", saveState, "13:00  15/06/2019")
+        val historyData: HistoryData = HistoryPatientStatusData("Modificato Stato Paziente", saveState, "13:00  15/06/2019")
         localHistoryList.add(historyData)
-        val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {
+        val historyType = object : TypeToken<ArrayList<HistoryData>>() {
         }.type
 
         val historyListAsJson = gson.toJson(localHistoryList, historyType)

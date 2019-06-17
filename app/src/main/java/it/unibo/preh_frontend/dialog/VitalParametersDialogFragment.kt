@@ -57,7 +57,7 @@ class VitalParametersDialogFragment : DialogFragment() {
     private lateinit var parentDialog: Dialog
 
     private lateinit var saveState: VitalParametersData
-    private lateinit var localHistoryList: ArrayList<HistoryData<PreHData>>
+    private lateinit var localHistoryList: ArrayList<HistoryData>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_vital_parameters, container, false)
@@ -67,7 +67,7 @@ class VitalParametersDialogFragment : DialogFragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
-        val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {}.type
+        val historyType = object : TypeToken<ArrayList<HistoryData>>() {}.type
 
         val typeFactory = RuntimeTypeAdapterFactory
                 .of(HistoryData::class.java, "type")
@@ -80,7 +80,7 @@ class VitalParametersDialogFragment : DialogFragment() {
 
         val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeFactory).create()
 
-        localHistoryList = gson.fromJson<ArrayList<HistoryData<PreHData>>>(sharedPreferences.getString("historyList", null), historyType)
+        localHistoryList = gson.fromJson<ArrayList<HistoryData>>(sharedPreferences.getString("historyList", null), historyType)
 
         getComponents(root)
 
@@ -252,9 +252,9 @@ class VitalParametersDialogFragment : DialogFragment() {
             val gson = Gson()
             val stateAsJson = gson.toJson(saveState)
             sharedPreferences.edit().putString("vitalParameters", stateAsJson).apply()
-            val historyData: HistoryData<PreHData> = HistoryVitalParametersData("Modificati Parametri Vitali", saveState, "14:00  15/06/2019")
+            val historyData: HistoryData = HistoryVitalParametersData("Modificati Parametri Vitali", saveState, "14:00  15/06/2019")
             localHistoryList.add(historyData)
-            val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {
+            val historyType = object : TypeToken<ArrayList<HistoryData>>() {
             }.type
             val historyListAsJson = gson.toJson(localHistoryList, historyType)
             sharedPreferences.edit().putString("historyList", historyListAsJson).apply()

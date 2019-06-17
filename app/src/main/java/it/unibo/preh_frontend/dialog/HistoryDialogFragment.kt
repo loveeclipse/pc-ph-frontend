@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,6 @@ import android.widget.ListView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.reflect.TypeToken
 import it.unibo.preh_frontend.model.HistoryData
-import it.unibo.preh_frontend.model.PreHData
 import it.unibo.preh_frontend.utils.HistoryListAdapter
 import com.google.gson.GsonBuilder
 import it.unibo.preh_frontend.model.HistoryAnagraphicData
@@ -23,11 +23,12 @@ import it.unibo.preh_frontend.model.HistoryManeuverData
 import it.unibo.preh_frontend.model.HistoryPatientStatusData
 import it.unibo.preh_frontend.model.HistoryTreatmentData
 import it.unibo.preh_frontend.model.HistoryVitalParametersData
+import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.utils.RuntimeTypeAdapterFactory
 
 class HistoryDialogFragment : DialogFragment() {
 
-    private var aList: ArrayList<HistoryData<PreHData>> = ArrayList()
+    private var aList: ArrayList<HistoryData> = ArrayList()
     private lateinit var mAdapter: HistoryListAdapter
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -41,7 +42,7 @@ class HistoryDialogFragment : DialogFragment() {
         dialog!!.setCanceledOnTouchOutside(false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-        val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {}.type
+        val historyType = object : TypeToken<ArrayList<HistoryData>>() {}.type
 
         val typeFactory = RuntimeTypeAdapterFactory
                 .of(HistoryData::class.java, "type")
@@ -54,22 +55,27 @@ class HistoryDialogFragment : DialogFragment() {
 
         val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeFactory).create()
 
-        val newList = gson.fromJson<ArrayList<HistoryData<PreHData>>>(sharedPreferences.getString("historyList", null), historyType)
-
-        if (newList != null) {
-            aList.addAll(newList)
-        } else {
-        }
-
+        aList = gson.fromJson(sharedPreferences.getString("historyList", null), historyType)
+        Log.d("TEST",aList[0].eventData.toString())
         val storiaList = root.findViewById(R.id.history_list) as ListView
         mAdapter = HistoryListAdapter(requireActivity(), aList)
         storiaList.adapter = mAdapter
 
         storiaList.setOnItemClickListener { parent, view, position, id ->
-                val historyData = aList[position]
+            val historyData = aList[position]
+            when (historyData.type){
+                    "PatientStatusData" -> {
+                        val data: PatientStatusData = historyData.eventData as PatientStatusData
+                        Snackbar.make(view, data.traumaChiuso.toString() + "\n" + data.traumaPenetrante + "\n" + data.cascoCintura.toString() + "\n" +
+                                data.emorragia.toString() + "\n" + data.vieAeree.toString() + "\n" + data.tachipnea.toString() + "\n" + data.voletCostale.toString() + "\n" +
+                                data.ecofast.toString() + "\n" + data.bacinoStatus.toString() + "\n" + data.amputazione.toString() + "\n" + data.fratturaCranica.toString() + "\n" +
+                                data.paraparesi.toString() + "\n" + data.tetraparesi.toString() + "\n" + data.parestesia.toString() + "\n" + data.criterioFisiologico.toString() + "\n" +
+                                data.criterioDinamico.toString() + data.criterioAnatomico.toString() + "\n" + "\n" + data.shockIndex.toString() + "\n"
+                        , Snackbar.LENGTH_LONG)
+                            .setAction("No action", null).show()}
+                }
 
-                Snackbar.make(view, historyData.event + "\n" + historyData.eventTime, Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show()
+
         }
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.history_image_button)
