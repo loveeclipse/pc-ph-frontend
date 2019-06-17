@@ -6,5 +6,8 @@ data class TreatmentData(
     var cricoTirotomia: Boolean = false,
     var tuboTrachealer: Boolean = false,
     var minitoracotomiaSx: Boolean = false,
-    var minitoracotomiaDx: Boolean = false
-) : PreHData()
+    var minitoracotomiaDx: Boolean = false,
+
+    var event: String = "Effettuati Trattamenti",
+    var time: String
+) : PreHData("TreatmentData",event,time)

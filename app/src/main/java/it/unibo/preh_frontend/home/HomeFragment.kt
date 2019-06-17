@@ -21,7 +21,6 @@ import it.unibo.preh_frontend.dialog.MissionDialogFragment
 import it.unibo.preh_frontend.dialog.NewPcCarDialogFragment
 import it.unibo.preh_frontend.dialog.NoteDialogFragment
 import it.unibo.preh_frontend.dialog.VitalParametersDialogFragment
-import it.unibo.preh_frontend.model.HistoryData
 import it.unibo.preh_frontend.model.PreHData
 import com.google.gson.reflect.TypeToken
 
@@ -44,9 +43,9 @@ class HomeFragment : Fragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         val gson = Gson()
-        val historyType = object : TypeToken<ArrayList<HistoryData>>() {
+        val historyType = object : TypeToken<ArrayList<PreHData>>() {
         }.type
-        val historyListAsJson = gson.toJson(ArrayList<HistoryData>(), historyType)
+        val historyListAsJson = gson.toJson(ArrayList<PreHData>(), historyType)
 
         sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
 

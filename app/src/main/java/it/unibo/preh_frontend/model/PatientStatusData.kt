@@ -18,5 +18,8 @@ data class PatientStatusData(
     var criterioFisiologico: Boolean = false,
     var criterioAnatomico: Boolean = false,
     var criterioDinamico: Boolean = false,
-    var shockIndex: Boolean = false
-) : PreHData()
+    var shockIndex: Boolean = false,
+
+    var event: String = "Modificato Stato Paziente",
+    var time: String
+) : PreHData("PatientStatusData",event,time)

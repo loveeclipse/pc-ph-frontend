@@ -8,11 +8,10 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import it.unibo.preh_frontend.model.HistoryData
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.PreHData
 
-class HistoryListAdapter(private var activity: Activity, private var items: ArrayList<HistoryData>) : BaseAdapter() {
+class HistoryListAdapter(private var activity: Activity, private var items: ArrayList<PreHData>) : BaseAdapter() {
     private class ViewHolder(row: View?) {
         var eventName: TextView? = null
         var eventDate: TextView? = null
@@ -37,13 +36,13 @@ class HistoryListAdapter(private var activity: Activity, private var items: Arra
             viewHolder = view.tag as ViewHolder
         }
         val historyItem = items[position]
-        viewHolder.eventName?.text = historyItem.event
+        viewHolder.eventName?.text = historyItem.eventName
         viewHolder.eventDate?.text = historyItem.eventTime
 
         return view
     }
 
-    override fun getItem(i: Int): HistoryData {
+    override fun getItem(i: Int): PreHData {
         return items[i]
     }
 

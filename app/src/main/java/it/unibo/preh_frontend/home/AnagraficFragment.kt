@@ -96,6 +96,8 @@ class AnagraficFragment : Fragment() {
                 birthdayEditText.text.toString(),
                 genderRadioGroup.checkedRadioButtonId,
                 anticoagulantsSwitch.isChecked,
-                antiplateletsSwitch.isChecked)
+                antiplateletsSwitch.isChecked,
+                time = "qualche volta"
+                )
     }
 }

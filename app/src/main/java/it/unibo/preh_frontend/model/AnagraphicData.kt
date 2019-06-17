@@ -8,5 +8,8 @@ data class AnagraphicData(
     var birthday: String = "",
     var gender: Int = -1,
     var anticoagulants: Boolean = false,
-    var antiplatelets: Boolean = false
-) : PreHData()
+    var antiplatelets: Boolean = false,
+
+    var event: String = "Modificati Dati Anagrafici",
+    var time: String
+) : PreHData("AnagraphicData",event,time)

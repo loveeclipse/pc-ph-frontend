@@ -86,6 +86,7 @@ class ComplicationsFragment : Fragment() {
                 arrestoCardioSwitch.isChecked,
                 atterraggioSwitch.isChecked,
                 itinereActive,
-                arrivoPsActive)
+                arrivoPsActive,
+                time = "qualche volta")
     }
 }

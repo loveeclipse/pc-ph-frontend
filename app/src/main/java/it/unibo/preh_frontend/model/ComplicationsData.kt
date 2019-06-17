@@ -8,5 +8,8 @@ data class ComplicationsData(
     var cardioShock: Boolean = false,
     var atterraggio: Boolean = false,
     var itinere: Boolean = false,
-    var arrivoPs: Boolean = false
-) : PreHData()
+    var arrivoPs: Boolean = false,
+
+    var event: String = "Modificate Complicazioni",
+    var time: String
+) : PreHData("ComplicationsData",event,time)

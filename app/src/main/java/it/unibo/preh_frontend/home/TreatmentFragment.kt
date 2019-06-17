@@ -100,6 +100,7 @@ class TreatmentFragment : Fragment() {
                 cricoTirotomiaIsActive,
                 tuboTrachealeIsActive,
                 minitoracotomiaSxIsActive,
-                minitoracotomiaDxIsActive)
+                minitoracotomiaDxIsActive,
+                time = "sometimes")
     }
 }

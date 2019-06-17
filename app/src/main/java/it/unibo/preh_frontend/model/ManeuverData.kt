@@ -7,5 +7,8 @@ data class ManeuverData(
     var sondaGastrica: Boolean = false,
     var sondaVescicale: Boolean = false,
     var freqCattura: String = "",
-    var amperaggio: String = ""
-) : PreHData()
+    var amperaggio: String = "",
+
+    var event: String = "Effettuate Manovre",
+    var time: String
+) : PreHData("ManeuverData",event,time)
