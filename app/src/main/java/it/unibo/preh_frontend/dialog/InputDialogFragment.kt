@@ -21,11 +21,6 @@ class InputDialogFragment : DialogFragment() {
         val root = inflater.inflate(R.layout.input_dialog, container, false)
         dialog!!.setCanceledOnTouchOutside(false)
 
-        val saveAndExitImage = root.findViewById<ImageButton>(R.id.input_dialog_image_button)
-        saveAndExitImage.setOnClickListener {
-            dialog!!.cancel()
-        }
-
         val saveAndExitButton = root.findViewById<Button>(R.id.cancel_button)
         saveAndExitButton.setOnClickListener {
             dialog!!.cancel()

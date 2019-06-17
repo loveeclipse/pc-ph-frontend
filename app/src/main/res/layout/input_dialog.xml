@@ -7,14 +7,6 @@
               style="@style/BackgroundFragmentStyle"
               tools:context=".dialog.InputDialogFragment"
               android:id="@+id/frameLayout">
-    <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_close_24dp"
-            android:id="@+id/input_dialog_image_button"
-            android:backgroundTint="@color/common_google_signin_btn_tint"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
     <TextView
             android:text="@string/dosaggio"
             android:layout_width="wrap_content"
