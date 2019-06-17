@@ -15,28 +15,23 @@ class NewPcCarDialogFragment : DialogFragment() {
         val root = inflater.inflate(R.layout.fragment_pccar, container, false)
         dialog!!.setCanceledOnTouchOutside(false)
 
-        val insertItemsCrewDeparture = root.findViewById<Button>(R.id.crew_departure_button)
-        insertItemsCrewDeparture.setOnClickListener {
-            NewPcCarItemsDialogFragment().show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
+        root.findViewById<Button>(R.id.crew_departure_button).setOnClickListener {
+            NewPcCarItemsDialogFragment.newInstance("crew_departure").show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
         }
 
-        val insertItemsArrivalOnSite = root.findViewById<Button>(R.id.arrival_on_site_button)
-        insertItemsArrivalOnSite.setOnClickListener {
-            NewPcCarItemsDialogFragment().show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
+        root.findViewById<Button>(R.id.arrival_on_site_button).setOnClickListener {
+            NewPcCarItemsDialogFragment.newInstance("arrival_on_site").show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
         }
 
-        val insertItemsDepartureFromSite = root.findViewById<Button>(R.id.departure_from_site_button)
-        insertItemsDepartureFromSite.setOnClickListener {
-            NewPcCarItemsDialogFragment().show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
+        root.findViewById<Button>(R.id.departure_from_site_button).setOnClickListener {
+            NewPcCarItemsDialogFragment.newInstance("departure_from_site").show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
         }
 
-        val insertItemsLandingHelipad = root.findViewById<Button>(R.id.landing_helipad_button)
-        insertItemsLandingHelipad.setOnClickListener {
-            NewPcCarItemsDialogFragment().show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
+        root.findViewById<Button>(R.id.landing_helipad_button).setOnClickListener {
+            NewPcCarItemsDialogFragment.newInstance("landing_helipad").show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
         }
 
-        val saveAndExitButton = root.findViewById<ImageButton>(R.id.pcCar_image_button)
-        saveAndExitButton.setOnClickListener {
+        root.findViewById<ImageButton>(R.id.pcCar_image_button).setOnClickListener {
             dialog!!.cancel()
         }
 

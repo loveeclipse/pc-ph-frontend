@@ -2,9 +2,11 @@ package it.unibo.preh_frontend.dialog
 
 import android.Manifest
 import android.app.Dialog
+import android.content.Context
 import android.content.DialogInterface
 import android.location.Geocoder
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -20,10 +23,12 @@ import com.google.android.gms.location.LocationServices
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.utils.PermissionManager
 import java.io.IOException
-import java.util.Locale
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NewPcCarItemsDialogFragment : DialogFragment() {
     private lateinit var locationText: TextView
+    private lateinit var placeEditText: EditText
     private lateinit var replaceButton: Button
     private val reqSetting = LocationRequest.create().apply {
         fastestInterval = 1000
@@ -37,16 +42,31 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
         dialog!!.setCanceledOnTouchOutside(false)
 
         locationText = root.findViewById(R.id.location)
+        placeEditText = root.findViewById(R.id.place_edit_text)
         replaceButton = root.findViewById(R.id.replace_button)
 
         updateLocation()
 
         replaceButton.setOnClickListener {
-            root.findViewById<EditText>(R.id.place_edit_text).setText(locationText.text)
+            placeEditText.setText(locationText.text)
         }
 
         root.findViewById<ImageButton>(R.id.pccar_items_image_button).setOnClickListener {
-            dialog!!.cancel()
+            if(placeEditText.text.toString() != "") {
+                dialog!!.cancel()
+            } else {
+                AlertDialog.Builder(requireContext()).apply {
+                    setTitle("Uscire senza salvare?")
+                    setMessage("Inserimento incompleto")
+                    setCancelable(true)
+                    setPositiveButton("Si") { d, _ ->
+                        d.cancel()
+                        dialog!!.dismiss()
+                    }
+                    setNegativeButton("No") { d, _ -> d.cancel() }
+                    create()
+                }.show()
+            }
         }
         return root
     }
@@ -58,7 +78,14 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        // TODO save data, time and place in shared preferences
+        arguments?.getString("buttonPressed")?.let {
+            Log.d("PCCAR", "date: ${SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(Calendar.getInstance().time)}")
+            Log.d("PCCAR", "time: ${SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)}")
+            Log.d("PCCAR", "place: ${placeEditText.text}")
+            Log.d("PCCAR", "history name: $it")
+            // TODO save data, time and place in shared preferences
+            // TODO it contains the name that will be placed in the history
+        }
         super.onCancel(dialog)
     }
 
@@ -94,6 +121,14 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
                 }
             }
             fusedLocationClient?.requestLocationUpdates(reqSetting, locationUpdates, null)
+        }
+    }
+
+    companion object {
+        fun newInstance(buttonPressed: String) = NewPcCarItemsDialogFragment().apply {
+            arguments = Bundle().apply {
+                putString("buttonPressed", buttonPressed)
+            }
         }
     }
 }
