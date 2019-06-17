@@ -9,4 +9,4 @@ data class AnagraphicData(
         var gender: Int = -1,
         var anticoagulants: Boolean = false,
         var antiplatelets: Boolean = false
-) : PreHData("AnagraphicData")
+) : PreHData()

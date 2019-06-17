@@ -19,4 +19,4 @@ data class PatientStatusData(
         var cariterioAnatomico: Boolean = false,
         var criterioDinamico: Boolean = false,
         var shockIndex: Boolean = false
-) : PreHData("PatientStatusData")
+) : PreHData()
