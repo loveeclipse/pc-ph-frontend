@@ -37,8 +37,7 @@
             android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/textView"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal"/>
     <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -47,7 +46,7 @@
             android:layout_marginBottom="@dimen/verticalMargin"
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginEnd="@dimen/horizontalMargin"
-            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintStart_toEndOf="@id/guidelineVertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView1"
             app:layout_constraintBottom_toBottomOf="@id/textView1"/>
@@ -55,8 +54,14 @@
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/guideline"
+            android:id="@+id/guidelineVertical"
             app:layout_constraintGuide_percent="0.2"/>
+    <androidx.constraintlayout.widget.Guideline
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guidelineHorizontal"
+            app:layout_constraintGuide_percent="0.3"/>
     <TextView
             android:text="@string/acquisizione_posizione"
             android:layout_width="0dp"
