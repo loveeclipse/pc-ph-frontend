@@ -13,9 +13,6 @@ import it.unibo.preh_frontend.dialog.utils.DrugsValue.crystalloidValue
 import it.unibo.preh_frontend.dialog.utils.DrugsValue.succinylcholineValue
 import it.unibo.preh_frontend.dialog.utils.DrugsValue.fentanilValue
 import it.unibo.preh_frontend.dialog.utils.DrugsValue.ketamineValue
-import it.unibo.preh_frontend.dialog.utils.DrugsValue.millilitersUnit
-import it.unibo.preh_frontend.dialog.utils.DrugsValue.milligramsUnit
-import it.unibo.preh_frontend.dialog.utils.DrugsValue.microgramsUnit
 
 class DrugsFragment : Fragment() {
 
@@ -33,28 +30,28 @@ class DrugsFragment : Fragment() {
         insertCrystalloid.setOnClickListener {
             val dialog = InputDialogFragment()
             dialog.show(requireActivity().supportFragmentManager, inputDialogLayout)
-            dialog.setInput(crystalloidValue, millilitersUnit)
+            dialog.setInput(crystalloidValue, this.getString(R.string.milliliters))
         }
 
         val insertSuccinylcholine = root.findViewById<Button>(R.id.succinylcholine_button)
         insertSuccinylcholine.setOnClickListener {
             val dialog = InputDialogFragment()
             dialog.show(requireActivity().supportFragmentManager, inputDialogLayout)
-            dialog.setInput(succinylcholineValue, milligramsUnit)
+            dialog.setInput(succinylcholineValue, this.getString(R.string.milligrams))
         }
 
         val insertFentanil = root.findViewById<Button>(R.id.fentanil_button)
         insertFentanil.setOnClickListener {
             val dialog = InputDialogFragment()
             dialog.show(requireActivity().supportFragmentManager, inputDialogLayout)
-            dialog.setInput(fentanilValue, microgramsUnit)
+            dialog.setInput(fentanilValue, this.getString(R.string.micrograms))
         }
 
         val insertKetamine = root.findViewById<Button>(R.id.ketamine_button)
         insertKetamine.setOnClickListener {
             val dialog = InputDialogFragment()
             dialog.show(requireActivity().supportFragmentManager, inputDialogLayout)
-            dialog.setInput(ketamineValue, milligramsUnit)
+            dialog.setInput(ketamineValue, this.getString(R.string.milligrams))
         }
 
         // Inflate the layout for this fragment

@@ -5,8 +5,4 @@ object DrugsValue {
     const val succinylcholineValue = 100
     const val fentanilValue = 10
     const val ketamineValue = 100
-
-    const val millilitersUnit = "ml"
-    const val milligramsUnit = "mg"
-    const val microgramsUnit = "ug"
 }
