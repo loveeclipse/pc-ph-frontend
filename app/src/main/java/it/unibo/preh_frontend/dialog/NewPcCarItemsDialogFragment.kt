@@ -24,6 +24,7 @@ import java.util.Locale
 
 class NewPcCarItemsDialogFragment : DialogFragment() {
     private lateinit var locationText: TextView
+    private lateinit var replaceButton: Button
     private val reqSetting = LocationRequest.create().apply {
         fastestInterval = 1000
         interval = 1000
@@ -36,10 +37,11 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
         dialog!!.setCanceledOnTouchOutside(false)
 
         locationText = root.findViewById(R.id.location)
+        replaceButton = root.findViewById(R.id.replace_button)
 
         updateLocation()
 
-        root.findViewById<Button>(R.id.sovrascrivi_button).setOnClickListener {
+        replaceButton.setOnClickListener {
             root.findViewById<EditText>(R.id.place_edit_text).setText(locationText.text)
         }
 
@@ -82,6 +84,7 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
                                 if (addresses.isNotEmpty()) {
                                     requireActivity().runOnUiThread {
                                         locationText.text = addresses[0].getAddressLine(0)
+                                        replaceButton.isEnabled = true
                                     }
                                     fusedLocationClient?.removeLocationUpdates(locationUpdates)
                                 }

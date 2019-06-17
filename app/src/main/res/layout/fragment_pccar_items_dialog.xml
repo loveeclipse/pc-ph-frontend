@@ -70,14 +70,15 @@
             style="@style/NormalTextStyle"
             android:layout_marginStart="@dimen/horizontalMargin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/sovrascrivi_button"
-            app:layout_constraintTop_toTopOf="@id/sovrascrivi_button"
-            app:layout_constraintBottom_toBottomOf="@id/sovrascrivi_button"/>
+            app:layout_constraintEnd_toStartOf="@id/replace_button"
+            app:layout_constraintTop_toTopOf="@id/replace_button"
+            app:layout_constraintBottom_toBottomOf="@id/replace_button"/>
     <Button
             android:text="@string/sovrascrivi_indirizzo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/sovrascrivi_button"
+            android:id="@+id/replace_button"
+            android:enabled="false"
             android:layout_marginTop="@dimen/verticalMargin"
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginEnd="@dimen/horizontalMargin"
