@@ -9,7 +9,7 @@ import android.widget.ImageButton
 import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
 
-class IppvDialogFragment  : DialogFragment() {
+class IppvDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_ippv_dialog, container, false)
         dialog!!.setCanceledOnTouchOutside(false)
