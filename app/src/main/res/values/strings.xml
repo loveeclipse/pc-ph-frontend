@@ -52,6 +52,10 @@
     <string name="ambu">Ambu</string>
     <string name="mini_toracotomia">Mini Toracotomia</string>
     <string name="ippv">IPPV</string>
+    <string name="vt">VT</string>
+    <string name="fr">FR</string>
+    <string name="peep">PEEP</string>
+    <string name="frazione_inspiratoria_ossigeno">Frazione inspiratoria ossiggeno (FiO2)</string>
     <string name="circolo">Circolo</string>
     <string name="calibro">Calibro</string>
     <string name="tipologia">Tipologia</string>
@@ -193,4 +197,5 @@
     <string name="cancel_button">Annulla</string>
     <string name="acquisizione_posizione">Acquisizione posizione</string>
     <string name="sovrascrivi_indirizzo">Sovrascrivi indirizzo</string>
+
 </resources>
