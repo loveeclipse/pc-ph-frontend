@@ -79,6 +79,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/replace_button"
             android:enabled="false"
+            android:backgroundTint="@drawable/bg_button"
             android:layout_marginTop="@dimen/verticalMargin"
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginEnd="@dimen/horizontalMargin"
