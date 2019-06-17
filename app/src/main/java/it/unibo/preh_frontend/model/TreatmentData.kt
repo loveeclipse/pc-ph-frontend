@@ -7,4 +7,4 @@ data class TreatmentData(
         var tuboTrachealer: Boolean = false,
         var minitoracotomiaSx: Boolean = false,
         var minitoracotomiaDx: Boolean = false
-) : PreHData("TreatmentData")
+) : PreHData()

@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,16 +21,17 @@ import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import com.google.gson.typeadapters.RuntimeTypeAdapterFactory
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.model.AnagraphicData
-import it.unibo.preh_frontend.model.ComplicationsData
+import it.unibo.preh_frontend.model.HistoryAnagraphicData
+import it.unibo.preh_frontend.model.HistoryComplicationsData
 import it.unibo.preh_frontend.model.HistoryData
-import it.unibo.preh_frontend.model.ManeuverData
-import it.unibo.preh_frontend.model.PatientStatusData
+import it.unibo.preh_frontend.model.HistoryManeuverData
+import it.unibo.preh_frontend.model.HistoryPatientStatusData
+import it.unibo.preh_frontend.model.HistoryTreatmentData
+import it.unibo.preh_frontend.model.HistoryVitalParametersData
 import it.unibo.preh_frontend.model.PreHData
-import it.unibo.preh_frontend.model.TreatmentData
 import it.unibo.preh_frontend.model.VitalParametersData
+import it.unibo.preh_frontend.utils.RuntimeTypeAdapterFactory
 
 class VitalParametersDialogFragment : DialogFragment() {
     private lateinit var vieAeree: RadioGroup
@@ -56,6 +56,7 @@ class VitalParametersDialogFragment : DialogFragment() {
     private lateinit var savedState: VitalParametersData
     private lateinit var parentDialog: Dialog
 
+    private lateinit var saveState : VitalParametersData
     private lateinit var localHistoryList : ArrayList<HistoryData<PreHData>>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -69,15 +70,15 @@ class VitalParametersDialogFragment : DialogFragment() {
         val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {}.type
 
         val typeFactory = RuntimeTypeAdapterFactory
-                .of(PreHData::class.java, "type") // Here you specify which is the parent class and what field particularizes the child class.
-                .registerSubtype(AnagraphicData::class.java) // if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
-                .registerSubtype(ComplicationsData::class.java)
-                .registerSubtype(ManeuverData::class.java)
-                .registerSubtype(PatientStatusData::class.java)
-                .registerSubtype(TreatmentData::class.java)
-                .registerSubtype(VitalParametersData::class.java)
+                .of(HistoryData::class.java,"type")
+                .registerSubtype(HistoryAnagraphicData::class.java,"AnagraphicData")
+                .registerSubtype(HistoryComplicationsData::class.java,"ComplicationsData")
+                .registerSubtype(HistoryManeuverData::class.java,"ManeuverData")
+                .registerSubtype(HistoryPatientStatusData::class.java,"PatientStatusData")
+                .registerSubtype(HistoryTreatmentData::class.java,"TreatmentData")
+                .registerSubtype(HistoryVitalParametersData::class.java,"VitalParametersData")
 
-        val gson = GsonBuilder().registerTypeAdapterFactory(typeFactory).create()
+        val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeFactory).create()
 
         localHistoryList = gson.fromJson<ArrayList<HistoryData<PreHData>>>(sharedPreferences.getString("historyList", null), historyType)
 
@@ -231,8 +232,7 @@ class VitalParametersDialogFragment : DialogFragment() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        Thread(Runnable {
-            val saveState = VitalParametersData(vieAeree.checkedRadioButtonId,
+            saveState = VitalParametersData(vieAeree.checkedRadioButtonId,
                     freqRespiratoria.selectedItemPosition,
                     Integer.parseInt(saturazione.text.toString()),
                     Integer.parseInt(freqCaridaca.text.toString()),
@@ -252,17 +252,14 @@ class VitalParametersDialogFragment : DialogFragment() {
             val gson = Gson()
             val stateAsJson = gson.toJson(saveState)
             sharedPreferences.edit().putString("vitalParameters", stateAsJson).apply()
-            val historyData = HistoryData<PreHData>("Modificati Parametri Vitali",saveState,"13:00  15/06/2019")
+            val historyData: HistoryData<PreHData> = HistoryVitalParametersData("Modificati Parametri Vitali",saveState,"14:00  15/06/2019")
             localHistoryList.add(historyData)
             val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {
 
             }.type
             val historyListAsJson = gson.toJson(localHistoryList,historyType)
             sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
-
-
             super.onCancel(dialog)
-        }).start()
     }
 
     override fun onResume() {

@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,13 +17,13 @@ import it.unibo.preh_frontend.model.HistoryData
 import it.unibo.preh_frontend.model.PreHData
 import it.unibo.preh_frontend.utils.HistoryListAdapter
 import com.google.gson.GsonBuilder
-import com.google.gson.typeadapters.RuntimeTypeAdapterFactory
-import it.unibo.preh_frontend.model.AnagraphicData
-import it.unibo.preh_frontend.model.ComplicationsData
-import it.unibo.preh_frontend.model.ManeuverData
-import it.unibo.preh_frontend.model.PatientStatusData
-import it.unibo.preh_frontend.model.TreatmentData
-import it.unibo.preh_frontend.model.VitalParametersData
+import it.unibo.preh_frontend.model.HistoryAnagraphicData
+import it.unibo.preh_frontend.model.HistoryComplicationsData
+import it.unibo.preh_frontend.model.HistoryManeuverData
+import it.unibo.preh_frontend.model.HistoryPatientStatusData
+import it.unibo.preh_frontend.model.HistoryTreatmentData
+import it.unibo.preh_frontend.model.HistoryVitalParametersData
+import it.unibo.preh_frontend.utils.RuntimeTypeAdapterFactory
 
 
 class HistoryDialogFragment : DialogFragment() {
@@ -46,18 +45,19 @@ class HistoryDialogFragment : DialogFragment() {
         val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {}.type
 
         val typeFactory = RuntimeTypeAdapterFactory
-                .of(PreHData::class.java, "type") // Here you specify which is the parent class and what field particularizes the child class.
-                .registerSubtype(AnagraphicData::class.java) // if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
-                .registerSubtype(ComplicationsData::class.java)
-                .registerSubtype(ManeuverData::class.java)
-                .registerSubtype(PatientStatusData::class.java)
-                .registerSubtype(TreatmentData::class.java)
-                .registerSubtype(VitalParametersData::class.java)
+                .of(HistoryData::class.java,"type")
+                .registerSubtype(HistoryAnagraphicData::class.java,"AnagraphicData")
+                .registerSubtype(HistoryComplicationsData::class.java,"ComplicationsData")
+                .registerSubtype(HistoryManeuverData::class.java,"ManeuverData")
+                .registerSubtype(HistoryPatientStatusData::class.java,"PatientStatusData")
+                .registerSubtype(HistoryTreatmentData::class.java,"TreatmentData")
+                .registerSubtype(HistoryVitalParametersData::class.java,"VitalParametersData")
 
 
-        val gson = GsonBuilder().registerTypeAdapterFactory(typeFactory).create()
+        val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeFactory).create()
 
         val newList = gson.fromJson<ArrayList<HistoryData<PreHData>>>(sharedPreferences.getString("historyList", null), historyType)
+
         if (newList != null) {
             aList.addAll(newList)
         } else {

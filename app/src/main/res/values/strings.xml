@@ -124,6 +124,9 @@
     <string name="percent">%</string>
     <string name="atti_min">atti/min</string>
     <string name="degrees">°C</string>
+    <string name="milliliters">ml</string>
+    <string name="milligrams">mg</string>
+    <string name="micrograms">ug</string>
 
     <string name="stato_paziente">Stato Paziente</string>
     <string name="penetrante">Penetrante</string>
@@ -183,9 +186,11 @@
     <string name="anticoagulanti">Anticoagulanti</string>
     <string name="antipiastrine">Antipiastrine</string>
 
-    <string name="inserimento_luogo_e_orario">Inserimento luogo e orario</string>
+    <string name="inserimento_luogo_e_orario">Inserimento luogo</string>
     <string name="luogo">Luogo</string>
 
     <string name="dosaggio">Dosaggio</string>
     <string name="cancel_button">Annulla</string>
+    <string name="acquisizione_posizione">Acquisizione posizione</string>
+    <string name="sovrascrivi_indirizzo">Sovrascrivi indirizzo</string>
 </resources>

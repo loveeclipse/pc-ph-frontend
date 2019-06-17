@@ -8,4 +8,4 @@ data class ManeuverData(
         var sondaVescicale: Boolean = false,
         var freqCattura: String = "",
         var amperaggio: String = ""
-) : PreHData("ManeuverData")
+) : PreHData()

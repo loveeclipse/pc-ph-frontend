@@ -17,4 +17,4 @@ data class VitalParametersData(
         var fotoreagenteSx: Boolean,
         var fotoreagenteDx: Boolean,
         var temperature: Int
-) : PreHData("VitalParametersData")
+) : PreHData()
