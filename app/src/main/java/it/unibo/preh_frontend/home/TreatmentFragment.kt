@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.TreatmentData
+import it.unibo.preh_frontend.dialog.IppvDialogFragment
 
 class TreatmentFragment : Fragment() {
 
@@ -61,6 +62,10 @@ class TreatmentFragment : Fragment() {
         adapter = ArrayAdapter.createFromResource(requireContext(), R.array.sizeSpinnerItems, R.layout.spinner_layout)
         adapter.setDropDownViewResource(R.layout.dropdown_spinner_layout)
         intraosseousSpinner.adapter = adapter
+
+        root.findViewById<Button>(R.id.ippv_button).setOnClickListener {
+            IppvDialogFragment().show(requireActivity().supportFragmentManager, "layout/fragment_ippv_dialog.xml")
+        }
 
         sublussazioneButton = root.findViewById(R.id.sublussazione_button)
         guedelButton = root.findViewById(R.id.guedel_button)

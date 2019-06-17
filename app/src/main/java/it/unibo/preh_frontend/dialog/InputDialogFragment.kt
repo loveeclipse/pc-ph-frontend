@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
@@ -20,11 +19,6 @@ class InputDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.input_dialog, container, false)
         dialog!!.setCanceledOnTouchOutside(false)
-
-        val saveAndExitImage = root.findViewById<ImageButton>(R.id.input_dialog_image_button)
-        saveAndExitImage.setOnClickListener {
-            dialog!!.cancel()
-        }
 
         val saveAndExitButton = root.findViewById<Button>(R.id.cancel_button)
         saveAndExitButton.setOnClickListener {
