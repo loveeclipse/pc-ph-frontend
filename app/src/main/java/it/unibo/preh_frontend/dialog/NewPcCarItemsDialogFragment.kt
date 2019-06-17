@@ -75,16 +75,18 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
                 override fun onLocationResult(localResult: LocationResult) {
                     val locationUpdates = this
                     localResult.locations.last().apply {
-                        val geocoder = Geocoder(requireContext(), Locale.getDefault())
-                        try {
-                            val addresses = geocoder.getFromLocation(latitude, longitude, 1)
-                            if (addresses.isNotEmpty()) {
-                                requireActivity().runOnUiThread {
-                                    locationText.text = addresses[0].getAddressLine(0)
+                        context?.let {
+                            val geocoder = Geocoder(it, Locale.getDefault())
+                            try {
+                                val addresses = geocoder.getFromLocation(latitude, longitude, 1)
+                                if (addresses.isNotEmpty()) {
+                                    requireActivity().runOnUiThread {
+                                        locationText.text = addresses[0].getAddressLine(0)
+                                    }
+                                    fusedLocationClient?.removeLocationUpdates(locationUpdates)
                                 }
-                                fusedLocationClient?.removeLocationUpdates(locationUpdates)
-                            }
-                        } catch (ex: IOException) {}
+                            } catch (ex: IOException) {}
+                        }
                     }
                 }
             }
