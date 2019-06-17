@@ -80,6 +80,7 @@
             android:id="@+id/replace_button"
             android:enabled="false"
             android:backgroundTint="@drawable/bg_button"
+            android:textColor="@color/text_color"
             android:layout_marginTop="@dimen/verticalMargin"
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginEnd="@dimen/horizontalMargin"

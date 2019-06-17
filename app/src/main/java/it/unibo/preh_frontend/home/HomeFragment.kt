@@ -25,7 +25,6 @@ import it.unibo.preh_frontend.model.HistoryData
 import it.unibo.preh_frontend.model.PreHData
 import com.google.gson.reflect.TypeToken
 
-
 class HomeFragment : Fragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
@@ -46,9 +45,8 @@ class HomeFragment : Fragment() {
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         val gson = Gson()
         val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {
-
         }.type
-        val historyListAsJson = gson.toJson(ArrayList<HistoryData<PreHData>>(),historyType)
+        val historyListAsJson = gson.toJson(ArrayList<HistoryData<PreHData>>(), historyType)
 
         sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
 
