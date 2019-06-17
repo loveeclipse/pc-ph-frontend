@@ -9,4 +9,4 @@ data class ComplicationsData(
         var atterraggio: Boolean = false,
         var itinere: Boolean = false,
         var arrivoPs: Boolean = false
-) : PreHData("ComplicationsData")
+) : PreHData()

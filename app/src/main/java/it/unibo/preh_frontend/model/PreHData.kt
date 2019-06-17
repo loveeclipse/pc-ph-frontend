@@ -1,3 +1,3 @@
 package it.unibo.preh_frontend.model
 
-open class PreHData(var type: String)
+open class PreHData

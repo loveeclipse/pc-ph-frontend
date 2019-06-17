@@ -17,18 +17,19 @@ import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import com.google.gson.typeadapters.RuntimeTypeAdapterFactory
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.model.AnagraphicData
-import it.unibo.preh_frontend.model.ComplicationsData
+import it.unibo.preh_frontend.model.HistoryAnagraphicData
+import it.unibo.preh_frontend.model.HistoryComplicationsData
 import it.unibo.preh_frontend.model.HistoryData
-import it.unibo.preh_frontend.model.ManeuverData
+import it.unibo.preh_frontend.model.HistoryManeuverData
+import it.unibo.preh_frontend.model.HistoryPatientStatusData
+import it.unibo.preh_frontend.model.HistoryTreatmentData
+import it.unibo.preh_frontend.model.HistoryVitalParametersData
 import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.model.PreHData
-import it.unibo.preh_frontend.model.TreatmentData
-import it.unibo.preh_frontend.model.VitalParametersData
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
+import it.unibo.preh_frontend.utils.RuntimeTypeAdapterFactory
 
 class PatientStatusDialogFragment : DialogFragment() {
 
@@ -64,6 +65,7 @@ class PatientStatusDialogFragment : DialogFragment() {
         val root = inflater.inflate(R.layout.fragment_patient_status_dialog, container, false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+        Log.d("TEST",sharedPreferences.getString("historyList", null))
 
         parentDialog = dialog!!
         dialog!!.setCanceledOnTouchOutside(false)
@@ -71,19 +73,23 @@ class PatientStatusDialogFragment : DialogFragment() {
         val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {}.type
 
         val typeFactory = RuntimeTypeAdapterFactory
-                .of(PreHData::class.java, "type") // Here you specify which is the parent class and what field particularizes the child class.
-                .registerSubtype(AnagraphicData::class.java) // if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
-                .registerSubtype(ComplicationsData::class.java)
-                .registerSubtype(ManeuverData::class.java)
-                .registerSubtype(PatientStatusData::class.java)
-                .registerSubtype(TreatmentData::class.java)
-                .registerSubtype(VitalParametersData::class.java)
+                .of(HistoryData::class.java,"type")
+                .registerSubtype(HistoryAnagraphicData::class.java,"AnagraphicData")
+                .registerSubtype(HistoryComplicationsData::class.java,"ComplicationsData")
+                .registerSubtype(HistoryManeuverData::class.java,"ManeuverData")
+                .registerSubtype(HistoryPatientStatusData::class.java,"PatientStatusData")
+                .registerSubtype(HistoryTreatmentData::class.java,"TreatmentData")
+                .registerSubtype(HistoryVitalParametersData::class.java,"VitalParametersData")
 
-// add the polymorphic specialization
+        val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeFactory).create()
 
-        val gson = GsonBuilder().registerTypeAdapterFactory(typeFactory).create()
+        localHistoryList = gson.fromJson(sharedPreferences.getString("historyList", null), historyType)
 
-        localHistoryList = gson.fromJson<ArrayList<HistoryData<PreHData>>>(sharedPreferences.getString("historyList", null), historyType)
+
+
+        for (merda in localHistoryList){
+            Log.d("TEST",merda::class.java.name)
+        }
 
         chiusoButton = root.findViewById(R.id.chiuso_button)
         chiusoButton.setOnClickListener {
@@ -152,12 +158,13 @@ class PatientStatusDialogFragment : DialogFragment() {
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
         sharedPreferences.edit().putString("patientState", stateAsJson).apply()
 
-        val historyData = HistoryData<PreHData>("Modificato Stato Paziente",saveState,"13:00  15/06/2019")
+        val historyData: HistoryData<PreHData> = HistoryPatientStatusData("Modificato Stato Paziente",saveState,"13:00  15/06/2019")
         localHistoryList.add(historyData)
         val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {
-
         }.type
+
         val historyListAsJson = gson.toJson(localHistoryList,historyType)
+        Log.d("TEST", historyListAsJson)
         sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
         super.onCancel(dialog)
     }
