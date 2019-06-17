@@ -25,7 +25,6 @@ import it.unibo.preh_frontend.model.HistoryTreatmentData
 import it.unibo.preh_frontend.model.HistoryVitalParametersData
 import it.unibo.preh_frontend.utils.RuntimeTypeAdapterFactory
 
-
 class HistoryDialogFragment : DialogFragment() {
 
     private var aList: ArrayList<HistoryData<PreHData>> = ArrayList()
@@ -45,14 +44,13 @@ class HistoryDialogFragment : DialogFragment() {
         val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {}.type
 
         val typeFactory = RuntimeTypeAdapterFactory
-                .of(HistoryData::class.java,"type")
-                .registerSubtype(HistoryAnagraphicData::class.java,"AnagraphicData")
-                .registerSubtype(HistoryComplicationsData::class.java,"ComplicationsData")
-                .registerSubtype(HistoryManeuverData::class.java,"ManeuverData")
-                .registerSubtype(HistoryPatientStatusData::class.java,"PatientStatusData")
-                .registerSubtype(HistoryTreatmentData::class.java,"TreatmentData")
-                .registerSubtype(HistoryVitalParametersData::class.java,"VitalParametersData")
-
+                .of(HistoryData::class.java, "type")
+                .registerSubtype(HistoryAnagraphicData::class.java, "AnagraphicData")
+                .registerSubtype(HistoryComplicationsData::class.java, "ComplicationsData")
+                .registerSubtype(HistoryManeuverData::class.java, "ManeuverData")
+                .registerSubtype(HistoryPatientStatusData::class.java, "PatientStatusData")
+                .registerSubtype(HistoryTreatmentData::class.java, "TreatmentData")
+                .registerSubtype(HistoryVitalParametersData::class.java, "VitalParametersData")
 
         val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeFactory).create()
 
@@ -61,18 +59,16 @@ class HistoryDialogFragment : DialogFragment() {
         if (newList != null) {
             aList.addAll(newList)
         } else {
-
         }
 
-
         val storiaList = root.findViewById(R.id.history_list) as ListView
-        mAdapter = HistoryListAdapter(requireActivity(),aList)
+        mAdapter = HistoryListAdapter(requireActivity(), aList)
         storiaList.adapter = mAdapter
 
         storiaList.setOnItemClickListener { parent, view, position, id ->
                 val historyData = aList[position]
 
-                Snackbar.make(view, historyData.event+"\n"+historyData.eventTime, Snackbar.LENGTH_LONG)
+                Snackbar.make(view, historyData.event + "\n" + historyData.eventTime, Snackbar.LENGTH_LONG)
                         .setAction("No action", null).show()
         }
 

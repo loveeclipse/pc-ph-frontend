@@ -56,8 +56,8 @@ class VitalParametersDialogFragment : DialogFragment() {
     private lateinit var savedState: VitalParametersData
     private lateinit var parentDialog: Dialog
 
-    private lateinit var saveState : VitalParametersData
-    private lateinit var localHistoryList : ArrayList<HistoryData<PreHData>>
+    private lateinit var saveState: VitalParametersData
+    private lateinit var localHistoryList: ArrayList<HistoryData<PreHData>>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_vital_parameters, container, false)
@@ -70,13 +70,13 @@ class VitalParametersDialogFragment : DialogFragment() {
         val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {}.type
 
         val typeFactory = RuntimeTypeAdapterFactory
-                .of(HistoryData::class.java,"type")
-                .registerSubtype(HistoryAnagraphicData::class.java,"AnagraphicData")
-                .registerSubtype(HistoryComplicationsData::class.java,"ComplicationsData")
-                .registerSubtype(HistoryManeuverData::class.java,"ManeuverData")
-                .registerSubtype(HistoryPatientStatusData::class.java,"PatientStatusData")
-                .registerSubtype(HistoryTreatmentData::class.java,"TreatmentData")
-                .registerSubtype(HistoryVitalParametersData::class.java,"VitalParametersData")
+                .of(HistoryData::class.java, "type")
+                .registerSubtype(HistoryAnagraphicData::class.java, "AnagraphicData")
+                .registerSubtype(HistoryComplicationsData::class.java, "ComplicationsData")
+                .registerSubtype(HistoryManeuverData::class.java, "ManeuverData")
+                .registerSubtype(HistoryPatientStatusData::class.java, "PatientStatusData")
+                .registerSubtype(HistoryTreatmentData::class.java, "TreatmentData")
+                .registerSubtype(HistoryVitalParametersData::class.java, "VitalParametersData")
 
         val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeFactory).create()
 
@@ -252,12 +252,11 @@ class VitalParametersDialogFragment : DialogFragment() {
             val gson = Gson()
             val stateAsJson = gson.toJson(saveState)
             sharedPreferences.edit().putString("vitalParameters", stateAsJson).apply()
-            val historyData: HistoryData<PreHData> = HistoryVitalParametersData("Modificati Parametri Vitali",saveState,"14:00  15/06/2019")
+            val historyData: HistoryData<PreHData> = HistoryVitalParametersData("Modificati Parametri Vitali", saveState, "14:00  15/06/2019")
             localHistoryList.add(historyData)
             val historyType = object : TypeToken<ArrayList<HistoryData<PreHData>>>() {
-
             }.type
-            val historyListAsJson = gson.toJson(localHistoryList,historyType)
+            val historyListAsJson = gson.toJson(localHistoryList, historyType)
             sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
             super.onCancel(dialog)
     }
