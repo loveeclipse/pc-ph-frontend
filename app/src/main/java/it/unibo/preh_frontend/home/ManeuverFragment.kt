@@ -14,6 +14,7 @@ import com.google.gson.Gson
 
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.ManeuverData
+import it.unibo.preh_frontend.utils.HistoryManager
 import kotlinx.android.synthetic.main.fragment_maneuver.*
 
 class ManeuverFragment : Fragment() {
@@ -25,7 +26,6 @@ class ManeuverFragment : Fragment() {
     private lateinit var bladderProbeSwitch: Switch
     private lateinit var captureFrequencyEditText: EditText
     private lateinit var amperageEditText: EditText
-
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
@@ -58,6 +58,12 @@ class ManeuverFragment : Fragment() {
             applySharedPreferences(savedState)
         }
         super.onStart()
+    }
+
+    override fun onDestroy() {
+        val maneuverData = getData()
+        HistoryManager.addEntry(maneuverData, sharedPreferences)
+        super.onDestroy()
     }
 
     private fun applySharedPreferences(savedState: ManeuverData) {
