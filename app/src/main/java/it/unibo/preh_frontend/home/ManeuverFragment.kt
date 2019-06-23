@@ -36,19 +36,19 @@ class ManeuverFragment : Fragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
-        collareCervicaleSwitch = root.findViewById(R.id.cervicale_switch)
+        collareCervicaleSwitch = root.findViewById(R.id.cervical_collar_switch)
 
-        immobilizzazioneSwitch = root.findViewById(R.id.imm_switch)
+        immobilizzazioneSwitch = root.findViewById(R.id.immobilization_switch)
 
-        cardioversioneSwitch = root.findViewById(R.id.ces_switch)
+        cardioversioneSwitch = root.findViewById(R.id.electrical_cardioversion_switch)
 
-        sondaGastricaSwitch = root.findViewById(R.id.gastrica_switch)
+        sondaGastricaSwitch = root.findViewById(R.id.gastric_probe_switch)
 
-        sondaVescicaleSwitch = root.findViewById(R.id.vescicale_switch)
+        sondaVescicaleSwitch = root.findViewById(R.id.bladder_probe_switch)
 
-        frequenzaCatturaEditText = root.findViewById(R.id.freqcattura_edittext)
+        frequenzaCatturaEditText = root.findViewById(R.id.capture_frequency_edit_text)
 
-        amperaggioEditText = root.findViewById(R.id.amperaggio_edittext)
+        amperaggioEditText = root.findViewById(R.id.amperage_edit_text)
 
         return root
     }
