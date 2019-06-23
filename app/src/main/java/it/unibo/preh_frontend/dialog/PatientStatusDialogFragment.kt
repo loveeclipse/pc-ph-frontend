@@ -82,6 +82,10 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             }
         }
 
+        anatomicoButton.setOnClickListener{
+            AnatomicCriterionDialog().show(requireActivity().supportFragmentManager, "anatomic_criterion_fragment")
+        }
+
         setSharedPreferences()
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.patient_image_button)

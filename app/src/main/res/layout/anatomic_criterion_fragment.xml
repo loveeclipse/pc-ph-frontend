@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@android:drawable/ic_delete"
+            android:id="@+id/anatomic_image_button"
+            android:backgroundTint="@color/common_google_signin_btn_tint" android:layout_marginTop="10dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <Switch
+            android:text="Switch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/gcs_switch"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="40dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="40dp" android:layout_marginTop="120dp" app:layout_constraintTop_toTopOf="parent"/>
+    <Switch
+            android:text="Switch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/low_respfreq_switch"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="40dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="60dp"
+            app:layout_constraintTop_toBottomOf="@+id/gcs_switch"/>
+    <Switch
+            android:text="Switch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/high_respfreq_switch" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="40dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="40dp"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="60dp"
+            app:layout_constraintTop_toBottomOf="@+id/low_respfreq_switch"/>
+    <Switch
+            android:text="Switch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/low_bloodpres_switch" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="40dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="40dp"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="60dp"
+            app:layout_constraintTop_toBottomOf="@+id/ventilatorysupp_switch"/>
+    <Switch
+            android:text="Switch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/hypertension_switch" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="40dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="40dp"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="60dp"
+            app:layout_constraintTop_toBottomOf="@+id/low_bloodpres_switch"/>
+    <Switch
+            android:text="Switch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/ventilatorysupp_switch"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="40dp" android:layout_marginTop="60dp"
+            app:layout_constraintTop_toBottomOf="@+id/high_respfreq_switch"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
