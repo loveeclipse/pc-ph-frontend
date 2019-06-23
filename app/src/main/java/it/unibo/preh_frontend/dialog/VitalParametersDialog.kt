@@ -192,10 +192,10 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
     override fun onCancel(dialog: DialogInterface) {
             saveState = VitalParametersData(vieAeree.checkedRadioButtonId,
                     freqRespiratoria.selectedItemPosition,
-                    Integer.parseInt(saturazione.text.toString()),
-                    Integer.parseInt(freqCaridaca.text.toString()),
+                    saturazione.text.toString().toInt(),
+                    freqCaridaca.text.toString().toInt(),
                     tipoBattito.checkedRadioButtonId,
-                    Integer.parseInt(presArteriosa.text.toString()),
+                    presArteriosa.text.toString().toInt(),
                     tempRiempCapillare.checkedRadioButtonId,
                     colorCuteMucose.checkedRadioButtonId,
                     aperturaOcchi.selectedItemPosition,
@@ -205,7 +205,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
                     pupilleDx.checkedRadioButtonId,
                     fotoreagenteSx.isChecked,
                     fotoreagenteDx.isChecked,
-                    Integer.parseInt(tempCorporea.text.toString())
+                    tempCorporea.text.toString().toDouble()
             )
             val gson = Gson()
             val stateAsJson = gson.toJson(saveState)
