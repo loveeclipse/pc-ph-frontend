@@ -16,7 +16,6 @@ import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.ManeuverData
 import it.unibo.preh_frontend.utils.HistoryManager
-import kotlinx.android.synthetic.main.fragment_maneuver.*
 
 class ManeuverFragment : Fragment() {
 
@@ -28,7 +27,7 @@ class ManeuverFragment : Fragment() {
     private lateinit var captureFrequencyEditText: EditText
     private lateinit var amperageEditText: EditText
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var previusData: ManeuverData
+    private lateinit var previousData: ManeuverData
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,14 +57,14 @@ class ManeuverFragment : Fragment() {
         if (savedState != null) {
             applySharedPreferences(savedState)
         }
-        previusData = getData()
+        previousData = getData()
         super.onStart()
     }
 
     override fun onStop() {
         super.onStop()
         val maneuverData = getData()
-        if (maneuverData != previusData) {
+        if (maneuverData != previousData) {
             HistoryManager.addEntry(maneuverData, sharedPreferences)
         }
     }
