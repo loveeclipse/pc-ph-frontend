@@ -26,7 +26,8 @@ import it.unibo.preh_frontend.model.TreatmentData
 import it.unibo.preh_frontend.model.VitalParametersData
 import it.unibo.preh_frontend.utils.RuntimeTypeAdapterFactory
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
+import java.util.Calendar
 import kotlin.collections.ArrayList
 
 class InputDialogFragment : DialogFragment() {
@@ -81,10 +82,10 @@ class InputDialogFragment : DialogFragment() {
         Thread(Runnable {
             val gson = Gson()
             val newSaveState = gson.fromJson(sharedPreferences.getString("drugs", null), DrugsData::class.java)
-            println("status ------------------------ ${newSaveState}" )
+            println("status ------------------------ $newSaveState")
             if (newSaveState != null) {
                 this.activity!!.runOnUiThread {
-                    println("status ------------------------ ${newSaveState.drugsValue}" )
+                    println("status ------------------------ ${newSaveState.drugsValue}")
                 }
                 saveState = newSaveState
             }
@@ -94,12 +95,12 @@ class InputDialogFragment : DialogFragment() {
     override fun onCancel(dialog: DialogInterface) {
         saveState = DrugsData(Integer.parseInt(
                 inputValueEditText.text.toString()),
-                "Somministrato farmaco ${arguments?.get(drugName).toString()}",
-                time = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
-                        + "      "
-                        + SimpleDateFormat("d/MM/yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
+                "Somministrato farmaco ${arguments?.get(drugName)}",
+                time = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time) +
+                        "      " +
+                        SimpleDateFormat("d/MM/yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
         )
-        println("second value --------------------------- ${saveState}")
+        println("second value --------------------------- $saveState")
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState, DrugsData::class.java)
         sharedPreferences.edit().putString("drugs", stateAsJson).apply()

@@ -45,14 +45,14 @@ open class HistoryPatientStatusDialog : DialogFragment() {
 
         val exitButton = root.findViewById<ImageButton>(R.id.patient_image_button)
         exitButton.setOnClickListener {
-            //Here you can save eventual modifications to the history element
+            // Here you can save eventual modifications to the history element
             dialog!!.cancel()
         }
 
         return root
     }
 
-    protected open fun getComponents(root: View){
+    protected open fun getComponents(root: View) {
         root.apply {
             emorragiaButton = findViewById(R.id.emorragia_esterna_switch)
             vieAereeSwitch = findViewById(R.id.vie_aeree_switch)
@@ -86,7 +86,7 @@ open class HistoryPatientStatusDialog : DialogFragment() {
         dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
-    protected open fun setData(data: PatientStatusData){
+    protected open fun setData(data: PatientStatusData) {
         if (data.traumaChiuso) {
             ButtonAppearance.activateButton(chiusoButton, resources)
         }
@@ -96,7 +96,7 @@ open class HistoryPatientStatusDialog : DialogFragment() {
 
         cascoCinturaSwitch.isChecked = data.cascoCintura
 
-        //TODO Add the other data
+        // TODO Add the other data
     }
 
     companion object {

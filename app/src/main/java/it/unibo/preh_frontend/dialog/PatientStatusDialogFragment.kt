@@ -31,7 +31,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var saveState: PatientStatusData
     private lateinit var localHistoryList: ArrayList<PreHData>
-    private lateinit var  parentDialog: Dialog
+    private lateinit var parentDialog: Dialog
 
     private var traumaIsClosed: Boolean = false
     private var traumaIsPiercing: Boolean = false
