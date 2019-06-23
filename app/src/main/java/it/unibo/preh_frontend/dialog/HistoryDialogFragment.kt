@@ -19,6 +19,7 @@ import it.unibo.preh_frontend.utils.HistoryListAdapter
 import com.google.gson.GsonBuilder
 import it.unibo.preh_frontend.model.HistoryAnagraphicData
 import it.unibo.preh_frontend.model.HistoryComplicationsData
+import it.unibo.preh_frontend.model.HistoryDrugsData
 import it.unibo.preh_frontend.model.HistoryManeuverData
 import it.unibo.preh_frontend.model.HistoryPatientStatusData
 import it.unibo.preh_frontend.model.HistoryTreatmentData
@@ -51,6 +52,7 @@ class HistoryDialogFragment : DialogFragment() {
                 .registerSubtype(HistoryPatientStatusData::class.java, "PatientStatusData")
                 .registerSubtype(HistoryTreatmentData::class.java, "TreatmentData")
                 .registerSubtype(HistoryVitalParametersData::class.java, "VitalParametersData")
+                .registerSubtype(HistoryDrugsData::class.java, "DrugsData")
 
         val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeFactory).create()
 

@@ -42,3 +42,9 @@ internal class HistoryVitalParametersData<VitalParametersData>(
     eventData: VitalParametersData,
     eventTime: String
 ) : HistoryData<VitalParametersData>("VitalParametersData", event, eventData, eventTime)
+
+internal class HistoryDrugsData<DrugsData>(
+    event: String,
+    eventData: DrugsData,
+    eventTime: String
+) : HistoryData<DrugsData>("DrugsData", event, eventData, eventTime)

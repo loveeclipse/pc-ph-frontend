@@ -2,7 +2,6 @@ package it.unibo.preh_frontend.dialog
 
 import android.Manifest
 import android.app.Dialog
-import android.content.Context
 import android.content.DialogInterface
 import android.location.Geocoder
 import android.os.Bundle
@@ -24,7 +23,8 @@ import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.utils.PermissionManager
 import java.io.IOException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
+import java.util.Calendar
 
 class NewPcCarItemsDialogFragment : DialogFragment() {
     private lateinit var locationText: TextView
@@ -52,7 +52,7 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
         }
 
         root.findViewById<ImageButton>(R.id.pccar_items_image_button).setOnClickListener {
-            if(placeEditText.text.toString() != "") {
+            if (placeEditText.text.toString() != "") {
                 dialog!!.cancel()
             } else {
                 AlertDialog.Builder(requireContext()).apply {
