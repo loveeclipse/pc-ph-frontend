@@ -19,6 +19,7 @@ import com.google.gson.reflect.TypeToken
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.AnagraphicData
 import it.unibo.preh_frontend.model.ComplicationsData
+import it.unibo.preh_frontend.model.DrugsData
 import it.unibo.preh_frontend.model.ManeuverData
 import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.model.PreHData
@@ -79,6 +80,7 @@ class PatientStatusDialogFragment : DialogFragment() {
                 .registerSubtype(PatientStatusData::class.java, "PatientStatusData")
                 .registerSubtype(TreatmentData::class.java, "TreatmentData")
                 .registerSubtype(VitalParametersData::class.java, "VitalParametersData")
+                .registerSubtype(DrugsData::class.java, "DrugsData")
 
         val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeFactory).create()
 
