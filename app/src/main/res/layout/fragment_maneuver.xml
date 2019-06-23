@@ -20,7 +20,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:id="@+id/amperaggio_edittext"
+                android:id="@+id/amperage_edit_text"
                 android:layout_marginEnd="@dimen/horizontalMargin"
                 app:layout_constraintTop_toTopOf="@+id/textView19"
                 app:layout_constraintBottom_toBottomOf="@+id/textView19"
@@ -40,23 +40,23 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView19"
                 app:layout_constraintTop_toBottomOf="@+id/textView18"
-                app:layout_constraintBottom_toTopOf="@id/button2"
+                app:layout_constraintBottom_toTopOf="@id/pacing_button"
                 app:layout_constraintStart_toEndOf="@id/guideline39"/>
         <TextView
                 android:text="@string/bpm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView20"
-                app:layout_constraintTop_toTopOf="@id/freqcattura_edittext"
-                app:layout_constraintBottom_toBottomOf="@id/freqcattura_edittext"
+                app:layout_constraintTop_toTopOf="@id/capture_frequency_edit_text"
+                app:layout_constraintBottom_toBottomOf="@id/capture_frequency_edit_text"
                 app:layout_constraintStart_toEndOf="@id/guideline42"/>
         <TextView
                 android:text="@string/ma"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView21"
-                app:layout_constraintTop_toTopOf="@+id/amperaggio_edittext"
-                app:layout_constraintBottom_toBottomOf="@id/amperaggio_edittext"
+                app:layout_constraintTop_toTopOf="@+id/amperage_edit_text"
+                app:layout_constraintBottom_toBottomOf="@id/amperage_edit_text"
                 app:layout_constraintStart_toEndOf="@id/guideline42"/>
         <Button
                 android:text="@string/conferma_pacing_transcutaneo"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="@dimen/buttonVerticalPadding"
                 android:paddingHorizontal="@dimen/buttonHorizontalPadding"
-                android:id="@+id/button2"
+                android:id="@+id/pacing_button"
                 app:layout_constraintWidth_percent="0.65"
                 app:layout_constraintTop_toBottomOf="@id/textView19"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -74,7 +74,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:id="@+id/freqcattura_edittext"
+                android:id="@+id/capture_frequency_edit_text"
                 android:layout_marginEnd="@dimen/horizontalMargin"
                 app:layout_constraintTop_toTopOf="@id/textView18"
                 app:layout_constraintBottom_toBottomOf="@id/textView18"
@@ -109,47 +109,47 @@
                 android:text="@string/sonda_vescicale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/vescicale_switch"
+                android:id="@+id/bladder_probe_switch"
                 android:theme="@style/AppSwitchStyle"
                 android:textAppearance="@style/NormalTextStyle"
-                app:layout_constraintTop_toBottomOf="@+id/gastrica_switch"
+                app:layout_constraintTop_toBottomOf="@+id/gastric_probe_switch"
                 app:layout_constraintBottom_toBottomOf="parent"/>
         <Switch
                 android:text="@string/sonda_gastrica"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/gastrica_switch"
+                android:id="@+id/gastric_probe_switch"
                 android:theme="@style/AppSwitchStyle"
                 android:textAppearance="@style/NormalTextStyle"
-                app:layout_constraintTop_toBottomOf="@+id/ces_switch"
-                app:layout_constraintBottom_toTopOf="@+id/vescicale_switch"/>
+                app:layout_constraintTop_toBottomOf="@+id/electrical_cardioversion_switch"
+                app:layout_constraintBottom_toTopOf="@+id/bladder_probe_switch"/>
         <Switch
                 android:text="@string/cardioversione_elettrica_sincronizzata"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/ces_switch"
+                android:id="@+id/electrical_cardioversion_switch"
                 android:theme="@style/AppSwitchStyle"
                 android:textAppearance="@style/NormalTextStyle"
-                app:layout_constraintTop_toBottomOf="@+id/imm_switch"
-                app:layout_constraintBottom_toTopOf="@+id/gastrica_switch"/>
+                app:layout_constraintTop_toBottomOf="@+id/immobilization_switch"
+                app:layout_constraintBottom_toTopOf="@+id/gastric_probe_switch"/>
         <Switch
                 android:text="@string/immobilizzazione"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/imm_switch"
+                android:id="@+id/immobilization_switch"
                 android:theme="@style/AppSwitchStyle"
                 android:textAppearance="@style/NormalTextStyle"
-                app:layout_constraintTop_toBottomOf="@+id/cervicale_switch"
-                app:layout_constraintBottom_toTopOf="@+id/ces_switch"/>
+                app:layout_constraintTop_toBottomOf="@+id/cervical_collar_switch"
+                app:layout_constraintBottom_toTopOf="@+id/electrical_cardioversion_switch"/>
         <Switch
                 android:text="@string/collare_cervicale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/cervicale_switch"
+                android:id="@+id/cervical_collar_switch"
                 android:theme="@style/AppSwitchStyle"
                 android:textAppearance="@style/NormalTextStyle"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/imm_switch"/>
+                app:layout_constraintBottom_toTopOf="@id/immobilization_switch"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
             android:text="@string/pacing_transcutaneo"

@@ -11,9 +11,11 @@ import android.widget.ImageButton
 import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
 import android.widget.ListView
+import it.unibo.preh_frontend.dialog.history.HistoryNewPcCarDialog
 import it.unibo.preh_frontend.utils.HistoryListAdapter
 import it.unibo.preh_frontend.dialog.history.HistoryPatientStatusDialog
 import it.unibo.preh_frontend.dialog.history.HistoryVitalParametersDialog
+import it.unibo.preh_frontend.model.NewPcCarData
 import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.model.PreHData
 import it.unibo.preh_frontend.model.VitalParametersData
@@ -37,20 +39,24 @@ class HistoryDialogFragment : DialogFragment() {
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
         aList = HistoryManager.getEntryList(sharedPreferences)
-        val storiaList = root.findViewById(R.id.history_list) as ListView
+        val historyList = root.findViewById(R.id.history_list) as ListView
         mAdapter = HistoryListAdapter(requireActivity(), aList)
-        storiaList.adapter = mAdapter
+        historyList.adapter = mAdapter
 
-        storiaList.setOnItemClickListener { _, _, position, _ ->
+        historyList.setOnItemClickListener { _, _, position, _ ->
             val historyData = aList[position]
             when (historyData.type) {
                 "VitalParametersData" -> {
-                    val fragment = HistoryVitalParametersDialog.newInstance(historyData as VitalParametersData)
-                    fragment.show(requireActivity().supportFragmentManager, "history_vital_parameters_fragment")
+                    HistoryVitalParametersDialog.newInstance(historyData as VitalParametersData)
+                            .show(requireActivity().supportFragmentManager, "history_vital_parameters_fragment")
                 }
                 "PatientStatusData" -> {
-                    val fragment = HistoryPatientStatusDialog.newInstance(historyData as PatientStatusData)
-                    fragment.show(requireActivity().supportFragmentManager, "history_patient_status_fragment")
+                    HistoryPatientStatusDialog.newInstance(historyData as PatientStatusData)
+                            .show(requireActivity().supportFragmentManager, "history_patient_status_fragment")
+                }
+                "NewPcCarData" -> {
+                    HistoryNewPcCarDialog.newInstance(historyData as NewPcCarData)
+                            .show(requireActivity().supportFragmentManager, "history_newpccar_fragment")
                 }
             }
         }

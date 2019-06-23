@@ -2,6 +2,7 @@ package it.unibo.preh_frontend.utils
 
 import android.app.Activity
 import android.content.Context
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +19,9 @@ class HistoryListAdapter(private var activity: Activity, private var items: Arra
         var eventDataButton: ImageView? = null
         init {
             eventName = row?.findViewById(R.id.history_action)
+            eventName?.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17F)
             eventDate = row?.findViewById(R.id.hour_and_date)
+            eventDate?.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12F)
             eventDataButton = row?.findViewById(R.id.history_item_info)
         }
     }

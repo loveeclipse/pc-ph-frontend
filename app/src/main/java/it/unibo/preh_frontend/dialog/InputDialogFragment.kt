@@ -40,7 +40,7 @@ class InputDialogFragment : DialogFragment() {
         }
 
         root.findViewById<Button>(R.id.cancel_button).setOnClickListener {
-            dialog!!.cancel()
+            dialog!!.dismiss()
         }
 
         return root
