@@ -2,10 +2,10 @@ package it.unibo.preh_frontend.dialog
 
 import android.Manifest
 import android.app.Dialog
+import android.content.Context
 import android.content.DialogInterface
 import android.location.Geocoder
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,12 +19,13 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.utils.PermissionManager
+import it.unibo.preh_frontend.model.NewPcCarData
+import it.unibo.preh_frontend.utils.HistoryManager
 import java.io.IOException
-import java.text.SimpleDateFormat
 import java.util.Locale
-import java.util.Calendar
 
 class NewPcCarItemsDialogFragment : DialogFragment() {
     private lateinit var locationText: TextView
@@ -78,13 +79,11 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        arguments?.getString("buttonPressed")?.let {
-            Log.d("PCCAR", "date: ${SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(Calendar.getInstance().time)}")
-            Log.d("PCCAR", "time: ${SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)}")
-            Log.d("PCCAR", "place: ${placeEditText.text}")
-            Log.d("PCCAR", "history name: $it")
-            // TODO save data, time and place in shared preferences
-            // TODO it contains the name that will be placed in the history
+        arguments?.getString("historyName")?.let {
+            val newPcCarData = NewPcCarData(it, placeEditText.text.toString())
+            val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+            sharedPreferences.edit().putString(it, Gson().toJson(newPcCarData)).apply()
+            HistoryManager.addVoice(newPcCarData, sharedPreferences)
         }
         super.onCancel(dialog)
     }
@@ -125,9 +124,9 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
     }
 
     companion object {
-        fun newInstance(buttonPressed: String) = NewPcCarItemsDialogFragment().apply {
+        fun newInstance(historyName: String) = NewPcCarItemsDialogFragment().apply {
             arguments = Bundle().apply {
-                putString("buttonPressed", buttonPressed)
+                putString("historyName", historyName)
             }
         }
     }
