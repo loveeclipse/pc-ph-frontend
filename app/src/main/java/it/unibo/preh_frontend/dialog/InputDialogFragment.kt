@@ -13,18 +13,10 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.model.AnagraphicData
-import it.unibo.preh_frontend.model.ComplicationsData
 import it.unibo.preh_frontend.model.DrugsData
-import it.unibo.preh_frontend.model.ManeuverData
-import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.model.PreHData
-import it.unibo.preh_frontend.model.TreatmentData
-import it.unibo.preh_frontend.model.VitalParametersData
-import it.unibo.preh_frontend.utils.RuntimeTypeAdapterFactory
+import it.unibo.preh_frontend.utils.HistoryManager
 import kotlin.collections.ArrayList
 
 class InputDialogFragment : DialogFragment() {
@@ -39,22 +31,6 @@ class InputDialogFragment : DialogFragment() {
         val root = inflater.inflate(R.layout.input_dialog, container, false)
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         dialog!!.setCanceledOnTouchOutside(false)
-
-        val historyType = object : TypeToken<ArrayList<PreHData>>() {}.type
-
-        val typeFactory = RuntimeTypeAdapterFactory
-                .of(PreHData::class.java, "type")
-                .registerSubtype(AnagraphicData::class.java, "AnagraphicData")
-                .registerSubtype(ComplicationsData::class.java, "ComplicationsData")
-                .registerSubtype(ManeuverData::class.java, "ManeuverData")
-                .registerSubtype(PatientStatusData::class.java, "PatientStatusData")
-                .registerSubtype(TreatmentData::class.java, "TreatmentData")
-                .registerSubtype(VitalParametersData::class.java, "VitalParametersData")
-                .registerSubtype(DrugsData::class.java, "DrugsData")
-
-        val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeFactory).create()
-
-        localHistoryList = gson.fromJson<ArrayList<PreHData>>(sharedPreferences.getString("historyList", null), historyType)
 
         inputValueEditText = root.findViewById(R.id.input_edit_text)
         inputValueEditText.setText(arguments?.get(value).toString())
@@ -94,17 +70,10 @@ class InputDialogFragment : DialogFragment() {
                 inputValueEditText.text.toString()),
                 "Somministrato farmaco ${arguments?.get(drugName)}"
         )
-        println("second value --------------------------- $saveState")
-        val gson = Gson()
-        val stateAsJson = gson.toJson(saveState, DrugsData::class.java)
+        val stateAsJson = Gson().toJson(saveState, DrugsData::class.java)
         sharedPreferences.edit().putString("drugs", stateAsJson).apply()
 
-        localHistoryList.add(saveState)
-        val historyType = object : TypeToken<ArrayList<PreHData>>() {
-        }.type
-
-        val historyListAsJson = gson.toJson(localHistoryList, historyType)
-        sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
+        HistoryManager.addVoice(saveState, sharedPreferences)
         super.onCancel(dialog)
     }
 
