@@ -15,9 +15,7 @@ import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.DrugsData
-import it.unibo.preh_frontend.model.PreHData
 import it.unibo.preh_frontend.utils.HistoryManager
-import kotlin.collections.ArrayList
 
 class InputDialogFragment : DialogFragment() {
 
