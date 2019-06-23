@@ -37,11 +37,11 @@ class HistoryDialogFragment : DialogFragment() {
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
         aList = HistoryManager.getEntryList(sharedPreferences)
-        val storiaList = root.findViewById(R.id.history_list) as ListView
+        val historyList = root.findViewById(R.id.history_list) as ListView
         mAdapter = HistoryListAdapter(requireActivity(), aList)
-        storiaList.adapter = mAdapter
+        historyList.adapter = mAdapter
 
-        storiaList.setOnItemClickListener { _, _, position, _ ->
+        historyList.setOnItemClickListener { _, _, position, _ ->
             val historyData = aList[position]
             when (historyData.type) {
                 "VitalParametersData" -> {
