@@ -20,7 +20,7 @@ import it.unibo.preh_frontend.dialog.HistoryDialogFragment
 import it.unibo.preh_frontend.dialog.MissionDialogFragment
 import it.unibo.preh_frontend.dialog.NewPcCarDialogFragment
 import it.unibo.preh_frontend.dialog.NoteDialogFragment
-import it.unibo.preh_frontend.dialog.VitalParametersDialogFragment
+import it.unibo.preh_frontend.dialog.VitalParametersDialog
 import it.unibo.preh_frontend.model.PreHData
 import com.google.gson.reflect.TypeToken
 
@@ -76,7 +76,7 @@ class HomeFragment : Fragment() {
         }
         val vitalParameterButton = root.findViewById<Button>(R.id.param_vitali_button)
         vitalParameterButton.setOnClickListener {
-            VitalParametersDialogFragment().show(requireActivity().supportFragmentManager, "vital_parameters_fragment")
+            VitalParametersDialog().show(requireActivity().supportFragmentManager, "vital_parameters_fragment")
         }
 
         val manager = fragmentManager

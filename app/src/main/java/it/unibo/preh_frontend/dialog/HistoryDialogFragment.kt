@@ -14,7 +14,8 @@ import android.widget.ListView
 import com.google.gson.reflect.TypeToken
 import it.unibo.preh_frontend.utils.HistoryListAdapter
 import com.google.gson.GsonBuilder
-import it.unibo.preh_frontend.dialog.history.HistoryVitalParametersDialogFragment
+import it.unibo.preh_frontend.dialog.history.HistoryPatientStatusDialog
+import it.unibo.preh_frontend.dialog.history.HistoryVitalParametersDialog
 import it.unibo.preh_frontend.model.AnagraphicData
 import it.unibo.preh_frontend.model.ComplicationsData
 import it.unibo.preh_frontend.model.DrugsData
@@ -64,8 +65,12 @@ class HistoryDialogFragment : DialogFragment() {
             val historyData = aList[position]
             when(historyData.type){
                 "VitalParametersData" -> {
-                    val fragment = HistoryVitalParametersDialogFragment.newInstance(historyData as VitalParametersData)
+                    val fragment = HistoryVitalParametersDialog.newInstance(historyData as VitalParametersData)
                     fragment.show(requireActivity().supportFragmentManager, "history_vital_parameters_fragment")
+                }
+                "PatientStatusData" -> {
+                    val fragment = HistoryPatientStatusDialog.newInstance(historyData as PatientStatusData)
+                    fragment.show(requireActivity().supportFragmentManager, "history_patient_status_fragment")
                 }
             }
 

@@ -16,7 +16,7 @@ import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.VitalParametersData
 
-open class HistoryVitalParametersDialogFragment : DialogFragment() {
+open class HistoryVitalParametersDialog : DialogFragment() {
     protected lateinit var vieAeree: RadioGroup
     protected lateinit var freqRespiratoria: Spinner
     protected lateinit var saturazione: EditText
@@ -146,7 +146,7 @@ open class HistoryVitalParametersDialogFragment : DialogFragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance(data: VitalParametersData) = HistoryVitalParametersDialogFragment().apply {
+        fun newInstance(data: VitalParametersData) = HistoryVitalParametersDialog().apply {
             arguments = Bundle().apply {
                 putSerializable("data", data)
             }

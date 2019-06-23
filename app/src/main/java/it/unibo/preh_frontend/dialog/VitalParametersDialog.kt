@@ -10,19 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.RadioGroup
-import android.widget.Spinner
-import android.widget.Switch
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.dialog.history.HistoryVitalParametersDialogFragment
+import it.unibo.preh_frontend.dialog.history.HistoryVitalParametersDialog
 import it.unibo.preh_frontend.model.AnagraphicData
 import it.unibo.preh_frontend.model.ComplicationsData
 import it.unibo.preh_frontend.model.DrugsData
@@ -33,8 +27,7 @@ import it.unibo.preh_frontend.model.TreatmentData
 import it.unibo.preh_frontend.model.VitalParametersData
 import it.unibo.preh_frontend.utils.RuntimeTypeAdapterFactory
 
-class VitalParametersDialogFragment : HistoryVitalParametersDialogFragment(){
-
+class VitalParametersDialog : HistoryVitalParametersDialog(){
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var savedState: VitalParametersData
     private lateinit var parentDialog: Dialog

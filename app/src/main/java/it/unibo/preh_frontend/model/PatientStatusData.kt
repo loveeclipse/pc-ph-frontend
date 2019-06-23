@@ -1,5 +1,7 @@
 package it.unibo.preh_frontend.model
 
+import java.io.Serializable
+
 data class PatientStatusData(
     var traumaChiuso: Boolean = false,
     var traumaPenetrante: Boolean = false,
@@ -22,4 +24,4 @@ data class PatientStatusData(
 
     var event: String = "Modificato Stato Paziente",
     var time: String
-) : PreHData("PatientStatusData",event,time)
+) : PreHData("PatientStatusData",event,time),Serializable
