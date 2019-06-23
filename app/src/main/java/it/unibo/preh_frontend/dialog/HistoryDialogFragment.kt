@@ -14,6 +14,7 @@ import android.widget.ListView
 import com.google.gson.reflect.TypeToken
 import it.unibo.preh_frontend.utils.HistoryListAdapter
 import com.google.gson.GsonBuilder
+import it.unibo.preh_frontend.dialog.history.HistoryVitalParametersDialogFragment
 import it.unibo.preh_frontend.model.AnagraphicData
 import it.unibo.preh_frontend.model.ComplicationsData
 import it.unibo.preh_frontend.model.ManeuverData
@@ -58,7 +59,9 @@ class HistoryDialogFragment : DialogFragment() {
         storiaList.adapter = mAdapter
 
         storiaList.setOnItemClickListener { parent, view, position, id ->
-            val historyData = aList[position]
+            val historyData = aList[position] as VitalParametersData
+            val fragment = HistoryVitalParametersDialogFragment.newInstance(historyData)
+            fragment.show(requireActivity().supportFragmentManager, "history_vital_parameters_fragment")
         }
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.history_image_button)

@@ -22,6 +22,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import it.unibo.preh_frontend.R
+import it.unibo.preh_frontend.dialog.history.HistoryVitalParametersDialogFragment
 import it.unibo.preh_frontend.model.AnagraphicData
 import it.unibo.preh_frontend.model.ComplicationsData
 import it.unibo.preh_frontend.model.ManeuverData
@@ -31,24 +32,7 @@ import it.unibo.preh_frontend.model.TreatmentData
 import it.unibo.preh_frontend.model.VitalParametersData
 import it.unibo.preh_frontend.utils.RuntimeTypeAdapterFactory
 
-class VitalParametersDialogFragment : DialogFragment() {
-    private lateinit var vieAeree: RadioGroup
-    private lateinit var freqRespiratoria: Spinner
-    private lateinit var saturazione: EditText
-    private lateinit var freqCaridaca: EditText
-    private lateinit var tipoBattito: RadioGroup
-    private lateinit var presArteriosa: EditText
-    private lateinit var tempRiempCapillare: RadioGroup
-    private lateinit var colorCuteMucose: RadioGroup
-    private lateinit var aperturaOcchi: Spinner
-    private lateinit var rispostaVerbale: Spinner
-    private lateinit var rispostaMotoria: Spinner
-    private lateinit var pupilleSx: RadioGroup
-    private lateinit var pupilleDx: RadioGroup
-    private lateinit var fotoreagenteSx: Switch
-    private lateinit var fotoreagenteDx: Switch
-    private lateinit var tempCorporea: EditText
-    private lateinit var gcsTextView: TextView
+class VitalParametersDialogFragment : HistoryVitalParametersDialogFragment(){
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var savedState: VitalParametersData
@@ -118,29 +102,7 @@ class VitalParametersDialogFragment : DialogFragment() {
         return root
     }
 
-    private fun getComponents(root: View) {
-        root.apply {
-            vieAeree = findViewById(R.id.vieaeree_radiogroup)
-            freqRespiratoria = findViewById(R.id.freq_resp_spinner)
-            saturazione = findViewById(R.id.saturazione_edittext)
-            freqCaridaca = findViewById(R.id.freq_cardiaca_edittext)
-            tipoBattito = findViewById(R.id.tipo_battito_radiogroup)
-            presArteriosa = findViewById(R.id.pres_arter_edittext)
-            tempRiempCapillare = findViewById(R.id.riempimento_capillare_radiogroup)
-            colorCuteMucose = findViewById(R.id.cute_mucose_radiogroup)
-            aperturaOcchi = findViewById(R.id.apertura_occhi_spinner)
-            rispostaVerbale = findViewById(R.id.risposta_verbale_spinner)
-            rispostaMotoria = findViewById(R.id.risposta_motoria_spinner)
-            pupilleSx = findViewById(R.id.pupilleSx_radiogroup)
-            pupilleDx = findViewById(R.id.pupilleDx_radiogroup)
-            fotoreagenteSx = findViewById(R.id.fotoreagenteSx_switch)
-            fotoreagenteDx = findViewById(R.id.fotoreagenteDx_switch)
-            tempCorporea = findViewById(R.id.temp_corporea_edittext)
-            gcsTextView = findViewById(R.id.gcs_textview)
-        }
-    }
-
-    private fun initSpinner() {
+    override fun initSpinner() {
         var newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.respiratoryFrequencyItems, R.layout.spinner_layout)
         newAdapter.setDropDownViewResource(R.layout.spinner_layout)
         freqRespiratoria.apply {
@@ -272,7 +234,7 @@ class VitalParametersDialogFragment : DialogFragment() {
         }
     }
 
-    private fun calculateGCS(): Int {
+    override fun calculateGCS(): Int {
         return 4 - aperturaOcchi.selectedItemPosition +
                 5 - rispostaMotoria.selectedItemPosition +
                 6 - rispostaVerbale.selectedItemPosition

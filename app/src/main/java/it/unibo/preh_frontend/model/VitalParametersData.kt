@@ -1,4 +1,5 @@
 package it.unibo.preh_frontend.model
+import java.io.Serializable
 
 data class VitalParametersData(
     var vieAeree: Int,
@@ -20,4 +21,4 @@ data class VitalParametersData(
 
     var event: String = "Inseriti Parametri Vitali",
     var time: String
-) : PreHData("VitalParametersData",event,time)
+) : PreHData("VitalParametersData",event,time),Serializable
