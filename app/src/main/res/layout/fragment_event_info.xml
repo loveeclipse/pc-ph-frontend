@@ -5,7 +5,7 @@
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
                                                    style="@style/BackgroundFragmentStyle"
-                                                   tools:context=".home.EventInfoFragment"
+                                                   tools:context=".dialog.EventInfoDialogFragment"
                                                    android:id="@+id/frameLayout7">
     <TextView
             android:text="@string/codice_invio"

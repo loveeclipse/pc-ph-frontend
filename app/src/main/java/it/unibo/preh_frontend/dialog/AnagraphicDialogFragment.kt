@@ -1,4 +1,4 @@
-package it.unibo.preh_frontend.home
+package it.unibo.preh_frontend.dialog
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -15,7 +15,7 @@ import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.AnagraphicData
 
-class AnagraficFragment : Fragment() {
+class AnagraphicDialogFragment : Fragment() {
 
     private lateinit var nameEditText: EditText
     private lateinit var surnameEditText: EditText

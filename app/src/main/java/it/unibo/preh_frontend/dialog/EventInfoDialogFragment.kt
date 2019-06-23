@@ -1,4 +1,4 @@
-package it.unibo.preh_frontend.home
+package it.unibo.preh_frontend.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import it.unibo.preh_frontend.R
-class EventInfoFragment : Fragment() {
+class EventInfoDialogFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

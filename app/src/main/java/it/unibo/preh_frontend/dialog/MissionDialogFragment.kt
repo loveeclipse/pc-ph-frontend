@@ -15,15 +15,13 @@ import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.home.AnagraficFragment
-import it.unibo.preh_frontend.home.EventInfoFragment
 import it.unibo.preh_frontend.model.AnagraphicData
 
 class MissionDialogFragment : DialogFragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var parentDialog: Dialog
-    private lateinit var anagraficFragment: AnagraficFragment
+    private lateinit var anagraphicDialogFragment: AnagraphicDialogFragment
     private lateinit var localAnagraphicData: AnagraphicData
 
     override fun onCreateView(
@@ -39,8 +37,8 @@ class MissionDialogFragment : DialogFragment() {
 
         val manager = childFragmentManager
         val transaction = manager.beginTransaction()
-        anagraficFragment = AnagraficFragment()
-        transaction.replace(R.id.mission_tabFrame, anagraficFragment)
+        anagraphicDialogFragment = AnagraphicDialogFragment()
+        transaction.replace(R.id.mission_tabFrame, anagraphicDialogFragment)
         transaction.commit()
 
         val exitAndSaveButton = root.findViewById<ImageButton>(R.id.mission_image_button)
@@ -61,16 +59,16 @@ class MissionDialogFragment : DialogFragment() {
                 val newFragment: Fragment
                 when (missionTabs.selectedTabPosition) {
                     0 -> {
-                        newFragment = AnagraficFragment()
-                        anagraficFragment = newFragment
+                        newFragment = AnagraphicDialogFragment()
+                        anagraphicDialogFragment = newFragment
                     }
                     1 -> {
-                        newFragment = EventInfoFragment()
+                        newFragment = EventInfoDialogFragment()
                         saveSharedPreferencesSnapshot()
                     }
                     else -> {
-                        newFragment = AnagraficFragment()
-                        anagraficFragment = newFragment
+                        newFragment = AnagraphicDialogFragment()
+                        anagraphicDialogFragment = newFragment
                     }
                 }
                 val newTransaction = manager.beginTransaction()
@@ -84,7 +82,7 @@ class MissionDialogFragment : DialogFragment() {
 
     override fun onCancel(dialog: DialogInterface) {
         Thread(Runnable {
-            val saveState = anagraficFragment.getAnagraphicData()
+            val saveState = anagraphicDialogFragment.getAnagraphicData()
             val gson = Gson()
             val anagraphicAsJson = gson.toJson(saveState)
             sharedPreferences.edit().putString("anagraphicData", anagraphicAsJson).apply()
@@ -94,7 +92,7 @@ class MissionDialogFragment : DialogFragment() {
 
     private fun saveSharedPreferencesSnapshot() {
         Thread(Runnable {
-            val saveState = anagraficFragment.getAnagraphicData()
+            val saveState = anagraphicDialogFragment.getAnagraphicData()
             val gson = Gson()
             val anagraphicAsJson = gson.toJson(saveState)
             sharedPreferences.edit().putString("anagraphicDataSnapshot", anagraphicAsJson).apply()
