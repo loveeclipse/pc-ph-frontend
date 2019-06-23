@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Switch
 import androidx.fragment.app.Fragment
@@ -13,16 +14,17 @@ import com.google.gson.Gson
 
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.ManeuverData
+import kotlinx.android.synthetic.main.fragment_maneuver.*
 
 class ManeuverFragment : Fragment() {
 
-    private lateinit var collareCervicaleSwitch: Switch
-    private lateinit var immobilizzazioneSwitch: Switch
-    private lateinit var cardioversioneSwitch: Switch
-    private lateinit var sondaGastricaSwitch: Switch
-    private lateinit var sondaVescicaleSwitch: Switch
-    private lateinit var frequenzaCatturaEditText: EditText
-    private lateinit var amperaggioEditText: EditText
+    private lateinit var cervicalCollarSwitch: Switch
+    private lateinit var immobilizationSwitch: Switch
+    private lateinit var electricalCardioversionSwitch: Switch
+    private lateinit var gastricProbeSwitch: Switch
+    private lateinit var bladderProbeSwitch: Switch
+    private lateinit var captureFrequencyEditText: EditText
+    private lateinit var amperageEditText: EditText
 
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -36,20 +38,16 @@ class ManeuverFragment : Fragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
-        collareCervicaleSwitch = root.findViewById(R.id.cervical_collar_switch)
+        cervicalCollarSwitch = root.findViewById(R.id.cervical_collar_switch)
+        immobilizationSwitch = root.findViewById(R.id.immobilization_switch)
+        electricalCardioversionSwitch = root.findViewById(R.id.electrical_cardioversion_switch)
+        gastricProbeSwitch = root.findViewById(R.id.gastric_probe_switch)
+        bladderProbeSwitch = root.findViewById(R.id.bladder_probe_switch)
+        captureFrequencyEditText = root.findViewById(R.id.capture_frequency_edit_text)
+        amperageEditText = root.findViewById(R.id.amperage_edit_text)
+        root.findViewById<Button>(R.id.pacing_button).setOnClickListener {
 
-        immobilizzazioneSwitch = root.findViewById(R.id.immobilization_switch)
-
-        cardioversioneSwitch = root.findViewById(R.id.electrical_cardioversion_switch)
-
-        sondaGastricaSwitch = root.findViewById(R.id.gastric_probe_switch)
-
-        sondaVescicaleSwitch = root.findViewById(R.id.bladder_probe_switch)
-
-        frequenzaCatturaEditText = root.findViewById(R.id.capture_frequency_edit_text)
-
-        amperaggioEditText = root.findViewById(R.id.amperage_edit_text)
-
+        }
         return root
     }
 
@@ -63,24 +61,24 @@ class ManeuverFragment : Fragment() {
     }
 
     private fun applySharedPreferences(savedState: ManeuverData) {
-        collareCervicaleSwitch.isChecked = savedState.collare
-        immobilizzazioneSwitch.isChecked = savedState.immobilizzazione
-        cardioversioneSwitch.isChecked = savedState.cardioversione
-        sondaGastricaSwitch.isChecked = savedState.sondaGastrica
-        sondaVescicaleSwitch.isChecked = savedState.sondaVescicale
+        cervicalCollarSwitch.isChecked = savedState.cervicalCollar
+        immobilizationSwitch.isChecked = savedState.immobilization
+        electricalCardioversionSwitch.isChecked = savedState.electricalCardioversion
+        gastricProbeSwitch.isChecked = savedState.gastricProbe
+        bladderProbeSwitch.isChecked = savedState.bladderProbe
 
-        frequenzaCatturaEditText.setText(savedState.freqCattura)
-        amperaggioEditText.setText(savedState.amperaggio)
+        captureFrequencyEditText.setText(savedState.captureFrequency)
+        amperageEditText.setText(savedState.amperage)
     }
 
     fun getData(): ManeuverData {
         return ManeuverData(
-                collareCervicaleSwitch.isChecked,
-                immobilizzazioneSwitch.isChecked,
-                cardioversioneSwitch.isChecked,
-                sondaGastricaSwitch.isChecked,
-                sondaVescicaleSwitch.isChecked,
-                frequenzaCatturaEditText.text.toString(),
-                amperaggioEditText.text.toString())
+                cervicalCollarSwitch.isChecked,
+                immobilizationSwitch.isChecked,
+                electricalCardioversionSwitch.isChecked,
+                gastricProbeSwitch.isChecked,
+                bladderProbeSwitch.isChecked,
+                captureFrequencyEditText.text.toString(),
+                amperageEditText.text.toString())
     }
 }
