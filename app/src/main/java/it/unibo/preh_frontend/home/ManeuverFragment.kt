@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -27,6 +28,7 @@ class ManeuverFragment : Fragment() {
     private lateinit var captureFrequencyEditText: EditText
     private lateinit var amperageEditText: EditText
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var previusData: ManeuverData
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,13 +58,21 @@ class ManeuverFragment : Fragment() {
         if (savedState != null) {
             applySharedPreferences(savedState)
         }
+        previusData = getData()
         super.onStart()
     }
 
-    override fun onDestroy() {
+    override fun onStop() {
+        super.onStop()
         val maneuverData = getData()
-        HistoryManager.addEntry(maneuverData, sharedPreferences)
-        super.onDestroy()
+        if (maneuverData != previusData) {
+            HistoryManager.addEntry(maneuverData, sharedPreferences)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        item.isChecked
+        return super.onOptionsItemSelected(item)
     }
 
     private fun applySharedPreferences(savedState: ManeuverData) {
