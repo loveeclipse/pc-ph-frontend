@@ -26,32 +26,24 @@ class DrugsFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_drugs, container, false)
 
-        val insertCrystalloid = root.findViewById<Button>(R.id.crystalloid_button)
-        insertCrystalloid.setOnClickListener {
-            val dialog = InputDialogFragment()
-            dialog.show(requireActivity().supportFragmentManager, inputDialogLayout)
-            dialog.setInput(crystalloidValue, this.getString(R.string.milliliters))
+        root.findViewById<Button>(R.id.crystalloid_button).setOnClickListener {
+            InputDialogFragment.newInstance("crystalloid", crystalloidValue,
+                    this.getString(R.string.milliliters)).show(requireActivity().supportFragmentManager, inputDialogLayout)
         }
 
-        val insertSuccinylcholine = root.findViewById<Button>(R.id.succinylcholine_button)
-        insertSuccinylcholine.setOnClickListener {
-            val dialog = InputDialogFragment()
-            dialog.show(requireActivity().supportFragmentManager, inputDialogLayout)
-            dialog.setInput(succinylcholineValue, this.getString(R.string.milligrams))
+        root.findViewById<Button>(R.id.succinylcholine_button).setOnClickListener {
+            InputDialogFragment.newInstance("succinylcholine", succinylcholineValue,
+                    this.getString(R.string.milligrams)).show(requireActivity().supportFragmentManager, inputDialogLayout)
         }
 
-        val insertFentanil = root.findViewById<Button>(R.id.fentanil_button)
-        insertFentanil.setOnClickListener {
-            val dialog = InputDialogFragment()
-            dialog.show(requireActivity().supportFragmentManager, inputDialogLayout)
-            dialog.setInput(fentanilValue, this.getString(R.string.micrograms))
+        root.findViewById<Button>(R.id.fentanil_button).setOnClickListener {
+            InputDialogFragment.newInstance("fentanil", fentanilValue,
+                    this.getString(R.string.micrograms)).show(requireActivity().supportFragmentManager, inputDialogLayout)
         }
 
-        val insertKetamine = root.findViewById<Button>(R.id.ketamine_button)
-        insertKetamine.setOnClickListener {
-            val dialog = InputDialogFragment()
-            dialog.show(requireActivity().supportFragmentManager, inputDialogLayout)
-            dialog.setInput(ketamineValue, this.getString(R.string.milligrams))
+        root.findViewById<Button>(R.id.ketamine_button).setOnClickListener {
+            InputDialogFragment.newInstance("ketamine", ketamineValue,
+                    this.getString(R.string.milligrams)).show(requireActivity().supportFragmentManager, inputDialogLayout)
         }
 
         // Inflate the layout for this fragment

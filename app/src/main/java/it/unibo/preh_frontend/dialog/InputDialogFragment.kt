@@ -13,27 +13,24 @@ import it.unibo.preh_frontend.R
 
 class InputDialogFragment : DialogFragment() {
 
-    private var inputValue = 0
-    private var unitOfMeasurement = ""
     private lateinit var inputValueEditText: EditText
+    private lateinit var unitUnitEditText: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.input_dialog, container, false)
         dialog!!.setCanceledOnTouchOutside(false)
 
         inputValueEditText = root.findViewById(R.id.input_edit_text)
-        inputValueEditText.setText(inputValue.toString())
+        inputValueEditText.setText(arguments?.get(value).toString())
 
-        val unitUnitEditText = root.findViewById<TextView>(R.id.unit_of_measurement)
-        unitUnitEditText.text = unitOfMeasurement
+        unitUnitEditText = root.findViewById(R.id.unit_of_measurement)
+        unitUnitEditText.text = arguments?.get(unitOfMeasurement).toString()
 
-        val saveAndExitButton = root.findViewById<Button>(R.id.confirm_button)
-        saveAndExitButton.setOnClickListener {
+        root.findViewById<Button>(R.id.confirm_button).setOnClickListener {
             dialog!!.cancel()
         }
 
-        val cancelAndExitButton = root.findViewById<Button>(R.id.cancel_button)
-        cancelAndExitButton.setOnClickListener {
+        root.findViewById<Button>(R.id.cancel_button).setOnClickListener {
             dialog!!.cancel()
         }
 
@@ -53,8 +50,17 @@ class InputDialogFragment : DialogFragment() {
         }
     }
 
-    fun setInput(value: Int, unit: String) {
-        inputValue = value
-        unitOfMeasurement = unit
+    companion object {
+        private const val drugName = "nameButtonPressed"
+        private const val value = "inputValue"
+        private const val unitOfMeasurement = "unitOfMeasurement"
+        fun newInstance(nameButtonPressed: String, inputValue: Int, unitOfMeasurementValue: String) =
+                InputDialogFragment().apply {
+            arguments = Bundle().apply {
+                putString(drugName, nameButtonPressed)
+                putInt(value, inputValue)
+                putString(unitOfMeasurement, unitOfMeasurementValue)
+            }
+        }
     }
 }

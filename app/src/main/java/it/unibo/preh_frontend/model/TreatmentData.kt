@@ -10,4 +10,4 @@ data class TreatmentData(
 
     var event: String = "Effettuati Trattamenti",
     var time: String
-) : PreHData("TreatmentData",event,time)
+) : PreHData("TreatmentData", event, time)

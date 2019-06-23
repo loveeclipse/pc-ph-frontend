@@ -28,6 +28,7 @@ import it.unibo.preh_frontend.model.VitalParametersData
 import it.unibo.preh_frontend.utils.RuntimeTypeAdapterFactory
 
 class VitalParametersDialog : HistoryVitalParametersDialog(){
+
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var savedState: VitalParametersData
     private lateinit var parentDialog: Dialog

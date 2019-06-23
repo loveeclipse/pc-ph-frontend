@@ -63,7 +63,7 @@ class HistoryDialogFragment : DialogFragment() {
 
         storiaList.setOnItemClickListener { _, _, position, _ ->
             val historyData = aList[position]
-            when(historyData.type){
+            when (historyData.type) {
                 "VitalParametersData" -> {
                     val fragment = HistoryVitalParametersDialog.newInstance(historyData as VitalParametersData)
                     fragment.show(requireActivity().supportFragmentManager, "history_vital_parameters_fragment")
@@ -73,7 +73,6 @@ class HistoryDialogFragment : DialogFragment() {
                     fragment.show(requireActivity().supportFragmentManager, "history_patient_status_fragment")
                 }
             }
-
         }
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.history_image_button)
