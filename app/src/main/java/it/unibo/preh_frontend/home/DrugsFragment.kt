@@ -9,10 +9,10 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.dialog.InputDialogFragment
-import it.unibo.preh_frontend.dialog.utils.DrugsValue.crystalloidValue
-import it.unibo.preh_frontend.dialog.utils.DrugsValue.succinylcholineValue
-import it.unibo.preh_frontend.dialog.utils.DrugsValue.fentanilValue
-import it.unibo.preh_frontend.dialog.utils.DrugsValue.ketamineValue
+import it.unibo.preh_frontend.dialog.utils.DrugsDefaultValue.crystalloidValue
+import it.unibo.preh_frontend.dialog.utils.DrugsDefaultValue.succinylcholineValue
+import it.unibo.preh_frontend.dialog.utils.DrugsDefaultValue.fentanilValue
+import it.unibo.preh_frontend.dialog.utils.DrugsDefaultValue.ketamineValue
 
 class DrugsFragment : Fragment() {
 
@@ -27,7 +27,7 @@ class DrugsFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_drugs, container, false)
 
         root.findViewById<Button>(R.id.crystalloid_button).setOnClickListener {
-            InputDialogFragment.newInstance("crystalloid", crystalloidValue,
+            InputDialogFragment.newInstance("cristalloidi", crystalloidValue,
                     this.getString(R.string.milliliters)).show(requireActivity().supportFragmentManager, inputDialogLayout)
         }
 
