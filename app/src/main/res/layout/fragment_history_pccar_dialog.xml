@@ -34,22 +34,11 @@
             android:id="@+id/textView1"
             style="@style/NormalTextStyle"
             android:layout_marginStart="@dimen/horizontalMargin"
+            android:layout_marginTop="@dimen/verticalMargin"
             android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal"/>
-    <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:id="@+id/place_edit_text"
-            android:layout_marginBottom="@dimen/verticalMargin"
-            android:layout_marginStart="@dimen/horizontalMargin"
-            android:layout_marginEnd="@dimen/horizontalMargin"
-            app:layout_constraintStart_toEndOf="@id/guidelineVertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView1"
-            app:layout_constraintBottom_toBottomOf="@id/textView1"/>
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"/>
     <androidx.constraintlayout.widget.Guideline
             android:orientation="vertical"
             android:layout_width="wrap_content"
@@ -63,28 +52,57 @@
             android:id="@+id/guidelineHorizontal"
             app:layout_constraintGuide_percent="0.3"/>
     <TextView
-            android:text="@string/acquisizione_posizione"
+            android:text="@string/ora"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/location"
+            android:id="@+id/textView2"
             style="@style/NormalTextStyle"
             android:layout_marginStart="@dimen/horizontalMargin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/replace_button"
-            app:layout_constraintTop_toTopOf="@id/replace_button"
-            app:layout_constraintBottom_toBottomOf="@id/replace_button"/>
-    <Button
-            android:text="@string/sovrascrivi_indirizzo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/replace_button"
-            android:enabled="false"
-            android:backgroundTint="@drawable/bg_button"
-            android:textColor="@color/text_color"
             android:layout_marginTop="@dimen/verticalMargin"
-            android:layout_marginStart="@dimen/horizontalMargin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/textView1"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:id="@+id/place"
+            style="@style/NormalTextStyle"
             android:layout_marginEnd="@dimen/horizontalMargin"
-            app:layout_constraintStart_toEndOf="@id/location"
+            app:layout_constraintStart_toEndOf="@id/guidelineVertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/place_edit_text"/>
+            app:layout_constraintTop_toTopOf="@+id/textView1"
+            app:layout_constraintBottom_toBottomOf="@+id/textView1"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:id="@+id/time"
+            style="@style/NormalTextStyle"
+            android:layout_marginEnd="@dimen/horizontalMargin"
+            app:layout_constraintStart_toEndOf="@id/guidelineVertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView2"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"/>
+    <TextView
+            android:text="@string/tipo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            style="@style/NormalTextStyle"
+            android:layout_marginStart="@dimen/horizontalMargin"
+            android:layout_marginBottom="@dimen/verticalMargin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal"/>
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/type"
+            style="@style/NormalTextStyle"
+            android:layout_marginEnd="@dimen/horizontalMargin"
+            app:layout_constraintStart_toEndOf="@id/guidelineVertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView3"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
