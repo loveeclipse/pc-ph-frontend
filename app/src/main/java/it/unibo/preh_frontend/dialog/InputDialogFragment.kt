@@ -24,7 +24,6 @@ class InputDialogFragment : DialogFragment() {
     private lateinit var inputValueEditText: EditText
     private lateinit var unitUnitEditText: TextView
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var localHistoryList: ArrayList<PreHData>
     private lateinit var saveState: DrugsData
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -38,8 +37,6 @@ class InputDialogFragment : DialogFragment() {
         unitUnitEditText = root.findViewById(R.id.unit_of_measurement)
         unitUnitEditText.text = arguments?.get(unitOfMeasurement).toString()
 
-        setSharedPreferences()
-
         root.findViewById<Button>(R.id.confirm_button).setOnClickListener {
             dialog!!.cancel()
         }
@@ -51,24 +48,10 @@ class InputDialogFragment : DialogFragment() {
         return root
     }
 
-    private fun setSharedPreferences() {
-        Thread(Runnable {
-            val gson = Gson()
-            val newSaveState = gson.fromJson(sharedPreferences.getString("drugs", null), DrugsData::class.java)
-            println("status ------------------------ $newSaveState")
-            if (newSaveState != null) {
-                this.activity!!.runOnUiThread {
-                    println("status ------------------------ ${newSaveState.drugsValue}")
-                }
-                saveState = newSaveState
-            }
-        }).start()
-    }
-
     override fun onCancel(dialog: DialogInterface) {
         saveState = DrugsData(Integer.parseInt(
                 inputValueEditText.text.toString()),
-                "Somministrato farmaco ${arguments?.get(drugName)}"
+                "Somministrazione ${arguments?.get(drugName)}"
         )
         val stateAsJson = Gson().toJson(saveState, DrugsData::class.java)
         sharedPreferences.edit().putString("drugs", stateAsJson).apply()
