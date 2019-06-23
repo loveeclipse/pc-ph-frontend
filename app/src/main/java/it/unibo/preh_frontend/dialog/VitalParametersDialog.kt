@@ -182,7 +182,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState)
         sharedPreferences.edit().putString("vitalParameters", stateAsJson).apply()
-        HistoryManager.addVoice(saveState, sharedPreferences)
+        HistoryManager.addEntry(saveState, sharedPreferences)
         super.onCancel(dialog)
     }
 

@@ -56,7 +56,7 @@ class InputDialogFragment : DialogFragment() {
         val stateAsJson = Gson().toJson(saveState, DrugsData::class.java)
         sharedPreferences.edit().putString("drugs", stateAsJson).apply()
 
-        HistoryManager.addVoice(saveState, sharedPreferences)
+        HistoryManager.addEntry(saveState, sharedPreferences)
         super.onCancel(dialog)
     }
 

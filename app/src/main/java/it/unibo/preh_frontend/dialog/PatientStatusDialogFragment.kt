@@ -74,7 +74,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
         sharedPreferences.edit().putString("patientState", stateAsJson).apply()
 
-        HistoryManager.addVoice(saveState, sharedPreferences)
+        HistoryManager.addEntry(saveState, sharedPreferences)
         super.onCancel(dialog)
     }
 

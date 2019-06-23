@@ -36,7 +36,7 @@ class HistoryDialogFragment : DialogFragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
-        aList = HistoryManager.getHistoryList(sharedPreferences)
+        aList = HistoryManager.getEntryList(sharedPreferences)
         val storiaList = root.findViewById(R.id.history_list) as ListView
         mAdapter = HistoryListAdapter(requireActivity(), aList)
         storiaList.adapter = mAdapter
