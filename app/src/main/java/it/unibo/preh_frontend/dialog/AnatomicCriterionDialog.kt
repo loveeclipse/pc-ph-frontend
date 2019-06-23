@@ -13,9 +13,8 @@ import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.AnatomicCriterionData
-import it.unibo.preh_frontend.model.PhysiologicCriterionData
 
-class AnatomicCriterionDialog: DialogFragment() {
+class AnatomicCriterionDialog : DialogFragment() {
     private lateinit var traumaTorsoCrushSwitch: Switch
     private lateinit var penetratingWoundSwitch: Switch
     private lateinit var craniumFractureSwitch: Switch
@@ -45,7 +44,7 @@ class AnatomicCriterionDialog: DialogFragment() {
         return root
     }
 
-    private fun getComponents(root: View){
+    private fun getComponents(root: View) {
         root.apply {
             traumaTorsoCrushSwitch = findViewById(R.id.trauma_tronco_switch)
             penetratingWoundSwitch = findViewById(R.id.ferita_penetramte_switch)
@@ -61,7 +60,7 @@ class AnatomicCriterionDialog: DialogFragment() {
     private fun setSharedPreferences() {
         val gson = Gson()
         val savedState = gson.fromJson(sharedPreferences.getString("anatomicCriteria", null), AnatomicCriterionData::class.java)
-        if(savedState != null) {
+        if (savedState != null) {
             traumaTorsoCrushSwitch.isChecked = savedState.traumaTorsoCrush
             penetratingWoundSwitch.isChecked = savedState.penetratingWound
             craniumFractureSwitch.isChecked = savedState.craniumFracture
@@ -74,13 +73,12 @@ class AnatomicCriterionDialog: DialogFragment() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        val criteria = AnatomicCriterionData(traumaTorsoCrushSwitch.isChecked, penetratingWoundSwitch.isChecked, craniumFractureSwitch.isChecked, thoraxDeformitySwitch.isChecked, bodyBurnSwitch.isChecked, unstablePelvisSwitch.isChecked,vertebralLesionSwitch.isChecked,amputationSwitch.isChecked)
+        val criteria = AnatomicCriterionData(traumaTorsoCrushSwitch.isChecked, penetratingWoundSwitch.isChecked, craniumFractureSwitch.isChecked, thoraxDeformitySwitch.isChecked, bodyBurnSwitch.isChecked, unstablePelvisSwitch.isChecked, vertebralLesionSwitch.isChecked, amputationSwitch.isChecked)
         val gson = Gson()
         val criteriaAsJson = gson.toJson(criteria, AnatomicCriterionData::class.java)
         sharedPreferences.edit().putString("anatomicCriteria", criteriaAsJson).apply()
         super.onCancel(dialog)
     }
-
 
     override fun onResume() {
         super.onResume()

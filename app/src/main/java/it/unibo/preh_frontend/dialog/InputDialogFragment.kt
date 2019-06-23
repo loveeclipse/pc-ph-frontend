@@ -3,7 +3,6 @@ package it.unibo.preh_frontend.dialog
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,12 +20,9 @@ class InputDialogFragment : DialogFragment() {
 
     private lateinit var inputValueEditText: EditText
     private lateinit var unitUnitEditText: TextView
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var saveState: DrugsData
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.input_dialog, container, false)
-        sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         dialog!!.setCanceledOnTouchOutside(false)
 
         inputValueEditText = root.findViewById(R.id.input_edit_text)
@@ -47,14 +43,13 @@ class InputDialogFragment : DialogFragment() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        saveState = DrugsData(Integer.parseInt(
+        val drugsData = DrugsData(Integer.parseInt(
                 inputValueEditText.text.toString()),
                 "Somministrazione ${arguments?.get(drugName)}"
         )
-        val stateAsJson = Gson().toJson(saveState, DrugsData::class.java)
-        sharedPreferences.edit().putString("drugs", stateAsJson).apply()
-
-        HistoryManager.addEntry(saveState, sharedPreferences)
+        val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+        sharedPreferences.edit().putString("drugs", Gson().toJson(drugsData)).apply()
+        HistoryManager.addEntry(drugsData, sharedPreferences)
         super.onCancel(dialog)
     }
 

@@ -32,7 +32,6 @@ class PhysiologicCriterionDialog : DialogFragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
-
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.physiologic_image_button)
         saveAndExitButton.setOnClickListener {
             dialog!!.cancel()
@@ -40,11 +39,10 @@ class PhysiologicCriterionDialog : DialogFragment() {
 
         setSharedPreferences()
 
-
         return root
     }
 
-    private fun getComponents(root: View){
+    private fun getComponents(root: View) {
         root.apply {
             GCSValueSwitch = findViewById(R.id.gcs_switch)
             lowRespFrequencySwitch = findViewById(R.id.low_respfreq_switch)
@@ -56,7 +54,7 @@ class PhysiologicCriterionDialog : DialogFragment() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        //SharedPreferences
+        // SharedPreferences
         val criteria = PhysiologicCriterionData(GCSValueSwitch.isChecked, lowRespFrequencySwitch.isChecked, highRespFrequencySwitch.isChecked, ventilatorySupportSwitch.isChecked, lowBloodPressureSwitch.isChecked, hypertensionSwitch.isChecked)
         val gson = Gson()
         val criteriaAsJson = gson.toJson(criteria, PhysiologicCriterionData::class.java)
@@ -73,7 +71,7 @@ class PhysiologicCriterionDialog : DialogFragment() {
     private fun setSharedPreferences() {
         val gson = Gson()
         val savedState = gson.fromJson(sharedPreferences.getString("physiologicCriteria", null), PhysiologicCriterionData::class.java)
-        if(savedState != null) {
+        if (savedState != null) {
             GCSValueSwitch.isChecked = savedState.gcsValue
             lowRespFrequencySwitch.isChecked = savedState.lowRespFreq
             highRespFrequencySwitch.isChecked = savedState.highRespFreq
@@ -82,5 +80,4 @@ class PhysiologicCriterionDialog : DialogFragment() {
             hypertensionSwitch.isChecked = savedState.hypertension
         }
     }
-
 }

@@ -46,7 +46,6 @@ class ManeuverFragment : Fragment() {
         captureFrequencyEditText = root.findViewById(R.id.capture_frequency_edit_text)
         amperageEditText = root.findViewById(R.id.amperage_edit_text)
         root.findViewById<Button>(R.id.pacing_button).setOnClickListener {
-
         }
         return root
     }

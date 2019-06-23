@@ -56,10 +56,10 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             }
         }
 
-        anatomicoButton.setOnClickListener{
-            AnatomicCriterionDialog().show(requireActivity().supportFragmentManager,"anatomic_criterion_fragment")
+        anatomicoButton.setOnClickListener {
+            AnatomicCriterionDialog().show(requireActivity().supportFragmentManager, "anatomic_criterion_fragment")
         }
-        fisiologicoButton.setOnClickListener{
+        fisiologicoButton.setOnClickListener {
             PhysiologicCriterionDialog().show(requireActivity().supportFragmentManager, "physiologic_criterion_fragment")
         }
 
