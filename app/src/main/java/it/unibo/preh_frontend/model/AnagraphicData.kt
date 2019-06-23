@@ -12,4 +12,4 @@ data class AnagraphicData(
 
     var event: String = "Modificati Dati Anagrafici",
     var time: String
-) : PreHData("AnagraphicData",event,time)
+) : PreHData("AnagraphicData", event, time)

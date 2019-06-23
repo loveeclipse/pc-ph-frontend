@@ -46,7 +46,7 @@ open class HistoryVitalParametersDialogFragment : DialogFragment() {
 
         val exitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
         exitButton.setOnClickListener {
-                //Here you can save eventual modifications to the history element
+                // Here you can save eventual modifications to the history element
                 dialog!!.cancel()
             }
 
@@ -112,7 +112,7 @@ open class HistoryVitalParametersDialogFragment : DialogFragment() {
         }
     }
 
-    protected open fun setData(data: VitalParametersData){
+    protected open fun setData(data: VitalParametersData) {
         vieAeree.check(data.vieAeree)
         freqRespiratoria.setSelection(data.frequenzaRespiratoria)
         saturazione.setText(data.saturazionePeriferica.toString())
@@ -152,6 +152,4 @@ open class HistoryVitalParametersDialogFragment : DialogFragment() {
             }
         }
     }
-
-
 }

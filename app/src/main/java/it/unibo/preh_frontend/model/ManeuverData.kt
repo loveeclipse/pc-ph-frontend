@@ -11,4 +11,4 @@ data class ManeuverData(
 
     var event: String = "Effettuate Manovre",
     var time: String
-) : PreHData("ManeuverData",event,time)
+) : PreHData("ManeuverData", event, time)

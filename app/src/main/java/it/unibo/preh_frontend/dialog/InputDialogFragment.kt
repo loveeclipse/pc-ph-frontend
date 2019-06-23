@@ -22,10 +22,10 @@ class InputDialogFragment : DialogFragment() {
         dialog!!.setCanceledOnTouchOutside(false)
 
         inputValueEditText = root.findViewById(R.id.input_edit_text)
-        inputValueEditText.setText(inputValue.toString())
+        inputValueEditText.setText(arguments?.get("inputValue").toString())
 
         val unitUnitEditText = root.findViewById<TextView>(R.id.unit_of_measurement)
-        unitUnitEditText.text = unitOfMeasurement
+        unitUnitEditText.text = arguments?.get("unitOfMeasurement").toString()
 
         val saveAndExitButton = root.findViewById<Button>(R.id.confirm_button)
         saveAndExitButton.setOnClickListener {
@@ -53,8 +53,14 @@ class InputDialogFragment : DialogFragment() {
         }
     }
 
-    fun setInput(value: Int, unit: String) {
-        inputValue = value
-        unitOfMeasurement = unit
+    companion object {
+        fun newInstance(nameButtonPressed: String, inputValue: Int, unitOfMeasurement: String) =
+                InputDialogFragment().apply {
+            arguments = Bundle().apply {
+                putString("nameButtonPressed", nameButtonPressed)
+                putInt("inputValue", inputValue)
+                putString("unitOfMeasurement", unitOfMeasurement)
+            }
+        }
     }
 }

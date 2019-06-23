@@ -22,4 +22,4 @@ data class PatientStatusData(
 
     var event: String = "Modificato Stato Paziente",
     var time: String
-) : PreHData("PatientStatusData",event,time)
+) : PreHData("PatientStatusData", event, time)

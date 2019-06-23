@@ -21,4 +21,4 @@ data class VitalParametersData(
 
     var event: String = "Inseriti Parametri Vitali",
     var time: String
-) : PreHData("VitalParametersData",event,time),Serializable
+) : PreHData("VitalParametersData", event, time), Serializable

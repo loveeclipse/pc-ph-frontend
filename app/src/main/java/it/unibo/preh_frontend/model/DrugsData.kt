@@ -6,7 +6,6 @@ data class DrugsData(
     var fentanilValue: Int,
     var ketamineValue: Int,
 
-
     var event: String = "Somministrato Farmaco",
     var time: String
-) : PreHData("DrugsData",event,time)
+) : PreHData("DrugsData", event, time)
