@@ -27,14 +27,14 @@ object HistoryManager {
             .registerSubtype(DrugsData::class.java, "DrugsData")
             .registerSubtype(NewPcCarData::class.java, "NewPcCarData")
 
-    fun addVoice(data: PreHData, sharedPreferences: SharedPreferences) {
-        val localHistoryList = getHistoryList(sharedPreferences)
+    fun addEntry(data: PreHData, sharedPreferences: SharedPreferences) {
+        val localHistoryList = getEntryList(sharedPreferences)
         localHistoryList.add(data)
         val historyListAsJson = Gson().toJson(localHistoryList, historyType)
         sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
     }
 
-    fun getHistoryList(sharedPreferences: SharedPreferences): ArrayList<PreHData> {
+    fun getEntryList(sharedPreferences: SharedPreferences): ArrayList<PreHData> {
         val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeFactory).create()
         return gson.fromJson(sharedPreferences.getString("historyList", null), historyType)
     }

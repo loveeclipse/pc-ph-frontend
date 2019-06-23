@@ -16,19 +16,23 @@ class NewPcCarDialogFragment : DialogFragment() {
         dialog!!.setCanceledOnTouchOutside(false)
 
         root.findViewById<Button>(R.id.crew_departure_button).setOnClickListener {
-            NewPcCarItemsDialogFragment.newInstance("crew_departure").show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
+            NewPcCarItemsDialogFragment.newInstance(resources.getString(R.string.partenza_dell_equipaggio))
+                    .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
         }
 
         root.findViewById<Button>(R.id.arrival_on_site_button).setOnClickListener {
-            NewPcCarItemsDialogFragment.newInstance("arrival_on_site").show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
+            NewPcCarItemsDialogFragment.newInstance(resources.getString(R.string.arrivo_sul_luogo_dell_incidente))
+                    .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
         }
 
         root.findViewById<Button>(R.id.departure_from_site_button).setOnClickListener {
-            NewPcCarItemsDialogFragment.newInstance("departure_from_site").show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
+            NewPcCarItemsDialogFragment.newInstance(resources.getString(R.string.partenza_dal_luogo_dell_incidente))
+                    .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
         }
 
         root.findViewById<Button>(R.id.landing_helipad_button).setOnClickListener {
-            NewPcCarItemsDialogFragment.newInstance("landing_helipad").show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
+            NewPcCarItemsDialogFragment.newInstance(resources.getString(R.string.atterraggio_in_eliporto))
+                    .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
         }
 
         root.findViewById<ImageButton>(R.id.pcCar_image_button).setOnClickListener {

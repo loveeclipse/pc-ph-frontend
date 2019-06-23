@@ -83,7 +83,7 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
             val newPcCarData = NewPcCarData(it, placeEditText.text.toString())
             val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
             sharedPreferences.edit().putString(it, Gson().toJson(newPcCarData)).apply()
-            HistoryManager.addVoice(newPcCarData, sharedPreferences)
+            HistoryManager.addEntry(newPcCarData, sharedPreferences)
         }
         super.onCancel(dialog)
     }
