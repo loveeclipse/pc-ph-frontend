@@ -25,9 +25,6 @@ import it.unibo.preh_frontend.model.PreHData
 import it.unibo.preh_frontend.model.TreatmentData
 import it.unibo.preh_frontend.model.VitalParametersData
 import it.unibo.preh_frontend.utils.RuntimeTypeAdapterFactory
-import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.Calendar
 import kotlin.collections.ArrayList
 
 class InputDialogFragment : DialogFragment() {
@@ -95,10 +92,7 @@ class InputDialogFragment : DialogFragment() {
     override fun onCancel(dialog: DialogInterface) {
         saveState = DrugsData(Integer.parseInt(
                 inputValueEditText.text.toString()),
-                "Somministrato farmaco ${arguments?.get(drugName)}",
-                time = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time) +
-                        "      " +
-                        SimpleDateFormat("d/MM/yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
+                "Somministrato farmaco ${arguments?.get(drugName)}"
         )
         println("second value --------------------------- $saveState")
         val gson = Gson()

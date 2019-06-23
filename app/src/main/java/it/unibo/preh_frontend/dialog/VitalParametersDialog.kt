@@ -203,8 +203,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
                     pupilleDx.checkedRadioButtonId,
                     fotoreagenteSx.isChecked,
                     fotoreagenteDx.isChecked,
-                    Integer.parseInt(tempCorporea.text.toString()),
-                    time = "14:00  15/06/2019"
+                    Integer.parseInt(tempCorporea.text.toString())
             )
             val gson = Gson()
             val stateAsJson = gson.toJson(saveState)

@@ -10,6 +10,5 @@ data class ComplicationsData(
     var itinere: Boolean = false,
     var arrivoPs: Boolean = false,
 
-    var event: String = "Modificate Complicazioni",
-    var time: String
-) : PreHData("ComplicationsData", event, time)
+    var event: String = "Modificate Complicazioni"
+) : PreHData("ComplicationsData", event)

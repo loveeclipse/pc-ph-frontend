@@ -19,6 +19,5 @@ data class VitalParametersData(
     var fotoreagenteDx: Boolean,
     var temperature: Int,
 
-    var event: String = "Inseriti Parametri Vitali",
-    var time: String
-) : PreHData("VitalParametersData", event, time), Serializable
+    var event: String = "Inseriti Parametri Vitali"
+) : PreHData("VitalParametersData", event), Serializable

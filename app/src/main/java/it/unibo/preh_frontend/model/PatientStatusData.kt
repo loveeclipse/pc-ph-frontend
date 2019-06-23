@@ -22,6 +22,5 @@ data class PatientStatusData(
     var criterioDinamico: Boolean = false,
     var shockIndex: Boolean = false,
 
-    var event: String = "Modificato Stato Paziente",
-    var time: String
-) : PreHData("PatientStatusData", event, time), Serializable
+    var event: String = "Modificato Stato Paziente"
+) : PreHData("PatientStatusData", event), Serializable

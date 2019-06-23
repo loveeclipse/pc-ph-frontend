@@ -94,8 +94,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
     override fun onCancel(dialog: DialogInterface) {
         saveState = PatientStatusData(traumaIsClosed,
                 traumaIsPiercing,
-                cascoCinturaSwitch.isChecked, // MISSING PARAMETERS
-                time = "13:00     17/06/2019"
+                cascoCinturaSwitch.isChecked // MISSING PARAMETERS
                 )
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
