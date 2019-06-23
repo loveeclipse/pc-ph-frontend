@@ -28,6 +28,8 @@ import java.io.IOException
 import java.util.Locale
 
 class NewPcCarItemsDialogFragment : DialogFragment() {
+    private lateinit var buttonToDisable: Button
+    private var buttonToEnable: Button? = null
     private lateinit var locationText: TextView
     private lateinit var placeEditText: EditText
     private lateinit var replaceButton: Button
@@ -54,6 +56,8 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
 
         root.findViewById<ImageButton>(R.id.pccar_items_image_button).setOnClickListener {
             if (placeEditText.text.toString() != "") {
+                buttonToDisable.isEnabled = false
+                buttonToEnable?.isEnabled = true
                 dialog!!.cancel()
             } else {
                 AlertDialog.Builder(requireContext()).apply {
@@ -124,10 +128,12 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
     }
 
     companion object {
-        fun newInstance(historyName: String) = NewPcCarItemsDialogFragment().apply {
+        fun newInstance(historyName: String, buttonToDisable: Button, buttonToEnable: Button?) = NewPcCarItemsDialogFragment().apply {
             arguments = Bundle().apply {
                 putString("historyName", historyName)
             }
+            this.buttonToDisable = buttonToDisable
+            this.buttonToEnable = buttonToEnable
         }
     }
 }

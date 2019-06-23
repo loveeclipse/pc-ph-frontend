@@ -1,6 +1,7 @@
 package it.unibo.preh_frontend.dialog
 
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,37 +10,89 @@ import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
+import it.unibo.preh_frontend.utils.HistoryManager
 
 class NewPcCarDialogFragment : DialogFragment() {
+    /*private lateinit var crewDepartureButton: Button
+    private lateinit var arrivalOnSiteButton: Button
+    private lateinit var departureFromSiteButton: Button
+    private lateinit var landingHelipadButton: Button*/
+    private lateinit var buttons: List<Button>
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_pccar, container, false)
         dialog!!.setCanceledOnTouchOutside(false)
+        getComponents(root)
+        val eventList = listOf(resources.getString(R.string.partenza_dell_equipaggio),
+                resources.getString(R.string.arrivo_sul_luogo_dell_incidente),
+                resources.getString(R.string.partenza_dal_luogo_dell_incidente),
+                resources.getString(R.string.atterraggio_in_eliporto))
+        checkEnabledButton(eventList)
 
-        root.findViewById<Button>(R.id.crew_departure_button).setOnClickListener {
-            NewPcCarItemsDialogFragment.newInstance(resources.getString(R.string.partenza_dell_equipaggio))
+        for(i in 0..2) {
+            buttons[i].setOnClickListener {
+                NewPcCarItemsDialogFragment.newInstance(eventList[i], buttons[i], buttons[i+1])
+                        .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
+            }
+        }
+        buttons[3].setOnClickListener {
+            NewPcCarItemsDialogFragment.newInstance(eventList[3], buttons[3], null)
                     .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
         }
 
-        root.findViewById<Button>(R.id.arrival_on_site_button).setOnClickListener {
-            NewPcCarItemsDialogFragment.newInstance(resources.getString(R.string.arrivo_sul_luogo_dell_incidente))
+        /*crewDepartureButton.setOnClickListener {
+            NewPcCarItemsDialogFragment.newInstance(eventList[0], crewDepartureButton, arrivalOnSiteButton)
                     .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
         }
 
-        root.findViewById<Button>(R.id.departure_from_site_button).setOnClickListener {
-            NewPcCarItemsDialogFragment.newInstance(resources.getString(R.string.partenza_dal_luogo_dell_incidente))
+        arrivalOnSiteButton.setOnClickListener {
+            NewPcCarItemsDialogFragment.newInstance(eventList[1], arrivalOnSiteButton, departureFromSiteButton)
                     .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
         }
 
-        root.findViewById<Button>(R.id.landing_helipad_button).setOnClickListener {
-            NewPcCarItemsDialogFragment.newInstance(resources.getString(R.string.atterraggio_in_eliporto))
+        departureFromSiteButton.setOnClickListener {
+            NewPcCarItemsDialogFragment.newInstance(eventList[2], departureFromSiteButton, landingHelipadButton)
                     .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
         }
+
+        landingHelipadButton.setOnClickListener {
+            NewPcCarItemsDialogFragment.newInstance(eventList[3], landingHelipadButton, null)
+                    .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
+        }*/
 
         root.findViewById<ImageButton>(R.id.pcCar_image_button).setOnClickListener {
             dialog!!.cancel()
         }
 
         return root
+    }
+
+    private fun getComponents(root: View) {
+        root.apply {
+            /*crewDepartureButton = findViewById(R.id.crew_departure_button)
+            arrivalOnSiteButton = findViewById(R.id.arrival_on_site_button)
+            departureFromSiteButton = findViewById(R.id.departure_from_site_button)
+            landingHelipadButton = findViewById(R.id.landing_helipad_button)*/
+            buttons = listOf(findViewById(R.id.crew_departure_button),
+                    findViewById(R.id.arrival_on_site_button),
+                    findViewById(R.id.departure_from_site_button),
+                    findViewById(R.id.landing_helipad_button))
+        }
+    }
+
+    private fun checkEnabledButton(eventList: List<String>) {
+        val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+        val counter = HistoryManager.getEntryList(sharedPreferences).filter {
+            data -> eventList.contains(data.eventName)
+        }.size
+        if(counter < 4)
+            buttons[counter].isEnabled = true
+        /*when (counter) {
+            0 -> crewDepartureButton.isEnabled = true
+            1 -> arrivalOnSiteButton.isEnabled = true
+            2 -> departureFromSiteButton.isEnabled = true
+            3 -> landingHelipadButton.isEnabled = true
+        }*/
     }
 
     override fun onResume() {
