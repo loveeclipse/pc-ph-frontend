@@ -197,5 +197,10 @@
     <string name="cancel_button">Annulla</string>
     <string name="acquisizione_posizione">Acquisizione posizione</string>
     <string name="sovrascrivi_indirizzo">Sovrascrivi indirizzo</string>
+    <string name="frequenza_respiratoria_10_atti_min"><![CDATA[Frequenza Respiratoria < 10 atti/min]]></string>
+    <string name="frequenza_respiratoria_29_atti_min"><![CDATA[Frequenza Respiratoria > 29 atti/min]]></string>
+    <string name="pressione_arteriosa_sistolica_90_mmhg"><![CDATA[Pressione Arteriosa Sistolica < 90 mmHg]]></string>
+    <string name="necessit_supporto_ventilatorio">Necessità Supporto Ventilatorio</string>
+    <string name="gcs_14"><![CDATA[GCS < 14]]></string>
 
 </resources>
