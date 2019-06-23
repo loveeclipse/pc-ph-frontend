@@ -10,6 +10,5 @@ data class AnagraphicData(
     var anticoagulants: Boolean = false,
     var antiplatelets: Boolean = false,
 
-    var event: String = "Modificati Dati Anagrafici",
-    var time: String
-) : PreHData("AnagraphicData", event, time)
+    var event: String = "Modificati Dati Anagrafici"
+) : PreHData("AnagraphicData", event)

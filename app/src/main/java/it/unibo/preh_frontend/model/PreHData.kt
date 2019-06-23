@@ -1,7 +1,11 @@
 package it.unibo.preh_frontend.model
 
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.Calendar
+
 open class PreHData(
     var type: String,
     val eventName: String,
-    val eventTime: String
+    val eventTime: String = SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
 )

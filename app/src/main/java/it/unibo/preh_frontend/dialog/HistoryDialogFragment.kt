@@ -11,20 +11,13 @@ import android.widget.ImageButton
 import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
 import android.widget.ListView
-import com.google.gson.reflect.TypeToken
 import it.unibo.preh_frontend.utils.HistoryListAdapter
-import com.google.gson.GsonBuilder
 import it.unibo.preh_frontend.dialog.history.HistoryPatientStatusDialog
 import it.unibo.preh_frontend.dialog.history.HistoryVitalParametersDialog
-import it.unibo.preh_frontend.model.AnagraphicData
-import it.unibo.preh_frontend.model.ComplicationsData
-import it.unibo.preh_frontend.model.DrugsData
-import it.unibo.preh_frontend.model.ManeuverData
 import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.model.PreHData
-import it.unibo.preh_frontend.model.TreatmentData
 import it.unibo.preh_frontend.model.VitalParametersData
-import it.unibo.preh_frontend.utils.RuntimeTypeAdapterFactory
+import it.unibo.preh_frontend.utils.HistoryManager
 
 class HistoryDialogFragment : DialogFragment() {
 
@@ -42,21 +35,8 @@ class HistoryDialogFragment : DialogFragment() {
         dialog!!.setCanceledOnTouchOutside(false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-        val historyType = object : TypeToken<ArrayList<PreHData>>() {}.type
 
-        val typeFactory = RuntimeTypeAdapterFactory
-                .of(PreHData::class.java, "type")
-                .registerSubtype(AnagraphicData::class.java, "AnagraphicData")
-                .registerSubtype(ComplicationsData::class.java, "ComplicationsData")
-                .registerSubtype(ManeuverData::class.java, "ManeuverData")
-                .registerSubtype(PatientStatusData::class.java, "PatientStatusData")
-                .registerSubtype(TreatmentData::class.java, "TreatmentData")
-                .registerSubtype(VitalParametersData::class.java, "VitalParametersData")
-                .registerSubtype(DrugsData::class.java, "DrugsData")
-
-        val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeFactory).create()
-
-        aList = gson.fromJson(sharedPreferences.getString("historyList", null), historyType)
+        aList = HistoryManager.getEntryList(sharedPreferences)
         val storiaList = root.findViewById(R.id.history_list) as ListView
         mAdapter = HistoryListAdapter(requireActivity(), aList)
         storiaList.adapter = mAdapter

@@ -81,7 +81,6 @@ class ManeuverFragment : Fragment() {
                 sondaGastricaSwitch.isChecked,
                 sondaVescicaleSwitch.isChecked,
                 frequenzaCatturaEditText.text.toString(),
-                amperaggioEditText.text.toString(),
-                time = "vole")
+                amperaggioEditText.text.toString())
     }
 }

@@ -13,19 +13,10 @@ import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.dialog.history.HistoryVitalParametersDialog
-import it.unibo.preh_frontend.model.AnagraphicData
-import it.unibo.preh_frontend.model.ComplicationsData
-import it.unibo.preh_frontend.model.DrugsData
-import it.unibo.preh_frontend.model.ManeuverData
-import it.unibo.preh_frontend.model.PatientStatusData
-import it.unibo.preh_frontend.model.PreHData
-import it.unibo.preh_frontend.model.TreatmentData
 import it.unibo.preh_frontend.model.VitalParametersData
-import it.unibo.preh_frontend.utils.RuntimeTypeAdapterFactory
+import it.unibo.preh_frontend.utils.HistoryManager
 
 class VitalParametersDialog : HistoryVitalParametersDialog() {
 
@@ -34,7 +25,6 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
     private lateinit var parentDialog: Dialog
 
     private lateinit var saveState: VitalParametersData
-    private lateinit var localHistoryList: ArrayList<PreHData>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_vital_parameters, container, false)
@@ -43,22 +33,6 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
         dialog!!.setCanceledOnTouchOutside(false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-
-        val historyType = object : TypeToken<ArrayList<PreHData>>() {}.type
-
-        val typeFactory = RuntimeTypeAdapterFactory
-                .of(PreHData::class.java, "type")
-                .registerSubtype(AnagraphicData::class.java, "AnagraphicData")
-                .registerSubtype(ComplicationsData::class.java, "ComplicationsData")
-                .registerSubtype(ManeuverData::class.java, "ManeuverData")
-                .registerSubtype(PatientStatusData::class.java, "PatientStatusData")
-                .registerSubtype(TreatmentData::class.java, "TreatmentData")
-                .registerSubtype(VitalParametersData::class.java, "VitalParametersData")
-                .registerSubtype(DrugsData::class.java, "DrugsData")
-
-        val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeFactory).create()
-
-        localHistoryList = gson.fromJson<ArrayList<PreHData>>(sharedPreferences.getString("historyList", null), historyType)
 
         getComponents(root)
 
@@ -188,33 +162,28 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-            saveState = VitalParametersData(vieAeree.checkedRadioButtonId,
-                    freqRespiratoria.selectedItemPosition,
-                    Integer.parseInt(saturazione.text.toString()),
-                    Integer.parseInt(freqCaridaca.text.toString()),
-                    tipoBattito.checkedRadioButtonId,
-                    Integer.parseInt(presArteriosa.text.toString()),
-                    tempRiempCapillare.checkedRadioButtonId,
-                    colorCuteMucose.checkedRadioButtonId,
-                    aperturaOcchi.selectedItemPosition,
-                    rispostaVerbale.selectedItemPosition,
-                    rispostaMotoria.selectedItemPosition,
-                    pupilleSx.checkedRadioButtonId,
-                    pupilleDx.checkedRadioButtonId,
-                    fotoreagenteSx.isChecked,
-                    fotoreagenteDx.isChecked,
-                    Integer.parseInt(tempCorporea.text.toString()),
-                    time = "14:00  15/06/2019"
-            )
-            val gson = Gson()
-            val stateAsJson = gson.toJson(saveState)
-            sharedPreferences.edit().putString("vitalParameters", stateAsJson).apply()
-            localHistoryList.add(saveState)
-            val historyType = object : TypeToken<ArrayList<PreHData>>() {
-            }.type
-            val historyListAsJson = gson.toJson(localHistoryList, historyType)
-            sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
-            super.onCancel(dialog)
+        saveState = VitalParametersData(vieAeree.checkedRadioButtonId,
+                freqRespiratoria.selectedItemPosition,
+                saturazione.text.toString().toInt(),
+                freqCaridaca.text.toString().toInt(),
+                tipoBattito.checkedRadioButtonId,
+                presArteriosa.text.toString().toInt(),
+                tempRiempCapillare.checkedRadioButtonId,
+                colorCuteMucose.checkedRadioButtonId,
+                aperturaOcchi.selectedItemPosition,
+                rispostaVerbale.selectedItemPosition,
+                rispostaMotoria.selectedItemPosition,
+                pupilleSx.checkedRadioButtonId,
+                pupilleDx.checkedRadioButtonId,
+                fotoreagenteSx.isChecked,
+                fotoreagenteDx.isChecked,
+                tempCorporea.text.toString().toDouble()
+        )
+        val gson = Gson()
+        val stateAsJson = gson.toJson(saveState)
+        sharedPreferences.edit().putString("vitalParameters", stateAsJson).apply()
+        HistoryManager.addEntry(saveState, sharedPreferences)
+        super.onCancel(dialog)
     }
 
     override fun onResume() {

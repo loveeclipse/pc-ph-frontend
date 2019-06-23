@@ -8,6 +8,5 @@ data class TreatmentData(
     var minitoracotomiaSx: Boolean = false,
     var minitoracotomiaDx: Boolean = false,
 
-    var event: String = "Effettuati Trattamenti",
-    var time: String
-) : PreHData("TreatmentData", event, time)
+    var event: String = "Effettuati Trattamenti"
+) : PreHData("TreatmentData", event)

@@ -9,6 +9,5 @@ data class ManeuverData(
     var freqCattura: String = "",
     var amperaggio: String = "",
 
-    var event: String = "Effettuate Manovre",
-    var time: String
-) : PreHData("ManeuverData", event, time)
+    var event: String = "Effettuate Manovre"
+) : PreHData("ManeuverData", event)
