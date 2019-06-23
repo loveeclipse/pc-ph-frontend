@@ -1,6 +1,5 @@
 package it.unibo.preh_frontend.home
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import it.unibo.preh_frontend.dialog.utils.DrugsDefaultValue.ketamineValue
 
 class DrugsFragment : Fragment() {
 
-    private lateinit var sharedPreferences: SharedPreferences
     private val inputDialogLayout = "layout/input_dialog.xml"
 
     override fun onCreateView(
