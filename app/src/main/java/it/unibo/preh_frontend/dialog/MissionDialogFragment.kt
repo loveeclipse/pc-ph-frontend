@@ -22,7 +22,6 @@ class MissionDialogFragment : DialogFragment() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var parentDialog: Dialog
     private lateinit var anagraphicDialogFragment: AnagraphicDialogFragment
-    private lateinit var localAnagraphicData: AnagraphicData
 
     override fun onCreateView(
         inflater: LayoutInflater,

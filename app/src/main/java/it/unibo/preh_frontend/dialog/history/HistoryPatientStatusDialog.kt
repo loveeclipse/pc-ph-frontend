@@ -16,14 +16,14 @@ open class HistoryPatientStatusDialog : DialogFragment() {
     protected lateinit var chiusoButton: Button
     protected lateinit var penetranteButton: Button
     protected lateinit var cascoCinturaSwitch: Switch
-    protected lateinit var emorragiaButton: Button
+    protected lateinit var emorragiaSwitch: Switch
     protected lateinit var vieAereeSwitch: Switch
-    protected lateinit var tachipneaButton: Button
-    protected lateinit var voletButton: Button
+    protected lateinit var tachipneaSwitch: Switch
+    protected lateinit var voletSwitch: Switch
     protected lateinit var positivoButton: Button
     protected lateinit var negativoButton: Button
-    protected lateinit var bacinoInstabileButton: Button
-    protected lateinit var amputazioneButton: Button
+    protected lateinit var bacinoInstabileSwitch: Switch
+    protected lateinit var amputazioneSwitch: Switch
     protected lateinit var infossataButton: Button
     protected lateinit var otorragiaButton: Button
     protected lateinit var paraparesiButton: Button
@@ -54,15 +54,15 @@ open class HistoryPatientStatusDialog : DialogFragment() {
 
     protected open fun getComponents(root: View) {
         root.apply {
-            emorragiaButton = findViewById(R.id.emorragia_esterna_switch)
+            emorragiaSwitch = findViewById(R.id.emorragia_esterna_switch)
             vieAereeSwitch = findViewById(R.id.vie_aeree_switch)
-            tachipneaButton = findViewById(R.id.tachipnea_switch)
+            tachipneaSwitch = findViewById(R.id.tachipnea_switch)
             cascoCinturaSwitch = findViewById(R.id.casco_cintura_switch)
-            voletButton = findViewById(R.id.volet_switch)
+            voletSwitch = findViewById(R.id.volet_switch)
             positivoButton = findViewById(R.id.positivo_button)
             negativoButton = findViewById(R.id.negativo_button)
-            bacinoInstabileButton = findViewById(R.id.bacino_instabile_switch)
-            amputazioneButton = findViewById(R.id.amputazione_switch)
+            bacinoInstabileSwitch = findViewById(R.id.bacino_instabile_switch)
+            amputazioneSwitch = findViewById(R.id.amputazione_switch)
             infossataButton = findViewById(R.id.infossata_button)
             otorragiaButton = findViewById(R.id.otorragia_button)
             paraparesiButton = findViewById(R.id.paraparesi_button)

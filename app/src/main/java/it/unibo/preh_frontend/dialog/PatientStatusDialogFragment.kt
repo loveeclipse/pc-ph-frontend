@@ -12,6 +12,7 @@ import android.widget.ImageButton
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.dialog.history.HistoryPatientStatusDialog
+import it.unibo.preh_frontend.model.AnatomicCriterionData
 import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
@@ -35,6 +36,9 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         dialog!!.setCanceledOnTouchOutside(false)
 
         getComponents(root)
+        deactivateButton(anatomicoButton,resources)
+        deactivateButton(fisiologicoButton,resources)
+        deactivateButton(dinamicoButton,resources)
 
         chiusoButton.setOnClickListener {
             if (this.traumaIsClosed) {
@@ -54,6 +58,23 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                 activateButton(penetranteButton, resources)
                 this.traumaIsPiercing = true
             }
+        }
+
+        voletSwitch.setOnCheckedChangeListener{ _, checked ->
+            val gson = Gson()
+            var anatomicCriterionData = gson.fromJson(sharedPreferences.getString("anatomicCriteria",null),AnatomicCriterionData::class.java)
+            if(anatomicCriterionData == null){
+                anatomicCriterionData = AnatomicCriterionData()
+            }
+            if(checked){
+                activateButton(anatomicoButton, resources)
+                anatomicCriterionData.thoraxDeformity = true
+            }else{
+                deactivateButton(anatomicoButton,resources)
+                anatomicCriterionData.thoraxDeformity = false
+            }
+            val anatomicDataAsJson = gson.toJson(anatomicCriterionData)
+            sharedPreferences.edit().putString("anatomicCriteria",anatomicDataAsJson).apply()
         }
 
         anatomicoButton.setOnClickListener {

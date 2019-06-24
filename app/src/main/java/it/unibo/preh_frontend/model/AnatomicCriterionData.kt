@@ -1,12 +1,12 @@
 package it.unibo.preh_frontend.model
 
 class AnatomicCriterionData(
-    var traumaTorsoCrush: Boolean,
-    var penetratingWound: Boolean,
-    var craniumFracture: Boolean,
-    var thoraxDeformity: Boolean,
-    var bodyBurn: Boolean,
-    var unstablePelvis: Boolean,
-    var vertebralLesion: Boolean,
-    var amputation: Boolean
+    var traumaTorsoCrush: Boolean = false,
+    var penetratingWound: Boolean = false,
+    var craniumFracture: Boolean = false,
+    var thoraxDeformity: Boolean = false,
+    var bodyBurn: Boolean = false,
+    var unstablePelvis: Boolean = false,
+    var vertebralLesion: Boolean = false,
+    var amputation: Boolean = false
 )
