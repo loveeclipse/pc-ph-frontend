@@ -9,8 +9,8 @@ class AnatomicCriterionData(
     var unstablePelvis: Boolean = false,
     var vertebralLesion: Boolean = false,
     var amputation: Boolean = false
-){
-    fun hasTrueFields(): Boolean{
+) {
+    fun hasTrueFields(): Boolean {
         return (traumaTorsoCrush || penetratingWound || craniumFracture || thoraxDeformity || bodyBurn || unstablePelvis || vertebralLesion || amputation)
     }
 }

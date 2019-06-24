@@ -76,8 +76,8 @@ class TreatmentFragment : Fragment() {
         guedelButton = root.findViewById(R.id.guedel_button)
         cricoTirotomiaButton = root.findViewById(R.id.tirotomia_button)
         tuboTrachealeButton = root.findViewById(R.id.tubotrach_button)
-        tuboTrachealeButton.setOnClickListener{
-            if(!tuboTrachealeIsActive) {
+        tuboTrachealeButton.setOnClickListener {
+            if (!tuboTrachealeIsActive) {
                 tuboTrachealeIsActive = true
                 val gson = Gson()
                 var physiologicCriteria = gson.fromJson(sharedPreferences.getString("physiologicCriteria", null), PhysiologicCriterionData::class.java)
@@ -92,8 +92,8 @@ class TreatmentFragment : Fragment() {
                 } else {
                     requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
                 }
-                activateButton(tuboTrachealeButton,resources)
-            }else{
+                activateButton(tuboTrachealeButton, resources)
+            } else {
                 tuboTrachealeIsActive = false
                 val gson = Gson()
                 var physiologicCriteria = gson.fromJson(sharedPreferences.getString("physiologicCriteria", null), PhysiologicCriterionData::class.java)
@@ -108,7 +108,7 @@ class TreatmentFragment : Fragment() {
                 } else {
                     requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
                 }
-                deactivateButton(tuboTrachealeButton,resources)
+                deactivateButton(tuboTrachealeButton, resources)
             }
         }
         minitoracotomiaSxButton = root.findViewById(R.id.minitoracotomiaSx_button)

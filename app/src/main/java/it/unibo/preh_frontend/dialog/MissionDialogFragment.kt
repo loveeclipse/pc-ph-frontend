@@ -15,7 +15,6 @@ import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.model.AnagraphicData
 
 class MissionDialogFragment : DialogFragment() {
 

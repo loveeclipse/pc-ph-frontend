@@ -28,15 +28,14 @@ class NewPcCarDialogFragment : DialogFragment() {
                 resources.getString(R.string.atterraggio_in_eliporto))
         checkEnabledButton(eventList)
 
-
         val buttons = listOf(crewDepartureButton,
                 arrivalOnSiteButton,
                 departureFromSiteButton,
                 landingHelipadButton)
 
-        for(i in 0..2) {
+        for (i in 0..2) {
             buttons[i].setOnClickListener {
-                NewPcCarItemsDialogFragment.newInstance(eventList[i], buttons[i], buttons[i+1])
+                NewPcCarItemsDialogFragment.newInstance(eventList[i], buttons[i], buttons[i + 1])
                         .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
             }
         }
