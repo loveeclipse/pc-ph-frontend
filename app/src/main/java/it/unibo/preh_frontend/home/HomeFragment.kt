@@ -135,7 +135,7 @@ class HomeFragment : Fragment() {
             findViewById<TextView>(R.id.title).visibility = View.VISIBLE
             findViewById<TextView>(R.id.doctor).visibility = View.VISIBLE
             findViewById<TextView>(R.id.vehicle).visibility = View.VISIBLE
-            findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
+            findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
             findViewById<Button>(R.id.finish).visibility = View.VISIBLE
         }
     }

@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.dialog.history.HistoryPatientStatusDialog
@@ -69,12 +70,16 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             if(checked){
                 activateButton(anatomicoButton, resources)
                 anatomicCriterionData.thoraxDeformity = true
+                requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
             }else{
                 deactivateButton(anatomicoButton,resources)
                 anatomicCriterionData.thoraxDeformity = false
+                //Should check if all Centralization flags are turned off, in that case hide the Centralization alert image
+                requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
             }
             val anatomicDataAsJson = gson.toJson(anatomicCriterionData)
             sharedPreferences.edit().putString("anatomicCriteria",anatomicDataAsJson).apply()
+
         }
 
         anatomicoButton.setOnClickListener {
