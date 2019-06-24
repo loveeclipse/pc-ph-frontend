@@ -33,6 +33,7 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
     private lateinit var locationText: TextView
     private lateinit var placeEditText: EditText
     private lateinit var replaceButton: Button
+    private lateinit var exitDialog: AlertDialog
     private val reqSetting = LocationRequest.create().apply {
         fastestInterval = 1000
         interval = 1000
@@ -43,11 +44,10 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_pccar_items_dialog, container, false)
         dialog!!.setCanceledOnTouchOutside(false)
-
         locationText = root.findViewById(R.id.location)
         placeEditText = root.findViewById(R.id.place_edit_text)
         replaceButton = root.findViewById(R.id.replace_button)
-
+        createDialog()
         updateLocation()
 
         replaceButton.setOnClickListener {
@@ -59,21 +59,23 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
                 buttonToDisable.isEnabled = false
                 buttonToEnable?.isEnabled = true
                 dialog!!.cancel()
-            } else {
-                AlertDialog.Builder(requireContext()).apply {
-                    setTitle("Uscire senza salvare?")
-                    setMessage("Inserimento incompleto")
-                    setCancelable(true)
-                    setPositiveButton("Si") { d, _ ->
-                        d.cancel()
-                        dialog!!.dismiss()
-                    }
-                    setNegativeButton("No") { d, _ -> d.cancel() }
-                    create()
-                }.show()
-            }
+            } else if (!exitDialog.isShowing)
+                exitDialog.show()
         }
         return root
+    }
+
+    private fun createDialog() {
+        exitDialog = AlertDialog.Builder(requireContext()).apply {
+            setTitle("Uscire senza salvare?")
+            setMessage("Inserimento incompleto")
+            setCancelable(true)
+            setPositiveButton("Si") { d, _ ->
+                d.cancel()
+                dialog!!.dismiss()
+            }
+            setNegativeButton("No") { d, _ -> d.cancel() }
+        }.create()
     }
 
     override fun onResume() {
