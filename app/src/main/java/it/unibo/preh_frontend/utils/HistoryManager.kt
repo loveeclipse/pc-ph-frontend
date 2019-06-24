@@ -8,6 +8,7 @@ import it.unibo.preh_frontend.model.AnagraphicData
 import it.unibo.preh_frontend.model.ComplicationsData
 import it.unibo.preh_frontend.model.DrugsData
 import it.unibo.preh_frontend.model.ManeuverData
+import it.unibo.preh_frontend.model.ManeuverHistoryData
 import it.unibo.preh_frontend.model.NewPcCarData
 import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.model.PreHData
@@ -21,6 +22,7 @@ object HistoryManager {
             .registerSubtype(AnagraphicData::class.java, "AnagraphicData")
             .registerSubtype(ComplicationsData::class.java, "ComplicationsData")
             .registerSubtype(ManeuverData::class.java, "ManeuverData")
+            .registerSubtype(ManeuverHistoryData::class.java, "ManeuverHistoryData")
             .registerSubtype(PatientStatusData::class.java, "PatientStatusData")
             .registerSubtype(TreatmentData::class.java, "TreatmentData")
             .registerSubtype(VitalParametersData::class.java, "VitalParametersData")
