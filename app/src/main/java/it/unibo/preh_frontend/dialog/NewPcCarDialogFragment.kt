@@ -13,11 +13,10 @@ import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.utils.HistoryManager
 
 class NewPcCarDialogFragment : DialogFragment() {
-    /*private lateinit var crewDepartureButton: Button
+    private lateinit var crewDepartureButton: Button
     private lateinit var arrivalOnSiteButton: Button
     private lateinit var departureFromSiteButton: Button
-    private lateinit var landingHelipadButton: Button*/
-    private lateinit var buttons: List<Button>
+    private lateinit var landingHelipadButton: Button
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_pccar, container, false)
@@ -28,6 +27,12 @@ class NewPcCarDialogFragment : DialogFragment() {
                 resources.getString(R.string.partenza_dal_luogo_dell_incidente),
                 resources.getString(R.string.atterraggio_in_eliporto))
         checkEnabledButton(eventList)
+
+
+        val buttons = listOf(crewDepartureButton,
+                arrivalOnSiteButton,
+                departureFromSiteButton,
+                landingHelipadButton)
 
         for(i in 0..2) {
             buttons[i].setOnClickListener {
@@ -40,26 +45,6 @@ class NewPcCarDialogFragment : DialogFragment() {
                     .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
         }
 
-        /*crewDepartureButton.setOnClickListener {
-            NewPcCarItemsDialogFragment.newInstance(eventList[0], crewDepartureButton, arrivalOnSiteButton)
-                    .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
-        }
-
-        arrivalOnSiteButton.setOnClickListener {
-            NewPcCarItemsDialogFragment.newInstance(eventList[1], arrivalOnSiteButton, departureFromSiteButton)
-                    .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
-        }
-
-        departureFromSiteButton.setOnClickListener {
-            NewPcCarItemsDialogFragment.newInstance(eventList[2], departureFromSiteButton, landingHelipadButton)
-                    .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
-        }
-
-        landingHelipadButton.setOnClickListener {
-            NewPcCarItemsDialogFragment.newInstance(eventList[3], landingHelipadButton, null)
-                    .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
-        }*/
-
         root.findViewById<ImageButton>(R.id.pcCar_image_button).setOnClickListener {
             dialog!!.cancel()
         }
@@ -69,14 +54,10 @@ class NewPcCarDialogFragment : DialogFragment() {
 
     private fun getComponents(root: View) {
         root.apply {
-            /*crewDepartureButton = findViewById(R.id.crew_departure_button)
+            crewDepartureButton = findViewById(R.id.crew_departure_button)
             arrivalOnSiteButton = findViewById(R.id.arrival_on_site_button)
             departureFromSiteButton = findViewById(R.id.departure_from_site_button)
-            landingHelipadButton = findViewById(R.id.landing_helipad_button)*/
-            buttons = listOf(findViewById(R.id.crew_departure_button),
-                    findViewById(R.id.arrival_on_site_button),
-                    findViewById(R.id.departure_from_site_button),
-                    findViewById(R.id.landing_helipad_button))
+            landingHelipadButton = findViewById(R.id.landing_helipad_button)
         }
     }
 
@@ -85,14 +66,12 @@ class NewPcCarDialogFragment : DialogFragment() {
         val counter = HistoryManager.getEntryList(sharedPreferences).filter {
             data -> eventList.contains(data.eventName)
         }.size
-        if(counter < 4)
-            buttons[counter].isEnabled = true
-        /*when (counter) {
+        when (counter) {
             0 -> crewDepartureButton.isEnabled = true
             1 -> arrivalOnSiteButton.isEnabled = true
             2 -> departureFromSiteButton.isEnabled = true
             3 -> landingHelipadButton.isEnabled = true
-        }*/
+        }
     }
 
     override fun onResume() {
