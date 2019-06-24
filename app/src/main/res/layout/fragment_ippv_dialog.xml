@@ -5,7 +5,7 @@
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
                                                    style="@style/BackgroundFragmentStyle"
-                                                   tools:context=".dialog.InputDialogFragment"
+                                                   tools:context=".dialog.IppvDialogFragment"
                                                    android:id="@+id/frameLayout1">
     <ImageButton
             android:layout_width="wrap_content"

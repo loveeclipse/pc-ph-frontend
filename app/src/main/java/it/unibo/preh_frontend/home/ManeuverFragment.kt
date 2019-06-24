@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Switch
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
@@ -16,6 +15,7 @@ import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.ManeuverData
 import it.unibo.preh_frontend.utils.HistoryManager
+import it.unibo.preh_frontend.dialog.PacingDialogFragment
 
 class ManeuverFragment : Fragment() {
 
@@ -24,8 +24,7 @@ class ManeuverFragment : Fragment() {
     private lateinit var electricalCardioversionSwitch: Switch
     private lateinit var gastricProbeSwitch: Switch
     private lateinit var bladderProbeSwitch: Switch
-    private lateinit var captureFrequencyEditText: EditText
-    private lateinit var amperageEditText: EditText
+    private lateinit var pacingButton: Button
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var previousData: ManeuverData
 
@@ -40,13 +39,13 @@ class ManeuverFragment : Fragment() {
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
         cervicalCollarSwitch = root.findViewById(R.id.cervical_collar_switch)
+
         immobilizationSwitch = root.findViewById(R.id.immobilization_switch)
         electricalCardioversionSwitch = root.findViewById(R.id.electrical_cardioversion_switch)
         gastricProbeSwitch = root.findViewById(R.id.gastric_probe_switch)
         bladderProbeSwitch = root.findViewById(R.id.bladder_probe_switch)
-        captureFrequencyEditText = root.findViewById(R.id.capture_frequency_edit_text)
-        amperageEditText = root.findViewById(R.id.amperage_edit_text)
         root.findViewById<Button>(R.id.pacing_button).setOnClickListener {
+            PacingDialogFragment().show(requireActivity().supportFragmentManager, "layout/fragment_pacing_dialog.xml")
         }
         return root
     }
@@ -80,9 +79,6 @@ class ManeuverFragment : Fragment() {
         electricalCardioversionSwitch.isChecked = savedState.electricalCardioversion
         gastricProbeSwitch.isChecked = savedState.gastricProbe
         bladderProbeSwitch.isChecked = savedState.bladderProbe
-
-        captureFrequencyEditText.setText(savedState.captureFrequency)
-        amperageEditText.setText(savedState.amperage)
     }
 
     fun getData(): ManeuverData {
@@ -91,8 +87,6 @@ class ManeuverFragment : Fragment() {
                 immobilizationSwitch.isChecked,
                 electricalCardioversionSwitch.isChecked,
                 gastricProbeSwitch.isChecked,
-                bladderProbeSwitch.isChecked,
-                captureFrequencyEditText.text.toString(),
-                amperageEditText.text.toString())
+                bladderProbeSwitch.isChecked)
     }
 }
