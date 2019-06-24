@@ -110,6 +110,19 @@ open class HistoryVitalParametersDialog : DialogFragment() {
                 override fun onNothingSelected(p0: AdapterView<*>?) {}
             }
         }
+
+        newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.motorResponseItems, R.layout.spinner_layout)
+        newAdapter.setDropDownViewResource(R.layout.spinner_layout)
+        rispostaMotoria.apply {
+            adapter = newAdapter
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    val gcs = "GCS = " + calculateGCS()
+                    gcsTextView.text = gcs
+                }
+                override fun onNothingSelected(p0: AdapterView<*>?) {}
+            }
+        }
     }
 
     protected open fun setData(data: VitalParametersData) {

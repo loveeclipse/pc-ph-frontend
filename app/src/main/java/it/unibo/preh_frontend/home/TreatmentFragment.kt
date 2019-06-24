@@ -8,12 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.TreatmentData
+import it.unibo.preh_frontend.model.PhysiologicCriterionData
 import it.unibo.preh_frontend.dialog.IppvDialogFragment
+import it.unibo.preh_frontend.utils.CentralizationManager
+import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
+import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
 
 class TreatmentFragment : Fragment() {
 
@@ -71,6 +76,41 @@ class TreatmentFragment : Fragment() {
         guedelButton = root.findViewById(R.id.guedel_button)
         cricoTirotomiaButton = root.findViewById(R.id.tirotomia_button)
         tuboTrachealeButton = root.findViewById(R.id.tubotrach_button)
+        tuboTrachealeButton.setOnClickListener{
+            if(!tuboTrachealeIsActive) {
+                tuboTrachealeIsActive = true
+                val gson = Gson()
+                var physiologicCriteria = gson.fromJson(sharedPreferences.getString("physiologicCriteria", null), PhysiologicCriterionData::class.java)
+                if (physiologicCriteria == null) {
+                    physiologicCriteria = PhysiologicCriterionData()
+                }
+                physiologicCriteria.highRespFreq = true
+                val criteriaAsJson = gson.toJson(physiologicCriteria)
+                sharedPreferences.edit().putString("physiologicCriteria", criteriaAsJson).apply()
+                if (CentralizationManager.determineCentralization(requireContext())) {
+                    requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
+                } else {
+                    requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
+                }
+                activateButton(tuboTrachealeButton,resources)
+            }else{
+                tuboTrachealeIsActive = false
+                val gson = Gson()
+                var physiologicCriteria = gson.fromJson(sharedPreferences.getString("physiologicCriteria", null), PhysiologicCriterionData::class.java)
+                if (physiologicCriteria == null) {
+                    physiologicCriteria = PhysiologicCriterionData()
+                }
+                physiologicCriteria.highRespFreq = false
+                val criteriaAsJson = gson.toJson(physiologicCriteria)
+                sharedPreferences.edit().putString("physiologicCriteria", criteriaAsJson).apply()
+                if (CentralizationManager.determineCentralization(requireContext())) {
+                    requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
+                } else {
+                    requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
+                }
+                deactivateButton(tuboTrachealeButton,resources)
+            }
+        }
         minitoracotomiaSxButton = root.findViewById(R.id.minitoracotomiaSx_button)
         minitoracotomiaDxButton = root.findViewById(R.id.minitoracotomiaDx_button)
 

@@ -15,8 +15,10 @@ import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.dialog.history.HistoryPatientStatusDialog
 import it.unibo.preh_frontend.model.AnatomicCriterionData
 import it.unibo.preh_frontend.model.PatientStatusData
+import it.unibo.preh_frontend.model.PhysiologicCriterionData
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
+import it.unibo.preh_frontend.utils.CentralizationManager
 import it.unibo.preh_frontend.utils.HistoryManager
 
 class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
@@ -37,11 +39,10 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         dialog!!.setCanceledOnTouchOutside(false)
 
         getComponents(root)
-        deactivateButton(anatomicoButton,resources)
-        deactivateButton(fisiologicoButton,resources)
-        deactivateButton(dinamicoButton,resources)
+        determineActiveCriteria()
 
         chiusoButton.setOnClickListener {
+            //Case Study
             if (this.traumaIsClosed) {
                 deactivateButton(chiusoButton, resources)
                 this.traumaIsClosed = false
@@ -61,24 +62,25 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             }
         }
 
+        cascoCinturaSwitch.setOnCheckedChangeListener{ _ , checked ->
+            //Case Study
+        }
+
         voletSwitch.setOnCheckedChangeListener{ _, checked ->
             val gson = Gson()
             var anatomicCriterionData = gson.fromJson(sharedPreferences.getString("anatomicCriteria",null),AnatomicCriterionData::class.java)
             if(anatomicCriterionData == null){
                 anatomicCriterionData = AnatomicCriterionData()
             }
-            if(checked){
-                activateButton(anatomicoButton, resources)
-                anatomicCriterionData.thoraxDeformity = true
-                requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
-            }else{
-                deactivateButton(anatomicoButton,resources)
-                anatomicCriterionData.thoraxDeformity = false
-                //Should check if all Centralization flags are turned off, in that case hide the Centralization alert image
-                requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
-            }
+            anatomicCriterionData.thoraxDeformity = checked
             val anatomicDataAsJson = gson.toJson(anatomicCriterionData)
             sharedPreferences.edit().putString("anatomicCriteria",anatomicDataAsJson).apply()
+            if(CentralizationManager.determineCentralization(requireContext())){
+                requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
+            }else{
+                requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
+            }
+            determineActiveCriteria()
 
         }
 
@@ -101,7 +103,8 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
     override fun onCancel(dialog: DialogInterface) {
         saveState = PatientStatusData(traumaIsClosed,
                 traumaIsPiercing,
-                cascoCinturaSwitch.isChecked // MISSING PARAMETERS
+                cascoCinturaSwitch.isChecked, // MISSING PARAMETERS
+        voletCostale = voletSwitch.isChecked
                 )
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
@@ -127,6 +130,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                     }
 
                     cascoCinturaSwitch.isChecked = newSaveState.cascoCintura
+                    voletSwitch.isChecked = newSaveState.voletCostale
                 }
                 saveState = newSaveState
             }
@@ -138,5 +142,28 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             override fun onBackPressed() {
             }
         }
+    }
+
+    fun determineActiveCriteria() {
+        val gson = Gson()
+        val anatomicCriteria = gson.fromJson(sharedPreferences.getString("anatomicCriteria", null), AnatomicCriterionData::class.java)
+        val physiologicCriteria = gson.fromJson(sharedPreferences.getString("physiologicCriteria", null), PhysiologicCriterionData::class.java)
+        //val dynamicCriteria = gson.fromJson(sharedPreferences.getString("dynamicCriteria",null),DynamicCriterionData::class.java)
+
+        if (anatomicCriteria != null && anatomicCriteria.hasTrueFields()) {
+            activateButton(anatomicoButton, resources)
+        } else {
+            deactivateButton(anatomicoButton, resources)
+        }
+        if (physiologicCriteria != null && physiologicCriteria.hasTrueFields()) {
+            activateButton(fisiologicoButton, resources)
+        } else {
+            deactivateButton(fisiologicoButton, resources)
+        }
+        /*if (dynamicCriteria != null && dynamicCriteria.hasTrueFields()){
+            activateButton(dinamicoButton, resources)
+        } else {
+            deactivateButton(dinamicoButton, resources)
+        }*/
     }
 }
