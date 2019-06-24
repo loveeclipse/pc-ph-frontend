@@ -26,7 +26,6 @@ class ManeuverFragment : Fragment() {
     private lateinit var gastricProbeSwitch: Switch
     private lateinit var bladderProbeSwitch: Switch
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var previousData: ManeuverData
 
     override fun onCreateView(
         inflater: LayoutInflater,

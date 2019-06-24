@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
+
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.DrugsData
 import it.unibo.preh_frontend.utils.HistoryManager
@@ -48,7 +49,7 @@ class InputDialogFragment : DialogFragment() {
                 "Somministrazione ${arguments?.get(drugName)}"
         )
         val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-        sharedPreferences.edit().putString("drugs", Gson().toJson(drugsData)).apply()
+        sharedPreferences.edit().putString("DrugsData", Gson().toJson(drugsData)).apply()
         HistoryManager.addEntry(drugsData, sharedPreferences)
         super.onCancel(dialog)
     }
