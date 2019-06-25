@@ -5,7 +5,6 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import it.unibo.preh_frontend.model.AnagraphicData
-import it.unibo.preh_frontend.model.ComplicationsData
 import it.unibo.preh_frontend.model.ComplicationsHistoryData
 import it.unibo.preh_frontend.model.DrugsData
 import it.unibo.preh_frontend.model.ManeuverData
