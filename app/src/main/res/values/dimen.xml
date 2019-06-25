@@ -30,4 +30,6 @@
     <dimen name="treatmentButtonVerticalMargin">4dp</dimen>
     <dimen name="treatmentButtonHorizontalSpace">4dp</dimen>
     <dimen name="treatmentButtonVerticalSpace">1dp</dimen>
+
+    <dimen name="criterionVerticalSpace">10dp</dimen>dimen>
 </resources>

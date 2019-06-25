@@ -21,11 +21,11 @@ class HistoryNewPcCarDialog : DialogFragment() {
 
         getComponents(root)
 
-        setData(arguments!!.get("data") as NewPcCarData)
+        setData(arguments?.get("data") as NewPcCarData)
 
         val exitButton = root.findViewById<ImageButton>(R.id.pccar_items_image_button)
         exitButton.setOnClickListener {
-            dialog!!.cancel()
+            dialog?.cancel()
         }
 
         return root
@@ -48,7 +48,7 @@ class HistoryNewPcCarDialog : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     companion object {

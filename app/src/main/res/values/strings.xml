@@ -197,12 +197,28 @@
 
     <string name="dosaggio">Dosaggio</string>
     <string name="cancel_button">Annulla</string>
+
     <string name="acquisizione_posizione">Acquisizione posizione</string>
     <string name="sovrascrivi_indirizzo">Sovrascrivi indirizzo</string>
-    <string name="frequenza_respiratoria_10_atti_min"><![CDATA[Frequenza Respiratoria < 10 atti/min]]></string>
-    <string name="frequenza_respiratoria_29_atti_min"><![CDATA[Frequenza Respiratoria > 29 atti/min]]></string>
-    <string name="pressione_arteriosa_sistolica_90_mmhg"><![CDATA[Pressione Arteriosa Sistolica < 90 mmHg]]></string>
-    <string name="necessit_supporto_ventilatorio">Necessità Supporto Ventilatorio</string>
-    <string name="gcs_14"><![CDATA[GCS < 14]]></string>
 
+    <string name="frequenza_respiratoria_10_atti_min"><![CDATA[Frequenza respiratoria < 10 atti/min]]></string>
+    <string name="frequenza_respiratoria_29_atti_min"><![CDATA[Frequenza respiratoria > 29 atti/min]]></string>
+    <string name="pressione_arteriosa_sistolica_90_mmhg"><![CDATA[Pressione arteriosa sistolica < 90 mmHg]]></string>
+    <string name="necessit_supporto_ventilatorio">Necessità supporto ventilatorio</string>
+    <string name="gcs_14"><![CDATA[GCS < 14]]></string>
+    <string name="ipertensione_arteriosa_sintomatica">Ipertensione arteriosa sintomatica</string>
+
+    <string name="trauma_schiacciamento_tronco">Trauma da schiacciamento del tronco</string>
+    <string name="amputazione_scuoiamento_arto">Amputazione/Scuoiamento di arto prossimale a polso o caviglia</string>
+    <string name="ferita_penetrante">Ferita penetrante di testa, collo, tronco o radice di un arto</string>
+    <string name="frattura_cranica_io">Frattura canica infossata/otorragia</string>
+    <string name="volet_costale_id">Volet costale o instabilità/deformità della parete toracica</string>
+    <string name="ustione">Ustione di 2° e/o 3° grado, >30% superfice corporea ustionata, volto/mani/piedi/genitali</string>
+    <string name="sospetta_lesione_verbale">Sospetta lesione vertebrale</string>
+    <string name="codice_di_rientro">Codice di rientro</string>
+    <string name="ospedale_di_arrivo">Ospedale di arrivo</string>
+    <string name="mezzo_di_trasporto">Mezzo di trasporto</string>
+    <string name="ambulanza">Ambulanza</string>
+    <string name="elicottero">Elicottero</string>
+    <string name="medico_accompagna">Medico accompagna</string>
 </resources>

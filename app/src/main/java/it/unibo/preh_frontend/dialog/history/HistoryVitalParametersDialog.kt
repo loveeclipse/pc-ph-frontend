@@ -17,22 +17,22 @@ import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.VitalParametersData
 
 open class HistoryVitalParametersDialog : DialogFragment() {
-    protected lateinit var vieAeree: RadioGroup
-    protected lateinit var freqRespiratoria: Spinner
-    protected lateinit var saturazione: EditText
-    protected lateinit var freqCaridaca: EditText
-    protected lateinit var tipoBattito: RadioGroup
-    protected lateinit var presArteriosa: EditText
-    protected lateinit var tempRiempCapillare: RadioGroup
-    protected lateinit var colorCuteMucose: RadioGroup
-    protected lateinit var aperturaOcchi: Spinner
-    protected lateinit var rispostaVerbale: Spinner
-    protected lateinit var rispostaMotoria: Spinner
-    protected lateinit var pupilleSx: RadioGroup
-    protected lateinit var pupilleDx: RadioGroup
-    protected lateinit var fotoreagenteSx: Switch
-    protected lateinit var fotoreagenteDx: Switch
-    protected lateinit var tempCorporea: EditText
+    protected lateinit var airwaysRadiogroup: RadioGroup
+    protected lateinit var respiratoryFreqSpinner: Spinner
+    protected lateinit var saturationEditText: EditText
+    protected lateinit var cardiacFrequencyEditText: EditText
+    protected lateinit var beatTypeRadiogroup: RadioGroup
+    protected lateinit var arteriousPressureEditText: EditText
+    protected lateinit var capillarFillingTimeRadioGroup: RadioGroup
+    protected lateinit var mucousSkinColourRadiogroup: RadioGroup
+    protected lateinit var eyesOpeningSpinner: Spinner
+    protected lateinit var verbalResponseSpinner: Spinner
+    protected lateinit var motorResponseSpinner: Spinner
+    protected lateinit var pupilSxRadiogroup: RadioGroup
+    protected lateinit var pupilDXRadiogroup: RadioGroup
+    protected lateinit var photoreagentSxSwitch: Switch
+    protected lateinit var photoreagentDxSwitch: Switch
+    protected lateinit var bodyTempEditText: EditText
     protected lateinit var gcsTextView: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,12 +42,12 @@ open class HistoryVitalParametersDialog : DialogFragment() {
 
         initSpinner()
 
-        setData(arguments!!.get("data") as VitalParametersData)
+        setData(arguments?.get("data") as VitalParametersData)
 
         val exitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
         exitButton.setOnClickListener {
                 // Here you can save eventual modifications to the history element
-                dialog!!.cancel()
+                dialog?.cancel()
             }
 
         return root
@@ -55,22 +55,22 @@ open class HistoryVitalParametersDialog : DialogFragment() {
 
     protected open fun getComponents(root: View) {
         root.apply {
-            vieAeree = findViewById(R.id.vieaeree_radiogroup)
-            freqRespiratoria = findViewById(R.id.freq_resp_spinner)
-            saturazione = findViewById(R.id.saturazione_edittext)
-            freqCaridaca = findViewById(R.id.freq_cardiaca_edittext)
-            tipoBattito = findViewById(R.id.tipo_battito_radiogroup)
-            presArteriosa = findViewById(R.id.pres_arter_edittext)
-            tempRiempCapillare = findViewById(R.id.riempimento_capillare_radiogroup)
-            colorCuteMucose = findViewById(R.id.cute_mucose_radiogroup)
-            aperturaOcchi = findViewById(R.id.apertura_occhi_spinner)
-            rispostaVerbale = findViewById(R.id.risposta_verbale_spinner)
-            rispostaMotoria = findViewById(R.id.risposta_motoria_spinner)
-            pupilleSx = findViewById(R.id.pupilleSx_radiogroup)
-            pupilleDx = findViewById(R.id.pupilleDx_radiogroup)
-            fotoreagenteSx = findViewById(R.id.fotoreagenteSx_switch)
-            fotoreagenteDx = findViewById(R.id.fotoreagenteDx_switch)
-            tempCorporea = findViewById(R.id.temp_corporea_edittext)
+            airwaysRadiogroup = findViewById(R.id.airways_radiogroup)
+            respiratoryFreqSpinner = findViewById(R.id.resp_freq_spinner)
+            saturationEditText = findViewById(R.id.saturation_edittext)
+            cardiacFrequencyEditText = findViewById(R.id.cardiac_frequency_edittext)
+            beatTypeRadiogroup = findViewById(R.id.beat_type_radiogroup)
+            arteriousPressureEditText = findViewById(R.id.pres_arter_edittext)
+            capillarFillingTimeRadioGroup = findViewById(R.id.riempimento_capillare_radiogroup)
+            mucousSkinColourRadiogroup = findViewById(R.id.mucous_skin_color_radiogroup)
+            eyesOpeningSpinner = findViewById(R.id.eyes_opening_spinner)
+            verbalResponseSpinner = findViewById(R.id.verbal_response_spinner)
+            motorResponseSpinner = findViewById(R.id.motor_response_spinner)
+            pupilSxRadiogroup = findViewById(R.id.pupilSx_radiogroup)
+            pupilDXRadiogroup = findViewById(R.id.pupilDx_radiogroup)
+            photoreagentSxSwitch = findViewById(R.id.photoreagentSx_switch)
+            photoreagentDxSwitch = findViewById(R.id.photoreagentDx_switch)
+            bodyTempEditText = findViewById(R.id.body_temperature_edittext)
             gcsTextView = findViewById(R.id.gcs_textview)
         }
     }
@@ -78,14 +78,14 @@ open class HistoryVitalParametersDialog : DialogFragment() {
     protected open fun initSpinner() {
         var newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.respiratoryFrequencyItems, R.layout.spinner_layout)
         newAdapter.setDropDownViewResource(R.layout.spinner_layout)
-        freqRespiratoria.apply {
+        respiratoryFreqSpinner.apply {
             adapter = newAdapter
             setSelection(1)
         }
 
         newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.eyeOpeningItems, R.layout.spinner_layout)
         newAdapter.setDropDownViewResource(R.layout.spinner_layout)
-        aperturaOcchi.apply {
+        eyesOpeningSpinner.apply {
             adapter = newAdapter
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -99,7 +99,7 @@ open class HistoryVitalParametersDialog : DialogFragment() {
 
         newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.verbalResponseItems, R.layout.spinner_layout)
         newAdapter.setDropDownViewResource(R.layout.spinner_layout)
-        rispostaVerbale.apply {
+        verbalResponseSpinner.apply {
             adapter = newAdapter
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -113,7 +113,7 @@ open class HistoryVitalParametersDialog : DialogFragment() {
 
         newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.motorResponseItems, R.layout.spinner_layout)
         newAdapter.setDropDownViewResource(R.layout.spinner_layout)
-        rispostaMotoria.apply {
+        motorResponseSpinner.apply {
             adapter = newAdapter
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -126,34 +126,34 @@ open class HistoryVitalParametersDialog : DialogFragment() {
     }
 
     protected open fun setData(data: VitalParametersData) {
-        vieAeree.check(data.vieAeree)
-        freqRespiratoria.setSelection(data.frequenzaRespiratoria)
-        saturazione.setText(data.saturazionePeriferica.toString())
-        freqCaridaca.setText(data.frequenzaCaridaca.toString())
-        tipoBattito.check(data.tipoBattito)
-        presArteriosa.setText(data.pressioneArteriosa.toString())
-        tempRiempCapillare.check(data.tempoRiempimentoCapillare)
-        colorCuteMucose.check(data.coloritoCuteMucose)
-        aperturaOcchi.setSelection(data.aperturaOcchi)
-        rispostaVerbale.setSelection(data.rispostaVerbale)
-        rispostaMotoria.setSelection(data.rispostaMotoria)
-        pupilleSx.check(data.pupilleSx)
-        pupilleDx.check(data.pupilleDx)
-        fotoreagenteSx.isChecked = data.fotoreagenteSx
-        fotoreagenteDx.isChecked = data.fotoreagenteDx
-        tempCorporea.setText(data.temperature.toString())
+        airwaysRadiogroup.check(data.airways)
+        respiratoryFreqSpinner.setSelection(data.respiratoryFrequency)
+        saturationEditText.setText(data.periphericalSaturation.toString())
+        cardiacFrequencyEditText.setText(data.cardiacFrequency.toString())
+        beatTypeRadiogroup.check(data.beatType)
+        arteriousPressureEditText.setText(data.bloodPressure.toString())
+        capillarFillingTimeRadioGroup.check(data.capillarFillTime)
+        mucousSkinColourRadiogroup.check(data.mucousSkinColor)
+        eyesOpeningSpinner.setSelection(data.eyesOpening)
+        verbalResponseSpinner.setSelection(data.verbalResponse)
+        motorResponseSpinner.setSelection(data.motorResponse)
+        pupilSxRadiogroup.check(data.pupilSx)
+        pupilDXRadiogroup.check(data.pupilDx)
+        photoreagentSxSwitch.isChecked = data.photoreagentSx
+        photoreagentDxSwitch.isChecked = data.photoreagentDx
+        bodyTempEditText.setText(data.temperature.toString())
     }
 
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     protected open fun calculateGCS(): Int {
-        return 4 - aperturaOcchi.selectedItemPosition +
-                5 - rispostaMotoria.selectedItemPosition +
-                6 - rispostaVerbale.selectedItemPosition
+        return 4 - eyesOpeningSpinner.selectedItemPosition +
+                5 - motorResponseSpinner.selectedItemPosition +
+                6 - verbalResponseSpinner.selectedItemPosition
     }
 
     companion object {

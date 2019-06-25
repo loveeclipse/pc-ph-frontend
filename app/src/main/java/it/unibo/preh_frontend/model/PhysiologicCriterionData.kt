@@ -7,7 +7,7 @@ class PhysiologicCriterionData(
     var ventSupport: Boolean = false,
     var lowBloodPress: Boolean = false,
     var hypertension: Boolean = false
-){
+) {
     fun hasTrueFields(): Boolean {
         return (gcsValue || lowRespFreq || highRespFreq || ventSupport || lowBloodPress || hypertension)
     }

@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
+
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.DrugsData
 import it.unibo.preh_frontend.utils.HistoryManager
@@ -19,24 +20,24 @@ import it.unibo.preh_frontend.utils.HistoryManager
 class InputDialogFragment : DialogFragment() {
 
     private lateinit var inputValueEditText: EditText
-    private lateinit var unitUnitEditText: TextView
+    private lateinit var unitEditText: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.input_dialog, container, false)
-        dialog!!.setCanceledOnTouchOutside(false)
+        dialog?.setCanceledOnTouchOutside(false)
 
         inputValueEditText = root.findViewById(R.id.input_edit_text)
         inputValueEditText.setText(arguments?.get(value).toString())
 
-        unitUnitEditText = root.findViewById(R.id.unit_of_measurement)
-        unitUnitEditText.text = arguments?.get(unitOfMeasurement).toString()
+        unitEditText = root.findViewById(R.id.unit_of_measurement)
+        unitEditText.text = arguments?.get(unitOfMeasurement).toString()
 
         root.findViewById<Button>(R.id.confirm_button).setOnClickListener {
-            dialog!!.cancel()
+            dialog?.cancel()
         }
 
         root.findViewById<Button>(R.id.cancel_button).setOnClickListener {
-            dialog!!.dismiss()
+            dialog?.dismiss()
         }
 
         return root
@@ -45,18 +46,20 @@ class InputDialogFragment : DialogFragment() {
     override fun onCancel(dialog: DialogInterface) {
         val drugsData = DrugsData(Integer.parseInt(
                 inputValueEditText.text.toString()),
-                "Somministrazione ${arguments?.get(drugName)}"
+                unitEditText.text.toString(),
+                "Somministrazione ${inputValueEditText.text} ${unitEditText.text} ${arguments?.get(drugName)}"
         )
         val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-        sharedPreferences.edit().putString("drugs", Gson().toJson(drugsData)).apply()
+        sharedPreferences.edit().putString("DrugsData", Gson().toJson(drugsData)).apply()
         HistoryManager.addEntry(drugsData, sharedPreferences)
+
         super.onCancel(dialog)
     }
 
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 35*metrics.heightPixels / 100)
+        dialog?.window?.setLayout(metrics.widthPixels, 35*metrics.heightPixels / 100)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

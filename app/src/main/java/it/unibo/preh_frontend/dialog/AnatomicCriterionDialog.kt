@@ -28,7 +28,7 @@ class AnatomicCriterionDialog : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.anatomic_criterion_fragment, container, false)
-        dialog!!.setCanceledOnTouchOutside(false)
+        dialog?.setCanceledOnTouchOutside(false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
@@ -36,7 +36,7 @@ class AnatomicCriterionDialog : DialogFragment() {
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.anatomic_image_button)
         saveAndExitButton.setOnClickListener {
-            dialog!!.cancel()
+            dialog?.cancel()
         }
 
         setSharedPreferences()
@@ -46,14 +46,14 @@ class AnatomicCriterionDialog : DialogFragment() {
 
     private fun getComponents(root: View) {
         root.apply {
-            traumaTorsoCrushSwitch = findViewById(R.id.trauma_tronco_switch)
-            penetratingWoundSwitch = findViewById(R.id.ferita_penetramte_switch)
-            craniumFractureSwitch = findViewById(R.id.frattura_cranica_switch)
-            thoraxDeformitySwitch = findViewById(R.id.volet_costale_switch)
-            bodyBurnSwitch = findViewById(R.id.ustione_switch)
-            unstablePelvisSwitch = findViewById(R.id.bacino_instabile_switch)
+            traumaTorsoCrushSwitch = findViewById(R.id.torso_trauma_switch)
+            penetratingWoundSwitch = findViewById(R.id.piercing_wound_switch)
+            craniumFractureSwitch = findViewById(R.id.skull_fracture_switch)
+            thoraxDeformitySwitch = findViewById(R.id.costal_volet_switch)
+            bodyBurnSwitch = findViewById(R.id.burn_switch)
+            unstablePelvisSwitch = findViewById(R.id.unstable_pelvis_switch)
             vertebralLesionSwitch = findViewById(R.id.lesione_vertebrale_switch)
-            amputationSwitch = findViewById(R.id.amputazione_scuoiamento_switch)
+            amputationSwitch = findViewById(R.id.amputation_flaying_switch)
         }
     }
 
@@ -83,6 +83,6 @@ class AnatomicCriterionDialog : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8 * metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8 * metrics.heightPixels / 10)
     }
 }

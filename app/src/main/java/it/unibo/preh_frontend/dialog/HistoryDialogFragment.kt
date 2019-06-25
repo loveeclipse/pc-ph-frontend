@@ -11,10 +11,12 @@ import android.widget.ImageButton
 import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
 import android.widget.ListView
+import it.unibo.preh_frontend.dialog.history.HistoryDrugsDialog
 import it.unibo.preh_frontend.dialog.history.HistoryNewPcCarDialog
 import it.unibo.preh_frontend.utils.HistoryListAdapter
 import it.unibo.preh_frontend.dialog.history.HistoryPatientStatusDialog
 import it.unibo.preh_frontend.dialog.history.HistoryVitalParametersDialog
+import it.unibo.preh_frontend.model.DrugsData
 import it.unibo.preh_frontend.model.NewPcCarData
 import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.model.PreHData
@@ -34,7 +36,7 @@ class HistoryDialogFragment : DialogFragment() {
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_history_dialog, container, false)
-        dialog!!.setCanceledOnTouchOutside(false)
+        dialog?.setCanceledOnTouchOutside(false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
@@ -47,23 +49,31 @@ class HistoryDialogFragment : DialogFragment() {
             val historyData = aList[position]
             when (historyData.type) {
                 "VitalParametersData" -> {
-                    HistoryVitalParametersDialog.newInstance(historyData as VitalParametersData)
+                    if (requireActivity().supportFragmentManager.findFragmentByTag("history_vital_parameters_fragment") == null)
+                        HistoryVitalParametersDialog.newInstance(historyData as VitalParametersData)
                             .show(requireActivity().supportFragmentManager, "history_vital_parameters_fragment")
                 }
                 "PatientStatusData" -> {
-                    HistoryPatientStatusDialog.newInstance(historyData as PatientStatusData)
+                    if (requireActivity().supportFragmentManager.findFragmentByTag("history_patient_status_fragment") == null)
+                        HistoryPatientStatusDialog.newInstance(historyData as PatientStatusData)
                             .show(requireActivity().supportFragmentManager, "history_patient_status_fragment")
                 }
                 "NewPcCarData" -> {
-                    HistoryNewPcCarDialog.newInstance(historyData as NewPcCarData)
+                    if (requireActivity().supportFragmentManager.findFragmentByTag("history_newpccar_fragment") == null)
+                        HistoryNewPcCarDialog.newInstance(historyData as NewPcCarData)
                             .show(requireActivity().supportFragmentManager, "history_newpccar_fragment")
+                }
+                "DrugsData" -> {
+                    if (requireActivity().supportFragmentManager.findFragmentByTag("input_dialog") == null)
+                        HistoryDrugsDialog.newInstance(historyData as DrugsData)
+                                .show(requireActivity().supportFragmentManager, "input_dialog")
                 }
             }
         }
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.history_image_button)
         saveAndExitButton.setOnClickListener {
-            dialog!!.dismiss()
+            dialog?.dismiss()
         }
         return root
     }
@@ -71,7 +81,7 @@ class HistoryDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

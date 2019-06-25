@@ -20,15 +20,15 @@
                     android:text="@string/neuroprotezione"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/neuroprot_button"
+                    android:id="@+id/neuroprotection_button"
                     app:layout_constraintTop_toBottomOf="@id/circoloLayout"
-                    app:layout_constraintBottom_toTopOf="@id/prottermica_button"/>
+                    app:layout_constraintBottom_toTopOf="@id/termic_protection_button"/>
             <Button
                     android:text="@string/protezione_termica"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/prottermica_button"
-                    app:layout_constraintTop_toBottomOf="@+id/neuroprot_button"
+                    android:id="@+id/termic_protection_button"
+                    app:layout_constraintTop_toBottomOf="@+id/neuroprotection_button"
                     app:layout_constraintBottom_toBottomOf="parent"/>
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -36,11 +36,11 @@
                     android:background="@drawable/box"
                     android:id="@+id/circoloLayout"
                     app:layout_constraintTop_toBottomOf="@id/textView12"
-                    app:layout_constraintBottom_toTopOf="@id/neuroprot_button">
+                    app:layout_constraintBottom_toTopOf="@id/neuroprotection_button">
                 <Spinner
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/periferica_spinner"
+                        android:id="@+id/peripheric_spinner"
                         app:layout_constraintTop_toBottomOf="@+id/textView24"
                         app:layout_constraintBottom_toTopOf="@+id/central_button"
                         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +49,7 @@
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/central_spinner"
-                        app:layout_constraintTop_toBottomOf="@+id/periferica_button"
+                        app:layout_constraintTop_toBottomOf="@+id/peripheric_button"
                         app:layout_constraintBottom_toTopOf="@+id/intraosseous_button"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/textView26"/>
@@ -65,7 +65,7 @@
                         android:text="@string/periferica"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/periferica_button"
+                        android:id="@+id/peripheric_button"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
                         app:layout_constraintTop_toBottomOf="@id/textView24"
@@ -79,7 +79,7 @@
                         android:id="@+id/central_button"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintTop_toBottomOf="@+id/periferica_button"
+                        app:layout_constraintTop_toBottomOf="@+id/peripheric_button"
                         app:layout_constraintBottom_toTopOf="@id/intraosseous_button"
                         app:layout_constraintStart_toEndOf="@id/guideline5"
                         app:layout_constraintEnd_toEndOf="parent"/>
@@ -98,7 +98,7 @@
                         android:text="@string/emostasi"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/emostasi_button"
+                        android:id="@+id/emostasis_button"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
@@ -123,7 +123,7 @@
                         android:layout_height="2dp"
                         android:id="@+id/view1"
                         android:background="@android:color/darker_gray"
-                        app:layout_constraintTop_toBottomOf="@+id/emostasi_button"
+                        app:layout_constraintTop_toBottomOf="@+id/emostasis_button"
                         app:layout_constraintBottom_toTopOf="@id/textView13"/>
                 <TextView
                         android:text="@string/tourniquet"
@@ -133,14 +133,14 @@
                         android:id="@+id/textView13"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         app:layout_constraintTop_toBottomOf="@+id/view1"
-                        app:layout_constraintBottom_toTopOf="@id/button24"
+                        app:layout_constraintBottom_toTopOf="@id/tourniquet_button"
                         app:layout_constraintStart_toStartOf="parent"/>
                 <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:id="@+id/view2"
                         android:background="@android:color/darker_gray"
-                        app:layout_constraintTop_toBottomOf="@+id/button24"
+                        app:layout_constraintTop_toBottomOf="@+id/tourniquet_button"
                         app:layout_constraintBottom_toTopOf="@id/textView16"/>
                 <TextView
                         android:text="@string/reboa"
@@ -204,7 +204,7 @@
                         android:id="@+id/textView23"
                         android:layout_marginTop="@dimen/verticalMargin"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@id/periferica_button"
+                        app:layout_constraintBottom_toTopOf="@id/peripheric_button"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/guideline5"/>
                 <TextView
@@ -215,7 +215,7 @@
                         style="@style/TreatmentTextStyle"
                         android:layout_marginTop="@dimen/verticalMargin"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@id/periferica_button"
+                        app:layout_constraintBottom_toTopOf="@id/peripheric_button"
                         app:layout_constraintStart_toEndOf="@id/guideline5"
                         app:layout_constraintEnd_toEndOf="parent"/>
                 <TextView
@@ -226,7 +226,7 @@
                         style="@style/TreatmentTextStyle"
                         app:layout_constraintTop_toBottomOf="@id/textView24"
                         app:layout_constraintBottom_toTopOf="@+id/central_button"
-                        app:layout_constraintStart_toEndOf="@+id/periferica_spinner"
+                        app:layout_constraintStart_toEndOf="@+id/peripheric_spinner"
                         app:layout_constraintEnd_toStartOf="@id/guideline5"/>
                 <TextView
                         android:text="@string/french"
@@ -234,7 +234,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/textView26"
                         style="@style/TreatmentTextStyle"
-                        app:layout_constraintTop_toBottomOf="@+id/periferica_button"
+                        app:layout_constraintTop_toBottomOf="@+id/peripheric_button"
                         app:layout_constraintBottom_toTopOf="@+id/intraosseous_button"
                         app:layout_constraintStart_toEndOf="@+id/central_spinner"
                         app:layout_constraintEnd_toStartOf="@id/guideline5"/>
@@ -252,7 +252,7 @@
                         android:text="@string/inizia_tourniquet"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/button24"
+                        android:id="@+id/tourniquet_button"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
@@ -267,8 +267,8 @@
                         android:id="@+id/textView56"
                         style="@style/TreatmentTextStyle"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintTop_toTopOf="@+id/button24"
-                        app:layout_constraintBottom_toBottomOf="@id/button24"
+                        app:layout_constraintTop_toTopOf="@+id/tourniquet_button"
+                        app:layout_constraintBottom_toBottomOf="@id/tourniquet_button"
                         app:layout_constraintStart_toEndOf="@id/guideline5"/>
                 <androidx.constraintlayout.widget.Guideline
                         android:orientation="vertical"
@@ -288,7 +288,7 @@
                         android:text="@string/ossigenoterapia_i_min"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/ossigenoterapia_button"
+                        android:id="@+id/oxigen_therapy_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalMargin"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
@@ -306,9 +306,9 @@
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintTop_toTopOf="@+id/ossigenoterapia_button"
-                        app:layout_constraintBottom_toBottomOf="@+id/ossigenoterapia_button"
-                        app:layout_constraintStart_toEndOf="@+id/ossigenoterapia_button"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/minitoracotomiaSx_button"
+                        app:layout_constraintStart_toEndOf="@+id/oxigen_therapy_button"
                         app:layout_constraintEnd_toEndOf="parent"/>
                 <TextView
                         android:text="@string/mini_toracotomia"
@@ -342,16 +342,16 @@
                         android:layout_height="wrap_content"
                         style="@style/SelectableButtonStyle"
                         android:id="@+id/minitoracotomiaSx_button"
-                        app:layout_constraintTop_toBottomOf="@+id/ossigenoterapia_button"
+                        app:layout_constraintTop_toBottomOf="@+id/oxigen_therapy_button"
                         app:layout_constraintBottom_toTopOf="@id/ippv_button"
                         app:layout_constraintStart_toEndOf="@+id/textView11"
-                        app:layout_constraintEnd_toStartOf="@+id/minitoracotomiaDx_button"/>
+                        app:layout_constraintEnd_toStartOf="@+id/minithoracotomyDx_button"/>
                 <Button
                         android:text="@string/dx"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         style="@style/SelectableButtonStyle"
-                        android:id="@+id/minitoracotomiaDx_button"
+                        android:id="@+id/minithoracotomyDx_button"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
                         app:layout_constraintTop_toTopOf="@+id/minitoracotomiaSx_button"
                         app:layout_constraintBottom_toBottomOf="@id/minitoracotomiaSx_button"
@@ -369,13 +369,13 @@
                         android:text="@string/sublussazione_mandibola"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/sublussazione_button"
+                        android:id="@+id/subluxation_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalMargin"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalSpace"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/tirotomia_button"
+                        app:layout_constraintBottom_toTopOf="@+id/tirotomy_button"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guedel_button"/>
                 <Button
@@ -388,34 +388,34 @@
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/tubotrach_button"
-                        app:layout_constraintStart_toEndOf="@+id/sublussazione_button"
+                        app:layout_constraintBottom_toTopOf="@+id/tracheal_tube_button"
+                        app:layout_constraintStart_toEndOf="@+id/subluxation_button"
                         app:layout_constraintEnd_toEndOf="parent"/>
                 <Button
                         android:text="@string/crico_tirotomia"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tirotomia_button"
+                        android:id="@+id/tirotomy_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalSpace"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalSpace"
-                        app:layout_constraintTop_toBottomOf="@+id/sublussazione_button"
+                        app:layout_constraintTop_toBottomOf="@+id/subluxation_button"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/tubotrach_button"/>
+                        app:layout_constraintEnd_toStartOf="@+id/tracheal_tube_button"/>
                 <Button
                         android:text="@string/tubo_tracheale"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tubotrach_button"
+                        android:id="@+id/tracheal_tube_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalSpace"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintTop_toTopOf="@+id/tirotomia_button"
-                        app:layout_constraintBottom_toBottomOf="@+id/tirotomia_button"
-                        app:layout_constraintStart_toEndOf="@+id/tirotomia_button"
+                        app:layout_constraintTop_toTopOf="@+id/tirotomy_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/tirotomy_button"
+                        app:layout_constraintStart_toEndOf="@+id/tirotomy_button"
                         app:layout_constraintEnd_toEndOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -429,13 +429,13 @@
                         android:text="@string/andrenalina_1mg"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/adrenalina_button"
+                        android:id="@+id/adrenaline_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalMargin"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalSpace"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/rianimazione_button"
+                        app:layout_constraintBottom_toTopOf="@+id/cpr_button"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline2"/>
                 <Button
@@ -448,19 +448,19 @@
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/rianimazione_button"
+                        app:layout_constraintBottom_toTopOf="@+id/cpr_button"
                         app:layout_constraintStart_toEndOf="@+id/guideline2"
                         app:layout_constraintEnd_toEndOf="parent"/>
                 <Button
                         android:text="@string/inizio_rianimazione"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/rianimazione_button"
+                        android:id="@+id/cpr_button"
                         android:layout_marginTop="@dimen/treatmentButtonVerticalSpace"
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalMargin"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalMargin"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalSpace"
-                        app:layout_constraintTop_toBottomOf="@+id/adrenalina_button"
+                        app:layout_constraintTop_toBottomOf="@+id/adrenaline_button"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline2"/>

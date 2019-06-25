@@ -52,7 +52,7 @@ class TreatmentFragment : Fragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
-        val peripheralSpinner = root.findViewById<Spinner>(R.id.periferica_spinner)
+        val peripheralSpinner = root.findViewById<Spinner>(R.id.peripheric_spinner)
         val centralSpinner = root.findViewById<Spinner>(R.id.central_spinner)
         val intraosseousSpinner = root.findViewById<Spinner>(R.id.intraosseous_spinner)
 
@@ -69,15 +69,16 @@ class TreatmentFragment : Fragment() {
         intraosseousSpinner.adapter = adapter
 
         root.findViewById<Button>(R.id.ippv_button).setOnClickListener {
-            IppvDialogFragment().show(requireActivity().supportFragmentManager, "layout/fragment_ippv_dialog.xml")
+            if (requireActivity().supportFragmentManager.findFragmentByTag("fragment_ippv_dialog") == null)
+                IppvDialogFragment().show(requireActivity().supportFragmentManager, "fragment_ippv_dialog")
         }
 
-        sublussazioneButton = root.findViewById(R.id.sublussazione_button)
+        sublussazioneButton = root.findViewById(R.id.subluxation_button)
         guedelButton = root.findViewById(R.id.guedel_button)
-        cricoTirotomiaButton = root.findViewById(R.id.tirotomia_button)
-        tuboTrachealeButton = root.findViewById(R.id.tubotrach_button)
-        tuboTrachealeButton.setOnClickListener{
-            if(!tuboTrachealeIsActive) {
+        cricoTirotomiaButton = root.findViewById(R.id.tirotomy_button)
+        tuboTrachealeButton = root.findViewById(R.id.tracheal_tube_button)
+        tuboTrachealeButton.setOnClickListener {
+            if (!tuboTrachealeIsActive) {
                 tuboTrachealeIsActive = true
                 val gson = Gson()
                 var physiologicCriteria = gson.fromJson(sharedPreferences.getString("physiologicCriteria", null), PhysiologicCriterionData::class.java)
@@ -92,8 +93,8 @@ class TreatmentFragment : Fragment() {
                 } else {
                     requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
                 }
-                activateButton(tuboTrachealeButton,resources)
-            }else{
+                activateButton(tuboTrachealeButton, resources)
+            } else {
                 tuboTrachealeIsActive = false
                 val gson = Gson()
                 var physiologicCriteria = gson.fromJson(sharedPreferences.getString("physiologicCriteria", null), PhysiologicCriterionData::class.java)
@@ -108,11 +109,11 @@ class TreatmentFragment : Fragment() {
                 } else {
                     requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
                 }
-                deactivateButton(tuboTrachealeButton,resources)
+                deactivateButton(tuboTrachealeButton, resources)
             }
         }
         minitoracotomiaSxButton = root.findViewById(R.id.minitoracotomiaSx_button)
-        minitoracotomiaDxButton = root.findViewById(R.id.minitoracotomiaDx_button)
+        minitoracotomiaDxButton = root.findViewById(R.id.minithoracotomyDx_button)
 
         return root
     }
@@ -128,17 +129,8 @@ class TreatmentFragment : Fragment() {
 
     private fun applySharedPreferences(savedState: TreatmentData) {
         // setta i bottoni a seconda del valore in savestate
-        if (savedState.sublussazione) {
-            activateButton(sublussazioneButton,resources)
-        }else{
-            deactivateButton(sublussazioneButton,resources)
-        }
-        if(savedState.tuboTracheale){
-            activateButton(tuboTrachealeButton,resources)
-            tuboTrachealeIsActive = true
-        }else{
-            deactivateButton(tuboTrachealeButton,resources)
-            tuboTrachealeIsActive = false
+        if (savedState.subluxation) {
+            sublussazioneButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)
         }
     }
 

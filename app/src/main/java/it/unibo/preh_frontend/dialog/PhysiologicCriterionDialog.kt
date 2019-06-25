@@ -26,7 +26,7 @@ class PhysiologicCriterionDialog : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.physiologic_criterion_fragment, container, false)
-        dialog!!.setCanceledOnTouchOutside(false)
+        dialog?.setCanceledOnTouchOutside(false)
 
         getComponents(root)
 
@@ -34,7 +34,7 @@ class PhysiologicCriterionDialog : DialogFragment() {
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.physiologic_image_button)
         saveAndExitButton.setOnClickListener {
-            dialog!!.cancel()
+            dialog?.cancel()
         }
 
         setSharedPreferences()
@@ -65,7 +65,7 @@ class PhysiologicCriterionDialog : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8 * metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8 * metrics.heightPixels / 10)
     }
 
     private fun setSharedPreferences() {

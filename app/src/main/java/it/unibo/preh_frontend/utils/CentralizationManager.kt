@@ -12,26 +12,26 @@ object CentralizationManager {
     var centralizationIsActive = false
     private val gson = Gson()
 
-    fun determineCentralization(context: Context): Boolean{
+    fun determineCentralization(context: Context): Boolean {
         obtainCriteria(context)
         centralizationIsActive = anatomicCriteria.hasTrueFields() || physiologicCriteria.hasTrueFields()
         return centralizationIsActive
     }
 
-    private fun obtainCriteria(context: Context){
+    private fun obtainCriteria(context: Context) {
         val sharedPreferences = context.getSharedPreferences("preHData", Context.MODE_PRIVATE)
-        val anatomic = gson.fromJson(sharedPreferences.getString("anatomicCriteria",null),AnatomicCriterionData::class.java)
-        if(anatomic == null){
+        val anatomic = gson.fromJson(sharedPreferences.getString("anatomicCriteria", null), AnatomicCriterionData::class.java)
+        if (anatomic == null) {
             anatomicCriteria = AnatomicCriterionData()
-        }else{
+        } else {
             anatomicCriteria = anatomic
         }
-        val physiologic = gson.fromJson(sharedPreferences.getString("physiologicCriteria",null),PhysiologicCriterionData::class.java)
-        if(physiologic == null){
+        val physiologic = gson.fromJson(sharedPreferences.getString("physiologicCriteria", null), PhysiologicCriterionData::class.java)
+        if (physiologic == null) {
             physiologicCriteria = PhysiologicCriterionData()
-        }else{
+        } else {
             physiologicCriteria = physiologic
         }
-        //Aggiungi criterio dinamico
+        // Aggiungi criterio dinamico
     }
 }

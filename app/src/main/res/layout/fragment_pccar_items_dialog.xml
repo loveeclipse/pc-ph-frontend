@@ -36,7 +36,7 @@
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/guideline"
+            app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
             app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal"/>
     <EditText
             android:layout_width="0dp"

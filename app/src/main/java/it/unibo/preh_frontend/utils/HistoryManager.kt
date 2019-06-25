@@ -5,9 +5,10 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import it.unibo.preh_frontend.model.AnagraphicData
-import it.unibo.preh_frontend.model.ComplicationsData
+import it.unibo.preh_frontend.model.ComplicationsHistoryData
 import it.unibo.preh_frontend.model.DrugsData
 import it.unibo.preh_frontend.model.ManeuverData
+import it.unibo.preh_frontend.model.ManeuverHistoryData
 import it.unibo.preh_frontend.model.NewPcCarData
 import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.model.PreHData
@@ -19,8 +20,9 @@ object HistoryManager {
     private val typeFactory = RuntimeTypeAdapterFactory
             .of(PreHData::class.java, "type")
             .registerSubtype(AnagraphicData::class.java, "AnagraphicData")
-            .registerSubtype(ComplicationsData::class.java, "ComplicationsData")
+            .registerSubtype(ComplicationsHistoryData::class.java, "ComplicationsHistoryData")
             .registerSubtype(ManeuverData::class.java, "ManeuverData")
+            .registerSubtype(ManeuverHistoryData::class.java, "ManeuverHistoryData")
             .registerSubtype(PatientStatusData::class.java, "PatientStatusData")
             .registerSubtype(TreatmentData::class.java, "TreatmentData")
             .registerSubtype(VitalParametersData::class.java, "VitalParametersData")
@@ -29,7 +31,7 @@ object HistoryManager {
 
     fun addEntry(data: PreHData, sharedPreferences: SharedPreferences) {
         val localHistoryList = getEntryList(sharedPreferences)
-        localHistoryList.add(data)
+        localHistoryList.add(0, data)
         val historyListAsJson = Gson().toJson(localHistoryList, historyType)
         sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
     }
