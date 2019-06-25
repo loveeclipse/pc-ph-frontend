@@ -9,11 +9,13 @@ object CentralizationManager {
     private lateinit var anatomicCriteria: AnatomicCriterionData
     private lateinit var physiologicCriteria: PhysiologicCriterionData
     /* private lateinit var dynamicCriateria: DynamicCriterionData*/
+    var centralizationIsActive = false
     private val gson = Gson()
 
     fun determineCentralization(context: Context): Boolean{
         obtainCriteria(context)
-        return anatomicCriteria.hasTrueFields() || physiologicCriteria.hasTrueFields()
+        centralizationIsActive = anatomicCriteria.hasTrueFields() || physiologicCriteria.hasTrueFields()
+        return centralizationIsActive
     }
 
     private fun obtainCriteria(context: Context){

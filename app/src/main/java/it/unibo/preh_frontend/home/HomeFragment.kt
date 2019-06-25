@@ -23,6 +23,7 @@ import it.unibo.preh_frontend.dialog.NoteDialogFragment
 import it.unibo.preh_frontend.dialog.VitalParametersDialog
 import it.unibo.preh_frontend.model.PreHData
 import com.google.gson.reflect.TypeToken
+import it.unibo.preh_frontend.utils.CentralizationManager
 
 class HomeFragment : Fragment() {
 
@@ -135,8 +136,12 @@ class HomeFragment : Fragment() {
             findViewById<TextView>(R.id.title).visibility = View.VISIBLE
             findViewById<TextView>(R.id.doctor).visibility = View.VISIBLE
             findViewById<TextView>(R.id.vehicle).visibility = View.VISIBLE
-            findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
             findViewById<Button>(R.id.finish).visibility = View.VISIBLE
+            if(CentralizationManager.centralizationIsActive){
+                findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
+            }else{
+                findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
+            }
         }
     }
 

@@ -83,7 +83,7 @@ class ComplicationsFragment : Fragment() {
                 deterioramentoSwitch.isChecked,
                 anisocoriaSwitch.isChecked,
                 insuffRespiratoriaSwitch.isChecked,
-                arrestoCardioSwitch.isChecked,
+                cardioShockSwitch.isChecked,
                 atterraggioSwitch.isChecked,
                 itinereActive,
                 arrivoPsActive)

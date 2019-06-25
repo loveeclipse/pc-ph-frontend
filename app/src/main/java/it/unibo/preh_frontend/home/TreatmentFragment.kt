@@ -129,7 +129,16 @@ class TreatmentFragment : Fragment() {
     private fun applySharedPreferences(savedState: TreatmentData) {
         // setta i bottoni a seconda del valore in savestate
         if (savedState.sublussazione) {
-            sublussazioneButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)
+            activateButton(sublussazioneButton,resources)
+        }else{
+            deactivateButton(sublussazioneButton,resources)
+        }
+        if(savedState.tuboTracheale){
+            activateButton(tuboTrachealeButton,resources)
+            tuboTrachealeIsActive = true
+        }else{
+            deactivateButton(tuboTrachealeButton,resources)
+            tuboTrachealeIsActive = false
         }
     }
 
