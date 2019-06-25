@@ -1,31 +1,76 @@
 package it.unibo.preh_frontend.dialog
 
-import android.Manifest
-import android.app.Dialog
-import android.content.Context
-import android.content.DialogInterface
-import android.location.Geocoder
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.DialogFragment
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
-import com.google.gson.Gson
+import android.widget.RadioGroup
+import android.widget.Spinner
+import android.widget.Switch
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.utils.PermissionManager
-import it.unibo.preh_frontend.model.NewPcCarData
-import it.unibo.preh_frontend.utils.HistoryManager
-import java.io.IOException
-import java.util.Locale
 
-class NewPcCarItemsReturnFragment : NewPcCarItemsDialogFragment() {
+class NewPcCarReturnDialogFragment : NewPcCarItemsDialogFragment() {
+    private lateinit var returnCode: Spinner
+    private lateinit var hospital: Spinner
+    private lateinit var vehicleRadiogroup: RadioGroup
+    private lateinit var accompanyingMedic: Switch
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val root = inflater.inflate(R.layout.fragment_pccar_return_dialog, container, false)
+        dialog?.setCanceledOnTouchOutside(false)
+        getComponents(root)
+        initSpinner()
+        createDialog()
+        updateLocation()
+        setListener()
+        return root
+    }
+
+    private fun initSpinner() {
+        var newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.returnCodeItems, R.layout.spinner_layout)
+        newAdapter.setDropDownViewResource(R.layout.dropdown_spinner_layout)
+        returnCode.adapter = newAdapter
+
+        newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.hospitalItems, R.layout.spinner_layout)
+        newAdapter.setDropDownViewResource(R.layout.dropdown_spinner_layout)
+        hospital.adapter = newAdapter
+    }
+
+    override fun getComponents(root: View) {
+        super.getComponents(root)
+        root.apply {
+            returnCode = findViewById(R.id.return_code)
+            hospital = findViewById(R.id.hospital)
+            vehicleRadiogroup = findViewById(R.id.vehicle_radiogroup)
+            accompanyingMedic = findViewById(R.id.accompanying_medic)
+        }
+    }
+
+    override fun setListener() {
+        super.setListener()
+
+        replaceButton.setOnClickListener {
+            placeEditText.setText(locationText.text)
+        }
+        exitButton.setOnClickListener {
+            if (placeEditText.text.toString() != "") {
+                buttonToDisable.isEnabled = false
+                buttonToEnable?.isEnabled = true
+                dialog?.cancel()
+            } else if (!exitDialog.isShowing)
+                exitDialog.show()
+        }
+    }
+
+    companion object {
+        fun newInstance(historyName: String, buttonToDisable: Button, buttonToEnable: Button?) = NewPcCarReturnDialogFragment().apply {
+            arguments = Bundle().apply {
+                putString("historyName", historyName)
+            }
+            this.buttonToDisable = buttonToDisable
+            this.buttonToEnable = buttonToEnable
+        }
+    }
 }

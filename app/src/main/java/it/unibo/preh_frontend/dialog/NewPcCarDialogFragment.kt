@@ -33,7 +33,10 @@ class NewPcCarDialogFragment : DialogFragment() {
                 landingHelipadButton)
 
         for (i in 0..3) {
-            setButtonListener(eventList[i], buttons[i], if (i < 3) buttons[i + 1] else null)
+            if (i == 2)
+                setButtonListener(true, eventList[i], buttons[i], buttons[i + 1])
+            else
+                setButtonListener(false, eventList[i], buttons[i], if (i < 3) buttons[i + 1] else null)
         }
         root.findViewById<ImageButton>(R.id.pcCar_image_button).setOnClickListener {
             dialog?.cancel()
@@ -42,10 +45,14 @@ class NewPcCarDialogFragment : DialogFragment() {
         return root
     }
 
-    private fun setButtonListener(eventName: String, actualButton: Button, nextButton: Button?) {
+    private fun setButtonListener(isReturning: Boolean, eventName: String, actualButton: Button, nextButton: Button?) {
         actualButton.setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("pcCar_items_dialog_fragment") == null)
-                NewPcCarItemsDialogFragment.newInstance(eventName, actualButton, nextButton)
+                if (isReturning)
+                    NewPcCarReturnDialogFragment.newInstance(eventName, actualButton, nextButton)
+                            .show(requireActivity().supportFragmentManager, "pcCar_items_dialog_fragment")
+                else
+                    NewPcCarItemsDialogFragment.newInstance(eventName, actualButton, nextButton)
                         .show(requireActivity().supportFragmentManager, "pcCar_items_dialog_fragment")
         }
     }
