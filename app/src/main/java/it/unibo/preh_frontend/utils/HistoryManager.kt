@@ -31,7 +31,7 @@ object HistoryManager {
 
     fun addEntry(data: PreHData, sharedPreferences: SharedPreferences) {
         val localHistoryList = getEntryList(sharedPreferences)
-        localHistoryList.add(data)
+        localHistoryList.add(0, data)
         val historyListAsJson = Gson().toJson(localHistoryList, historyType)
         sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
     }
