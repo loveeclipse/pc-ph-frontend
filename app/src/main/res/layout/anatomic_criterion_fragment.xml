@@ -1,97 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                                   android:layout_height="match_parent">
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   style="@style/BackgroundFragmentStyle"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".dialog.PhysiologicCriterionDialog">
 
+    <TextView
+            android:text="@string/criterio_anatomico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/DialogTitleTextStyle"
+            android:id="@+id/textView32"
+            android:layout_marginTop="@dimen/verticalMargin"
+            android:layout_marginBottom="@dimen/verticalMargin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
     <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@android:drawable/ic_delete"
+            android:layout_height="wrap_content"
             android:id="@+id/anatomic_image_button"
+            android:src="@drawable/ic_close_24dp"
             android:backgroundTint="@color/common_google_signin_btn_tint"
+            android:layout_marginTop="@dimen/verticalMargin"
+            android:layout_marginEnd="@dimen/horizontalMargin"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="5dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="10dp"/>
+            app:layout_constraintEnd_toEndOf="parent"/>
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="351dp" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="60dp">
+            android:layout_marginTop="50dp"
+            app:layout_constraintTop_toBottomOf="@id/textView32"
+            app:layout_constraintBottom_toBottomOf="parent">
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
             <Switch
-                    android:text="Trauma da Schiacciamento del Tronco"
+                    android:text="@string/trauma_schiacciamento_tronco"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/trauma_tronco_switch" android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="30dp" app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="30dp"/>
-            <Switch
-                    android:text="Amputazione/Scuoiamento di Arto prossimale a Polso o Caviglia"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/amputazione_scuoiamento_switch" android:layout_marginTop="30dp"
-                    app:layout_constraintTop_toBottomOf="@+id/lesione_vertebrale_switch"
+                    android:id="@+id/trauma_tronco_switch"
+                    android:theme="@style/AppSwitchStyle"
+                    android:textAppearance="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/horizontalMargin"
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    android:layout_marginTop="@dimen/criterionVerticalSpace"
+                    android:layout_marginBottom="@dimen/criterionVerticalSpace"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="30dp" app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="30dp"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/ferita_penetramte_switch"/>
             <Switch
-                    android:text="Ustione di 2° e/o 3° grado, >30% superfice corporea ustionata, volto/mani/piedi/genitali"
+                    android:text="@string/ferita_penetrante"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/ustione_switch" android:layout_marginTop="30dp"
-                    app:layout_constraintTop_toBottomOf="@+id/volet_costale_switch"
+                    android:id="@+id/ferita_penetramte_switch"
+                    android:theme="@style/AppSwitchStyle"
+                    android:textAppearance="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/horizontalMargin"
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    android:layout_marginTop="@dimen/criterionVerticalSpace"
+                    android:layout_marginBottom="@dimen/criterionVerticalSpace"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="30dp" app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="30dp"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/trauma_tronco_switch"
+                    app:layout_constraintBottom_toTopOf="@id/frattura_cranica_switch"/>
             <Switch
-                    android:text="Bacino Instabile/Deformato"
+                    android:text="@string/frattura_cranica_io"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/bacino_instabile_switch" android:layout_marginTop="30dp"
-                    app:layout_constraintTop_toBottomOf="@+id/ustione_switch"
+                    android:id="@+id/frattura_cranica_switch"
+                    android:theme="@style/AppSwitchStyle"
+                    android:textAppearance="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/horizontalMargin"
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    android:layout_marginTop="@dimen/criterionVerticalSpace"
+                    android:layout_marginBottom="@dimen/criterionVerticalSpace"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="30dp" app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="30dp"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ferita_penetramte_switch"
+                    app:layout_constraintBottom_toTopOf="@id/volet_costale_switch"/>
             <Switch
-                    android:text="Sospetta Lesione Vertebrale"
+                    android:text="@string/volet_costale_id"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/lesione_vertebrale_switch" android:layout_marginTop="30dp"
-                    app:layout_constraintTop_toBottomOf="@+id/bacino_instabile_switch"
+                    android:id="@+id/volet_costale_switch"
+                    android:theme="@style/AppSwitchStyle"
+                    android:textAppearance="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/horizontalMargin"
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    android:layout_marginTop="@dimen/criterionVerticalSpace"
+                    android:layout_marginBottom="@dimen/criterionVerticalSpace"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="30dp" app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="30dp"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/frattura_cranica_switch"
+                    app:layout_constraintBottom_toTopOf="@id/ustione_switch"/>
             <Switch
-                    android:text="Frattura Cranica Infossata/Otorragia"
+                    android:text="@string/ustione"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/frattura_cranica_switch" android:layout_marginTop="30dp"
-                    app:layout_constraintTop_toBottomOf="@+id/ferita_penetramte_switch"
+                    android:id="@+id/ustione_switch"
+                    android:theme="@style/AppSwitchStyle"
+                    android:textAppearance="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/horizontalMargin"
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    android:layout_marginTop="@dimen/criterionVerticalSpace"
+                    android:layout_marginBottom="@dimen/criterionVerticalSpace"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="30dp" app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="30dp"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/volet_costale_switch"
+                    app:layout_constraintBottom_toTopOf="@id/bacino_instabile_switch"/>
             <Switch
-                    android:text="Volet Costale o Instabilità/Deformità della parete Toracica"
+                    android:text="@string/bacino_instabile_deformato"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/volet_costale_switch" android:layout_marginTop="30dp"
-                    app:layout_constraintTop_toBottomOf="@+id/frattura_cranica_switch"
+                    android:id="@+id/bacino_instabile_switch"
+                    android:theme="@style/AppSwitchStyle"
+                    android:textAppearance="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/horizontalMargin"
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    android:layout_marginTop="@dimen/criterionVerticalSpace"
+                    android:layout_marginBottom="@dimen/criterionVerticalSpace"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="30dp" app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="30dp"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ustione_switch"
+                    app:layout_constraintBottom_toTopOf="@id/lesione_vertebrale_switch"/>
             <Switch
-                    android:text="Ferita Penetrante di Testa,Collo,Tronco o radice di un Arto"
+                    android:text="@string/sospetta_lesione_verbale"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/ferita_penetramte_switch" app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="30dp"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="30dp"
-                    android:layout_marginTop="30dp"
-                    app:layout_constraintTop_toBottomOf="@+id/trauma_tronco_switch"/>
+                    android:id="@+id/lesione_vertebrale_switch"
+                    android:theme="@style/AppSwitchStyle"
+                    android:textAppearance="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/horizontalMargin"
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    android:layout_marginTop="@dimen/criterionVerticalSpace"
+                    android:layout_marginBottom="@dimen/criterionVerticalSpace"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bacino_instabile_switch"
+                    app:layout_constraintBottom_toTopOf="@id/amputazione_scuoiamento_switch"/>
+            <Switch
+                    android:text="@string/amputazione_scuoiamento_arto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/amputazione_scuoiamento_switch"
+                    android:theme="@style/AppSwitchStyle"
+                    android:textAppearance="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/horizontalMargin"
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    android:layout_marginTop="@dimen/criterionVerticalSpace"
+                    android:layout_marginBottom="@dimen/criterionVerticalSpace"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/lesione_vertebrale_switch"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,70 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                                   android:layout_height="match_parent">
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   style="@style/BackgroundFragmentStyle"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".dialog.PhysiologicCriterionDialog">
 
+    <TextView
+            android:text="@string/criterio_fisiologico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/DialogTitleTextStyle"
+            android:id="@+id/textView32"
+            android:layout_marginTop="@dimen/verticalMargin"
+            android:layout_marginBottom="@dimen/verticalMargin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
     <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@android:drawable/ic_delete"
+            android:layout_height="wrap_content"
             android:id="@+id/physiologic_image_button"
-            android:backgroundTint="@color/common_google_signin_btn_tint" android:layout_marginTop="10dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_close_24dp"
+            android:backgroundTint="@color/common_google_signin_btn_tint"
+            android:layout_marginTop="@dimen/verticalMargin"
+            android:layout_marginEnd="@dimen/horizontalMargin"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-    <Switch
-            android:text="@string/gcs_14"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/gcs_switch"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="40dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="40dp"
-            android:layout_marginTop="60dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"/>
-    <Switch
-            android:text="@string/frequenza_respiratoria_10_atti_min"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/low_respfreq_switch"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="40dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="40dp"
-            app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginTop="40dp" app:layout_constraintTop_toBottomOf="@+id/gcs_switch"/>
-    <Switch
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/high_respfreq_switch" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="40dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="40dp"
-            app:layout_constraintHorizontal_bias="0.0"
-            android:text="@string/frequenza_respiratoria_29_atti_min"
-            android:layout_marginTop="40dp" app:layout_constraintTop_toBottomOf="@+id/low_respfreq_switch"/>
-    <Switch
-            android:text="@string/pressione_arteriosa_sistolica_90_mmhg"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/low_bloodpres_switch" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="40dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="40dp"
-            app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginTop="40dp" app:layout_constraintTop_toBottomOf="@+id/ventilatorysupp_switch"/>
-    <Switch
-            android:text="Ipertensione Arteriosa Sintomatica"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/hypertension_switch" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="40dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="40dp"
-            app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginTop="40dp" app:layout_constraintTop_toBottomOf="@+id/low_bloodpres_switch"/>
-    <Switch
-            android:text="@string/necessit_supporto_ventilatorio"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/ventilatorysupp_switch"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="40dp"
-            android:layout_marginTop="40dp" app:layout_constraintTop_toBottomOf="@+id/high_respfreq_switch"/>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView"
+            android:layout_marginTop="50dp"
+            app:layout_constraintTop_toBottomOf="@id/textView32"
+            app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+            <Switch
+                    android:text="@string/gcs_14"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/gcs_switch"
+                    android:theme="@style/AppSwitchStyle"
+                    android:textAppearance="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/horizontalMargin"
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    android:layout_marginTop="@dimen/criterionVerticalSpace"
+                    android:layout_marginBottom="@dimen/criterionVerticalSpace"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/low_respfreq_switch"/>
+            <Switch
+                    android:text="@string/frequenza_respiratoria_10_atti_min"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/low_respfreq_switch"
+                    android:theme="@style/AppSwitchStyle"
+                    android:textAppearance="@style/NormalTextStyle"
+                    android:layout_marginTop="@dimen/criterionVerticalSpace"
+                    android:layout_marginBottom="@dimen/criterionVerticalSpace"
+                    android:layout_marginStart="@dimen/horizontalMargin"
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/gcs_switch"
+                    app:layout_constraintBottom_toTopOf="@id/high_respfreq_switch"/>
+            <Switch
+                    android:text="@string/frequenza_respiratoria_29_atti_min"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/high_respfreq_switch"
+                    android:theme="@style/AppSwitchStyle"
+                    android:textAppearance="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/horizontalMargin"
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    android:layout_marginTop="@dimen/criterionVerticalSpace"
+                    android:layout_marginBottom="@dimen/criterionVerticalSpace"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/low_respfreq_switch"
+                    app:layout_constraintBottom_toTopOf="@id/ventilatorysupp_switch"/>
+            <Switch
+                    android:text="@string/necessit_supporto_ventilatorio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ventilatorysupp_switch"
+                    android:theme="@style/AppSwitchStyle"
+                    android:textAppearance="@style/NormalTextStyle"
+                    android:layout_marginTop="@dimen/criterionVerticalSpace"
+                    android:layout_marginBottom="@dimen/criterionVerticalSpace"
+                    android:layout_marginStart="@dimen/horizontalMargin"
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/high_respfreq_switch"
+                    app:layout_constraintBottom_toTopOf="@id/low_bloodpres_switch"/>
+            <Switch
+                    android:text="@string/pressione_arteriosa_sistolica_90_mmhg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/low_bloodpres_switch"
+                    android:theme="@style/AppSwitchStyle"
+                    android:textAppearance="@style/NormalTextStyle"
+                    android:layout_marginStart="@dimen/horizontalMargin"
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ventilatorysupp_switch"
+                    app:layout_constraintBottom_toTopOf="@id/hypertension_switch"/>
+            <Switch
+                    android:text="@string/ipertensione_arteriosa_sintomatica"
+                    android:layout_width="0dp"
+                    android:layout_height="27dp"
+                    android:id="@+id/hypertension_switch"
+                    android:theme="@style/AppSwitchStyle"
+                    android:textAppearance="@style/NormalTextStyle"
+                    android:layout_marginTop="@dimen/criterionVerticalSpace"
+                    android:layout_marginBottom="@dimen/criterionVerticalSpace"
+                    android:layout_marginStart="@dimen/horizontalMargin"
+                    android:layout_marginEnd="@dimen/horizontalMargin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/low_bloodpres_switch"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
