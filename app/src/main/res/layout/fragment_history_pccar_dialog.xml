@@ -37,7 +37,7 @@
             android:layout_marginTop="@dimen/verticalMargin"
             android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
             app:layout_constraintTop_toBottomOf="@+id/textView3"/>
     <androidx.constraintlayout.widget.Guideline
             android:orientation="vertical"
@@ -60,7 +60,7 @@
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginTop="@dimen/verticalMargin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
             app:layout_constraintTop_toBottomOf="@+id/textView1"/>
     <EditText
             android:layout_width="0dp"
@@ -93,7 +93,7 @@
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginBottom="@dimen/verticalMargin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintEnd_toStartOf="@id/guidelineVertical"
             app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal"/>
     <TextView
             android:layout_width="0dp"
