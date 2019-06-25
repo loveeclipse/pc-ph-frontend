@@ -52,6 +52,7 @@ class InputDialogFragment : DialogFragment() {
         val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         sharedPreferences.edit().putString("DrugsData", Gson().toJson(drugsData)).apply()
         HistoryManager.addEntry(drugsData, sharedPreferences)
+
         super.onCancel(dialog)
     }
 
