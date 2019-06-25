@@ -41,28 +41,28 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         getComponents(root)
         determineActiveCriteria()
 
-        chiusoButton.setOnClickListener {
+        closedButton.setOnClickListener {
             // Case Study
             if (this.traumaIsClosed) {
-                deactivateButton(chiusoButton, resources)
+                deactivateButton(closedButton, resources)
                 this.traumaIsClosed = false
             } else {
-                activateButton(chiusoButton, resources)
+                activateButton(closedButton, resources)
                 this.traumaIsClosed = true
             }
         }
 
-        penetranteButton.setOnClickListener {
+        piercingButton.setOnClickListener {
             if (this.traumaIsPiercing) {
-                deactivateButton(penetranteButton, resources)
+                deactivateButton(piercingButton, resources)
                 this.traumaIsPiercing = false
             } else {
-                activateButton(penetranteButton, resources)
+                activateButton(piercingButton, resources)
                 this.traumaIsPiercing = true
             }
         }
 
-        cascoCinturaSwitch.setOnCheckedChangeListener { _, checked ->
+        helmetBeltSwitch.setOnCheckedChangeListener { _, checked ->
             // Case Study
         }
 
@@ -83,10 +83,10 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             determineActiveCriteria()
         }
 
-        anatomicoButton.setOnClickListener {
+        anatomicButton.setOnClickListener {
             AnatomicCriterionDialog().show(requireActivity().supportFragmentManager, "anatomic_criterion_fragment")
         }
-        fisiologicoButton.setOnClickListener {
+        phyisiologicButton.setOnClickListener {
             PhysiologicCriterionDialog().show(requireActivity().supportFragmentManager, "physiologic_criterion_fragment")
         }
 
@@ -102,7 +102,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
     override fun onCancel(dialog: DialogInterface) {
         saveState = PatientStatusData(traumaIsClosed,
                 traumaIsPiercing,
-                cascoCinturaSwitch.isChecked, // MISSING PARAMETERS
+                helmetBeltSwitch.isChecked, // MISSING PARAMETERS
         voletCostale = voletSwitch.isChecked
                 )
         val gson = Gson()
@@ -120,15 +120,15 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             if (newSaveState != null) {
                 this.activity!!.runOnUiThread {
                     if (newSaveState.traumaChiuso) {
-                        activateButton(chiusoButton, resources)
+                        activateButton(closedButton, resources)
                         traumaIsClosed = true
                     }
                     if (newSaveState.traumaPenetrante) {
-                        activateButton(penetranteButton, resources)
+                        activateButton(piercingButton, resources)
                         traumaIsPiercing = true
                     }
 
-                    cascoCinturaSwitch.isChecked = newSaveState.cascoCintura
+                    helmetBeltSwitch.isChecked = newSaveState.cascoCintura
                     voletSwitch.isChecked = newSaveState.voletCostale
                 }
                 saveState = newSaveState
@@ -150,19 +150,19 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         // val dynamicCriteria = gson.fromJson(sharedPreferences.getString("dynamicCriteria",null),DynamicCriterionData::class.java)
 
         if (anatomicCriteria != null && anatomicCriteria.hasTrueFields()) {
-            activateButton(anatomicoButton, resources)
+            activateButton(anatomicButton, resources)
         } else {
-            deactivateButton(anatomicoButton, resources)
+            deactivateButton(anatomicButton, resources)
         }
         if (physiologicCriteria != null && physiologicCriteria.hasTrueFields()) {
-            activateButton(fisiologicoButton, resources)
+            activateButton(phyisiologicButton, resources)
         } else {
-            deactivateButton(fisiologicoButton, resources)
+            deactivateButton(phyisiologicButton, resources)
         }
         /*if (dynamicCriteria != null && dynamicCriteria.hasTrueFields()){
-            activateButton(dinamicoButton, resources)
+            activateButton(dynamicButton, resources)
         } else {
-            deactivateButton(dinamicoButton, resources)
+            deactivateButton(dynamicButton, resources)
         }*/
     }
 }
