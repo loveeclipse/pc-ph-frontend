@@ -23,8 +23,8 @@ class PreHMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
         super.onMessageReceived(remoteMessage)
-        Log.d(TAG, "From: " + remoteMessage!!.from)
-        Log.d(TAG, "Notification Message Body: " + remoteMessage.notification?.body!!)
+        Log.d(TAG, "From: " + remoteMessage?.from)
+        Log.d(TAG, "Notification Message Body: " + remoteMessage?.notification?.body)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // Create the NotificationChannel
@@ -44,7 +44,7 @@ class PreHMessagingService : FirebaseMessagingService() {
                     PendingIntent.FLAG_ONE_SHOT)
             val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
             val notificationBuilder = NotificationCompat.Builder(this, "provaprogetto.unibo.it.prova.ANDROID")
-                    .setContentText(remoteMessage.notification!!.body)
+                    .setContentText(remoteMessage?.notification?.body)
                     .setAutoCancel(true)
                     .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent)
@@ -53,7 +53,7 @@ class PreHMessagingService : FirebaseMessagingService() {
 
         val intent1 = Intent(this@PreHMessagingService, MainActivity::class.java)
         intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        intent1.putExtra("message", remoteMessage.notification!!.body!!)
+        intent1.putExtra("message", remoteMessage?.notification?.body)
         startActivity(intent1)
     }
 }

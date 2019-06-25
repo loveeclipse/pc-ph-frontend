@@ -19,7 +19,7 @@ import it.unibo.preh_frontend.R
 class MissionDialogFragment : DialogFragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var parentDialog: Dialog
+    private var parentDialog: Dialog? = null
     private lateinit var anagraphicDialogFragment: AnagraphicDialogFragment
 
     override fun onCreateView(
@@ -29,8 +29,8 @@ class MissionDialogFragment : DialogFragment() {
     ): View? {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_mission, container, false)
-        parentDialog = dialog!!
-        dialog!!.setCanceledOnTouchOutside(false)
+        parentDialog = dialog
+        dialog?.setCanceledOnTouchOutside(false)
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
         val manager = childFragmentManager
@@ -42,7 +42,7 @@ class MissionDialogFragment : DialogFragment() {
         val exitAndSaveButton = root.findViewById<ImageButton>(R.id.mission_image_button)
         exitAndSaveButton.setOnClickListener {
                 sharedPreferences.edit().remove("anagraphicDataSnapshot").apply()
-                parentDialog.cancel()
+                parentDialog?.cancel()
         }
 
         val missionTabs = root.findViewById<TabLayout>(R.id.mission_tabs)
@@ -100,7 +100,7 @@ class MissionDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

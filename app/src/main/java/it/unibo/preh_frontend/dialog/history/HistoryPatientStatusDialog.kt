@@ -41,12 +41,12 @@ open class HistoryPatientStatusDialog : DialogFragment() {
 
         getComponents(root)
 
-        setData(arguments!!.get("data") as PatientStatusData)
+        setData(arguments?.get("data") as PatientStatusData)
 
         val exitButton = root.findViewById<ImageButton>(R.id.patient_image_button)
         exitButton.setOnClickListener {
             // Here you can save eventual modifications to the history element
-            dialog!!.cancel()
+            dialog?.cancel()
         }
 
         return root
@@ -83,7 +83,7 @@ open class HistoryPatientStatusDialog : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     protected open fun setData(data: PatientStatusData) {

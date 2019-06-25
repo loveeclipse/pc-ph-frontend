@@ -34,7 +34,7 @@ class HistoryDialogFragment : DialogFragment() {
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_history_dialog, container, false)
-        dialog!!.setCanceledOnTouchOutside(false)
+        dialog?.setCanceledOnTouchOutside(false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
@@ -66,7 +66,7 @@ class HistoryDialogFragment : DialogFragment() {
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.history_image_button)
         saveAndExitButton.setOnClickListener {
-            dialog!!.dismiss()
+            dialog?.dismiss()
         }
         return root
     }
@@ -74,7 +74,7 @@ class HistoryDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

@@ -18,7 +18,7 @@ class PacingDialogFragment : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_pacing_dialog, container, false)
-        dialog!!.setCanceledOnTouchOutside(false)
+        dialog?.setCanceledOnTouchOutside(false)
 
         captureFrequency = root.findViewById(R.id.capture_frequency_edit_text)
         amperage = root.findViewById(R.id.amperage_edit_text)
@@ -29,14 +29,14 @@ class PacingDialogFragment : DialogFragment() {
             setCancelable(true)
             setPositiveButton("Si") { d, _ ->
                 d.cancel()
-                dialog!!.dismiss()
+                dialog?.dismiss()
             }
             setNegativeButton("No") { d, _ -> d.cancel() }
         }.create()
         root.findViewById<ImageButton>(R.id.pacing_dialog_image_button).setOnClickListener {
             if (captureFrequency.text.toString() != "") {
                 amperage.text.toString() != ""
-                dialog!!.cancel()
+                dialog?.cancel()
             } else if (!exitDialog.isShowing)
                     exitDialog.show()
         }
@@ -46,7 +46,7 @@ class PacingDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

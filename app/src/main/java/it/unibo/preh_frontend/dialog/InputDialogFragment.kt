@@ -24,7 +24,7 @@ class InputDialogFragment : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.input_dialog, container, false)
-        dialog!!.setCanceledOnTouchOutside(false)
+        dialog?.setCanceledOnTouchOutside(false)
 
         inputValueEditText = root.findViewById(R.id.input_edit_text)
         inputValueEditText.setText(arguments?.get(value).toString())
@@ -33,11 +33,11 @@ class InputDialogFragment : DialogFragment() {
         unitUnitEditText.text = arguments?.get(unitOfMeasurement).toString()
 
         root.findViewById<Button>(R.id.confirm_button).setOnClickListener {
-            dialog!!.cancel()
+            dialog?.cancel()
         }
 
         root.findViewById<Button>(R.id.cancel_button).setOnClickListener {
-            dialog!!.dismiss()
+            dialog?.dismiss()
         }
 
         return root
@@ -57,7 +57,7 @@ class InputDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 35*metrics.heightPixels / 100)
+        dialog?.window?.setLayout(metrics.widthPixels, 35*metrics.heightPixels / 100)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

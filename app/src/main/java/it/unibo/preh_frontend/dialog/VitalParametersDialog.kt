@@ -22,15 +22,15 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var savedState: VitalParametersData
-    private lateinit var parentDialog: Dialog
+    private var parentDialog: Dialog? = null
 
     private lateinit var saveState: VitalParametersData
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_vital_parameters, container, false)
-        parentDialog = dialog!!
+        parentDialog = dialog
         isCancelable = false
-        dialog!!.setCanceledOnTouchOutside(false)
+        dialog?.setCanceledOnTouchOutside(false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
@@ -51,7 +51,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
                 setMessage("I dati inseriti saranno salvati")
                 setPositiveButton("Si") { dialog, _ ->
                     dialog.cancel()
-                    parentDialog.cancel()
+                    parentDialog?.cancel()
                 }
             }
         } else {
@@ -60,7 +60,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
                 setMessage("Inserimento incompleto")
                 setPositiveButton("Si") { dialog, _ ->
                     dialog.cancel()
-                    parentDialog.dismiss()
+                    parentDialog?.dismiss()
                 }
             }
         }
@@ -140,7 +140,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
             val gson = Gson()
             val newSaveState = gson.fromJson(sharedPreferences.getString("vitalParameters", null), VitalParametersData::class.java)
             if (newSaveState != null) {
-                this.activity!!.runOnUiThread {
+                this.activity?.runOnUiThread {
                     vieAeree.check(newSaveState.vieAeree)
                     freqRespiratoria.setSelection(newSaveState.frequenzaRespiratoria)
                     saturazione.setText(newSaveState.saturazionePeriferica.toString())
@@ -191,7 +191,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
