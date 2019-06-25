@@ -15,7 +15,7 @@ import it.unibo.preh_frontend.dialog.utils.DrugsDefaultValue.ketamineValue
 
 class DrugsFragment : Fragment() {
 
-    private val inputDialogLayout = "layout/input_dialog.xml"
+    private val inputDialogTag = "input_dialog"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,23 +25,27 @@ class DrugsFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_drugs, container, false)
 
         root.findViewById<Button>(R.id.crystalloid_button).setOnClickListener {
-            InputDialogFragment.newInstance(this.getString(R.string.cristalloidi), crystalloidValue,
-                    this.getString(R.string.milliliters)).show(requireActivity().supportFragmentManager, inputDialogLayout)
+            if (requireActivity().supportFragmentManager.findFragmentByTag(inputDialogTag) == null)
+                InputDialogFragment.newInstance(this.getString(R.string.cristalloidi), crystalloidValue, this.getString(R.string.milliliters))
+                        .show(requireActivity().supportFragmentManager, inputDialogTag)
         }
 
         root.findViewById<Button>(R.id.succinylcholine_button).setOnClickListener {
-            InputDialogFragment.newInstance(this.getString(R.string.succinilcolina), succinylcholineValue,
-                    this.getString(R.string.milligrams)).show(requireActivity().supportFragmentManager, inputDialogLayout)
+            if (requireActivity().supportFragmentManager.findFragmentByTag(inputDialogTag) == null)
+                InputDialogFragment.newInstance(this.getString(R.string.succinilcolina), succinylcholineValue, this.getString(R.string.milligrams))
+                        .show(requireActivity().supportFragmentManager, inputDialogTag)
         }
 
         root.findViewById<Button>(R.id.fentanil_button).setOnClickListener {
-            InputDialogFragment.newInstance(this.getString(R.string.fentanil), fentanilValue,
-                    this.getString(R.string.micrograms)).show(requireActivity().supportFragmentManager, inputDialogLayout)
+            if (requireActivity().supportFragmentManager.findFragmentByTag(inputDialogTag) == null)
+                InputDialogFragment.newInstance(this.getString(R.string.fentanil), fentanilValue, this.getString(R.string.micrograms))
+                        .show(requireActivity().supportFragmentManager, inputDialogTag)
         }
 
         root.findViewById<Button>(R.id.ketamine_button).setOnClickListener {
-            InputDialogFragment.newInstance(this.getString(R.string.ketamina), ketamineValue,
-                    this.getString(R.string.milligrams)).show(requireActivity().supportFragmentManager, inputDialogLayout)
+            if (requireActivity().supportFragmentManager.findFragmentByTag(inputDialogTag) == null)
+                InputDialogFragment.newInstance(this.getString(R.string.ketamina), ketamineValue, this.getString(R.string.milligrams))
+                        .show(requireActivity().supportFragmentManager, inputDialogTag)
         }
 
         // Inflate the layout for this fragment

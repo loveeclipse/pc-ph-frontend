@@ -40,33 +40,35 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
 
         setSharedPreferences()
 
-        val exitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
-        exitButton.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setCancelable(true)
-            if (checkEveryField()) {
-                builder.apply {
-                    setTitle("Conferma Parametri Vitali")
-                    setMessage("I dati inseriti saranno salvati")
-                    setPositiveButton("Si") { dialog, _ ->
-                        dialog.cancel()
-                        parentDialog.cancel()
-                    }
-                    setNegativeButton("No") { dialog, _ -> dialog.cancel() }
-                }
-            } else {
-                builder.apply {
-                    setTitle("Uscire senza salvare?")
-                    setMessage("Inserimento incompleto")
-                    setPositiveButton("Si") { dialog, _ ->
-                        dialog.cancel()
-                        parentDialog.dismiss()
-                    }
-                    setNegativeButton("No") { dialog, _ -> dialog.cancel() }
+        val builder = AlertDialog.Builder(requireContext())
+        builder.apply {
+            setCancelable(true)
+            setNegativeButton("No") { dialog, _ -> dialog.cancel() }
+        }
+        if (checkEveryField()) {
+            builder.apply {
+                setTitle("Conferma Parametri Vitali")
+                setMessage("I dati inseriti saranno salvati")
+                setPositiveButton("Si") { dialog, _ ->
+                    dialog.cancel()
+                    parentDialog.cancel()
                 }
             }
-            val alert11 = builder.create()
-            alert11.show()
+        } else {
+            builder.apply {
+                setTitle("Uscire senza salvare?")
+                setMessage("Inserimento incompleto")
+                setPositiveButton("Si") { dialog, _ ->
+                    dialog.cancel()
+                    parentDialog.dismiss()
+                }
+            }
+        }
+        val exitDialog = builder.create()
+        val exitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
+        exitButton.setOnClickListener {
+            if (!exitDialog.isShowing)
+                exitDialog.show()
         }
 
         return root

@@ -57,7 +57,8 @@ class ManeuverFragment : Fragment() {
             if (bladderProbeSwitch.isChecked) history(bladderProbeSwitch.isChecked, this.getString(R.string.sonda_vescicale))
         }
         root.findViewById<Button>(R.id.pacing_button).setOnClickListener {
-            PacingDialogFragment().show(requireActivity().supportFragmentManager, "layout/fragment_pacing_dialog.xml")
+            if (requireActivity().supportFragmentManager.findFragmentByTag("fragment_pacing_dialog") == null)
+                PacingDialogFragment().show(requireActivity().supportFragmentManager, "fragment_pacing_dialog")
         }
         return root
     }

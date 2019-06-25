@@ -69,7 +69,8 @@ class TreatmentFragment : Fragment() {
         intraosseousSpinner.adapter = adapter
 
         root.findViewById<Button>(R.id.ippv_button).setOnClickListener {
-            IppvDialogFragment().show(requireActivity().supportFragmentManager, "layout/fragment_ippv_dialog.xml")
+            if (requireActivity().supportFragmentManager.findFragmentByTag("fragment_ippv_dialog") == null)
+                IppvDialogFragment().show(requireActivity().supportFragmentManager, "fragment_ippv_dialog")
         }
 
         sublussazioneButton = root.findViewById(R.id.sublussazione_button)

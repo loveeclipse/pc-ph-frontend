@@ -23,23 +23,22 @@ class PacingDialogFragment : DialogFragment() {
         captureFrequency = root.findViewById(R.id.capture_frequency_edit_text)
         amperage = root.findViewById(R.id.amperage_edit_text)
 
+        val exitDialog = AlertDialog.Builder(requireContext()).apply {
+            setTitle("Uscire senza salvare?")
+            setMessage("Inserimento incompleto")
+            setCancelable(true)
+            setPositiveButton("Si") { d, _ ->
+                d.cancel()
+                dialog!!.dismiss()
+            }
+            setNegativeButton("No") { d, _ -> d.cancel() }
+        }.create()
         root.findViewById<ImageButton>(R.id.pacing_dialog_image_button).setOnClickListener {
             if (captureFrequency.text.toString() != "") {
                 amperage.text.toString() != ""
                 dialog!!.cancel()
-            } else {
-                AlertDialog.Builder(requireContext()).apply {
-                    setTitle("Uscire senza salvare?")
-                    setMessage("Inserimento incompleto")
-                    setCancelable(true)
-                    setPositiveButton("Si") { d, _ ->
-                        d.cancel()
-                        dialog!!.dismiss()
-                    }
-                    setNegativeButton("No") { d, _ -> d.cancel() }
-                    create()
-                }.show()
-            }
+            } else if (!exitDialog.isShowing)
+                    exitDialog.show()
         }
         return root
     }

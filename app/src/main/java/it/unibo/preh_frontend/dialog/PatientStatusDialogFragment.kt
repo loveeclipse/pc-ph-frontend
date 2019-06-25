@@ -84,10 +84,12 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         }
 
         anatomicoButton.setOnClickListener {
-            AnatomicCriterionDialog().show(requireActivity().supportFragmentManager, "anatomic_criterion_fragment")
+            if (requireActivity().supportFragmentManager.findFragmentByTag("anatomic_criterion_fragment") == null)
+                AnatomicCriterionDialog().show(requireActivity().supportFragmentManager, "anatomic_criterion_fragment")
         }
         fisiologicoButton.setOnClickListener {
-            PhysiologicCriterionDialog().show(requireActivity().supportFragmentManager, "physiologic_criterion_fragment")
+            if (requireActivity().supportFragmentManager.findFragmentByTag("physiologic_criterion_fragment") == null)
+                PhysiologicCriterionDialog().show(requireActivity().supportFragmentManager, "physiologic_criterion_fragment")
         }
 
         setSharedPreferences()

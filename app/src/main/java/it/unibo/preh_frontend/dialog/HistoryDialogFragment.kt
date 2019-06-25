@@ -47,15 +47,18 @@ class HistoryDialogFragment : DialogFragment() {
             val historyData = aList[position]
             when (historyData.type) {
                 "VitalParametersData" -> {
-                    HistoryVitalParametersDialog.newInstance(historyData as VitalParametersData)
+                    if (requireActivity().supportFragmentManager.findFragmentByTag("history_vital_parameters_fragment") == null)
+                        HistoryVitalParametersDialog.newInstance(historyData as VitalParametersData)
                             .show(requireActivity().supportFragmentManager, "history_vital_parameters_fragment")
                 }
                 "PatientStatusData" -> {
-                    HistoryPatientStatusDialog.newInstance(historyData as PatientStatusData)
+                    if (requireActivity().supportFragmentManager.findFragmentByTag("history_patient_status_fragment") == null)
+                        HistoryPatientStatusDialog.newInstance(historyData as PatientStatusData)
                             .show(requireActivity().supportFragmentManager, "history_patient_status_fragment")
                 }
                 "NewPcCarData" -> {
-                    HistoryNewPcCarDialog.newInstance(historyData as NewPcCarData)
+                    if (requireActivity().supportFragmentManager.findFragmentByTag("history_newpccar_fragment") == null)
+                        HistoryNewPcCarDialog.newInstance(historyData as NewPcCarData)
                             .show(requireActivity().supportFragmentManager, "history_newpccar_fragment")
                 }
             }
