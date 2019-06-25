@@ -64,7 +64,7 @@ class HistoryDialogFragment : DialogFragment() {
                             .show(requireActivity().supportFragmentManager, "history_newpccar_fragment")
                 }
                 "DrugsData" -> {
-                    if(requireActivity().supportFragmentManager.findFragmentByTag("input_dialog") == null)
+                    if (requireActivity().supportFragmentManager.findFragmentByTag("input_dialog") == null)
                         HistoryDrugsDialog.newInstance(historyData as DrugsData)
                                 .show(requireActivity().supportFragmentManager, "input_dialog")
                 }

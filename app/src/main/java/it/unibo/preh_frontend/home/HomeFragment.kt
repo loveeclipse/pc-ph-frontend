@@ -54,7 +54,6 @@ class HomeFragment : Fragment() {
                 PatientStatusDialogFragment().show(requireActivity().supportFragmentManager, "patient_status_dialog_fragment")
         }
 
-
         root.findViewById<Button>(R.id.history_button).setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("history_dialog_fragment") == null)
                 HistoryDialogFragment().show(requireActivity().supportFragmentManager, "history_dialog_fragment")

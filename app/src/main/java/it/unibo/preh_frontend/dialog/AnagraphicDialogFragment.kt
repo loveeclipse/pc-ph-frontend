@@ -14,6 +14,7 @@ import com.google.gson.Gson
 
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.AnagraphicData
+import it.unibo.preh_frontend.utils.HistoryManager
 
 class AnagraphicDialogFragment : Fragment() {
 
@@ -22,7 +23,6 @@ class AnagraphicDialogFragment : Fragment() {
     private lateinit var residenceEditText: EditText
     private lateinit var birthplaceEditText: EditText
     private lateinit var birthdayEditText: EditText
-
     private lateinit var genderRadioGroup: RadioGroup
     private lateinit var anticoagulantsSwitch: Switch
     private lateinit var antiplateletsSwitch: Switch
@@ -44,7 +44,6 @@ class AnagraphicDialogFragment : Fragment() {
         residenceEditText = root.findViewById(R.id.residence_editText)
         birthdayEditText = root.findViewById(R.id.birthday_editText)
         birthplaceEditText = root.findViewById(R.id.birthplace_editText)
-
         genderRadioGroup = root.findViewById(R.id.gender_radiogroup)
         anticoagulantsSwitch = root.findViewById(R.id.anticoagulants_switch)
         antiplateletsSwitch = root.findViewById(R.id.antiplatelets_switch)
@@ -76,13 +75,21 @@ class AnagraphicDialogFragment : Fragment() {
         super.onStart()
     }
 
+    override fun onStop() {
+        val anagraphicData = getAnagraphicData()
+        val gson = Gson()
+        val stateAsJson = gson.toJson(anagraphicData, AnagraphicData::class.java)
+        sharedPreferences.edit().putString("anagraphicData", stateAsJson).apply()
+        HistoryManager.addEntry(anagraphicData, sharedPreferences)
+        super.onStop()
+    }
+
     private fun applySharedPreferences(anagraphicData: AnagraphicData) {
         nameEditText.setText(anagraphicData.name)
         surnameEditText.setText(anagraphicData.surname)
         residenceEditText.setText(anagraphicData.residence)
         birthdayEditText.setText(anagraphicData.birthday)
         birthplaceEditText.setText(anagraphicData.birthplace)
-
         genderRadioGroup.check(anagraphicData.gender)
         anticoagulantsSwitch.isChecked = anagraphicData.anticoagulants
         antiplateletsSwitch.isChecked = anagraphicData.antiplatelets
