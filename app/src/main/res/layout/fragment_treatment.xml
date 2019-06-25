@@ -306,8 +306,8 @@
                         android:layout_marginBottom="@dimen/treatmentButtonVerticalSpace"
                         android:layout_marginStart="@dimen/treatmentButtonHorizontalSpace"
                         android:layout_marginEnd="@dimen/treatmentButtonHorizontalMargin"
-                        app:layout_constraintTop_toTopOf="@+id/ossigenoterapia_button"
-                        app:layout_constraintBottom_toBottomOf="@+id/ossigenoterapia_button"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/minitoracotomiaSx_button"
                         app:layout_constraintStart_toEndOf="@+id/ossigenoterapia_button"
                         app:layout_constraintEnd_toEndOf="parent"/>
                 <TextView
