@@ -62,7 +62,8 @@ class HomeFragment : Fragment() {
         }
 
         root.findViewById<Button>(R.id.pcCar_button).setOnClickListener {
-            NewPcCarDialogFragment().show(requireActivity().supportFragmentManager, "pcCar_dialog_fragment")
+            if (requireActivity().supportFragmentManager.findFragmentByTag("pcCar_dialog_fragment") == null)
+                NewPcCarDialogFragment().show(requireActivity().supportFragmentManager, "pcCar_dialog_fragment")
         }
         root.findViewById<Button>(R.id.note_button).setOnClickListener {
             NoteDialogFragment().show(requireActivity().supportFragmentManager, "note_dialog_fragment")
@@ -72,10 +73,10 @@ class HomeFragment : Fragment() {
         }
 
         val manager = fragmentManager
-        val transaction = manager!!.beginTransaction()
+        val transaction = manager?.beginTransaction()
         val initialFragment = DrugsFragment()
         previousDisplayedFragment = initialFragment
-        transaction.apply {
+        transaction?.apply {
             replace(R.id.home_tabFrame, initialFragment)
             commit()
         }
@@ -107,8 +108,8 @@ class HomeFragment : Fragment() {
                         newFragment = DrugsFragment()
                     }
                 }
-                val newTransaction = manager.beginTransaction()
-                newTransaction.apply {
+                val newTransaction = manager?.beginTransaction()
+                newTransaction?.apply {
                     replace(R.id.home_tabFrame, newFragment)
                     commit()
                 }

@@ -20,35 +20,34 @@ class NewPcCarDialogFragment : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_pccar, container, false)
-        dialog!!.setCanceledOnTouchOutside(false)
+        dialog?.setCanceledOnTouchOutside(false)
         getComponents(root)
         val eventList = listOf(resources.getString(R.string.partenza_dell_equipaggio),
                 resources.getString(R.string.arrivo_sul_luogo_dell_incidente),
                 resources.getString(R.string.partenza_dal_luogo_dell_incidente),
                 resources.getString(R.string.atterraggio_in_eliporto))
         checkEnabledButton(eventList)
-
         val buttons = listOf(crewDepartureButton,
                 arrivalOnSiteButton,
                 departureFromSiteButton,
                 landingHelipadButton)
 
-        for (i in 0..2) {
-            buttons[i].setOnClickListener {
-                NewPcCarItemsDialogFragment.newInstance(eventList[i], buttons[i], buttons[i + 1])
-                        .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
-            }
+        for (i in 0..3) {
+            setButtonListener(eventList[i], buttons[i], if (i < 3) buttons[i + 1] else null)
         }
-        buttons[3].setOnClickListener {
-            NewPcCarItemsDialogFragment.newInstance(eventList[3], buttons[3], null)
-                    .show(requireActivity().supportFragmentManager, "layout/fragment_pccar_items_dialog.xml")
-        }
-
         root.findViewById<ImageButton>(R.id.pcCar_image_button).setOnClickListener {
-            dialog!!.cancel()
+            dialog?.cancel()
         }
 
         return root
+    }
+
+    private fun setButtonListener(eventName: String, actualButton: Button, nextButton: Button?) {
+        actualButton.setOnClickListener {
+            if (requireActivity().supportFragmentManager.findFragmentByTag("pcCar_items_dialog_fragment") == null)
+                NewPcCarItemsDialogFragment.newInstance(eventName, actualButton, nextButton)
+                        .show(requireActivity().supportFragmentManager, "pcCar_items_dialog_fragment")
+        }
     }
 
     private fun getComponents(root: View) {
@@ -76,7 +75,7 @@ class NewPcCarDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

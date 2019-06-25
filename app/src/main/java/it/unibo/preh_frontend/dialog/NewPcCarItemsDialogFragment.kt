@@ -43,7 +43,7 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_pccar_items_dialog, container, false)
-        dialog!!.setCanceledOnTouchOutside(false)
+        dialog?.setCanceledOnTouchOutside(false)
         locationText = root.findViewById(R.id.location)
         placeEditText = root.findViewById(R.id.place_edit_text)
         replaceButton = root.findViewById(R.id.replace_button)
@@ -58,7 +58,7 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
             if (placeEditText.text.toString() != "") {
                 buttonToDisable.isEnabled = false
                 buttonToEnable?.isEnabled = true
-                dialog!!.cancel()
+                dialog?.cancel()
             } else if (!exitDialog.isShowing)
                 exitDialog.show()
         }
@@ -72,7 +72,7 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
             setCancelable(true)
             setPositiveButton("Si") { d, _ ->
                 d.cancel()
-                dialog!!.dismiss()
+                dialog?.dismiss()
             }
             setNegativeButton("No") { d, _ -> d.cancel() }
         }.create()
@@ -81,7 +81,7 @@ class NewPcCarItemsDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     override fun onCancel(dialog: DialogInterface) {

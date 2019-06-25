@@ -15,18 +15,18 @@ import it.unibo.preh_frontend.model.ComplicationsData
 
 class ComplicationsFragment : Fragment() {
 
-    private lateinit var arrestoCardioSwitch: Switch
-    private lateinit var deterioramentoSwitch: Switch
-    private lateinit var anisocoriaSwitch: Switch
-    private lateinit var insuffRespiratoriaSwitch: Switch
-    private lateinit var cardioShockSwitch: Switch
-    private lateinit var atterraggioSwitch: Switch
+    private lateinit var cardioCirculatoryArrestSwitch: Switch
+    private lateinit var deterioratingStateConsciousnessSwitch: Switch
+    private lateinit var anisoMidriasiSwitch: Switch
+    private lateinit var respiratoryFailureSwitch: Switch
+    private lateinit var cardioCirculatoryShockSwitch: Switch
+    private lateinit var landingInItinereSwitch: Switch
 
-    private lateinit var itinereButton: Button
-    private lateinit var arrivoPsButton: Button
+    private lateinit var deathInItinereButton: Button
+    private lateinit var deathArrivalInPSButton: Button
 
     private var itinereActive = false
-    private var arrivoPsActive = false
+    private var arrivalInPSActive = false
 
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -40,15 +40,15 @@ class ComplicationsFragment : Fragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
-        arrestoCardioSwitch = root.findViewById(R.id.arrest_switch)
-        deterioramentoSwitch = root.findViewById(R.id.consciousness_deteriorarion_switch)
-        anisocoriaSwitch = root.findViewById(R.id.aniso_midriasi_switch)
-        insuffRespiratoriaSwitch = root.findViewById(R.id.insufResp_switch)
-        cardioShockSwitch = root.findViewById(R.id.shockCard_switch)
-        atterraggioSwitch = root.findViewById(R.id.atterraggio_switch)
+        cardioCirculatoryArrestSwitch = root.findViewById(R.id.cardio_circulatory_arrest_switch)
+        deterioratingStateConsciousnessSwitch = root.findViewById(R.id.deteriorating_state_consciousness_switch)
+        anisoMidriasiSwitch = root.findViewById(R.id.aniso_midriasi_switch)
+        respiratoryFailureSwitch = root.findViewById(R.id.respiratory_failure_switch)
+        cardioCirculatoryShockSwitch = root.findViewById(R.id.cardiocirculatory_shock_switch)
+        landingInItinereSwitch = root.findViewById(R.id.landing_in_itinere_switch)
 
-        itinereButton = root.findViewById(R.id.itinere_button)
-        arrivoPsButton = root.findViewById(R.id.arrivoPs_button)
+        deathInItinereButton = root.findViewById(R.id.itinere_button)
+        deathArrivalInPSButton = root.findViewById(R.id.arrival__in_ps_button)
 
         return root
     }
@@ -63,29 +63,29 @@ class ComplicationsFragment : Fragment() {
     }
 
     private fun applySharedPreferences(savedState: ComplicationsData) {
-        arrestoCardioSwitch.isChecked = savedState.arrestoCardiocircolatorio
-        deterioramentoSwitch.isChecked = savedState.deterioramento
-        anisocoriaSwitch.isChecked = savedState.anisocoria
-        insuffRespiratoriaSwitch.isChecked = savedState.insuffRespiratoria
-        cardioShockSwitch.isChecked = savedState.cardioShock
-        atterraggioSwitch.isChecked = savedState.atterraggio
-        if (savedState.itinere) {
-            // cambia colore a itinerebutton come attivo e disattiva arrivoPsButton
+        cardioCirculatoryArrestSwitch.isChecked = savedState.cardioCirculatoryArrest
+        deterioratingStateConsciousnessSwitch.isChecked = savedState.deterioratingStateConsciousness
+        anisoMidriasiSwitch.isChecked = savedState.anisoMidriasi
+        respiratoryFailureSwitch.isChecked = savedState.respiratoryFailure
+        cardioCirculatoryShockSwitch.isChecked = savedState.cardioCirculatoryShock
+        landingInItinereSwitch.isChecked = savedState.landingInItinere
+        if (savedState.deathInItinere) {
+            // cambia colore a itinerebutton come attivo e disattiva deathArrivalInPSButton
         }
-        if (savedState.arrivoPs) {
-            // cambia colore a arrivoPsButton come attivo e disattiva itinerebutton
+        if (savedState.deathInPs) {
+            // cambia colore a deathArrivalInPSButton come attivo e disattiva itinerebutton
         }
     }
 
     fun getData(): ComplicationsData {
         return ComplicationsData(
-                arrestoCardioSwitch.isChecked,
-                deterioramentoSwitch.isChecked,
-                anisocoriaSwitch.isChecked,
-                insuffRespiratoriaSwitch.isChecked,
-                arrestoCardioSwitch.isChecked,
-                atterraggioSwitch.isChecked,
+                cardioCirculatoryArrestSwitch.isChecked,
+                deterioratingStateConsciousnessSwitch.isChecked,
+                anisoMidriasiSwitch.isChecked,
+                respiratoryFailureSwitch.isChecked,
+                cardioCirculatoryArrestSwitch.isChecked,
+                landingInItinereSwitch.isChecked,
                 itinereActive,
-                arrivoPsActive)
+                arrivalInPSActive)
     }
 }
