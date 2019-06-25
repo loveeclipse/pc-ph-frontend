@@ -46,8 +46,8 @@ class InputDialogFragment : DialogFragment() {
     override fun onCancel(dialog: DialogInterface) {
         val drugsData = DrugsData(Integer.parseInt(
                 inputValueEditText.text.toString()),
-                unitOfMeasurement,
-                "Somministrazione ${arguments?.get(drugName)}"
+                unitEditText.text.toString(),
+                "Somministrazione ${inputValueEditText.text} ${unitEditText.text} ${arguments?.get(drugName)}"
         )
         val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         sharedPreferences.edit().putString("DrugsData", Gson().toJson(drugsData)).apply()
