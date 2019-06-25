@@ -139,21 +139,21 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
             val newSaveState = gson.fromJson(sharedPreferences.getString("vitalParameters", null), VitalParametersData::class.java)
             if (newSaveState != null) {
                 this.activity!!.runOnUiThread {
-                    airwaysRadiogroup.check(newSaveState.vieAeree)
-                    respiratoryFreqSpinner.setSelection(newSaveState.frequenzaRespiratoria)
-                    saturationEditText.setText(newSaveState.saturazionePeriferica.toString())
-                    cardiacFrequencyEditText.setText(newSaveState.frequenzaCaridaca.toString())
-                    beatTypeRadiogroup.check(newSaveState.tipoBattito)
-                    arteriousPressureEditText.setText(newSaveState.pressioneArteriosa.toString())
-                    capillarFillingTimeRadioGroup.check(newSaveState.tempoRiempimentoCapillare)
-                    mucousSkinColourRadiogroup.check(newSaveState.coloritoCuteMucose)
-                    eyesOpeningSpinner.setSelection(newSaveState.aperturaOcchi)
-                    verbalResponseSpinner.setSelection(newSaveState.rispostaVerbale)
-                    motorResponseSpinner.setSelection(newSaveState.rispostaMotoria)
-                    pupilSxRadiogroup.check(newSaveState.pupilleSx)
-                    pupilDXRadiogroup.check(newSaveState.pupilleDx)
-                    photoreagentSxSwitch.isChecked = newSaveState.fotoreagenteSx
-                    photoreagentDxSwitch.isChecked = newSaveState.fotoreagenteDx
+                    airwaysRadiogroup.check(newSaveState.airways)
+                    respiratoryFreqSpinner.setSelection(newSaveState.respiratoryFrequency)
+                    saturationEditText.setText(newSaveState.periphericalSaturation.toString())
+                    cardiacFrequencyEditText.setText(newSaveState.cardiacFrequency.toString())
+                    beatTypeRadiogroup.check(newSaveState.beatType)
+                    arteriousPressureEditText.setText(newSaveState.bloodPressure.toString())
+                    capillarFillingTimeRadioGroup.check(newSaveState.capillarFillTime)
+                    mucousSkinColourRadiogroup.check(newSaveState.mucousSkinColor)
+                    eyesOpeningSpinner.setSelection(newSaveState.eyesOpening)
+                    verbalResponseSpinner.setSelection(newSaveState.verbalResponse)
+                    motorResponseSpinner.setSelection(newSaveState.motorResponse)
+                    pupilSxRadiogroup.check(newSaveState.pupilSx)
+                    pupilDXRadiogroup.check(newSaveState.pupilDx)
+                    photoreagentSxSwitch.isChecked = newSaveState.photoreagentSx
+                    photoreagentDxSwitch.isChecked = newSaveState.photoreagentDx
                     bodyTempEditText.setText(newSaveState.temperature.toString())
                 }
                 savedState = newSaveState

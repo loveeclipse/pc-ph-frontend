@@ -103,7 +103,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         saveState = PatientStatusData(traumaIsClosed,
                 traumaIsPiercing,
                 helmetBeltSwitch.isChecked, // MISSING PARAMETERS
-        voletCostale = voletSwitch.isChecked
+        costalVolet = voletSwitch.isChecked
                 )
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
@@ -119,17 +119,17 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             val newSaveState = gson.fromJson(sharedPreferences.getString("patientState", null), PatientStatusData::class.java)
             if (newSaveState != null) {
                 this.activity!!.runOnUiThread {
-                    if (newSaveState.traumaChiuso) {
+                    if (newSaveState.closedTrauma) {
                         activateButton(closedButton, resources)
                         traumaIsClosed = true
                     }
-                    if (newSaveState.traumaPenetrante) {
+                    if (newSaveState.piercingTrauma) {
                         activateButton(piercingButton, resources)
                         traumaIsPiercing = true
                     }
 
-                    helmetBeltSwitch.isChecked = newSaveState.cascoCintura
-                    voletSwitch.isChecked = newSaveState.voletCostale
+                    helmetBeltSwitch.isChecked = newSaveState.helmetBelt
+                    voletSwitch.isChecked = newSaveState.costalVolet
                 }
                 saveState = newSaveState
             }

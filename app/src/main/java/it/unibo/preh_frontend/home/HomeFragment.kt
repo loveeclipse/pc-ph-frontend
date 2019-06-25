@@ -49,15 +49,15 @@ class HomeFragment : Fragment() {
 
         sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
 
-        root.findViewById<Button>(R.id.stato_paziente_button).setOnClickListener {
+        root.findViewById<Button>(R.id.patient_status_button).setOnClickListener {
             PatientStatusDialogFragment().show(requireActivity().supportFragmentManager, "patient_status_dialog_fragment")
         }
 
-        root.findViewById<Button>(R.id.storico_button).setOnClickListener {
+        root.findViewById<Button>(R.id.history_button).setOnClickListener {
             HistoryDialogFragment().show(requireActivity().supportFragmentManager, "history_dialog_fragment")
         }
 
-        root.findViewById<Button>(R.id.dett_missione_button).setOnClickListener {
+        root.findViewById<Button>(R.id.mission_details_button).setOnClickListener {
             MissionDialogFragment().show(requireActivity().supportFragmentManager, "mission_dialog_fragment")
         }
 
@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
         root.findViewById<Button>(R.id.note_button).setOnClickListener {
             NoteDialogFragment().show(requireActivity().supportFragmentManager, "note_dialog_fragment")
         }
-        root.findViewById<Button>(R.id.param_vitali_button).setOnClickListener {
+        root.findViewById<Button>(R.id.vital_parameters_button).setOnClickListener {
             VitalParametersDialog().show(requireActivity().supportFragmentManager, "vital_parameters_fragment")
         }
 

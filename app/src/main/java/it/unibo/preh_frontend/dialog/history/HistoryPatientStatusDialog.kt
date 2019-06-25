@@ -33,7 +33,7 @@ open class HistoryPatientStatusDialog : DialogFragment() {
     protected lateinit var phyisiologicButton: Button
     protected lateinit var anatomicButton: Button
     protected lateinit var dynamicButton: Button
-    protected lateinit var clinicalJudgmentButton: Button
+    protected lateinit var clinicalJudgementButton: Button
     protected lateinit var shockIndexText: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -54,29 +54,29 @@ open class HistoryPatientStatusDialog : DialogFragment() {
 
     protected open fun getComponents(root: View) {
         root.apply {
-            hemorrageSwitch = findViewById(R.id.emorragia_esterna_switch)
-            airwaysSwitch = findViewById(R.id.vie_aeree_switch)
+            hemorrageSwitch = findViewById(R.id.external_hemorrage_switch)
+            airwaysSwitch = findViewById(R.id.airways_switch)
             tachipneaDyspneaSwitch = findViewById(R.id.tachipnea_switch)
-            helmetBeltSwitch = findViewById(R.id.casco_cintura_switch)
+            helmetBeltSwitch = findViewById(R.id.helmet_belt_switch)
             voletSwitch = findViewById(R.id.volet_switch)
-            positiveEcofastButton = findViewById(R.id.positivo_button)
-            negativeEcofastButton = findViewById(R.id.negativo_button)
-            unstablePelvisSwitch = findViewById(R.id.bacino_instabile_switch)
-            amputationSwitch = findViewById(R.id.amputazione_switch)
-            sunkenSkullButton = findViewById(R.id.infossata_button)
+            positiveEcofastButton = findViewById(R.id.positive_button)
+            negativeEcofastButton = findViewById(R.id.negative_button)
+            unstablePelvisSwitch = findViewById(R.id.unstable_pelvis_switch)
+            amputationSwitch = findViewById(R.id.amputation_switch)
+            sunkenSkullButton = findViewById(R.id.sunken_button)
             otorrhagiaButton = findViewById(R.id.otorragia_button)
             paraparesisButton = findViewById(R.id.paraparesi_button)
-            tetraparesisButton = findViewById(R.id.tetraparesi_button)
-            paresthesiaButton = findViewById(R.id.parestesia_button)
+            tetraparesisButton = findViewById(R.id.tetraparesis_button)
+            paresthesiaButton = findViewById(R.id.paresthesia_button)
 
-            phyisiologicButton = findViewById(R.id.fisiologico_button)
-            anatomicButton = findViewById(R.id.anatomico_button)
-            dynamicButton = findViewById(R.id.dinamico_button)
-            clinicalJudgmentButton = findViewById(R.id.giudizio_clinico_button)
+            phyisiologicButton = findViewById(R.id.physiologic_button)
+            anatomicButton = findViewById(R.id.anatomic_button)
+            dynamicButton = findViewById(R.id.dynamic_button)
+            clinicalJudgementButton = findViewById(R.id.clinic_judgement_button)
 
             shockIndexText = findViewById(R.id.shock_index_text)
-            piercingButton = findViewById(R.id.penetrante_button)
-            closedButton = findViewById(R.id.chiuso_button)
+            piercingButton = findViewById(R.id.piercing_button)
+            closedButton = findViewById(R.id.closed_button)
         }
     }
 
@@ -87,14 +87,14 @@ open class HistoryPatientStatusDialog : DialogFragment() {
     }
 
     protected open fun setData(data: PatientStatusData) {
-        if (data.traumaChiuso) {
+        if (data.closedTrauma) {
             ButtonAppearance.activateButton(closedButton, resources)
         }
-        if (data.traumaPenetrante) {
+        if (data.piercingTrauma) {
             ButtonAppearance.activateButton(piercingButton, resources)
         }
 
-        helmetBeltSwitch.isChecked = data.cascoCintura
+        helmetBeltSwitch.isChecked = data.helmetBelt
 
         // TODO Add the other data
     }

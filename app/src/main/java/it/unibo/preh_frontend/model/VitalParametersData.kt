@@ -2,22 +2,22 @@ package it.unibo.preh_frontend.model
 import java.io.Serializable
 
 data class VitalParametersData(
-    var vieAeree: Int,
-    var frequenzaRespiratoria: Int,
-    var saturazionePeriferica: Int,
-    var frequenzaCaridaca: Int,
-    var tipoBattito: Int,
-    var pressioneArteriosa: Int,
-    var tempoRiempimentoCapillare: Int,
-    var coloritoCuteMucose: Int,
-    var aperturaOcchi: Int,
-    var rispostaVerbale: Int,
-    var rispostaMotoria: Int,
-    var pupilleSx: Int,
-    var pupilleDx: Int,
-    var fotoreagenteSx: Boolean,
-    var fotoreagenteDx: Boolean,
-    var temperature: Double,
+        var airways: Int,
+        var respiratoryFrequency: Int,
+        var periphericalSaturation: Int,
+        var cardiacFrequency: Int,
+        var beatType: Int,
+        var bloodPressure: Int,
+        var capillarFillTime: Int,
+        var mucousSkinColor: Int,
+        var eyesOpening: Int,
+        var verbalResponse: Int,
+        var motorResponse: Int,
+        var pupilSx: Int,
+        var pupilDx: Int,
+        var photoreagentSx: Boolean,
+        var photoreagentDx: Boolean,
+        var temperature: Double,
 
-    var event: String = "Inseriti Parametri Vitali"
+        var event: String = "Inseriti Parametri Vitali"
 ) : PreHData("VitalParametersData", event), Serializable

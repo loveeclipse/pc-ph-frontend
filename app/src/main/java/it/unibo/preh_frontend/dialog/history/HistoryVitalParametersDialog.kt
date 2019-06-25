@@ -55,22 +55,22 @@ open class HistoryVitalParametersDialog : DialogFragment() {
 
     protected open fun getComponents(root: View) {
         root.apply {
-            airwaysRadiogroup = findViewById(R.id.vieaeree_radiogroup)
-            respiratoryFreqSpinner = findViewById(R.id.freq_resp_spinner)
-            saturationEditText = findViewById(R.id.saturazione_edittext)
-            cardiacFrequencyEditText = findViewById(R.id.freq_cardiaca_edittext)
-            beatTypeRadiogroup = findViewById(R.id.tipo_battito_radiogroup)
+            airwaysRadiogroup = findViewById(R.id.airways_radiogroup)
+            respiratoryFreqSpinner = findViewById(R.id.resp_freq_spinner)
+            saturationEditText = findViewById(R.id.saturation_edittext)
+            cardiacFrequencyEditText = findViewById(R.id.cardiac_frequency_edittext)
+            beatTypeRadiogroup = findViewById(R.id.beat_type_radiogroup)
             arteriousPressureEditText = findViewById(R.id.pres_arter_edittext)
             capillarFillingTimeRadioGroup = findViewById(R.id.riempimento_capillare_radiogroup)
-            mucousSkinColourRadiogroup = findViewById(R.id.cute_mucose_radiogroup)
-            eyesOpeningSpinner = findViewById(R.id.apertura_occhi_spinner)
-            verbalResponseSpinner = findViewById(R.id.risposta_verbale_spinner)
-            motorResponseSpinner = findViewById(R.id.risposta_motoria_spinner)
-            pupilSxRadiogroup = findViewById(R.id.pupilleSx_radiogroup)
-            pupilDXRadiogroup = findViewById(R.id.pupilleDx_radiogroup)
-            photoreagentSxSwitch = findViewById(R.id.fotoreagenteSx_switch)
-            photoreagentDxSwitch = findViewById(R.id.fotoreagenteDx_switch)
-            bodyTempEditText = findViewById(R.id.temp_corporea_edittext)
+            mucousSkinColourRadiogroup = findViewById(R.id.mucous_skin_color_radiogroup)
+            eyesOpeningSpinner = findViewById(R.id.eyes_opening_spinner)
+            verbalResponseSpinner = findViewById(R.id.verbal_response_spinner)
+            motorResponseSpinner = findViewById(R.id.motor_response_spinner)
+            pupilSxRadiogroup = findViewById(R.id.pupilSx_radiogroup)
+            pupilDXRadiogroup = findViewById(R.id.pupilDx_radiogroup)
+            photoreagentSxSwitch = findViewById(R.id.photoreagentSx_switch)
+            photoreagentDxSwitch = findViewById(R.id.photoreagentDx_switch)
+            bodyTempEditText = findViewById(R.id.body_temperature_edittext)
             gcsTextView = findViewById(R.id.gcs_textview)
         }
     }
@@ -126,21 +126,21 @@ open class HistoryVitalParametersDialog : DialogFragment() {
     }
 
     protected open fun setData(data: VitalParametersData) {
-        airwaysRadiogroup.check(data.vieAeree)
-        respiratoryFreqSpinner.setSelection(data.frequenzaRespiratoria)
-        saturationEditText.setText(data.saturazionePeriferica.toString())
-        cardiacFrequencyEditText.setText(data.frequenzaCaridaca.toString())
-        beatTypeRadiogroup.check(data.tipoBattito)
-        arteriousPressureEditText.setText(data.pressioneArteriosa.toString())
-        capillarFillingTimeRadioGroup.check(data.tempoRiempimentoCapillare)
-        mucousSkinColourRadiogroup.check(data.coloritoCuteMucose)
-        eyesOpeningSpinner.setSelection(data.aperturaOcchi)
-        verbalResponseSpinner.setSelection(data.rispostaVerbale)
-        motorResponseSpinner.setSelection(data.rispostaMotoria)
-        pupilSxRadiogroup.check(data.pupilleSx)
-        pupilDXRadiogroup.check(data.pupilleDx)
-        photoreagentSxSwitch.isChecked = data.fotoreagenteSx
-        photoreagentDxSwitch.isChecked = data.fotoreagenteDx
+        airwaysRadiogroup.check(data.airways)
+        respiratoryFreqSpinner.setSelection(data.respiratoryFrequency)
+        saturationEditText.setText(data.periphericalSaturation.toString())
+        cardiacFrequencyEditText.setText(data.cardiacFrequency.toString())
+        beatTypeRadiogroup.check(data.beatType)
+        arteriousPressureEditText.setText(data.bloodPressure.toString())
+        capillarFillingTimeRadioGroup.check(data.capillarFillTime)
+        mucousSkinColourRadiogroup.check(data.mucousSkinColor)
+        eyesOpeningSpinner.setSelection(data.eyesOpening)
+        verbalResponseSpinner.setSelection(data.verbalResponse)
+        motorResponseSpinner.setSelection(data.motorResponse)
+        pupilSxRadiogroup.check(data.pupilSx)
+        pupilDXRadiogroup.check(data.pupilDx)
+        photoreagentSxSwitch.isChecked = data.photoreagentSx
+        photoreagentDxSwitch.isChecked = data.photoreagentDx
         bodyTempEditText.setText(data.temperature.toString())
     }
 
