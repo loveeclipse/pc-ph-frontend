@@ -215,4 +215,10 @@
     <string name="volet_costale_id">Volet costale o instabilità/deformità della parete toracica</string>
     <string name="ustione">Ustione di 2° e/o 3° grado, >30% superfice corporea ustionata, volto/mani/piedi/genitali</string>
     <string name="sospetta_lesione_verbale">Sospetta lesione vertebrale</string>
+    <string name="codice_di_rientro">Codice di rientro</string>
+    <string name="ospedale_di_arrivo">Ospedale di arrivo</string>
+    <string name="mezzo_di_trasporto">Mezzo di trasporto</string>
+    <string name="ambulanza">Ambulanza</string>
+    <string name="elicottero">Elicottero</string>
+    <string name="medico_accompagna">Medico accompagna</string>
 </resources>
