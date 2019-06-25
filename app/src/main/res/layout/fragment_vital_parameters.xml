@@ -39,7 +39,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:id="@+id/temp_corporea_edittext"
+                    android:id="@+id/body_temperature_edittext"
                     android:layout_marginStart="@dimen/horizontalMargin"
                     android:layout_marginEnd="@dimen/horizontalMargin"
                     android:layout_marginTop="@dimen/verticalMargin"
@@ -81,11 +81,11 @@
                 <Spinner
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/apertura_occhi_spinner"
+                        android:id="@+id/eyes_opening_spinner"
                         android:layout_marginStart="@dimen/horizontalMargin"
                         android:layout_marginEnd="@dimen/horizontalMargin"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/risposta_verbale_spinner"
+                        app:layout_constraintBottom_toTopOf="@+id/verbal_response_spinner"
                         app:layout_constraintStart_toStartOf="@+id/guideline87"
                         app:layout_constraintEnd_toEndOf="parent"/>
                 <TextView
@@ -100,11 +100,11 @@
                 <Spinner
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/risposta_verbale_spinner"
+                        android:id="@+id/verbal_response_spinner"
                         android:layout_marginEnd="@dimen/horizontalMargin"
                         android:layout_marginStart="@dimen/horizontalMargin"
-                        app:layout_constraintTop_toBottomOf="@id/apertura_occhi_spinner"
-                        app:layout_constraintBottom_toTopOf="@id/risposta_motoria_spinner"
+                        app:layout_constraintTop_toBottomOf="@id/eyes_opening_spinner"
+                        app:layout_constraintBottom_toTopOf="@id/motor_response_spinner"
                         app:layout_constraintStart_toStartOf="@+id/guideline87"
                         app:layout_constraintEnd_toEndOf="parent"/>
                 <TextView
@@ -122,10 +122,10 @@
                 <Spinner
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/risposta_motoria_spinner"
+                        android:id="@+id/motor_response_spinner"
                         android:layout_marginEnd="@dimen/horizontalMargin"
                         android:layout_marginStart="@dimen/horizontalMargin"
-                        app:layout_constraintTop_toBottomOf="@id/risposta_verbale_spinner"
+                        app:layout_constraintTop_toBottomOf="@id/verbal_response_spinner"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/guideline87"
                         app:layout_constraintEnd_toEndOf="parent"/>
@@ -144,8 +144,8 @@
                     android:id="@+id/textView47"
                     android:layout_marginEnd="@dimen/horizontalMargin"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/temp_corporea_edittext"
-                    app:layout_constraintBottom_toBottomOf="@id/temp_corporea_edittext"/>
+                    app:layout_constraintTop_toTopOf="@+id/body_temperature_edittext"
+                    app:layout_constraintBottom_toBottomOf="@id/body_temperature_edittext"/>
             <TextView
                     android:text="@string/GCS_15"
                     android:layout_width="0dp"
@@ -186,7 +186,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:id="@+id/pupilleDx_radiogroup"
+                        android:id="@+id/pupilDx_radiogroup"
                         android:theme="@style/RadioStyle"
                         android:layout_marginTop="@dimen/verticalMargin"
                         app:layout_constraintTop_toBottomOf="@+id/textView53"
@@ -201,7 +201,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/horizontalMargin"
                             android:layout_marginEnd="@dimen/horizontalMargin"
-                            android:id="@+id/miosiDx_radio"/>
+                            android:id="@+id/miosisDx_radio"/>
                     <RadioButton
                             android:text="@string/midriasi"
                             android:textSize="@dimen/normalSize"
@@ -209,7 +209,7 @@
                             android:scaleY="0.8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/midriasiDx_radio"/>
+                            android:id="@+id/midriasisDx_radio"/>
                     <RadioButton
                             android:text="@string/normale"
                             android:textSize="@dimen/normalSize"
@@ -217,18 +217,18 @@
                             android:scaleY="0.8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/normaleDx_radio"/>
+                            android:id="@+id/normalDx_radio"/>
                 </RadioGroup>
                 <Switch
                         android:text="@string/fotoreagente"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/fotoreagenteDx_switch"
+                        android:id="@+id/photoreagentDx_switch"
                         android:theme="@style/AppSwitchStyle"
                         android:layout_marginEnd="30dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginBottom="30dp" app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/pupilleDx_radiogroup"
+                        android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/pupilDx_radiogroup"
                         app:layout_constraintStart_toStartOf="@+id/guideline90" android:layout_marginStart="10dp"/>
                 <TextView
                         android:text="@string/sx"
@@ -244,7 +244,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:id="@+id/pupilleSx_radiogroup"
+                        android:id="@+id/pupilSx_radiogroup"
                         android:theme="@style/RadioStyle"
                         android:layout_marginTop="@dimen/verticalMargin"
                         app:layout_constraintStart_toStartOf="parent"
@@ -257,7 +257,7 @@
                             android:scaleY="0.8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/miosiSx_radio"/>
+                            android:id="@+id/miosisSx_radio"/>
                     <RadioButton
                             android:text="@string/midriasi"
                             android:textSize="@dimen/normalSize"
@@ -265,7 +265,7 @@
                             android:scaleY="0.8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/midriasiSx_radio"/>
+                            android:id="@+id/midriasisSx_radio"/>
                     <RadioButton
                             android:text="@string/normale"
                             android:textSize="@dimen/normalSize"
@@ -273,20 +273,20 @@
                             android:scaleY="0.8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/normaleSx_button"/>
+                            android:id="@+id/normalSx_button"/>
                 </RadioGroup>
                 <Switch
                         android:text="@string/fotoreagente"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/fotoreagenteSx_switch"
+                        android:id="@+id/photoreagentSx_switch"
                         android:theme="@style/AppSwitchStyle"
                         android:layout_marginBottom="30dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="15dp"
-                        app:layout_constraintTop_toBottomOf="@+id/pupilleSx_radiogroup"
+                        app:layout_constraintTop_toBottomOf="@+id/pupilSx_radiogroup"
                         app:layout_constraintEnd_toStartOf="@+id/guideline90" android:layout_marginEnd="10dp"/>
                 <androidx.constraintlayout.widget.Guideline
                         android:orientation="vertical"
@@ -299,7 +299,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:id="@+id/freq_cardiaca_edittext"
+                    android:id="@+id/cardiac_frequency_edittext"
                     android:layout_marginEnd="@dimen/horizontalMargin"
                     app:layout_constraintTop_toTopOf="@id/textView38"
                     app:layout_constraintBottom_toBottomOf="@id/textView38"
@@ -334,8 +334,8 @@
                     android:layout_marginEnd="@dimen/horizontalMargin"
                     app:layout_constraintTop_toTopOf="@id/textView38"
                     app:layout_constraintBottom_toBottomOf="@id/textView38"
-                    app:layout_constraintStart_toEndOf="@id/freq_cardiaca_edittext"
-                    app:layout_constraintEnd_toStartOf="@id/tipo_battito_radiogroup"/>
+                    app:layout_constraintStart_toEndOf="@id/cardiac_frequency_edittext"
+                    app:layout_constraintEnd_toStartOf="@id/beat_type_radiogroup"/>
             <TextView
                     android:text="@string/temperatura_corporea"
                     style="@style/NormalTextStyle"
@@ -345,13 +345,13 @@
                     android:layout_marginStart="@dimen/horizontalMargin"
                     android:layout_marginTop="@dimen/verticalMargin"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/temp_corporea_edittext"
+                    app:layout_constraintEnd_toStartOf="@id/body_temperature_edittext"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout13"
                     app:layout_constraintBottom_toBottomOf="parent"/>
             <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/freq_resp_spinner"
+                    android:id="@+id/resp_freq_spinner"
                     app:layout_constraintTop_toTopOf="@id/textView33"
                     app:layout_constraintBottom_toBottomOf="@id/textView33"
                     app:layout_constraintStart_toEndOf="@id/guideline6"/>
@@ -360,7 +360,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center"
-                    android:id="@+id/cute_mucose_radiogroup"
+                    android:id="@+id/mucous_skin_color_radiogroup"
                     android:theme="@style/RadioStyle"
                     app:layout_constraintTop_toTopOf="@id/textView41"
                     app:layout_constraintBottom_toBottomOf="@id/textView41"
@@ -373,7 +373,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/color_normale_radio"/>
+                        android:id="@+id/color_normal_radio"/>
                 <RadioButton
                         android:text="@string/pallido"
                         android:textAppearance="@style/NormalTextStyle"
@@ -381,7 +381,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/pallido_radio"/>
+                        android:id="@+id/pale_radio"/>
                 <RadioButton
                         android:text="@string/cianotico"
                         android:textAppearance="@style/NormalTextStyle"
@@ -389,7 +389,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/cianotico_radio"/>
+                        android:id="@+id/cyanotic_radio"/>
             </RadioGroup>
             <RadioGroup
                     android:layout_width="wrap_content"
@@ -409,7 +409,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/normale_radio"/>
+                        android:id="@+id/normal_radio"/>
                 <RadioButton
                         android:text="@string/aumentato"
                         android:textAppearance="@style/NormalTextStyle"
@@ -417,7 +417,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/aumentato_radio"/>
+                        android:id="@+id/increased_radio"/>
                 <RadioButton
                         android:text="@string/nullo"
                         android:textAppearance="@style/NormalTextStyle"
@@ -425,7 +425,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/nullo_radio"/>
+                        android:id="@+id/null_radio"/>
             </RadioGroup>
             <TextView
                     android:text="@string/pressione_arteriosa_sistolica"
@@ -445,7 +445,7 @@
                     android:id="@+id/textView43"
                     app:layout_constraintTop_toTopOf="@id/textView33"
                     app:layout_constraintBottom_toBottomOf="@id/textView33"
-                    app:layout_constraintStart_toEndOf="@id/freq_resp_spinner"
+                    app:layout_constraintStart_toEndOf="@id/resp_freq_spinner"
                     app:layout_constraintEnd_toEndOf="parent"/>
             <TextView
                     android:text="@string/saturazione_periferica"
@@ -462,7 +462,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:id="@+id/tipo_battito_radiogroup"
+                    android:id="@+id/beat_type_radiogroup"
                     android:theme="@style/RadioStyle"
                     app:layout_constraintTop_toTopOf="@+id/textView45"
                     app:layout_constraintBottom_toBottomOf="@+id/textView45"
@@ -475,7 +475,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/ritmico_radio"/>
+                        android:id="@+id/rithmic_radio"/>
                 <RadioButton
                         android:text="@string/aritmico"
                         android:textAppearance="@style/NormalTextStyle"
@@ -483,7 +483,7 @@
                         android:scaleY="0.8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/aritmico_radio"/>
+                        android:id="@+id/arithmic_radio"/>
             </RadioGroup>
             <TextView
                     android:text="@string/frequenza_respiratoria"
@@ -511,7 +511,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:id="@+id/saturazione_edittext"
+                    android:id="@+id/saturation_edittext"
                     android:layout_marginEnd="@dimen/horizontalMargin"
                     app:layout_constraintTop_toTopOf="@id/textView34"
                     app:layout_constraintBottom_toBottomOf="@id/textView34"
@@ -530,7 +530,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center"
-                    android:id="@+id/vieaeree_radiogroup"
+                    android:id="@+id/airways_radiogroup"
                     android:theme="@style/RadioStyle"
                     app:layout_constraintTop_toTopOf="@id/textView29"
                     app:layout_constraintBottom_toBottomOf="@id/textView29"
@@ -543,7 +543,7 @@
                         android:textAppearance="@style/NormalTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/pervie_radio"/>
+                        android:id="@+id/pervious_radio"/>
                 <RadioButton
                         android:text="@string/non_pervie"
                         android:scaleX="0.8"
@@ -551,7 +551,7 @@
                         android:textAppearance="@style/NormalTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/nonpervie_radio"/>
+                        android:id="@+id/impervious_radio"/>
             </RadioGroup>
             <TextView
                     android:text="@string/vie_aeree"

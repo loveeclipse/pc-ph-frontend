@@ -77,14 +77,14 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
     override fun initSpinner() {
         var newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.respiratoryFrequencyItems, R.layout.spinner_layout)
         newAdapter.setDropDownViewResource(R.layout.spinner_layout)
-        freqRespiratoria.apply {
+        respiratoryFreqSpinner.apply {
             adapter = newAdapter
             setSelection(1)
         }
 
         newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.eyeOpeningItems, R.layout.spinner_layout)
         newAdapter.setDropDownViewResource(R.layout.spinner_layout)
-        aperturaOcchi.apply {
+        eyesOpeningSpinner.apply {
             adapter = newAdapter
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -97,7 +97,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
 
         newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.verbalResponseItems, R.layout.spinner_layout)
         newAdapter.setDropDownViewResource(R.layout.spinner_layout)
-        rispostaVerbale.apply {
+        verbalResponseSpinner.apply {
             adapter = newAdapter
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -110,7 +110,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
 
         newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.motorResponseItems, R.layout.spinner_layout)
         newAdapter.setDropDownViewResource(R.layout.spinner_layout)
-        rispostaMotoria.apply {
+        motorResponseSpinner.apply {
             adapter = newAdapter
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -123,16 +123,16 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
     }
 
     private fun checkEveryField(): Boolean {
-        return (vieAeree.checkedRadioButtonId != -1 &&
-                saturazione.text.toString() != "" &&
-                freqCaridaca.text.toString() != "" &&
-                tipoBattito.checkedRadioButtonId != -1 &&
-                presArteriosa.text.toString() != "" &&
-                tempRiempCapillare.checkedRadioButtonId != -1 &&
-                colorCuteMucose.checkedRadioButtonId != -1 &&
-                pupilleSx.checkedRadioButtonId != -1 &&
-                pupilleDx.checkedRadioButtonId != -1 &&
-                tempCorporea.text.toString() != "")
+        return (airwaysRadiogroup.checkedRadioButtonId != -1 &&
+                saturationEditText.text.toString() != "" &&
+                cardiacFrequencyEditText.text.toString() != "" &&
+                beatTypeRadiogroup.checkedRadioButtonId != -1 &&
+                arteriousPressureEditText.text.toString() != "" &&
+                capillarFillingTimeRadioGroup.checkedRadioButtonId != -1 &&
+                mucousSkinColourRadiogroup.checkedRadioButtonId != -1 &&
+                pupilSxRadiogroup.checkedRadioButtonId != -1 &&
+                pupilDXRadiogroup.checkedRadioButtonId != -1 &&
+                bodyTempEditText.text.toString() != "")
     }
 
     private fun setSharedPreferences() {
@@ -141,22 +141,22 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
             val newSaveState = gson.fromJson(sharedPreferences.getString("vitalParameters", null), VitalParametersData::class.java)
             if (newSaveState != null) {
                 this.activity?.runOnUiThread {
-                    vieAeree.check(newSaveState.vieAeree)
-                    freqRespiratoria.setSelection(newSaveState.frequenzaRespiratoria)
-                    saturazione.setText(newSaveState.saturazionePeriferica.toString())
-                    freqCaridaca.setText(newSaveState.frequenzaCaridaca.toString())
-                    tipoBattito.check(newSaveState.tipoBattito)
-                    presArteriosa.setText(newSaveState.pressioneArteriosa.toString())
-                    tempRiempCapillare.check(newSaveState.tempoRiempimentoCapillare)
-                    colorCuteMucose.check(newSaveState.coloritoCuteMucose)
-                    aperturaOcchi.setSelection(newSaveState.aperturaOcchi)
-                    rispostaVerbale.setSelection(newSaveState.rispostaVerbale)
-                    rispostaMotoria.setSelection(newSaveState.rispostaMotoria)
-                    pupilleSx.check(newSaveState.pupilleSx)
-                    pupilleDx.check(newSaveState.pupilleDx)
-                    fotoreagenteSx.isChecked = newSaveState.fotoreagenteSx
-                    fotoreagenteDx.isChecked = newSaveState.fotoreagenteDx
-                    tempCorporea.setText(newSaveState.temperature.toString())
+                    airwaysRadiogroup.check(newSaveState.airways)
+                    respiratoryFreqSpinner.setSelection(newSaveState.respiratoryFrequency)
+                    saturationEditText.setText(newSaveState.periphericalSaturation.toString())
+                    cardiacFrequencyEditText.setText(newSaveState.cardiacFrequency.toString())
+                    beatTypeRadiogroup.check(newSaveState.beatType)
+                    arteriousPressureEditText.setText(newSaveState.bloodPressure.toString())
+                    capillarFillingTimeRadioGroup.check(newSaveState.capillarFillTime)
+                    mucousSkinColourRadiogroup.check(newSaveState.mucousSkinColor)
+                    eyesOpeningSpinner.setSelection(newSaveState.eyesOpening)
+                    verbalResponseSpinner.setSelection(newSaveState.verbalResponse)
+                    motorResponseSpinner.setSelection(newSaveState.motorResponse)
+                    pupilSxRadiogroup.check(newSaveState.pupilSx)
+                    pupilDXRadiogroup.check(newSaveState.pupilDx)
+                    photoreagentSxSwitch.isChecked = newSaveState.photoreagentSx
+                    photoreagentDxSwitch.isChecked = newSaveState.photoreagentDx
+                    bodyTempEditText.setText(newSaveState.temperature.toString())
                 }
                 savedState = newSaveState
             }
@@ -164,22 +164,22 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        saveState = VitalParametersData(vieAeree.checkedRadioButtonId,
-                freqRespiratoria.selectedItemPosition,
-                saturazione.text.toString().toInt(),
-                freqCaridaca.text.toString().toInt(),
-                tipoBattito.checkedRadioButtonId,
-                presArteriosa.text.toString().toInt(),
-                tempRiempCapillare.checkedRadioButtonId,
-                colorCuteMucose.checkedRadioButtonId,
-                aperturaOcchi.selectedItemPosition,
-                rispostaVerbale.selectedItemPosition,
-                rispostaMotoria.selectedItemPosition,
-                pupilleSx.checkedRadioButtonId,
-                pupilleDx.checkedRadioButtonId,
-                fotoreagenteSx.isChecked,
-                fotoreagenteDx.isChecked,
-                tempCorporea.text.toString().toDouble()
+        saveState = VitalParametersData(airwaysRadiogroup.checkedRadioButtonId,
+                respiratoryFreqSpinner.selectedItemPosition,
+                saturationEditText.text.toString().toInt(),
+                cardiacFrequencyEditText.text.toString().toInt(),
+                beatTypeRadiogroup.checkedRadioButtonId,
+                arteriousPressureEditText.text.toString().toInt(),
+                capillarFillingTimeRadioGroup.checkedRadioButtonId,
+                mucousSkinColourRadiogroup.checkedRadioButtonId,
+                eyesOpeningSpinner.selectedItemPosition,
+                verbalResponseSpinner.selectedItemPosition,
+                motorResponseSpinner.selectedItemPosition,
+                pupilSxRadiogroup.checkedRadioButtonId,
+                pupilDXRadiogroup.checkedRadioButtonId,
+                photoreagentSxSwitch.isChecked,
+                photoreagentDxSwitch.isChecked,
+                bodyTempEditText.text.toString().toDouble()
         )
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState)
@@ -202,8 +202,8 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
     }
 
     override fun calculateGCS(): Int {
-        return 4 - aperturaOcchi.selectedItemPosition +
-                5 - rispostaMotoria.selectedItemPosition +
-                6 - rispostaVerbale.selectedItemPosition
+        return 4 - eyesOpeningSpinner.selectedItemPosition +
+                5 - motorResponseSpinner.selectedItemPosition +
+                6 - verbalResponseSpinner.selectedItemPosition
     }
 }

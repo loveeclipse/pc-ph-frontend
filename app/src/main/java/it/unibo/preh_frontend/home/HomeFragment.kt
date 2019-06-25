@@ -49,17 +49,18 @@ class HomeFragment : Fragment() {
 
         sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
 
-        root.findViewById<Button>(R.id.stato_paziente_button).setOnClickListener {
+        root.findViewById<Button>(R.id.patient_status_button).setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("patient_status_dialog_fragment") == null)
                 PatientStatusDialogFragment().show(requireActivity().supportFragmentManager, "patient_status_dialog_fragment")
         }
 
-        root.findViewById<Button>(R.id.storico_button).setOnClickListener {
+
+        root.findViewById<Button>(R.id.history_button).setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("history_dialog_fragment") == null)
                 HistoryDialogFragment().show(requireActivity().supportFragmentManager, "history_dialog_fragment")
         }
 
-        root.findViewById<Button>(R.id.dett_missione_button).setOnClickListener {
+        root.findViewById<Button>(R.id.mission_details_button).setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("mission_dialog_fragment") == null)
                 MissionDialogFragment().show(requireActivity().supportFragmentManager, "mission_dialog_fragment")
         }
@@ -72,7 +73,7 @@ class HomeFragment : Fragment() {
             if (requireActivity().supportFragmentManager.findFragmentByTag("note_dialog_fragment") == null)
                 NoteDialogFragment().show(requireActivity().supportFragmentManager, "note_dialog_fragment")
         }
-        root.findViewById<Button>(R.id.param_vitali_button).setOnClickListener {
+        root.findViewById<Button>(R.id.vital_parameters_button).setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("vital_parameters_fragment") == null)
                 VitalParametersDialog().show(requireActivity().supportFragmentManager, "vital_parameters_fragment")
         }

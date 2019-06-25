@@ -20,7 +20,7 @@ import it.unibo.preh_frontend.utils.HistoryManager
 class InputDialogFragment : DialogFragment() {
 
     private lateinit var inputValueEditText: EditText
-    private lateinit var unitUnitEditText: TextView
+    private lateinit var unitEditText: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.input_dialog, container, false)
@@ -29,8 +29,8 @@ class InputDialogFragment : DialogFragment() {
         inputValueEditText = root.findViewById(R.id.input_edit_text)
         inputValueEditText.setText(arguments?.get(value).toString())
 
-        unitUnitEditText = root.findViewById(R.id.unit_of_measurement)
-        unitUnitEditText.text = arguments?.get(unitOfMeasurement).toString()
+        unitEditText = root.findViewById(R.id.unit_of_measurement)
+        unitEditText.text = arguments?.get(unitOfMeasurement).toString()
 
         root.findViewById<Button>(R.id.confirm_button).setOnClickListener {
             dialog?.cancel()

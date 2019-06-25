@@ -52,7 +52,7 @@ class TreatmentFragment : Fragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
-        val peripheralSpinner = root.findViewById<Spinner>(R.id.periferica_spinner)
+        val peripheralSpinner = root.findViewById<Spinner>(R.id.peripheric_spinner)
         val centralSpinner = root.findViewById<Spinner>(R.id.central_spinner)
         val intraosseousSpinner = root.findViewById<Spinner>(R.id.intraosseous_spinner)
 
@@ -73,10 +73,10 @@ class TreatmentFragment : Fragment() {
                 IppvDialogFragment().show(requireActivity().supportFragmentManager, "fragment_ippv_dialog")
         }
 
-        sublussazioneButton = root.findViewById(R.id.sublussazione_button)
+        sublussazioneButton = root.findViewById(R.id.subluxation_button)
         guedelButton = root.findViewById(R.id.guedel_button)
-        cricoTirotomiaButton = root.findViewById(R.id.tirotomia_button)
-        tuboTrachealeButton = root.findViewById(R.id.tubotrach_button)
+        cricoTirotomiaButton = root.findViewById(R.id.tirotomy_button)
+        tuboTrachealeButton = root.findViewById(R.id.tracheal_tube_button)
         tuboTrachealeButton.setOnClickListener {
             if (!tuboTrachealeIsActive) {
                 tuboTrachealeIsActive = true
@@ -113,7 +113,7 @@ class TreatmentFragment : Fragment() {
             }
         }
         minitoracotomiaSxButton = root.findViewById(R.id.minitoracotomiaSx_button)
-        minitoracotomiaDxButton = root.findViewById(R.id.minitoracotomiaDx_button)
+        minitoracotomiaDxButton = root.findViewById(R.id.minithoracotomyDx_button)
 
         return root
     }
@@ -129,7 +129,7 @@ class TreatmentFragment : Fragment() {
 
     private fun applySharedPreferences(savedState: TreatmentData) {
         // setta i bottoni a seconda del valore in savestate
-        if (savedState.sublussazione) {
+        if (savedState.subluxation) {
             sublussazioneButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)
         }
     }

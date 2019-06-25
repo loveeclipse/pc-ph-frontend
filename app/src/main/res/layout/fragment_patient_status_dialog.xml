@@ -42,26 +42,26 @@
                     android:text="@string/penetrante"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/penetrante_button"
+                    android:id="@+id/piercing_button"
                     style="@style/SelectableButtonStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toTopOf="@+id/chiuso_button"
-                    app:layout_constraintBottom_toBottomOf="@+id/chiuso_button"
-                    app:layout_constraintStart_toEndOf="@+id/chiuso_button"
+                    app:layout_constraintTop_toTopOf="@+id/closed_button"
+                    app:layout_constraintBottom_toBottomOf="@+id/closed_button"
+                    app:layout_constraintStart_toEndOf="@+id/closed_button"
                     app:layout_constraintEnd_toEndOf="parent"/>
             <Button
                     android:text="@string/tetraparesi"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tetraparesi_button"
+                    android:id="@+id/tetraparesis_button"
                     style="@style/SelectableButtonStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/infossata_button"
+                    app:layout_constraintTop_toBottomOf="@+id/sunken_button"
                     app:layout_constraintBottom_toTopOf="@id/constraintLayout11"
                     app:layout_constraintStart_toEndOf="@+id/paraparesi_button"
-                    app:layout_constraintEnd_toStartOf="@+id/parestesia_button"/>
+                    app:layout_constraintEnd_toStartOf="@+id/paresthesia_button"/>
             <Button
                     android:text="@string/paraparesi"
                     android:layout_width="0dp"
@@ -70,10 +70,10 @@
                     style="@style/SelectableButtonStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toTopOf="@+id/tetraparesi_button"
-                    app:layout_constraintBottom_toBottomOf="@+id/tetraparesi_button"
+                    app:layout_constraintTop_toTopOf="@+id/tetraparesis_button"
+                    app:layout_constraintBottom_toBottomOf="@+id/tetraparesis_button"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/tetraparesi_button"/>
+                    app:layout_constraintEnd_toStartOf="@id/tetraparesis_button"/>
             <androidx.constraintlayout.widget.Guideline
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
@@ -84,47 +84,47 @@
                     android:text="@string/parestesia"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/parestesia_button"
+                    android:id="@+id/paresthesia_button"
                     style="@style/SelectableButtonStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toTopOf="@+id/tetraparesi_button"
-                    app:layout_constraintBottom_toBottomOf="@+id/tetraparesi_button"
-                    app:layout_constraintStart_toEndOf="@id/tetraparesi_button"
+                    app:layout_constraintTop_toTopOf="@+id/tetraparesis_button"
+                    app:layout_constraintBottom_toBottomOf="@+id/tetraparesis_button"
+                    app:layout_constraintStart_toEndOf="@id/tetraparesis_button"
                     app:layout_constraintEnd_toEndOf="parent"/>
             <Switch
                     android:text="@string/casco_cintura"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/casco_cintura_switch"
+                    android:id="@+id/helmet_belt_switch"
                     android:theme="@style/RadioStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/penetrante_button"
-                    app:layout_constraintBottom_toTopOf="@+id/emorragia_esterna_switch"/>
+                    app:layout_constraintTop_toBottomOf="@+id/piercing_button"
+                    app:layout_constraintBottom_toTopOf="@+id/external_hemorrage_switch"/>
             <Switch
                     android:text="@string/emorragia_esterna_in_atto"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/emorragia_esterna_switch"
+                    android:id="@+id/external_hemorrage_switch"
                     android:theme="@style/RadioStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/casco_cintura_switch"
-                    app:layout_constraintBottom_toTopOf="@+id/vie_aeree_switch"/>
+                    app:layout_constraintTop_toBottomOf="@id/helmet_belt_switch"
+                    app:layout_constraintBottom_toTopOf="@+id/airways_switch"/>
             <Switch
                     android:text="@string/vie_aeree_non_pervie"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/vie_aeree_switch"
+                    android:id="@+id/airways_switch"
                     android:theme="@style/RadioStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/emorragia_esterna_switch"
+                    app:layout_constraintTop_toBottomOf="@+id/external_hemorrage_switch"
                     app:layout_constraintBottom_toTopOf="@+id/tachipnea_switch"/>
             <Switch
                     android:text="@string/tachipnea_dispnea"
@@ -136,7 +136,7 @@
                     android:layout_marginBottom="@dimen/verticalMargin"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/vie_aeree_switch"
+                    app:layout_constraintTop_toBottomOf="@+id/airways_switch"
                     app:layout_constraintBottom_toTopOf="@+id/volet_switch"/>
             <Switch
                     android:text="@string/volet_costale_deformit_torace"
@@ -149,30 +149,30 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tachipnea_switch"
-                    app:layout_constraintBottom_toTopOf="@+id/positivo_button"/>
+                    app:layout_constraintBottom_toTopOf="@+id/positive_button"/>
             <Switch
                     android:text="@string/bacino_instabile_deformato"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/bacino_instabile_switch"
+                    android:id="@+id/unstable_pelvis_switch"
                     android:theme="@style/RadioStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/negativo_button"
-                    app:layout_constraintBottom_toTopOf="@+id/amputazione_switch"/>
+                    app:layout_constraintTop_toBottomOf="@+id/negative_button"
+                    app:layout_constraintBottom_toTopOf="@+id/amputation_switch"/>
             <Switch
                     android:text="@string/amputazione_subamputazione"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/amputazione_switch"
+                    android:id="@+id/amputation_switch"
                     android:theme="@style/RadioStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/bacino_instabile_switch"
+                    app:layout_constraintTop_toBottomOf="@+id/unstable_pelvis_switch"
                     app:layout_constraintBottom_toTopOf="@+id/otorragia_button"/>
             <Button
                     android:text="@string/otorragia"
@@ -182,21 +182,21 @@
                     style="@style/SelectableButtonStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toTopOf="@+id/infossata_button"
-                    app:layout_constraintBottom_toBottomOf="@id/infossata_button"
-                    app:layout_constraintStart_toEndOf="@+id/infossata_button"
+                    app:layout_constraintTop_toTopOf="@+id/sunken_button"
+                    app:layout_constraintBottom_toBottomOf="@id/sunken_button"
+                    app:layout_constraintStart_toEndOf="@+id/sunken_button"
                     app:layout_constraintEnd_toEndOf="parent"/>
             <Button
                     android:text="@string/chiuso"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/chiuso_button"
+                    android:id="@+id/closed_button"
                     style="@style/SelectableButtonStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/guideline62"
-                    app:layout_constraintEnd_toStartOf="@+id/penetrante_button"/>
+                    app:layout_constraintEnd_toStartOf="@+id/piercing_button"/>
             <androidx.constraintlayout.widget.Guideline
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
@@ -207,36 +207,36 @@
                     android:text="@string/positivo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/positivo_button"
+                    android:id="@+id/positive_button"
                     style="@style/SelectableButtonStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
                     app:layout_constraintTop_toBottomOf="@+id/volet_switch"
-                    app:layout_constraintBottom_toTopOf="@id/bacino_instabile_switch"
+                    app:layout_constraintBottom_toTopOf="@id/unstable_pelvis_switch"
                     app:layout_constraintStart_toEndOf="@+id/guideline62"
-                    app:layout_constraintEnd_toStartOf="@+id/negativo_button"/>
+                    app:layout_constraintEnd_toStartOf="@+id/negative_button"/>
             <Button
                     android:text="@string/negativo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/negativo_button"
+                    android:id="@+id/negative_button"
                     style="@style/SelectableButtonStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toTopOf="@+id/positivo_button"
-                    app:layout_constraintBottom_toBottomOf="@+id/positivo_button"
-                    app:layout_constraintStart_toEndOf="@id/positivo_button"
+                    app:layout_constraintTop_toTopOf="@+id/positive_button"
+                    app:layout_constraintBottom_toBottomOf="@+id/positive_button"
+                    app:layout_constraintStart_toEndOf="@id/positive_button"
                     app:layout_constraintEnd_toEndOf="parent"/>
             <Button
                     android:text="@string/infossata"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/infossata_button"
+                    android:id="@+id/sunken_button"
                     style="@style/SelectableButtonStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/amputazione_switch"
-                    app:layout_constraintBottom_toTopOf="@id/tetraparesi_button"
+                    app:layout_constraintTop_toBottomOf="@+id/amputation_switch"
+                    app:layout_constraintBottom_toTopOf="@id/tetraparesis_button"
                     app:layout_constraintStart_toEndOf="@+id/guideline62"
                     app:layout_constraintEnd_toStartOf="@+id/otorragia_button"/>
             <TextView
@@ -259,45 +259,45 @@
                     android:layout_marginBottom="@dimen/verticalMargin"
                     android:paddingTop="@dimen/verticalMargin"
                     android:paddingBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toBottomOf="@+id/tetraparesi_button"
+                    app:layout_constraintTop_toBottomOf="@+id/tetraparesis_button"
                     app:layout_constraintBottom_toTopOf="@id/textView30">
 
                 <Button
                         android:text="@string/criterio_anatomico"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/anatomico_button"
+                        android:id="@+id/anatomic_button"
                         style="@style/SelectableButtonStyle"
                         android:layout_marginTop="@dimen/verticalMargin"
                         android:layout_marginBottom="@dimen/verticalMargin"
                         app:layout_constraintWidth_percent="0.65"
-                        app:layout_constraintTop_toBottomOf="@+id/fisiologico_button"
-                        app:layout_constraintBottom_toTopOf="@id/dinamico_button"
+                        app:layout_constraintTop_toBottomOf="@+id/physiologic_button"
+                        app:layout_constraintBottom_toTopOf="@id/dynamic_button"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"/>
                 <Button
                         android:text="@string/criterio_dinamico"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/dinamico_button"
+                        android:id="@+id/dynamic_button"
                         style="@style/SelectableButtonStyle"
                         android:layout_marginTop="@dimen/verticalMargin"
                         android:layout_marginBottom="@dimen/verticalMargin"
                         app:layout_constraintWidth_percent="0.65"
-                        app:layout_constraintTop_toBottomOf="@+id/anatomico_button"
-                        app:layout_constraintBottom_toTopOf="@id/giudizio_clinico_button"
+                        app:layout_constraintTop_toBottomOf="@+id/anatomic_button"
+                        app:layout_constraintBottom_toTopOf="@id/clinic_judgement_button"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"/>
                 <Button
                         android:text="@string/giudizio_clinico"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/giudizio_clinico_button"
+                        android:id="@+id/clinic_judgement_button"
                         style="@style/SelectableButtonStyle"
                         android:layout_marginTop="30dp"
                         android:layout_marginBottom="@dimen/verticalMargin"
                         app:layout_constraintWidth_percent="0.65"
-                        app:layout_constraintTop_toBottomOf="@+id/dinamico_button"
+                        app:layout_constraintTop_toBottomOf="@+id/dynamic_button"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"/>
@@ -305,13 +305,13 @@
                         android:text="@string/criterio_fisiologico"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/fisiologico_button"
+                        android:id="@+id/physiologic_button"
                         style="@style/SelectableButtonStyle"
                         android:layout_marginTop="@dimen/verticalMargin"
                         android:layout_marginBottom="@dimen/verticalMargin"
                         app:layout_constraintWidth_percent="0.65"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@id/anatomico_button"
+                        app:layout_constraintBottom_toTopOf="@id/anatomic_button"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -335,8 +335,8 @@
                     style="@style/NormalTextStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toTopOf="@+id/positivo_button"
-                    app:layout_constraintBottom_toBottomOf="@+id/positivo_button"
+                    app:layout_constraintTop_toTopOf="@+id/positive_button"
+                    app:layout_constraintBottom_toBottomOf="@+id/positive_button"
                     app:layout_constraintStart_toStartOf="parent"/>
             <TextView
                     android:text="@string/frattura_cranica"
@@ -346,8 +346,8 @@
                     style="@style/NormalTextStyle"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
-                    app:layout_constraintTop_toTopOf="@+id/infossata_button"
-                    app:layout_constraintBottom_toBottomOf="@id/infossata_button"
+                    app:layout_constraintTop_toTopOf="@+id/sunken_button"
+                    app:layout_constraintBottom_toBottomOf="@id/sunken_button"
                     app:layout_constraintStart_toStartOf="parent"/>
             <TextView
                     android:text="@string/tipo_trauma"
@@ -358,7 +358,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="@dimen/verticalMargin"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/casco_cintura_switch"
+                    app:layout_constraintBottom_toTopOf="@+id/helmet_belt_switch"
                     app:layout_constraintStart_toStartOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
