@@ -51,7 +51,7 @@ class AnagraphicDialogFragment : Fragment() {
         return root
     }
 
-    fun setSharedPreferences() {
+    private fun setSharedPreferences() {
         Thread(Runnable {
             val gson = Gson()
             val newSavedState = gson.fromJson(sharedPreferences.getString("anagraphicData", null), AnagraphicData::class.java)
