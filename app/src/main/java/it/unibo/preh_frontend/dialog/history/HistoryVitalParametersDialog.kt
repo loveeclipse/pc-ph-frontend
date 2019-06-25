@@ -42,12 +42,12 @@ open class HistoryVitalParametersDialog : DialogFragment() {
 
         initSpinner()
 
-        setData(arguments!!.get("data") as VitalParametersData)
+        setData(arguments?.get("data") as VitalParametersData)
 
         val exitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
         exitButton.setOnClickListener {
                 // Here you can save eventual modifications to the history element
-                dialog!!.cancel()
+                dialog?.cancel()
             }
 
         return root
@@ -147,7 +147,7 @@ open class HistoryVitalParametersDialog : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     protected open fun calculateGCS(): Int {

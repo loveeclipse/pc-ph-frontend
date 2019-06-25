@@ -50,15 +50,19 @@ class HomeFragment : Fragment() {
         sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
 
         root.findViewById<Button>(R.id.patient_status_button).setOnClickListener {
-            PatientStatusDialogFragment().show(requireActivity().supportFragmentManager, "patient_status_dialog_fragment")
+            if (requireActivity().supportFragmentManager.findFragmentByTag("patient_status_dialog_fragment") == null)
+                PatientStatusDialogFragment().show(requireActivity().supportFragmentManager, "patient_status_dialog_fragment")
         }
 
+
         root.findViewById<Button>(R.id.history_button).setOnClickListener {
-            HistoryDialogFragment().show(requireActivity().supportFragmentManager, "history_dialog_fragment")
+            if (requireActivity().supportFragmentManager.findFragmentByTag("history_dialog_fragment") == null)
+                HistoryDialogFragment().show(requireActivity().supportFragmentManager, "history_dialog_fragment")
         }
 
         root.findViewById<Button>(R.id.mission_details_button).setOnClickListener {
-            MissionDialogFragment().show(requireActivity().supportFragmentManager, "mission_dialog_fragment")
+            if (requireActivity().supportFragmentManager.findFragmentByTag("mission_dialog_fragment") == null)
+                MissionDialogFragment().show(requireActivity().supportFragmentManager, "mission_dialog_fragment")
         }
 
         root.findViewById<Button>(R.id.pcCar_button).setOnClickListener {
@@ -66,10 +70,12 @@ class HomeFragment : Fragment() {
                 NewPcCarDialogFragment().show(requireActivity().supportFragmentManager, "pcCar_dialog_fragment")
         }
         root.findViewById<Button>(R.id.note_button).setOnClickListener {
-            NoteDialogFragment().show(requireActivity().supportFragmentManager, "note_dialog_fragment")
+            if (requireActivity().supportFragmentManager.findFragmentByTag("note_dialog_fragment") == null)
+                NoteDialogFragment().show(requireActivity().supportFragmentManager, "note_dialog_fragment")
         }
         root.findViewById<Button>(R.id.vital_parameters_button).setOnClickListener {
-            VitalParametersDialog().show(requireActivity().supportFragmentManager, "vital_parameters_fragment")
+            if (requireActivity().supportFragmentManager.findFragmentByTag("vital_parameters_fragment") == null)
+                VitalParametersDialog().show(requireActivity().supportFragmentManager, "vital_parameters_fragment")
         }
 
         val manager = fragmentManager

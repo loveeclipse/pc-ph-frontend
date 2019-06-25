@@ -28,7 +28,7 @@ class AnatomicCriterionDialog : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.anatomic_criterion_fragment, container, false)
-        dialog!!.setCanceledOnTouchOutside(false)
+        dialog?.setCanceledOnTouchOutside(false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
@@ -36,7 +36,7 @@ class AnatomicCriterionDialog : DialogFragment() {
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.anatomic_image_button)
         saveAndExitButton.setOnClickListener {
-            dialog!!.cancel()
+            dialog?.cancel()
         }
 
         setSharedPreferences()
@@ -83,6 +83,6 @@ class AnatomicCriterionDialog : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8 * metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8 * metrics.heightPixels / 10)
     }
 }

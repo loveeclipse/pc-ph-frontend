@@ -38,26 +38,27 @@ class ManeuverFragment : Fragment() {
 
         cervicalCollarSwitch = root.findViewById(R.id.cervical_collar_switch)
         cervicalCollarSwitch.setOnClickListener {
-            if (cervicalCollarSwitch.isChecked) history(cervicalCollarSwitch.isChecked, this.getString(R.string.collare_cervicale))
+            if (cervicalCollarSwitch.isChecked) addHistoryEntry(cervicalCollarSwitch.isChecked, this.getString(R.string.collare_cervicale))
         }
         immobilizationSwitch = root.findViewById(R.id.immobilization_switch)
         immobilizationSwitch.setOnClickListener {
-            if (immobilizationSwitch.isChecked) history(immobilizationSwitch.isChecked, this.getString(R.string.immobilizzazione))
+            if (immobilizationSwitch.isChecked) addHistoryEntry(immobilizationSwitch.isChecked, this.getString(R.string.immobilizzazione))
         }
         electricalCardioversionSwitch = root.findViewById(R.id.electrical_cardioversion_switch)
         electricalCardioversionSwitch.setOnClickListener {
-            if (electricalCardioversionSwitch.isChecked) history(electricalCardioversionSwitch.isChecked, this.getString(R.string.cardioversione_elettrica_sincronizzata))
+            if (electricalCardioversionSwitch.isChecked) addHistoryEntry(electricalCardioversionSwitch.isChecked, this.getString(R.string.cardioversione_elettrica_sincronizzata))
         }
         gastricProbeSwitch = root.findViewById(R.id.gastric_probe_switch)
         gastricProbeSwitch.setOnClickListener {
-            if (gastricProbeSwitch.isChecked) history(gastricProbeSwitch.isChecked, this.getString(R.string.sonda_gastrica))
+            if (gastricProbeSwitch.isChecked) addHistoryEntry(gastricProbeSwitch.isChecked, this.getString(R.string.sonda_gastrica))
         }
         bladderProbeSwitch = root.findViewById(R.id.bladder_probe_switch)
         bladderProbeSwitch.setOnClickListener {
-            if (bladderProbeSwitch.isChecked) history(bladderProbeSwitch.isChecked, this.getString(R.string.sonda_vescicale))
+            if (bladderProbeSwitch.isChecked) addHistoryEntry(bladderProbeSwitch.isChecked, this.getString(R.string.sonda_vescicale))
         }
         root.findViewById<Button>(R.id.pacing_button).setOnClickListener {
-            PacingDialogFragment().show(requireActivity().supportFragmentManager, "layout/fragment_pacing_dialog.xml")
+            if (requireActivity().supportFragmentManager.findFragmentByTag("fragment_pacing_dialog") == null)
+                PacingDialogFragment().show(requireActivity().supportFragmentManager, "fragment_pacing_dialog")
         }
         return root
     }
@@ -71,7 +72,7 @@ class ManeuverFragment : Fragment() {
         super.onStart()
     }
 
-    private fun history(maneuverValue: Boolean, maneuverName: String) {
+    private fun addHistoryEntry(maneuverValue: Boolean, maneuverName: String) {
         val maneuverData = ManeuverHistoryData(
                 maneuverValue,
                 "Applicata $maneuverName"

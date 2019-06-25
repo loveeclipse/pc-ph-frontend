@@ -25,7 +25,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var saveState: PatientStatusData
-    private lateinit var parentDialog: Dialog
+    private var parentDialog: Dialog? = null
 
     private var traumaIsClosed: Boolean = false
     private var traumaIsPiercing: Boolean = false
@@ -35,8 +35,8 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
-        parentDialog = dialog!!
-        dialog!!.setCanceledOnTouchOutside(false)
+        parentDialog = dialog
+        dialog?.setCanceledOnTouchOutside(false)
 
         getComponents(root)
         determineActiveCriteria()
@@ -84,17 +84,19 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         }
 
         anatomicButton.setOnClickListener {
-            AnatomicCriterionDialog().show(requireActivity().supportFragmentManager, "anatomic_criterion_fragment")
+            if (requireActivity().supportFragmentManager.findFragmentByTag("anatomic_criterion_fragment") == null)
+                AnatomicCriterionDialog().show(requireActivity().supportFragmentManager, "anatomic_criterion_fragment")
         }
         phyisiologicButton.setOnClickListener {
-            PhysiologicCriterionDialog().show(requireActivity().supportFragmentManager, "physiologic_criterion_fragment")
+            if (requireActivity().supportFragmentManager.findFragmentByTag("physiologic_criterion_fragment") == null)
+                PhysiologicCriterionDialog().show(requireActivity().supportFragmentManager, "physiologic_criterion_fragment")
         }
 
         setSharedPreferences()
 
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.patient_image_button)
         saveAndExitButton.setOnClickListener {
-            parentDialog.cancel()
+            parentDialog?.cancel()
         }
         return root
     }
@@ -118,7 +120,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             val gson = Gson()
             val newSaveState = gson.fromJson(sharedPreferences.getString("patientState", null), PatientStatusData::class.java)
             if (newSaveState != null) {
-                this.activity!!.runOnUiThread {
+                this.activity?.runOnUiThread {
                     if (newSaveState.closedTrauma) {
                         activateButton(closedButton, resources)
                         traumaIsClosed = true

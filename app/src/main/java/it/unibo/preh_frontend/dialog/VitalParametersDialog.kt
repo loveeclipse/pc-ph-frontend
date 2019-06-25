@@ -22,15 +22,15 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var savedState: VitalParametersData
-    private lateinit var parentDialog: Dialog
+    private var parentDialog: Dialog? = null
 
     private lateinit var saveState: VitalParametersData
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_vital_parameters, container, false)
-        parentDialog = dialog!!
+        parentDialog = dialog
         isCancelable = false
-        dialog!!.setCanceledOnTouchOutside(false)
+        dialog?.setCanceledOnTouchOutside(false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
@@ -40,33 +40,35 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
 
         setSharedPreferences()
 
-        val exitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
-        exitButton.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setCancelable(true)
-            if (checkEveryField()) {
-                builder.apply {
-                    setTitle("Conferma Parametri Vitali")
-                    setMessage("I dati inseriti saranno salvati")
-                    setPositiveButton("Si") { dialog, _ ->
-                        dialog.cancel()
-                        parentDialog.cancel()
-                    }
-                    setNegativeButton("No") { dialog, _ -> dialog.cancel() }
-                }
-            } else {
-                builder.apply {
-                    setTitle("Uscire senza salvare?")
-                    setMessage("Inserimento incompleto")
-                    setPositiveButton("Si") { dialog, _ ->
-                        dialog.cancel()
-                        parentDialog.dismiss()
-                    }
-                    setNegativeButton("No") { dialog, _ -> dialog.cancel() }
+        val builder = AlertDialog.Builder(requireContext())
+        builder.apply {
+            setCancelable(true)
+            setNegativeButton("No") { dialog, _ -> dialog.cancel() }
+        }
+        if (checkEveryField()) {
+            builder.apply {
+                setTitle("Conferma Parametri Vitali")
+                setMessage("I dati inseriti saranno salvati")
+                setPositiveButton("Si") { dialog, _ ->
+                    dialog.cancel()
+                    parentDialog?.cancel()
                 }
             }
-            val alert11 = builder.create()
-            alert11.show()
+        } else {
+            builder.apply {
+                setTitle("Uscire senza salvare?")
+                setMessage("Inserimento incompleto")
+                setPositiveButton("Si") { dialog, _ ->
+                    dialog.cancel()
+                    parentDialog?.dismiss()
+                }
+            }
+        }
+        val exitDialog = builder.create()
+        val exitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
+        exitButton.setOnClickListener {
+            if (!exitDialog.isShowing)
+                exitDialog.show()
         }
 
         return root
@@ -138,7 +140,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
             val gson = Gson()
             val newSaveState = gson.fromJson(sharedPreferences.getString("vitalParameters", null), VitalParametersData::class.java)
             if (newSaveState != null) {
-                this.activity!!.runOnUiThread {
+                this.activity?.runOnUiThread {
                     airwaysRadiogroup.check(newSaveState.airways)
                     respiratoryFreqSpinner.setSelection(newSaveState.respiratoryFrequency)
                     saturationEditText.setText(newSaveState.periphericalSaturation.toString())
@@ -189,7 +191,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

@@ -16,14 +16,14 @@ import it.unibo.preh_frontend.R
 class NoteDialogFragment : DialogFragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var parentDialog: Dialog
+    private var parentDialog: Dialog? = null
     private lateinit var noteEditText: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_note, container, false)
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-        parentDialog = dialog!!
-        dialog!!.setCanceledOnTouchOutside(false)
+        parentDialog = dialog
+        dialog?.setCanceledOnTouchOutside(false)
         noteEditText = root.findViewById(R.id.note_edit_text)
         val savedSet = sharedPreferences.getString("notes", null)
         if (savedSet != null) {
@@ -32,7 +32,7 @@ class NoteDialogFragment : DialogFragment() {
         }
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.note_image_button)
         saveAndExitButton.setOnClickListener {
-                parentDialog.cancel()
+                parentDialog?.cancel()
         }
         return root
     }
@@ -45,7 +45,7 @@ class NoteDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         val metrics = resources.displayMetrics
-        dialog!!.window!!.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
+        dialog?.window?.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
