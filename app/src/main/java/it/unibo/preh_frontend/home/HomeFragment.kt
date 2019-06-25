@@ -49,33 +49,25 @@ class HomeFragment : Fragment() {
 
         sharedPreferences.edit().putString("historyList", historyListAsJson).apply()
 
-        val patientStatusButton = root.findViewById<Button>(R.id.stato_paziente_button)
-        patientStatusButton.setOnClickListener {
+        root.findViewById<Button>(R.id.stato_paziente_button).setOnClickListener {
             PatientStatusDialogFragment().show(requireActivity().supportFragmentManager, "patient_status_dialog_fragment")
         }
 
-        val historyButton = root.findViewById<Button>(R.id.storico_button)
-        historyButton.setOnClickListener {
+        root.findViewById<Button>(R.id.storico_button).setOnClickListener {
             HistoryDialogFragment().show(requireActivity().supportFragmentManager, "history_dialog_fragment")
         }
 
-        val missionButton = root.findViewById<Button>(R.id.dett_missione_button)
-        missionButton.setOnClickListener {
+        root.findViewById<Button>(R.id.dett_missione_button).setOnClickListener {
             MissionDialogFragment().show(requireActivity().supportFragmentManager, "mission_dialog_fragment")
         }
 
-        val pcCarButton = root.findViewById<Button>(R.id.pcCar_button)
-        pcCarButton.setOnClickListener {
-            // NewPcCarBottomSheetFragment().show(requireActivity().supportFragmentManager, "bottom_dialog_fragment")
+        root.findViewById<Button>(R.id.pcCar_button).setOnClickListener {
             NewPcCarDialogFragment().show(requireActivity().supportFragmentManager, "pcCar_dialog_fragment")
         }
-        val noteButton = root.findViewById<Button>(R.id.note_button)
-        noteButton.setOnClickListener {
-            // NewPcCarBottomSheetFragment().show(requireActivity().supportFragmentManager, "bottom_dialog_fragment")
+        root.findViewById<Button>(R.id.note_button).setOnClickListener {
             NoteDialogFragment().show(requireActivity().supportFragmentManager, "note_dialog_fragment")
         }
-        val vitalParameterButton = root.findViewById<Button>(R.id.param_vitali_button)
-        vitalParameterButton.setOnClickListener {
+        root.findViewById<Button>(R.id.param_vitali_button).setOnClickListener {
             VitalParametersDialog().show(requireActivity().supportFragmentManager, "vital_parameters_fragment")
         }
 
@@ -98,7 +90,6 @@ class HomeFragment : Fragment() {
                 when (homeTabs.selectedTabPosition) {
                     0 -> {
                         newFragment = DrugsFragment()
-                        // savePreviousFragment()
                     }
                     1 -> {
                         newFragment = ManeuverFragment()
