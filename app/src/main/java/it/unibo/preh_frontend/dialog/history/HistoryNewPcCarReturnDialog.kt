@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.model.NewPcCarData
 import it.unibo.preh_frontend.R
+import it.unibo.preh_frontend.model.NewPcCarReturnData
 
-open class HistoryNewPcCarDialog : DialogFragment() {
+class HistoryNewPcCarReturnDialog : HistoryNewPcCarDialog() {
     private lateinit var type: TextView
     private lateinit var place: EditText
     private lateinit var time: EditText
@@ -53,7 +53,7 @@ open class HistoryNewPcCarDialog : DialogFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(data: NewPcCarData) = HistoryNewPcCarDialog().apply {
+        fun newInstance(data: NewPcCarReturnData) = HistoryNewPcCarReturnDialog().apply {
             arguments = Bundle().apply {
                 putSerializable("data", data)
             }

@@ -1,5 +1,7 @@
 package it.unibo.preh_frontend.dialog
 
+import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +11,10 @@ import android.widget.Button
 import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.Switch
+import com.google.gson.Gson
 import it.unibo.preh_frontend.R
+import it.unibo.preh_frontend.model.NewPcCarReturnData
+import it.unibo.preh_frontend.utils.HistoryManager
 
 class NewPcCarReturnDialogFragment : NewPcCarItemsDialogFragment() {
     private lateinit var returnCode: Spinner
@@ -50,18 +55,36 @@ class NewPcCarReturnDialogFragment : NewPcCarItemsDialogFragment() {
 
     override fun setListener() {
         super.setListener()
-
-        replaceButton.setOnClickListener {
-            placeEditText.setText(locationText.text)
-        }
+        vehicleRadiogroup.getChildAt(0).setOnClickListener { accompanyingMedic.isEnabled = true }
+        vehicleRadiogroup.getChildAt(1).setOnClickListener { accompanyingMedic.isEnabled = false }
         exitButton.setOnClickListener {
-            if (placeEditText.text.toString() != "") {
+            if (checkCompletion()) {
                 buttonToDisable.isEnabled = false
                 buttonToEnable?.isEnabled = true
                 dialog?.cancel()
             } else if (!exitDialog.isShowing)
                 exitDialog.show()
         }
+    }
+
+    private fun checkCompletion(): Boolean {
+        return placeEditText.text.toString() != "" &&
+                vehicleRadiogroup.checkedRadioButtonId != -1 &&
+                returnCode.selectedItemPosition != 0
+    }
+
+    override fun onCancel(dialog: DialogInterface) {
+        arguments?.getString("historyName")?.let {
+            val newPcCarReturnData = NewPcCarReturnData(it,
+                    placeEditText.text.toString(),
+                    returnCode.selectedItemPosition,
+                    hospital.selectedItem.toString(),
+                    (!accompanyingMedic.isEnabled || accompanyingMedic.isActivated))
+            val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+            sharedPreferences.edit().putString(it, Gson().toJson(newPcCarReturnData)).apply()
+            HistoryManager.addEntry(newPcCarReturnData, sharedPreferences)
+        }
+        super.onCancel(dialog)
     }
 
     companion object {

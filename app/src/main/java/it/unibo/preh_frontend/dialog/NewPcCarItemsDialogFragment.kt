@@ -35,7 +35,7 @@ open class NewPcCarItemsDialogFragment : DialogFragment() {
     open lateinit var replaceButton: Button
     open lateinit var exitButton: ImageButton
     open lateinit var exitDialog: AlertDialog
-    open val reqSetting = LocationRequest.create().apply {
+    open val reqSetting: LocationRequest = LocationRequest.create().apply {
         fastestInterval = 1000
         interval = 1000
         priority = LocationRequest.PRIORITY_HIGH_ACCURACY
