@@ -35,7 +35,7 @@ class ManeuverFragment : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_maneuver, container, false)
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-
+        getComponents(root)
         cervicalCollarSwitch.setOnClickListener {
             if (cervicalCollarSwitch.isChecked)
                 addHistoryEntry(cervicalCollarSwitch.isChecked, this.getString(R.string.collare_cervicale))
