@@ -95,9 +95,11 @@ class TreatmentFragment : Fragment() {
         trachealTubeButton.setOnClickListener {
             setButtonColor(trachealTubeButton, resources, R.string.tubo_tracheale)
             if (trachealTubeButton.isActivated)
-                PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext()).activeCentralization()
+                PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext(),
+                        this.getString(R.string.frequenza_respiratoria_29_atti_min)).activeCentralization()
             else
-                PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext()).deactivatesCentralization()
+                PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext(),
+                        this.getString(R.string.frequenza_respiratoria_29_atti_min)).deactivatesCentralization()
         }
 
         oxygenTherapyButton.setOnClickListener {
