@@ -15,30 +15,43 @@ class PacingDialogFragment : DialogFragment() {
 
     private lateinit var captureFrequency: EditText
     private lateinit var amperage: EditText
+    private lateinit var parentDialog: Dialog
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_pacing_dialog, container, false)
         dialog?.setCanceledOnTouchOutside(false)
+        parentDialog = dialog!!
 
         captureFrequency = root.findViewById(R.id.capture_frequency_edit_text)
         amperage = root.findViewById(R.id.amperage_edit_text)
 
-        val exitDialog = AlertDialog.Builder(requireContext()).apply {
-            setTitle("Uscire senza salvare?")
-            setMessage("Inserimento incompleto")
-            setCancelable(true)
-            setPositiveButton("Si") { d, _ ->
-                d.cancel()
-                dialog?.dismiss()
+        val exitButton = root.findViewById<ImageButton>(R.id.pacing_dialog_image_button)
+        exitButton.setOnClickListener {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.apply {
+                setCancelable(true)
+                setNegativeButton("No") { dialog, _ -> dialog.cancel() }
             }
-            setNegativeButton("No") { d, _ -> d.cancel() }
-        }.create()
-        root.findViewById<ImageButton>(R.id.pacing_dialog_image_button).setOnClickListener {
-            if (captureFrequency.text.toString() != "") {
-                amperage.text.toString() != ""
-                dialog?.cancel()
-            } else if (!exitDialog.isShowing)
-                    exitDialog.show()
+            if (checkEveryField()) {
+                builder.apply {
+                    setTitle("Conferma Valori IPPV")
+                    setMessage("I dati inseriti saranno salvati")
+                    setPositiveButton("Si") { dialog, _ ->
+                        dialog.cancel()
+                        parentDialog.cancel()
+                    }
+                }
+            } else {
+                builder.apply {
+                    setTitle("Uscire senza salvare?")
+                    setPositiveButton("Si") { dialog, _ ->
+                        dialog.cancel()
+                        parentDialog.dismiss()
+                    }
+                }
+            }
+            val exitDialog = builder.create()
+            exitDialog.show()
         }
         return root
     }
@@ -54,5 +67,10 @@ class PacingDialogFragment : DialogFragment() {
             override fun onBackPressed() {
             }
         }
+    }
+
+    private fun checkEveryField(): Boolean {
+        return (captureFrequency.text.toString() != "" &&
+                amperage.text.toString() != "")
     }
 }
