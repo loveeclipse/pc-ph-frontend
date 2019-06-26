@@ -2,6 +2,7 @@ package it.unibo.preh_frontend.home
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -74,20 +75,33 @@ class TreatmentFragment : Fragment() {
         }
         resuscitationButton.setOnClickListener {
             if (!resuscitationButton.isActivated) activeAndChangeButton(resuscitationButton, R.string.termina_rianimazione)
-            else deactiveAndChangeButton(resuscitationButton, R.string.inizio_rianimazione)
+            else deactivateAndChangeButton(resuscitationButton, R.string.inizio_rianimazione)
         }
 
+        jawSubluxationButton.setOnClickListener {
+            setButtonColor(jawSubluxationButton, resources)
+        }
+        guedelButton.setOnClickListener {
+            setButtonColor(guedelButton, resources)
+        }
+        cricothyrotomyButton.setOnClickListener {
+            setButtonColor(cricothyrotomyButton, resources)
+        }
         trachealTubeButton.setOnClickListener {
-            if (!trachealTubeButton.isActivated) {
-                trachealTubeButton.isActivated = true
+            setButtonColor(trachealTubeButton, resources)
+            if (trachealTubeButton.isActivated) {
                 addHistoryEntry(trachealTubeButton.isPressed, "", this.getString(R.string.tubo_tracheale))
                 PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext()).activeCentralization()
-                activateButton(trachealTubeButton, resources)
             } else {
-                trachealTubeButton.isActivated = false
                 PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext()).deactivatesCentralization()
-                deactivateButton(trachealTubeButton, resources)
             }
+        }
+
+        minithoracotomySxButton.setOnClickListener {
+            setButtonColor(minithoracotomySxButton, resources)
+        }
+        minithoracotomyDxButton.setOnClickListener {
+            setButtonColor(minithoracotomyDxButton, resources)
         }
         ippvButton.setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("fragment_ippv_dialog") == null)
@@ -104,6 +118,18 @@ class TreatmentFragment : Fragment() {
         intraosseousSpinner.onItemSelectedListener = spinnerAdapter(intraosseousSpinner, intraosseousButton)
         intraosseousButton.setOnClickListener {
             addHistoryEntry(intraosseousButton.isPressed, intraosseousSpinner.selectedItem.toString(), this.getString(R.string.centrale))
+        }
+        tourniquetButton.setOnClickListener {
+            if (!tourniquetButton.isActivated) activeAndChangeButton(tourniquetButton, R.string.termina_tourniquet)
+            else deactivateAndChangeButton(tourniquetButton, R.string.inizia_tourniquet)
+        }
+        reboaArea1Button.setOnClickListener {
+            if (!reboaArea1Button.isActivated) activeAndChangeButton(reboaArea1Button, R.string.termina_reboa_zona_1)
+            else deactivateAndChangeButton(reboaArea1Button, R.string.inizia_reboa_zona_1)
+        }
+        reboaArea3Button.setOnClickListener {
+            if (!reboaArea3Button.isActivated) activeAndChangeButton(reboaArea3Button, R.string.termina_reboa_zona_3)
+            else deactivateAndChangeButton(reboaArea3Button, R.string.inizia_reboa_zona_3)
         }
         return root
     }
@@ -199,10 +225,20 @@ class TreatmentFragment : Fragment() {
         button.text = this.getString(buttonText)
     }
 
-    private fun deactiveAndChangeButton(button: Button, buttonText: Int) {
+    private fun deactivateAndChangeButton(button: Button, buttonText: Int) {
         button.isActivated = false
         deactivateButton(button, resources)
         button.text = this.getString(buttonText)
+    }
+
+    private fun setButtonColor(button: Button, resources: Resources) {
+        if (!button.isActivated) {
+            button.isActivated = true
+            activateButton(button, resources)
+        } else {
+            button.isActivated = false
+            deactivateButton(button, resources)
+        }
     }
 
     fun getData(): TreatmentData {
