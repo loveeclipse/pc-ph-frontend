@@ -10,6 +10,7 @@ import it.unibo.preh_frontend.model.DrugsData
 import it.unibo.preh_frontend.model.ManeuverData
 import it.unibo.preh_frontend.model.ManeuverHistoryData
 import it.unibo.preh_frontend.model.NewPcCarData
+import it.unibo.preh_frontend.model.NewPcCarReturnData
 import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.model.PreHData
 import it.unibo.preh_frontend.model.TreatmentData
@@ -28,6 +29,7 @@ object HistoryManager {
             .registerSubtype(VitalParametersData::class.java, "VitalParametersData")
             .registerSubtype(DrugsData::class.java, "DrugsData")
             .registerSubtype(NewPcCarData::class.java, "NewPcCarData")
+            .registerSubtype(NewPcCarReturnData::class.java, "NewPcCarReturnData")
 
     fun addEntry(data: PreHData, sharedPreferences: SharedPreferences) {
         val localHistoryList = getEntryList(sharedPreferences)

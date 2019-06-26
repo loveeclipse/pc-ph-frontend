@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.model.NewPcCarData
 import it.unibo.preh_frontend.R
 
-class HistoryNewPcCarDialog : DialogFragment() {
+open class HistoryNewPcCarDialog : DialogFragment() {
     private lateinit var type: TextView
     private lateinit var place: EditText
     private lateinit var time: EditText
@@ -40,9 +40,9 @@ class HistoryNewPcCarDialog : DialogFragment() {
     }
 
     private fun setData(data: NewPcCarData) {
-        type.text = data.event
+        type.text = data.eventName
         place.setText(data.place)
-        time.setText(data.time)
+        time.setText(data.eventTime)
     }
 
     override fun onResume() {
