@@ -62,8 +62,21 @@ class TreatmentFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_treatment, container, false)
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+
         getComponents(root)
         initSpinner()
+
+        adrenalinButton.setOnClickListener {
+            activeAndChangeButton(resuscitationButton, R.string.termina_rianimazione)
+        }
+        shockButton.setOnClickListener {
+            activeAndChangeButton(resuscitationButton, R.string.termina_rianimazione)
+        }
+        resuscitationButton.setOnClickListener {
+            if (!resuscitationButton.isActivated) activeAndChangeButton(resuscitationButton, R.string.termina_rianimazione)
+            else deactiveAndChangeButton(resuscitationButton, R.string.inizio_rianimazione)
+        }
+
         trachealTubeButton.setOnClickListener {
             if (!trachealTubeButton.isActivated) {
                 trachealTubeButton.isActivated = true
@@ -178,6 +191,18 @@ class TreatmentFragment : Fragment() {
             if (spinner.selectedItem != "")
                 button.isEnabled = true
         }
+    }
+
+    private fun activeAndChangeButton(button: Button, buttonText: Int) {
+        button.isActivated = true
+        activateButton(button, resources)
+        button.text = this.getString(buttonText)
+    }
+
+    private fun deactiveAndChangeButton(button: Button, buttonText: Int) {
+        button.isActivated = false
+        deactivateButton(button, resources)
+        button.text = this.getString(buttonText)
     }
 
     fun getData(): TreatmentData {
