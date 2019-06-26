@@ -30,6 +30,10 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
     private var traumaIsClosed: Boolean = false
     private var traumaIsPiercing: Boolean = false
 
+    private var physiologicIsActive: Boolean = false
+    private var anatomicIsActive: Boolean = false
+    private var dynamicIsActiv: Boolean = false
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_patient_status_dialog, container, false)
 
@@ -62,10 +66,6 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             }
         }
 
-        helmetBeltSwitch.setOnCheckedChangeListener { _, checked ->
-            // Case Study
-        }
-
         voletSwitch.setOnCheckedChangeListener { _, checked ->
             val gson = Gson()
             var anatomicCriterionData = gson.fromJson(sharedPreferences.getString("anatomicCriteria", null), AnatomicCriterionData::class.java)
@@ -87,7 +87,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             if (requireActivity().supportFragmentManager.findFragmentByTag("anatomic_criterion_fragment") == null)
                 AnatomicCriterionDialog().show(requireActivity().supportFragmentManager, "anatomic_criterion_fragment")
         }
-        phyisiologicButton.setOnClickListener {
+        physiologicButton.setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("physiologic_criterion_fragment") == null)
                 PhysiologicCriterionDialog().show(requireActivity().supportFragmentManager, "physiologic_criterion_fragment")
         }
@@ -105,7 +105,9 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         saveState = PatientStatusData(traumaIsClosed,
                 traumaIsPiercing,
                 helmetBeltSwitch.isChecked, // MISSING PARAMETERS
-        costalVolet = voletSwitch.isChecked
+                costalVolet = voletSwitch.isChecked,
+                physiologicCriterion = physiologicIsActive,
+                anatomicCriterion =  anatomicIsActive
                 )
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
@@ -152,18 +154,24 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         // val dynamicCriteria = gson.fromJson(sharedPreferences.getString("dynamicCriteria",null),DynamicCriterionData::class.java)
 
         if (anatomicCriteria != null && anatomicCriteria.hasTrueFields()) {
+            anatomicIsActive = true
             activateButton(anatomicButton, resources)
         } else {
+            anatomicIsActive = false
             deactivateButton(anatomicButton, resources)
         }
         if (physiologicCriteria != null && physiologicCriteria.hasTrueFields()) {
-            activateButton(phyisiologicButton, resources)
+            physiologicIsActive = true
+            activateButton(physiologicButton, resources)
         } else {
-            deactivateButton(phyisiologicButton, resources)
+            physiologicIsActive = false
+            deactivateButton(physiologicButton, resources)
         }
         /*if (dynamicCriteria != null && dynamicCriteria.hasTrueFields()){
+            dynamicIsActive = true
             activateButton(dynamicButton, resources)
         } else {
+            dynamicIsActive = false
             deactivateButton(dynamicButton, resources)
         }*/
     }

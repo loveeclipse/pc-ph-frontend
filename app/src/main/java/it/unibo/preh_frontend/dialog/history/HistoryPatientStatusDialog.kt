@@ -11,6 +11,8 @@ import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.utils.ButtonAppearance
+import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
+import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
 
 open class HistoryPatientStatusDialog : DialogFragment() {
     protected lateinit var closedButton: Button
@@ -30,7 +32,7 @@ open class HistoryPatientStatusDialog : DialogFragment() {
     protected lateinit var tetraparesisButton: Button
     protected lateinit var paresthesiaButton: Button
 
-    protected lateinit var phyisiologicButton: Button
+    protected lateinit var physiologicButton: Button
     protected lateinit var anatomicButton: Button
     protected lateinit var dynamicButton: Button
     protected lateinit var clinicalJudgementButton: Button
@@ -69,7 +71,7 @@ open class HistoryPatientStatusDialog : DialogFragment() {
             tetraparesisButton = findViewById(R.id.tetraparesis_button)
             paresthesiaButton = findViewById(R.id.paresthesia_button)
 
-            phyisiologicButton = findViewById(R.id.physiologic_button)
+            physiologicButton = findViewById(R.id.physiologic_button)
             anatomicButton = findViewById(R.id.anatomic_button)
             dynamicButton = findViewById(R.id.dynamic_button)
             clinicalJudgementButton = findViewById(R.id.clinic_judgement_button)
@@ -95,6 +97,18 @@ open class HistoryPatientStatusDialog : DialogFragment() {
         }
 
         helmetBeltSwitch.isChecked = data.helmetBelt
+        voletSwitch.isChecked = data.costalVolet
+
+        if(data.anatomicCriterion){
+            activateButton(anatomicButton,resources)
+        }else{
+            deactivateButton(anatomicButton,resources)
+        }
+        if(data.physiologicCriterion){
+            activateButton(physiologicButton,resources)
+        }else{
+            deactivateButton(physiologicButton,resources)
+        }
 
         // TODO Add the other data
     }
