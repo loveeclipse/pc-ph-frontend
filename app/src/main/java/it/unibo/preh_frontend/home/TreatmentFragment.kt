@@ -3,7 +3,6 @@ package it.unibo.preh_frontend.home
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Resources
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
@@ -22,6 +20,7 @@ import it.unibo.preh_frontend.model.TreatmentHistoryData
 import it.unibo.preh_frontend.utils.PhysiologicaCriteriaManager
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
+import it.unibo.preh_frontend.utils.ButtonAppearance.primaryDeactivateButton
 import it.unibo.preh_frontend.utils.HistoryManager
 
 class TreatmentFragment : Fragment() {
@@ -58,7 +57,6 @@ class TreatmentFragment : Fragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -121,19 +119,22 @@ class TreatmentFragment : Fragment() {
 
         peripheralSpinner.onItemSelectedListener = spinnerAdapter(peripheralSpinner, peripheralButton)
         peripheralButton.setOnClickListener {
-            serDeactiveButton(peripheralButton, peripheralSpinner)
+            primaryDeactivateButton(peripheralButton, resources)
+            peripheralSpinner.setSelection(0)
             addHistoryEntry(peripheralButton.isPressed, peripheralSpinner.selectedItem.toString(),
                     "${peripheralSpinner.selectedItem} ${this.getString(R.string.gauge)} ${this.getString(R.string.periferica)}")
         }
         centralSpinner.onItemSelectedListener = spinnerAdapter(centralSpinner, centralButton)
         centralButton.setOnClickListener {
-            serDeactiveButton(centralButton, centralSpinner)
+            primaryDeactivateButton(centralButton, resources)
+            centralSpinner.setSelection(0)
             addHistoryEntry(centralButton.isPressed, centralSpinner.selectedItem.toString(),
                     "${centralSpinner.selectedItem} ${this.getString(R.string.french)} ${this.getString(R.string.centrale)}")
         }
         intraosseousSpinner.onItemSelectedListener = spinnerAdapter(intraosseousSpinner, intraosseousButton)
         intraosseousButton.setOnClickListener {
-            serDeactiveButton(intraosseousButton, intraosseousSpinner)
+            primaryDeactivateButton(intraosseousButton, resources)
+            intraosseousSpinner.setSelection(0)
             addHistoryEntry(intraosseousButton.isPressed, intraosseousSpinner.selectedItem.toString(),
                     "${intraosseousSpinner.selectedItem} ${this.getString(R.string.size)} ${this.getString(R.string.intraossea)}")
         }
@@ -246,8 +247,7 @@ class TreatmentFragment : Fragment() {
     private fun spinnerAdapter(spinner: Spinner, button: Button) = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(p0: AdapterView<*>?) {}
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            if (spinner.selectedItem != "")
-                button.isEnabled = true
+            button.isEnabled = spinner.selectedItem != ""
         }
     }
 
@@ -274,14 +274,6 @@ class TreatmentFragment : Fragment() {
             button.isActivated = false
             deactivateButton(button, resources)
         }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun serDeactiveButton(button: Button, spinner: Spinner) {
-        button.isEnabled = false
-        button.backgroundTintList = resources.getColorStateList(R.color.buttonUnselectedBackgroundColor, null)
-        button.setTextColor(resources.getColorStateList(R.color.text_color, null))
-        spinner.setSelection(0)
     }
 
     private fun applySharedPreferences(treatmentData: TreatmentData) {

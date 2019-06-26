@@ -25,4 +25,14 @@ object ButtonAppearance {
             button.setTextColor(resources.getColorStateList(R.color.buttonSelectedBackgroundColor))
         }
     }
+
+    fun primaryDeactivateButton(button: Button, resources: Resources) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            button.backgroundTintList = resources.getColorStateList(R.color.disabledBackgroundButton, null)
+            button.setTextColor(resources.getColorStateList(R.color.text_color, null))
+        } else {
+            button.backgroundTintList = resources.getColorStateList(R.color.disabledBackgroundButton)
+            button.setTextColor(resources.getColorStateList(R.color.text_color))
+        }
+    }
 }
