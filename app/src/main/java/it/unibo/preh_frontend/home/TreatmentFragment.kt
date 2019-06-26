@@ -6,22 +6,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.TreatmentData
-import it.unibo.preh_frontend.model.PhysiologicCriterionData
 import it.unibo.preh_frontend.dialog.IppvDialogFragment
-import it.unibo.preh_frontend.model.ComplicationsHistoryData
-import it.unibo.preh_frontend.utils.CentralizationManager
+import it.unibo.preh_frontend.model.TreatmentHistoryData
+import it.unibo.preh_frontend.utils.PhysiologicaCriteriaManager
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
 import it.unibo.preh_frontend.utils.HistoryManager
-import kotlinx.android.synthetic.main.fragment_treatment.*
 
 class TreatmentFragment : Fragment() {
 
@@ -72,39 +70,16 @@ class TreatmentFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_treatment, container, false)
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         getComponents(root)
+        initSpinner()
         trachealTubeButton.setOnClickListener {
             if (!tuboTrachealeIsActive) {
-                addHistoryEntry(trachealTubeButton.isPressed, this.getString(R.string.tubo_tracheale))
+                addHistoryEntry(trachealTubeButton.isPressed, "", this.getString(R.string.tubo_tracheale))
                 tuboTrachealeIsActive = true
-                val gson = Gson()
-                var physiologicCriteria = gson.fromJson(sharedPreferences.getString("physiologicCriteria", null), PhysiologicCriterionData::class.java)
-                if (physiologicCriteria == null) {
-                    physiologicCriteria = PhysiologicCriterionData()
-                }
-                physiologicCriteria.highRespFreq = true
-                val criteriaAsJson = gson.toJson(physiologicCriteria)
-                sharedPreferences.edit().putString("physiologicCriteria", criteriaAsJson).apply()
-                if (CentralizationManager.determineCentralization(requireContext())) {
-                    requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
-                } else {
-                    requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
-                }
+                PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext()).activeCentralization()
                 activateButton(trachealTubeButton, resources)
             } else {
                 tuboTrachealeIsActive = false
-                val gson = Gson()
-                var physiologicCriteria = gson.fromJson(sharedPreferences.getString("physiologicCriteria", null), PhysiologicCriterionData::class.java)
-                if (physiologicCriteria == null) {
-                    physiologicCriteria = PhysiologicCriterionData()
-                }
-                physiologicCriteria.highRespFreq = false
-                val criteriaAsJson = gson.toJson(physiologicCriteria)
-                sharedPreferences.edit().putString("physiologicCriteria", criteriaAsJson).apply()
-                if (CentralizationManager.determineCentralization(requireContext())) {
-                    requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
-                } else {
-                    requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
-                }
+                PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext()).deactivatesCentralization()
                 deactivateButton(trachealTubeButton, resources)
             }
         }
@@ -112,7 +87,18 @@ class TreatmentFragment : Fragment() {
             if (requireActivity().supportFragmentManager.findFragmentByTag("fragment_ippv_dialog") == null)
                 IppvDialogFragment().show(requireActivity().supportFragmentManager, "fragment_ippv_dialog")
         }
-        initSpinner()
+        peripheralSpinner.onItemSelectedListener = spinnerAdapter(peripheralSpinner, peripheralButton)
+        peripheralButton.setOnClickListener {
+            addHistoryEntry(peripheralButton.isPressed, peripheralSpinner.selectedItem.toString(), this.getString(R.string.periferica))
+        }
+        centralSpinner.onItemSelectedListener = spinnerAdapter(centralSpinner, centralButton)
+        centralButton.setOnClickListener {
+            addHistoryEntry(centralButton.isPressed, centralSpinner.selectedItem.toString(), this.getString(R.string.centrale))
+        }
+        intraosseousSpinner.onItemSelectedListener = spinnerAdapter(intraosseousSpinner, intraosseousButton)
+        intraosseousButton.setOnClickListener {
+            addHistoryEntry(intraosseousButton.isPressed, intraosseousSpinner.selectedItem.toString(), this.getString(R.string.centrale))
+        }
         return root
     }
 
@@ -130,14 +116,15 @@ class TreatmentFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
-    private fun addHistoryEntry(maneuverValue: Boolean, maneuverName: String) {
-        val complicationsData = ComplicationsHistoryData(
-                maneuverValue,
-                "Effettuato $maneuverName"
+    private fun addHistoryEntry(treatmentBooleanValue: Boolean?, treatmentStringValue: String?, treatmentName: String) {
+        val treatmentData = TreatmentHistoryData(
+                treatmentBooleanValue,
+                treatmentStringValue,
+                "Effettuato $treatmentName"
         )
         val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-        sharedPreferences.edit().putString("ComplicationsHistoryData", Gson().toJson(complicationsData)).apply()
-        HistoryManager.addEntry(complicationsData, sharedPreferences)
+        sharedPreferences.edit().putString("ComplicationsHistoryData", Gson().toJson(treatmentData)).apply()
+        HistoryManager.addEntry(treatmentData, sharedPreferences)
     }
     private fun getComponents(root: View) {
         root.apply {
@@ -194,6 +181,16 @@ class TreatmentFragment : Fragment() {
         newAdapter.setDropDownViewResource(R.layout.dropdown_spinner_layout)
         intraosseousSpinner.adapter = newAdapter
     }
+
+    private fun spinnerAdapter(spinner: Spinner, button: Button) = object : AdapterView.OnItemSelectedListener{
+        override fun onNothingSelected(p0: AdapterView<*>?) {}
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            if (spinner.selectedItem != "")
+                button.isEnabled = true
+        }
+
+    }
+
 
     fun getData(): TreatmentData {
         return TreatmentData(
