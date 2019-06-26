@@ -1,12 +1,9 @@
 package it.unibo.preh_frontend.model
 
-import java.io.Serializable
-import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.Calendar
-
-data class NewPcCarData(
-    var event: String,
-    var place: String,
-    var time: String = SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
-) : PreHData("NewPcCarData", event), Serializable
+data class NewPcCarReturnData(
+    var eventN: String,
+    var eventPlace: String,
+    var returnCode: Int,
+    var hospital: String,
+    var accompanyingMedic: Boolean
+) : NewPcCarData(eventN, eventPlace, "NewPcCarReturnData")

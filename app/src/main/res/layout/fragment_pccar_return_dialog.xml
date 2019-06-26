@@ -114,6 +114,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/accompanying_medic"
+            android:enabled="false"
             android:theme="@style/AppSwitchStyle"
             android:textAppearance="@style/NormalTextStyle"
             android:layout_marginTop="@dimen/verticalMargin"
