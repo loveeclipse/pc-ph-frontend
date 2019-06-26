@@ -134,9 +134,9 @@ class HomeFragment : Fragment() {
             findViewById<TextView>(R.id.doctor).visibility = View.VISIBLE
             findViewById<TextView>(R.id.vehicle).visibility = View.VISIBLE
             findViewById<Button>(R.id.finish).visibility = View.VISIBLE
-            if(CentralizationManager.centralizationIsActive){
+            if (CentralizationManager.centralizationIsActive) {
                 findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
-            }else{
+            } else {
                 findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
             }
         }
