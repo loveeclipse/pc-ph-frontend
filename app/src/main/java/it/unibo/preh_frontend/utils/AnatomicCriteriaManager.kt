@@ -23,7 +23,7 @@ class AnatomicCriteriaManager(
         }
         compareAndActiveCriteria(criteriaName, anatomicCriteria)
         val criteriaAsJson = gson.toJson(anatomicCriteria)
-        sharedPreferences.edit().putString("physiologicCriteria", criteriaAsJson).apply()
+        sharedPreferences.edit().putString("anatomicCriteria", criteriaAsJson).apply()
         if (CentralizationManager.determineCentralization(context)) {
             activity.findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
         } else {
@@ -39,7 +39,7 @@ class AnatomicCriteriaManager(
         }
         compareAndDeactivateCriteria(criteriaName, anatomicCriteria)
         val criteriaAsJson = gson.toJson(anatomicCriteria)
-        sharedPreferences.edit().putString("physiologicCriteria", criteriaAsJson).apply()
+        sharedPreferences.edit().putString("anatomicCriteria", criteriaAsJson).apply()
         if (CentralizationManager.determineCentralization(context)) {
             activity.findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
         } else {

@@ -9,16 +9,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.ImageView
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.dialog.history.HistoryPatientStatusDialog
 import it.unibo.preh_frontend.model.AnatomicCriterionData
 import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.model.PhysiologicCriterionData
+import it.unibo.preh_frontend.utils.AnatomicCriteriaManager
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
-import it.unibo.preh_frontend.utils.CentralizationManager
 import it.unibo.preh_frontend.utils.HistoryManager
 
 class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
@@ -38,11 +37,10 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_patient_status_dialog, container, false)
+        dialog?.setCanceledOnTouchOutside(false)
+        parentDialog = dialog
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-
-        parentDialog = dialog
-        dialog?.setCanceledOnTouchOutside(false)
 
         getComponents(root)
         determineActiveCriteria()
@@ -57,7 +55,6 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                 this.traumaIsClosed = true
             }
         }
-
         piercingButton.setOnClickListener {
             if (this.traumaIsPiercing) {
                 deactivateButton(piercingButton, resources)
@@ -68,20 +65,13 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             }
         }
 
-        voletSwitch.setOnCheckedChangeListener { _, checked ->
-            val gson = Gson()
-            var anatomicCriterionData = gson.fromJson(sharedPreferences.getString("anatomicCriteria", null), AnatomicCriterionData::class.java)
-            if (anatomicCriterionData == null) {
-                anatomicCriterionData = AnatomicCriterionData()
-            }
-            anatomicCriterionData.thoraxDeformity = checked
-            val anatomicDataAsJson = gson.toJson(anatomicCriterionData)
-            sharedPreferences.edit().putString("anatomicCriteria", anatomicDataAsJson).apply()
-            if (CentralizationManager.determineCentralization(requireContext())) {
-                requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.VISIBLE
-            } else {
-                requireActivity().findViewById<ImageView>(R.id.alert).visibility = View.INVISIBLE
-            }
+        voletSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked)
+                AnatomicCriteriaManager(sharedPreferences, requireActivity(), requireContext(),
+                        this.getString(R.string.volet_costale_id)).activeCentralization()
+            else
+                AnatomicCriteriaManager(sharedPreferences, requireActivity(), requireContext(),
+                        this.getString(R.string.volet_costale_id)).deactivatesCentralization()
             determineActiveCriteria()
         }
 
@@ -170,7 +160,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         }
     }
 
-    fun determineActiveCriteria() {
+    private fun determineActiveCriteria() {
         val gson = Gson()
         val anatomicCriteria = gson.fromJson(sharedPreferences.getString("anatomicCriteria", null), AnatomicCriterionData::class.java)
         val physiologicCriteria = gson.fromJson(sharedPreferences.getString("physiologicCriteria", null), PhysiologicCriterionData::class.java)
