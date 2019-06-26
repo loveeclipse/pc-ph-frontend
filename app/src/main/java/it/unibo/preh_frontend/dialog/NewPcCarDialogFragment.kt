@@ -48,12 +48,13 @@ class NewPcCarDialogFragment : DialogFragment() {
     private fun setButtonListener(isReturning: Boolean, eventName: String, actualButton: Button, nextButton: Button?) {
         actualButton.setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("pcCar_items_dialog_fragment") == null)
-                if (isReturning)
+                if (isReturning) {
                     NewPcCarReturnDialogFragment.newInstance(eventName, actualButton, nextButton)
                             .show(requireActivity().supportFragmentManager, "pcCar_items_dialog_fragment")
-                else
+                } else {
                     NewPcCarItemsDialogFragment.newInstance(eventName, actualButton, nextButton)
-                        .show(requireActivity().supportFragmentManager, "pcCar_items_dialog_fragment")
+                            .show(requireActivity().supportFragmentManager, "pcCar_items_dialog_fragment")
+                }
         }
     }
 

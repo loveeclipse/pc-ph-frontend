@@ -4,6 +4,5 @@ import java.io.Serializable
 
 open class NewPcCarData(
     var event: String,
-    var place: String,
-    typeName: String = "NewPcCarData"
-) : PreHData(typeName, event), Serializable
+    var place: String
+) : PreHData("NewPcCarData", event), Serializable

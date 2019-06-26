@@ -12,9 +12,9 @@ import it.unibo.preh_frontend.model.NewPcCarData
 import it.unibo.preh_frontend.R
 
 open class HistoryNewPcCarDialog : DialogFragment() {
-    private lateinit var type: TextView
-    private lateinit var place: EditText
-    private lateinit var time: EditText
+    open lateinit var type: TextView
+    open lateinit var place: EditText
+    open lateinit var time: EditText
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_history_pccar_dialog, container, false)
@@ -31,7 +31,7 @@ open class HistoryNewPcCarDialog : DialogFragment() {
         return root
     }
 
-    private fun getComponents(root: View) {
+    open fun getComponents(root: View) {
         root.apply {
             type = findViewById(R.id.type)
             place = findViewById(R.id.place)

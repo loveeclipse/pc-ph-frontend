@@ -172,7 +172,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:id="@+id/place_edit_text"
+            android:id="@+id/place"
             android:layout_marginBottom="@dimen/verticalMargin"
             android:layout_marginStart="@dimen/horizontalMargin"
             android:layout_marginEnd="@dimen/horizontalMargin"
