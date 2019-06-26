@@ -57,12 +57,12 @@ class IppvDialogFragment : HistoryIppvDialog() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        addHistoryEntry(vtEditText.text.toString(),frEditText.text.toString(),peepEditText.text.toString(),fio2EditText.text.toString())
+        addHistoryEntry(vtEditText.text.toString(), frEditText.text.toString(), peepEditText.text.toString(), fio2EditText.text.toString())
         super.onCancel(dialog)
     }
 
-    private fun addHistoryEntry(vt: String,fr:String,peep: String,fio2: String) {
-        val ippvData = IppvData(vt,fr,peep,fio2,"Eseguito IPPV")
+    private fun addHistoryEntry(vt: String, fr: String, peep: String, fio2: String) {
+        val ippvData = IppvData(vt, fr, peep, fio2, "Eseguito IPPV")
 
         val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         sharedPreferences.edit().putString("ComplicationsHistoryData", Gson().toJson(ippvData)).apply()

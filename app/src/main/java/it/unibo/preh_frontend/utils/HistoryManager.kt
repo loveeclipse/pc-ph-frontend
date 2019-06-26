@@ -33,7 +33,7 @@ object HistoryManager {
             .registerSubtype(DrugsData::class.java, "DrugsData")
             .registerSubtype(NewPcCarData::class.java, "NewPcCarData")
             .registerSubtype(NewPcCarReturnData::class.java, "NewPcCarReturnData")
-            .registerSubtype(IppvData::class.java,"IppvData")
+            .registerSubtype(IppvData::class.java, "IppvData")
 
     fun addEntry(data: PreHData, sharedPreferences: SharedPreferences) {
         val localHistoryList = getEntryList(sharedPreferences)

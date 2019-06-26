@@ -89,11 +89,10 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             activateButton(positiveEcofastButton, resources)
             deactivateButton(negativeEcofastButton, resources)
             ecofastIsPositive = true
-
         }
         negativeEcofastButton.setOnClickListener {
-            activateButton(negativeEcofastButton,resources)
-            deactivateButton(positiveEcofastButton,resources)
+            activateButton(negativeEcofastButton, resources)
+            deactivateButton(positiveEcofastButton, resources)
             ecofastIsPositive = false
         }
 
@@ -122,7 +121,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                 ecofast = ecofastIsPositive,
                 costalVolet = voletSwitch.isChecked,
                 physiologicCriterion = physiologicIsActive,
-                anatomicCriterion =  anatomicIsActive
+                anatomicCriterion = anatomicIsActive
                 )
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
@@ -146,13 +145,13 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                         activateButton(piercingButton, resources)
                         traumaIsPiercing = true
                     }
-                    if(newSaveState.ecofast){
+                    if (newSaveState.ecofast) {
                         activateButton(positiveEcofastButton, resources)
                         deactivateButton(negativeEcofastButton, resources)
                         ecofastIsPositive = true
-                    }else{
-                        activateButton(negativeEcofastButton,resources)
-                        deactivateButton(positiveEcofastButton,resources)
+                    } else {
+                        activateButton(negativeEcofastButton, resources)
+                        deactivateButton(positiveEcofastButton, resources)
                         ecofastIsPositive = false
                     }
 

@@ -78,7 +78,8 @@ class TreatmentFragment : Fragment() {
         resuscitationButton.setOnClickListener {
             if (!resuscitationButton.isActivated)
                 activeAndChangeButton(resuscitationButton, R.string.termina_rianimazione, R.string.inizio_rianimazione)
-            else deactivateAndChangeButton(resuscitationButton, R.string.inizio_rianimazione, R.string.termina_rianimazione)
+            else
+                deactivateAndChangeButton(resuscitationButton, R.string.inizio_rianimazione, R.string.termina_rianimazione)
         }
 
         jawSubluxationButton.setOnClickListener {
@@ -92,11 +93,10 @@ class TreatmentFragment : Fragment() {
         }
         trachealTubeButton.setOnClickListener {
             setButtonColor(trachealTubeButton, resources, R.string.tubo_tracheale)
-            if (trachealTubeButton.isActivated) {
+            if (trachealTubeButton.isActivated)
                 PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext()).activeCentralization()
-            } else {
+            else
                 PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext()).deactivatesCentralization()
-            }
         }
 
         oxygenTherapyButton.setOnClickListener {
@@ -118,15 +118,18 @@ class TreatmentFragment : Fragment() {
 
         peripheralSpinner.onItemSelectedListener = spinnerAdapter(peripheralSpinner, peripheralButton)
         peripheralButton.setOnClickListener {
-            addHistoryEntry(peripheralButton.isPressed, peripheralSpinner.selectedItem.toString(), this.getString(R.string.periferica))
+            addHistoryEntry(peripheralButton.isPressed, peripheralSpinner.selectedItem.toString(),
+                    "${peripheralSpinner.selectedItem} ${this.getString(R.string.gauge)} ${this.getString(R.string.periferica)}")
         }
         centralSpinner.onItemSelectedListener = spinnerAdapter(centralSpinner, centralButton)
         centralButton.setOnClickListener {
-            addHistoryEntry(centralButton.isPressed, centralSpinner.selectedItem.toString(), this.getString(R.string.centrale))
+            addHistoryEntry(centralButton.isPressed, centralSpinner.selectedItem.toString(),
+                    "${centralSpinner.selectedItem} ${this.getString(R.string.french)} ${this.getString(R.string.centrale)}")
         }
         intraosseousSpinner.onItemSelectedListener = spinnerAdapter(intraosseousSpinner, intraosseousButton)
         intraosseousButton.setOnClickListener {
-            addHistoryEntry(intraosseousButton.isPressed, intraosseousSpinner.selectedItem.toString(), this.getString(R.string.centrale))
+            addHistoryEntry(intraosseousButton.isPressed, intraosseousSpinner.selectedItem.toString(),
+                    "${intraosseousSpinner.selectedItem} ${this.getString(R.string.size)} ${this.getString(R.string.intraossea)}")
         }
         hemostasisButton.setOnClickListener {
             addHistoryEntry(hemostasisButton.isPressed, "", this.getString(R.string.emostasi))
@@ -135,16 +138,22 @@ class TreatmentFragment : Fragment() {
             addHistoryEntry(pelvicBlinderButton.isPressed, "", this.getString(R.string.pelvic_binder))
         }
         tourniquetButton.setOnClickListener {
-            if (!tourniquetButton.isActivated) activeAndChangeButton(tourniquetButton, R.string.termina_tourniquet, R.string.inizia_tourniquet)
-            else deactivateAndChangeButton(tourniquetButton, R.string.inizia_tourniquet, R.string.termina_tourniquet)
+            if (!tourniquetButton.isActivated)
+                activeAndChangeButton(tourniquetButton, R.string.termina_tourniquet, R.string.inizia_tourniquet)
+            else
+                deactivateAndChangeButton(tourniquetButton, R.string.inizia_tourniquet, R.string.termina_tourniquet)
         }
         reboaArea1Button.setOnClickListener {
-            if (!reboaArea1Button.isActivated) activeAndChangeButton(reboaArea1Button, R.string.termina_reboa_zona_1, R.string.inizia_reboa_zona_1)
-            else deactivateAndChangeButton(reboaArea1Button, R.string.inizia_reboa_zona_1, R.string.termina_reboa_zona_1)
+            if (!reboaArea1Button.isActivated)
+                activeAndChangeButton(reboaArea1Button, R.string.termina_reboa_zona_1, R.string.inizia_reboa_zona_1)
+            else
+                deactivateAndChangeButton(reboaArea1Button, R.string.inizia_reboa_zona_1, R.string.termina_reboa_zona_1)
         }
         reboaArea3Button.setOnClickListener {
-            if (!reboaArea3Button.isActivated) activeAndChangeButton(reboaArea3Button, R.string.termina_reboa_zona_3, R.string.inizia_reboa_zona_3)
-            else deactivateAndChangeButton(reboaArea3Button, R.string.inizia_reboa_zona_3, R.string.termina_reboa_zona_3)
+            if (!reboaArea3Button.isActivated)
+                activeAndChangeButton(reboaArea3Button, R.string.termina_reboa_zona_3, R.string.inizia_reboa_zona_3)
+            else
+                deactivateAndChangeButton(reboaArea3Button, R.string.inizia_reboa_zona_3, R.string.termina_reboa_zona_3)
         }
 
         neuroprotectionButton.setOnClickListener {
@@ -158,7 +167,7 @@ class TreatmentFragment : Fragment() {
 
     override fun onStart() {
         val gson = Gson()
-        val savedState = gson.fromJson(sharedPreferences.getString("treatmentData", null), TreatmentData::class.java)
+        val savedState = gson.fromJson(sharedPreferences.getString("TreatmentData", null), TreatmentData::class.java)
         if (savedState != null) {
             applySharedPreferences(savedState)
         }
@@ -182,7 +191,6 @@ class TreatmentFragment : Fragment() {
     }
     private fun getComponents(root: View) {
         root.apply {
-
             adrenalinButton = findViewById(R.id.adrenaline_button)
             shockButton = findViewById(R.id.shock_button)
             resuscitationButton = findViewById(R.id.cpr_button)
@@ -213,10 +221,6 @@ class TreatmentFragment : Fragment() {
             neuroprotectionButton = findViewById(R.id.neuroprotection_button)
             thermalProtectionButton = findViewById(R.id.termic_protection_button)
         }
-    }
-
-    private fun applySharedPreferences(savedState: TreatmentData) {
-        // setta i bottoni a seconda del valore in savestate
     }
 
     private fun initSpinner() {
@@ -266,13 +270,73 @@ class TreatmentFragment : Fragment() {
         }
     }
 
+    private fun applySharedPreferences(treatmentData: TreatmentData) {
+        resuscitationButton.isActivated = treatmentData.resuscitation
+        if (treatmentData.resuscitation) {
+            resuscitationButton.isActivated = true
+            activateButton(resuscitationButton, resources)
+            resuscitationButton.text = this.getString(R.string.termina_tourniquet)
+        }
+        jawSubluxationButton.isActivated = treatmentData.jawSubluxation
+        if (treatmentData.jawSubluxation) {
+            jawSubluxationButton.isActivated = true
+            activateButton(jawSubluxationButton, resources)
+        }
+        guedelButton.isActivated = treatmentData.guedel
+        if (treatmentData.guedel) {
+            guedelButton.isActivated = true
+            activateButton(guedelButton, resources)
+        }
+        cricothyrotomyButton.isActivated = treatmentData.cricothyrotomy
+        if (treatmentData.cricothyrotomy) {
+            cricothyrotomyButton.isActivated = true
+            activateButton(cricothyrotomyButton, resources)
+        }
+        trachealTubeButton.isActivated = treatmentData.trachealTube
+        if (treatmentData.trachealTube) {
+            trachealTubeButton.isActivated = true
+            activateButton(trachealTubeButton, resources)
+        }
+        minithoracotomySxButton.isActivated = treatmentData.minithoracotomySx
+        if (treatmentData.minithoracotomySx) {
+            minithoracotomySxButton.isActivated = true
+            activateButton(minithoracotomySxButton, resources)
+        }
+        minithoracotomyDxButton.isActivated = treatmentData.minithoracotomyDx
+        if (treatmentData.minithoracotomyDx) {
+            minithoracotomyDxButton.isActivated = true
+            activateButton(minithoracotomyDxButton, resources)
+        }
+        tourniquetButton.isActivated = treatmentData.tourniquet
+        if (treatmentData.tourniquet) {
+            tourniquetButton.isActivated = true
+            activateButton(tourniquetButton, resources)
+            tourniquetButton.text = this.getString(R.string.termina_tourniquet)
+        }
+        reboaArea1Button.isActivated = treatmentData.reboaArea1
+        if (treatmentData.reboaArea1) {
+            reboaArea1Button.isActivated = true
+            activateButton(reboaArea1Button, resources)
+            reboaArea1Button.text = this.getString(R.string.termina_reboa_zona_1)
+        }
+        reboaArea3Button.isActivated = treatmentData.reboaArea3
+        if (treatmentData.reboaArea3) {
+            reboaArea3Button.isActivated = true
+            activateButton(reboaArea3Button, resources)
+            reboaArea3Button.text = this.getString(R.string.termina_reboa_zona_3)
+        }
+    }
+
     fun getData(): TreatmentData {
         return TreatmentData(
                 resuscitationButton.isActivated,
+                jawSubluxationButton.isActivated,
+                guedelButton.isActivated,
+                cricothyrotomyButton.isActivated,
                 trachealTubeButton.isActivated,
                 minithoracotomySxButton.isActivated,
                 minithoracotomyDxButton.isActivated,
-                trachealTubeButton.isActivated,
+                tourniquetButton.isActivated,
                 reboaArea1Button.isActivated,
                 reboaArea3Button.isActivated)
     }

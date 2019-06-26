@@ -80,7 +80,7 @@ class HistoryDialogFragment : DialogFragment() {
                 "IppvData" -> {
                     if (requireActivity().supportFragmentManager.findFragmentByTag("history_ippv_fragment") == null)
                         HistoryIppvDialog.newInstance(historyData as IppvData)
-                                .show(requireActivity().supportFragmentManager,"history_ippv_fragment")
+                                .show(requireActivity().supportFragmentManager, "history_ippv_fragment")
                 }
             }
         }

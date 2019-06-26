@@ -153,7 +153,7 @@ class HomeFragment : Fragment() {
             TreatmentFragment::class.java -> {
                 val previousFragment = previousDisplayedFragment as TreatmentFragment
                 val saveData = gson.toJson(previousFragment.getData())
-                sharedPreferences.edit().putString("treatmentData", saveData).apply()
+                sharedPreferences.edit().putString("TreatmentData", saveData).apply()
             }
             ComplicationsFragment::class.java -> {
                 val previousFragment = previousDisplayedFragment as ComplicationsFragment

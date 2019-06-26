@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.PatientStatusData
-import it.unibo.preh_frontend.utils.ButtonAppearance
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
 
@@ -95,26 +94,26 @@ open class HistoryPatientStatusDialog : DialogFragment() {
         if (data.piercingTrauma) {
             activateButton(piercingButton, resources)
         }
-        if(data.ecofast){
+        if (data.ecofast) {
             activateButton(positiveEcofastButton, resources)
             deactivateButton(negativeEcofastButton, resources)
-        }else{
-            activateButton(negativeEcofastButton,resources)
-            deactivateButton(positiveEcofastButton,resources)
+        } else {
+            activateButton(negativeEcofastButton, resources)
+            deactivateButton(positiveEcofastButton, resources)
         }
 
         helmetBeltSwitch.isChecked = data.helmetBelt
         voletSwitch.isChecked = data.costalVolet
 
-        if(data.anatomicCriterion){
-            activateButton(anatomicButton,resources)
-        }else{
-            deactivateButton(anatomicButton,resources)
+        if (data.anatomicCriterion) {
+            activateButton(anatomicButton, resources)
+        } else {
+            deactivateButton(anatomicButton, resources)
         }
-        if(data.physiologicCriterion){
-            activateButton(physiologicButton,resources)
-        }else{
-            deactivateButton(physiologicButton,resources)
+        if (data.physiologicCriterion) {
+            activateButton(physiologicButton, resources)
+        } else {
+            deactivateButton(physiologicButton, resources)
         }
 
         // TODO Add the other data

@@ -32,8 +32,7 @@ open class HistoryIppvDialog : DialogFragment() {
         return root
     }
 
-
-    open fun getComponents(root: View){
+    open fun getComponents(root: View) {
         root.apply {
             vtEditText = findViewById(R.id.vt_edit_text)
             frEditText = findViewById(R.id.fr_edit_text)
@@ -48,7 +47,6 @@ open class HistoryIppvDialog : DialogFragment() {
         peepEditText.setText(data.peep)
         fio2EditText.setText(data.fio2)
     }
-
 
     override fun onResume() {
         super.onResume()
