@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
@@ -26,15 +28,6 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
     private lateinit var saveState: PatientStatusData
     private var parentDialog: Dialog? = null
 
-    private var traumaIsClosed: Boolean = false
-    private var traumaIsPiercing: Boolean = false
-
-    private var ecofastIsPositive: Boolean = false
-
-    private var physiologicIsActive: Boolean = false
-    private var anatomicIsActive: Boolean = false
-    private var dynamicIsActive: Boolean = false
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_patient_status_dialog, container, false)
         dialog?.setCanceledOnTouchOutside(false)
@@ -46,25 +39,11 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         determineActiveCriteria()
 
         closedButton.setOnClickListener {
-            // Case Study
-            if (this.traumaIsClosed) {
-                deactivateButton(closedButton, resources)
-                this.traumaIsClosed = false
-            } else {
-                activateButton(closedButton, resources)
-                this.traumaIsClosed = true
-            }
+            setButtonColor(closedButton, resources)
         }
         piercingButton.setOnClickListener {
-            if (this.traumaIsPiercing) {
-                deactivateButton(piercingButton, resources)
-                this.traumaIsPiercing = false
-            } else {
-                activateButton(piercingButton, resources)
-                this.traumaIsPiercing = true
-            }
+            setButtonColor(piercingButton, resources)
         }
-
         voletSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked)
                 AnatomicCriteriaManager(sharedPreferences, requireActivity(), requireContext(),
@@ -74,18 +53,14 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                         this.getString(R.string.volet_costale_id)).deactivatesCentralization()
             determineActiveCriteria()
         }
-
         positiveEcofastButton.setOnClickListener {
             activateButton(positiveEcofastButton, resources)
             deactivateButton(negativeEcofastButton, resources)
-            ecofastIsPositive = true
         }
         negativeEcofastButton.setOnClickListener {
             activateButton(negativeEcofastButton, resources)
             deactivateButton(positiveEcofastButton, resources)
-            ecofastIsPositive = false
         }
-
         anatomicButton.setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("anatomic_criterion_fragment") == null)
                 AnatomicCriterionDialog().show(requireActivity().supportFragmentManager, "anatomic_criterion_fragment")
@@ -105,13 +80,14 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        saveState = PatientStatusData(traumaIsClosed,
-                traumaIsPiercing,
+        saveState = PatientStatusData(
+                closedButton.isActivated,
+                piercingButton.isActivated,
                 helmetBeltSwitch.isChecked, // MISSING PARAMETERS
-                ecofast = ecofastIsPositive,
-                costalVolet = voletSwitch.isChecked,
-                physiologicCriterion = physiologicIsActive,
-                anatomicCriterion = anatomicIsActive
+                positiveEcofastButton.isActivated,
+                voletSwitch.isChecked,
+                physiologicButton.isActivated,
+                anatomicButton.isActivated
                 )
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
@@ -129,22 +105,17 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                 this.activity?.runOnUiThread {
                     if (newSaveState.closedTrauma) {
                         activateButton(closedButton, resources)
-                        traumaIsClosed = true
+                        closedButton.isActivated = true
                     }
                     if (newSaveState.piercingTrauma) {
                         activateButton(piercingButton, resources)
-                        traumaIsPiercing = true
+                        piercingButton.isActivated = true
                     }
                     if (newSaveState.ecofast) {
                         activateButton(positiveEcofastButton, resources)
                         deactivateButton(negativeEcofastButton, resources)
-                        ecofastIsPositive = true
-                    } else {
-                        activateButton(negativeEcofastButton, resources)
-                        deactivateButton(positiveEcofastButton, resources)
-                        ecofastIsPositive = false
+                        positiveEcofastButton.isActivated = true
                     }
-
                     helmetBeltSwitch.isChecked = newSaveState.helmetBelt
                     voletSwitch.isChecked = newSaveState.costalVolet
                 }
@@ -167,17 +138,17 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         // val dynamicCriteria = gson.fromJson(sharedPreferences.getString("dynamicCriteria",null),DynamicCriterionData::class.java)
 
         if (anatomicCriteria != null && anatomicCriteria.hasTrueFields()) {
-            anatomicIsActive = true
+            anatomicButton.isActivated = true
             activateButton(anatomicButton, resources)
         } else {
-            anatomicIsActive = false
+            anatomicButton.isActivated = false
             deactivateButton(anatomicButton, resources)
         }
         if (physiologicCriteria != null && physiologicCriteria.hasTrueFields()) {
-            physiologicIsActive = true
+            physiologicButton.isActivated = true
             activateButton(physiologicButton, resources)
         } else {
-            physiologicIsActive = false
+            physiologicButton.isActivated = false
             deactivateButton(physiologicButton, resources)
         }
         /*if (dynamicCriteria != null && dynamicCriteria.hasTrueFields()){
@@ -187,5 +158,15 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             dynamicIsActive = false
             deactivateButton(dynamicButton, resources)
         }*/
+    }
+
+    private fun setButtonColor(button: Button, resources: Resources) {
+        if (!button.isActivated) {
+            button.isActivated = true
+            activateButton(button, resources)
+        } else {
+            button.isActivated = false
+            deactivateButton(button, resources)
+        }
     }
 }
