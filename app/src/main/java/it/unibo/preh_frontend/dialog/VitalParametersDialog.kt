@@ -40,35 +40,35 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
 
         setSharedPreferences()
 
-        val builder = AlertDialog.Builder(requireContext())
-        builder.apply {
-            setCancelable(true)
-            setNegativeButton("No") { dialog, _ -> dialog.cancel() }
-        }
-        if (checkEveryField()) {
-            builder.apply {
-                setTitle("Conferma Parametri Vitali")
-                setMessage("I dati inseriti saranno salvati")
-                setPositiveButton("Si") { dialog, _ ->
-                    dialog.cancel()
-                    parentDialog?.cancel()
-                }
-            }
-        } else {
-            builder.apply {
-                setTitle("Uscire senza salvare?")
-                setMessage("Inserimento incompleto")
-                setPositiveButton("Si") { dialog, _ ->
-                    dialog.cancel()
-                    parentDialog?.dismiss()
-                }
-            }
-        }
-        val exitDialog = builder.create()
+
         val exitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
         exitButton.setOnClickListener {
-            if (!exitDialog.isShowing)
-                exitDialog.show()
+            val builder = AlertDialog.Builder(requireContext())
+            builder.apply {
+                setCancelable(true)
+                setNegativeButton("No") { dialog, _ -> dialog.cancel() }
+            }
+            if (checkEveryField()) {
+                builder.apply {
+                    setTitle("Conferma Parametri Vitali")
+                    setMessage("I dati inseriti saranno salvati")
+                    setPositiveButton("Si") { dialog, _ ->
+                        dialog.cancel()
+                        parentDialog?.cancel()
+                    }
+                }
+            } else {
+                builder.apply {
+                    setTitle("Uscire senza salvare?")
+                    setMessage("Inserimento incompleto")
+                    setPositiveButton("Si") { dialog, _ ->
+                        dialog.cancel()
+                        parentDialog?.dismiss()
+                    }
+                }
+            }
+            val exitDialog = builder.create()
+            exitDialog.show()
         }
 
         return root
