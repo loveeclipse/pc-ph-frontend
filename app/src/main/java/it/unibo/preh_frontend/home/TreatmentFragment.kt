@@ -182,15 +182,13 @@ class TreatmentFragment : Fragment() {
         intraosseousSpinner.adapter = newAdapter
     }
 
-    private fun spinnerAdapter(spinner: Spinner, button: Button) = object : AdapterView.OnItemSelectedListener{
+    private fun spinnerAdapter(spinner: Spinner, button: Button) = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(p0: AdapterView<*>?) {}
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             if (spinner.selectedItem != "")
                 button.isEnabled = true
         }
-
     }
-
 
     fun getData(): TreatmentData {
         return TreatmentData(
