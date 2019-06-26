@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken
 import it.unibo.preh_frontend.model.AnagraphicData
 import it.unibo.preh_frontend.model.ComplicationsHistoryData
 import it.unibo.preh_frontend.model.DrugsData
+import it.unibo.preh_frontend.model.IppvData
 import it.unibo.preh_frontend.model.ManeuverData
 import it.unibo.preh_frontend.model.ManeuverHistoryData
 import it.unibo.preh_frontend.model.NewPcCarData
@@ -32,6 +33,7 @@ object HistoryManager {
             .registerSubtype(DrugsData::class.java, "DrugsData")
             .registerSubtype(NewPcCarData::class.java, "NewPcCarData")
             .registerSubtype(NewPcCarReturnData::class.java, "NewPcCarReturnData")
+            .registerSubtype(IppvData::class.java,"IppvData")
 
     fun addEntry(data: PreHData, sharedPreferences: SharedPreferences) {
         val localHistoryList = getEntryList(sharedPreferences)
