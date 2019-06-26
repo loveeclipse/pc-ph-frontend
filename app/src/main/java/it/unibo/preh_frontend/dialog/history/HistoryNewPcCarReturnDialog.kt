@@ -4,25 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import android.widget.ArrayAdapter
 import android.widget.ImageButton
-import android.widget.TextView
-import it.unibo.preh_frontend.model.NewPcCarData
+import android.widget.RadioGroup
+import android.widget.Spinner
+import android.widget.Switch
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.NewPcCarReturnData
 
 class HistoryNewPcCarReturnDialog : HistoryNewPcCarDialog() {
-    private lateinit var type: TextView
-    private lateinit var place: EditText
-    private lateinit var time: EditText
+    private lateinit var returnCode: Spinner
+    private lateinit var hospital: Spinner
+    private lateinit var vehicleRadiogroup: RadioGroup
+    private lateinit var accompanyingMedic: Switch
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_history_pccar_dialog, container, false)
-
+        val root = inflater.inflate(R.layout.fragment_history_pccar_return_dialog, container, false)
         getComponents(root)
-
-        setData(arguments?.get("data") as NewPcCarData)
-
+        vehicleRadiogroup.getChildAt(0).setOnClickListener { accompanyingMedic.isEnabled = true }
+        vehicleRadiogroup.getChildAt(1).setOnClickListener { accompanyingMedic.isEnabled = false }
+        initSpinner()
+        setData(arguments?.get("data") as NewPcCarReturnData)
         val exitButton = root.findViewById<ImageButton>(R.id.pccar_items_image_button)
         exitButton.setOnClickListener {
             dialog?.cancel()
@@ -31,24 +33,35 @@ class HistoryNewPcCarReturnDialog : HistoryNewPcCarDialog() {
         return root
     }
 
-    private fun getComponents(root: View) {
+    override fun getComponents(root: View) {
+        super.getComponents(root)
         root.apply {
-            type = findViewById(R.id.type)
-            place = findViewById(R.id.place)
-            time = findViewById(R.id.time)
+            returnCode = findViewById(R.id.return_code)
+            hospital = findViewById(R.id.hospital)
+            vehicleRadiogroup = findViewById(R.id.vehicle_radiogroup)
+            accompanyingMedic = findViewById(R.id.accompanying_medic)
         }
     }
 
-    private fun setData(data: NewPcCarData) {
+    private fun initSpinner() {
+        var newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.returnCodeItems, R.layout.spinner_layout)
+        newAdapter.setDropDownViewResource(R.layout.dropdown_spinner_layout)
+        returnCode.adapter = newAdapter
+
+        newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.hospitalItems, R.layout.spinner_layout)
+        newAdapter.setDropDownViewResource(R.layout.dropdown_spinner_layout)
+        hospital.adapter = newAdapter
+    }
+
+    private fun setData(data: NewPcCarReturnData) {
         type.text = data.eventName
         place.setText(data.place)
         time.setText(data.eventTime)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val metrics = resources.displayMetrics
-        dialog?.window?.setLayout(metrics.widthPixels, 8*metrics.heightPixels / 10)
+        returnCode.setSelection(data.returnCode)
+        hospital.setSelection(data.hospital)
+        vehicleRadiogroup.check(data.vehicle)
+        accompanyingMedic.isEnabled = (data.vehicle == vehicleRadiogroup.getChildAt(0).id)
+        accompanyingMedic.isChecked = data.accompanyingMedic
     }
 
     companion object {

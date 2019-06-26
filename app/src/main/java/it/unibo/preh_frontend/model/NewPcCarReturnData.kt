@@ -1,9 +1,12 @@
 package it.unibo.preh_frontend.model
 
+import java.io.Serializable
+
 data class NewPcCarReturnData(
-    var eventN: String,
-    var eventPlace: String,
+    var event: String,
+    var place: String,
     var returnCode: Int,
-    var hospital: String,
+    var hospital: Int,
+    var vehicle: Int,
     var accompanyingMedic: Boolean
-) : NewPcCarData(eventN, eventPlace, "NewPcCarReturnData")
+) : PreHData("NewPcCarReturnData", event), Serializable

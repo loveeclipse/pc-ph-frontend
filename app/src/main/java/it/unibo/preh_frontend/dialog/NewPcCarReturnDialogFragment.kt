@@ -78,13 +78,13 @@ class NewPcCarReturnDialogFragment : NewPcCarItemsDialogFragment() {
             val newPcCarReturnData = NewPcCarReturnData(it,
                     placeEditText.text.toString(),
                     returnCode.selectedItemPosition,
-                    hospital.selectedItem.toString(),
-                    (!accompanyingMedic.isEnabled || accompanyingMedic.isActivated))
+                    hospital.selectedItemPosition,
+                    vehicleRadiogroup.checkedRadioButtonId,
+                    (!accompanyingMedic.isEnabled || accompanyingMedic.isChecked))
             val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
             sharedPreferences.edit().putString(it, Gson().toJson(newPcCarReturnData)).apply()
             HistoryManager.addEntry(newPcCarReturnData, sharedPreferences)
         }
-        super.onCancel(dialog)
     }
 
     companion object {
