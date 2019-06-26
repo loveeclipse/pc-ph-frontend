@@ -55,13 +55,6 @@ class TreatmentFragment : Fragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
 
-    private var subulussazioneIsActive = false
-    private var guedelIsActive = false
-    private var cricoTirotomiaIsActive = false
-    private var tuboTrachealeIsActive = false
-    private var minithoracotomySxIsActive = false
-    private var minithoracotomyDxIsActive = false
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -72,13 +65,13 @@ class TreatmentFragment : Fragment() {
         getComponents(root)
         initSpinner()
         trachealTubeButton.setOnClickListener {
-            if (!tuboTrachealeIsActive) {
+            if (!trachealTubeButton.isActivated) {
+                trachealTubeButton.isActivated = true
                 addHistoryEntry(trachealTubeButton.isPressed, "", this.getString(R.string.tubo_tracheale))
-                tuboTrachealeIsActive = true
                 PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext()).activeCentralization()
                 activateButton(trachealTubeButton, resources)
             } else {
-                tuboTrachealeIsActive = false
+                trachealTubeButton.isActivated = false
                 PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext()).deactivatesCentralization()
                 deactivateButton(trachealTubeButton, resources)
             }
@@ -163,9 +156,6 @@ class TreatmentFragment : Fragment() {
 
     private fun applySharedPreferences(savedState: TreatmentData) {
         // setta i bottoni a seconda del valore in savestate
-        if (savedState.subluxation) {
-            jawSubluxationButton.backgroundTintList = resources.getColorStateList(R.color.colorAccent)
-        }
     }
 
     private fun initSpinner() {
@@ -192,11 +182,12 @@ class TreatmentFragment : Fragment() {
 
     fun getData(): TreatmentData {
         return TreatmentData(
-                subulussazioneIsActive,
-                guedelIsActive,
-                cricoTirotomiaIsActive,
-                tuboTrachealeIsActive,
-                minithoracotomySxIsActive,
-                minithoracotomyDxIsActive)
+                resuscitationButton.isActivated,
+                trachealTubeButton.isActivated,
+                minithoracotomySxButton.isActivated,
+                minithoracotomyDxButton.isActivated,
+                trachealTubeButton.isActivated,
+                reboaArea1Button.isActivated,
+                reboaArea3Button.isActivated)
     }
 }
