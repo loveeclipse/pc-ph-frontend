@@ -2,6 +2,7 @@ package it.unibo.preh_frontend.home
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +15,7 @@ import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.ComplicationsData
 import it.unibo.preh_frontend.model.ComplicationsHistoryData
 import it.unibo.preh_frontend.utils.HistoryManager
-import it.unibo.preh_frontend.utils.ButtonAppearance
+import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 
 class ComplicationsFragment : Fragment() {
 
@@ -26,9 +27,6 @@ class ComplicationsFragment : Fragment() {
     private lateinit var landingInItinereSwitch: Switch
     private lateinit var deathInItinereButton: Button
     private lateinit var deathArrivalInPSButton: Button
-
-    private var itinereActive = false
-    private var arrivalInPSActive = false
 
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -42,43 +40,45 @@ class ComplicationsFragment : Fragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
-        cardioCirculatoryArrestSwitch = root.findViewById(R.id.cardio_circulatory_arrest_switch)
+        getComponents(root)
+
         cardioCirculatoryArrestSwitch.setOnClickListener {
-            if (cardioCirculatoryArrestSwitch.isChecked) addHistoryEntry(cardioCirculatoryArrestSwitch.isChecked, this.getString(R.string.arresto_cardio_circolatorio))
+            if (cardioCirculatoryArrestSwitch.isChecked)
+                addHistoryEntry(cardioCirculatoryArrestSwitch.isChecked, this.getString(R.string.arresto_cardio_circolatorio))
         }
-        deterioratingStateConsciousnessSwitch = root.findViewById(R.id.deteriorating_state_consciousness_switch)
         deterioratingStateConsciousnessSwitch.setOnClickListener {
-            if (deterioratingStateConsciousnessSwitch.isChecked) addHistoryEntry(deterioratingStateConsciousnessSwitch.isChecked, this.getString(R.string.deterioramento_stato_di_coscenza))
+            if (deterioratingStateConsciousnessSwitch.isChecked)
+                addHistoryEntry(deterioratingStateConsciousnessSwitch.isChecked, this.getString(R.string.deterioramento_stato_di_coscenza))
         }
-        anisoMidriasiSwitch = root.findViewById(R.id.aniso_midriasi_switch)
         anisoMidriasiSwitch.setOnClickListener {
-            if (anisoMidriasiSwitch.isChecked) addHistoryEntry(anisoMidriasiSwitch.isChecked, this.getString(R.string.anisocoria_midriasi))
+            if (anisoMidriasiSwitch.isChecked)
+                addHistoryEntry(anisoMidriasiSwitch.isChecked, this.getString(R.string.anisocoria_midriasi))
         }
-        respiratoryFailureSwitch = root.findViewById(R.id.respiratory_failure_switch)
         respiratoryFailureSwitch.setOnClickListener {
-            if (respiratoryFailureSwitch.isChecked) addHistoryEntry(respiratoryFailureSwitch.isChecked, this.getString(R.string.insufficienza_respiratoria))
+            if (respiratoryFailureSwitch.isChecked)
+                addHistoryEntry(respiratoryFailureSwitch.isChecked, this.getString(R.string.insufficienza_respiratoria))
         }
-        cardioCirculatoryShockSwitch = root.findViewById(R.id.cardiocirculatory_shock_switch)
         cardioCirculatoryShockSwitch.setOnClickListener {
-            if (cardioCirculatoryShockSwitch.isChecked) addHistoryEntry(cardioCirculatoryShockSwitch.isChecked, this.getString(R.string.shock_cardiocircolatorio))
+            if (cardioCirculatoryShockSwitch.isChecked)
+                addHistoryEntry(cardioCirculatoryShockSwitch.isChecked, this.getString(R.string.shock_cardiocircolatorio))
         }
-        landingInItinereSwitch = root.findViewById(R.id.landing_in_itinere_switch)
         landingInItinereSwitch.setOnClickListener {
-            if (landingInItinereSwitch.isChecked) addHistoryEntry(landingInItinereSwitch.isChecked, this.getString(R.string.atterraggio_in_itinere_per_manovra_terapeutica))
+            if (landingInItinereSwitch.isChecked)
+                addHistoryEntry(landingInItinereSwitch.isChecked, this.getString(R.string.atterraggio_in_itinere_per_manovra_terapeutica))
         }
-        deathInItinereButton = root.findViewById(R.id.itinere_button)
         deathInItinereButton.setOnClickListener {
-            ButtonAppearance.activateButton(deathInItinereButton, resources)
+            setButtonColor(deathInItinereButton, resources)
             deathInItinereButton.isEnabled = false
             deathArrivalInPSButton.isEnabled = false
-            if (deathInItinereButton.isPressed) addHistoryEntry(deathInItinereButton.isPressed, "${this.getString(R.string.decesso)} ${this.getString(R.string.in_itinere)}")
+            if (deathInItinereButton.isPressed)
+                addHistoryEntry(deathInItinereButton.isPressed, "${this.getString(R.string.decesso)} ${this.getString(R.string.in_itinere)}")
         }
-        deathArrivalInPSButton = root.findViewById(R.id.arrival__in_ps_button)
         deathArrivalInPSButton.setOnClickListener {
-            ButtonAppearance.activateButton(deathArrivalInPSButton, resources)
+            setButtonColor(deathArrivalInPSButton, resources)
             deathArrivalInPSButton.isEnabled = false
             deathInItinereButton.isEnabled = false
-            if (deathArrivalInPSButton.isPressed) addHistoryEntry(deathArrivalInPSButton.isPressed, "${this.getString(R.string.decesso)} ${this.getString(R.string.all_arrivo_in_ps)}")
+            if (deathArrivalInPSButton.isPressed)
+                addHistoryEntry(deathArrivalInPSButton.isPressed, "${this.getString(R.string.decesso)} ${this.getString(R.string.all_arrivo_in_ps)}")
         }
         return root
     }
@@ -90,6 +90,26 @@ class ComplicationsFragment : Fragment() {
             applySharedPreferences(savedState)
         }
         super.onStart()
+    }
+
+    private fun getComponents(root: View) {
+        root.apply {
+            cardioCirculatoryArrestSwitch = findViewById(R.id.cardio_circulatory_arrest_switch)
+            deterioratingStateConsciousnessSwitch = findViewById(R.id.deteriorating_state_consciousness_switch)
+            anisoMidriasiSwitch = findViewById(R.id.aniso_midriasi_switch)
+            respiratoryFailureSwitch = findViewById(R.id.respiratory_failure_switch)
+            cardioCirculatoryShockSwitch = findViewById(R.id.cardiocirculatory_shock_switch)
+            landingInItinereSwitch = findViewById(R.id.landing_in_itinere_switch)
+            deathInItinereButton = findViewById(R.id.itinere_button)
+            deathArrivalInPSButton = findViewById(R.id.arrival__in_ps_button)
+        }
+    }
+
+    private fun setButtonColor(button: Button, resources: Resources) {
+        if (!button.isActivated) {
+            button.isActivated = true
+            activateButton(button, resources)
+        }
     }
 
     private fun addHistoryEntry(complicationsValue: Boolean, complicationsName: String) {
@@ -110,10 +130,12 @@ class ComplicationsFragment : Fragment() {
         cardioCirculatoryShockSwitch.isChecked = savedState.cardioCirculatoryShock
         landingInItinereSwitch.isChecked = savedState.landingInItinere
         if (savedState.deathInItinere) {
-            // cambia colore a itinerebutton come attivo e disattiva deathArrivalInPSButton
+            deathInItinereButton.isActivated = true
+            activateButton(deathInItinereButton, resources)
         }
         if (savedState.deathInPs) {
-            // cambia colore a deathArrivalInPSButton come attivo e disattiva itinerebutton
+            deathArrivalInPSButton.isActivated = true
+            activateButton(deathArrivalInPSButton, resources)
         }
     }
 
@@ -125,7 +147,7 @@ class ComplicationsFragment : Fragment() {
                 respiratoryFailureSwitch.isChecked,
                 cardioCirculatoryShockSwitch.isChecked,
                 landingInItinereSwitch.isChecked,
-                itinereActive,
-                arrivalInPSActive)
+                deathInItinereButton.isActivated,
+                deathArrivalInPSButton.isActivated)
     }
 }
