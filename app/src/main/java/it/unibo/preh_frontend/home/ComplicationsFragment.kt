@@ -131,10 +131,14 @@ class ComplicationsFragment : Fragment() {
         landingInItinereSwitch.isChecked = savedState.landingInItinere
         if (savedState.deathInItinere) {
             deathInItinereButton.isActivated = true
+            deathInItinereButton.isEnabled = false
+            deathArrivalInPSButton.isEnabled = false
             activateButton(deathInItinereButton, resources)
         }
         if (savedState.deathInPs) {
             deathArrivalInPSButton.isActivated = true
+            deathInItinereButton.isEnabled = false
+            deathArrivalInPSButton.isEnabled = false
             activateButton(deathArrivalInPSButton, resources)
         }
     }
