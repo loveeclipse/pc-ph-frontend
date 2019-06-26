@@ -2,6 +2,7 @@ package it.unibo.preh_frontend.home
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -62,24 +63,59 @@ class TreatmentFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_treatment, container, false)
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+
         getComponents(root)
         initSpinner()
+
+        adrenalinButton.setOnClickListener {
+            activeAndChangeButton(resuscitationButton, R.string.termina_rianimazione, R.string.inizio_rianimazione)
+            addHistoryEntry(adrenalinButton.isPressed, "", this.getString(R.string.andrenalina_1mg))
+        }
+        shockButton.setOnClickListener {
+            activeAndChangeButton(resuscitationButton, R.string.termina_rianimazione, R.string.inizio_rianimazione)
+            addHistoryEntry(shockButton.isPressed, "count", this.getString(R.string.esegui_shock))
+        }
+        resuscitationButton.setOnClickListener {
+            if (!resuscitationButton.isActivated)
+                activeAndChangeButton(resuscitationButton, R.string.termina_rianimazione, R.string.inizio_rianimazione)
+            else deactivateAndChangeButton(resuscitationButton, R.string.inizio_rianimazione, R.string.termina_rianimazione)
+        }
+
+        jawSubluxationButton.setOnClickListener {
+            setButtonColor(jawSubluxationButton, resources, R.string.sublussazione_mandibola)
+        }
+        guedelButton.setOnClickListener {
+            setButtonColor(guedelButton, resources, R.string.guedel)
+        }
+        cricothyrotomyButton.setOnClickListener {
+            setButtonColor(cricothyrotomyButton, resources, R.string.crico_tirotomia)
+        }
         trachealTubeButton.setOnClickListener {
-            if (!trachealTubeButton.isActivated) {
-                trachealTubeButton.isActivated = true
-                addHistoryEntry(trachealTubeButton.isPressed, "", this.getString(R.string.tubo_tracheale))
+            setButtonColor(trachealTubeButton, resources, R.string.tubo_tracheale)
+            if (trachealTubeButton.isActivated) {
                 PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext()).activeCentralization()
-                activateButton(trachealTubeButton, resources)
             } else {
-                trachealTubeButton.isActivated = false
                 PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext()).deactivatesCentralization()
-                deactivateButton(trachealTubeButton, resources)
             }
+        }
+
+        oxygenTherapyButton.setOnClickListener {
+            addHistoryEntry(oxygenTherapyButton.isPressed, "", this.getString(R.string.ossigenoterapia_i_min))
+        }
+        ambuButton.setOnClickListener {
+            addHistoryEntry(ambuButton.isPressed, "", this.getString(R.string.ambu))
+        }
+        minithoracotomySxButton.setOnClickListener {
+            setButtonColor(minithoracotomySxButton, resources, R.string.sx)
+        }
+        minithoracotomyDxButton.setOnClickListener {
+            setButtonColor(minithoracotomyDxButton, resources, R.string.dx)
         }
         ippvButton.setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("fragment_ippv_dialog") == null)
                 IppvDialogFragment().show(requireActivity().supportFragmentManager, "fragment_ippv_dialog")
         }
+
         peripheralSpinner.onItemSelectedListener = spinnerAdapter(peripheralSpinner, peripheralButton)
         peripheralButton.setOnClickListener {
             addHistoryEntry(peripheralButton.isPressed, peripheralSpinner.selectedItem.toString(), this.getString(R.string.periferica))
@@ -91,6 +127,31 @@ class TreatmentFragment : Fragment() {
         intraosseousSpinner.onItemSelectedListener = spinnerAdapter(intraosseousSpinner, intraosseousButton)
         intraosseousButton.setOnClickListener {
             addHistoryEntry(intraosseousButton.isPressed, intraosseousSpinner.selectedItem.toString(), this.getString(R.string.centrale))
+        }
+        hemostasisButton.setOnClickListener {
+            addHistoryEntry(hemostasisButton.isPressed, "", this.getString(R.string.emostasi))
+        }
+        pelvicBlinderButton.setOnClickListener {
+            addHistoryEntry(pelvicBlinderButton.isPressed, "", this.getString(R.string.pelvic_binder))
+        }
+        tourniquetButton.setOnClickListener {
+            if (!tourniquetButton.isActivated) activeAndChangeButton(tourniquetButton, R.string.termina_tourniquet, R.string.inizia_tourniquet)
+            else deactivateAndChangeButton(tourniquetButton, R.string.inizia_tourniquet, R.string.termina_tourniquet)
+        }
+        reboaArea1Button.setOnClickListener {
+            if (!reboaArea1Button.isActivated) activeAndChangeButton(reboaArea1Button, R.string.termina_reboa_zona_1, R.string.inizia_reboa_zona_1)
+            else deactivateAndChangeButton(reboaArea1Button, R.string.inizia_reboa_zona_1, R.string.termina_reboa_zona_1)
+        }
+        reboaArea3Button.setOnClickListener {
+            if (!reboaArea3Button.isActivated) activeAndChangeButton(reboaArea3Button, R.string.termina_reboa_zona_3, R.string.inizia_reboa_zona_3)
+            else deactivateAndChangeButton(reboaArea3Button, R.string.inizia_reboa_zona_3, R.string.termina_reboa_zona_3)
+        }
+
+        neuroprotectionButton.setOnClickListener {
+            addHistoryEntry(neuroprotectionButton.isPressed, "", this.getString(R.string.neuroprotezione))
+        }
+        thermalProtectionButton.setOnClickListener {
+            addHistoryEntry(thermalProtectionButton.isPressed, "", this.getString(R.string.protezione_termica))
         }
         return root
     }
@@ -177,6 +238,31 @@ class TreatmentFragment : Fragment() {
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             if (spinner.selectedItem != "")
                 button.isEnabled = true
+        }
+    }
+
+    private fun activeAndChangeButton(button: Button, buttonSetText: Int, buttonText: Int) {
+        button.isActivated = true
+        activateButton(button, resources)
+        button.text = this.getString(buttonSetText)
+        addHistoryEntry(button.isActivated, "", this.getString(buttonText))
+    }
+
+    private fun deactivateAndChangeButton(button: Button, buttonSetText: Int, buttonText: Int) {
+        button.isActivated = false
+        deactivateButton(button, resources)
+        button.text = this.getString(buttonSetText)
+        addHistoryEntry(button.isActivated, "", this.getString(buttonText))
+    }
+
+    private fun setButtonColor(button: Button, resources: Resources, buttonText: Int) {
+        if (!button.isActivated) {
+            button.isActivated = true
+            activateButton(button, resources)
+            addHistoryEntry(button.isPressed, "", this.getString(buttonText))
+        } else {
+            button.isActivated = false
+            deactivateButton(button, resources)
         }
     }
 

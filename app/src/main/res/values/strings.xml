@@ -39,9 +39,10 @@
 
     <string name="trattamenti">Trattamenti</string>
     <string name="rianimazione_cardio_polmonare">Rianimazione Cardio-Polmonare</string>
-    <string name="andrenalina_1mg">Andrenalina 1mg</string>
+    <string name="andrenalina_1mg">Adrenalina 1mg</string>
     <string name="esegui_shock">Esegui Shock</string>
     <string name="inizio_rianimazione">Inizio Rianimazione</string>
+    <string name="termina_rianimazione">Termina Rianimazione</string>
     <string name="vie_aeree">Vie Aeree</string>
     <string name="sublussazione_mandibola">Sublussazione Mandibola</string>
     <string name="guedel">Guedel</string>
@@ -69,9 +70,12 @@
     <string name="pelvic_binder">Pelvic Binder</string>
     <string name="tourniquet">Tourniquet</string>
     <string name="inizia_tourniquet">Inizia Tourniquet</string>
+    <string name="termina_tourniquet">Termina Tourniquet</string>
     <string name="reboa">Reboa</string>
     <string name="inizia_reboa_zona_1">Inizia Reboa Zona 1</string>
+    <string name="termina_reboa_zona_1">Termina Reboa Zona 1</string>
     <string name="inizia_reboa_zona_3">Inizia Reboa Zona 3</string>
+    <string name="termina_reboa_zona_3">Termina Reboa Zona 3</string>
     <string name="neuroprotezione">Neuroprotezione</string>
     <string name="protezione_termica">Protezione Termica</string>
     <string name="starting_timer">00:00</string>
