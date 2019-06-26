@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         endPreHButton.setOnClickListener {
             // FINISCE L'EVENTO DI PREH, ELIMINA LE SHAREDPREFERENCES E FAI LE ULTIME OPERAZIONI
 
-            if (SystemClock.elapsedRealtime() - mLastClickTime > 1000){
+            if (SystemClock.elapsedRealtime() - mLastClickTime > 1000) {
                 mLastClickTime = SystemClock.elapsedRealtime()
                 val sharedPreferences = getSharedPreferences("preHData", Context.MODE_PRIVATE)
                 sharedPreferences.edit().clear().apply()
