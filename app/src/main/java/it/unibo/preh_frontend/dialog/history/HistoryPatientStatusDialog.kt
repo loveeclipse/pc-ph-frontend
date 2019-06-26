@@ -90,10 +90,17 @@ open class HistoryPatientStatusDialog : DialogFragment() {
 
     protected open fun setData(data: PatientStatusData) {
         if (data.closedTrauma) {
-            ButtonAppearance.activateButton(closedButton, resources)
+            activateButton(closedButton, resources)
         }
         if (data.piercingTrauma) {
-            ButtonAppearance.activateButton(piercingButton, resources)
+            activateButton(piercingButton, resources)
+        }
+        if(data.ecofast){
+            activateButton(positiveEcofastButton, resources)
+            deactivateButton(negativeEcofastButton, resources)
+        }else{
+            activateButton(negativeEcofastButton,resources)
+            deactivateButton(positiveEcofastButton,resources)
         }
 
         helmetBeltSwitch.isChecked = data.helmetBelt

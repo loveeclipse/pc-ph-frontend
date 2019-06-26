@@ -30,9 +30,11 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
     private var traumaIsClosed: Boolean = false
     private var traumaIsPiercing: Boolean = false
 
+    private var ecofastIsPositive: Boolean = false
+
     private var physiologicIsActive: Boolean = false
     private var anatomicIsActive: Boolean = false
-    private var dynamicIsActiv: Boolean = false
+    private var dynamicIsActive: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_patient_status_dialog, container, false)
@@ -83,6 +85,18 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             determineActiveCriteria()
         }
 
+        positiveEcofastButton.setOnClickListener {
+            activateButton(positiveEcofastButton, resources)
+            deactivateButton(negativeEcofastButton, resources)
+            ecofastIsPositive = true
+
+        }
+        negativeEcofastButton.setOnClickListener {
+            activateButton(negativeEcofastButton,resources)
+            deactivateButton(positiveEcofastButton,resources)
+            ecofastIsPositive = false
+        }
+
         anatomicButton.setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("anatomic_criterion_fragment") == null)
                 AnatomicCriterionDialog().show(requireActivity().supportFragmentManager, "anatomic_criterion_fragment")
@@ -105,6 +119,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         saveState = PatientStatusData(traumaIsClosed,
                 traumaIsPiercing,
                 helmetBeltSwitch.isChecked, // MISSING PARAMETERS
+                ecofast = ecofastIsPositive,
                 costalVolet = voletSwitch.isChecked,
                 physiologicCriterion = physiologicIsActive,
                 anatomicCriterion =  anatomicIsActive
@@ -130,6 +145,15 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                     if (newSaveState.piercingTrauma) {
                         activateButton(piercingButton, resources)
                         traumaIsPiercing = true
+                    }
+                    if(newSaveState.ecofast){
+                        activateButton(positiveEcofastButton, resources)
+                        deactivateButton(negativeEcofastButton, resources)
+                        ecofastIsPositive = true
+                    }else{
+                        activateButton(negativeEcofastButton,resources)
+                        deactivateButton(positiveEcofastButton,resources)
+                        ecofastIsPositive = false
                     }
 
                     helmetBeltSwitch.isChecked = newSaveState.helmetBelt
