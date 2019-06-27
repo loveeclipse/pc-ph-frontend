@@ -95,6 +95,11 @@ open class HistoryPatientStatusDialog : DialogFragment() {
             piercingButton.isActivated = true
             activateButton(piercingButton, resources)
         }
+        helmetBeltSwitch.isChecked = data.helmetBelt
+        hemorrageSwitch.isChecked = data.hemorrage
+        airwaysSwitch.isChecked = data.airways
+        tachipneaDyspneaSwitch.isChecked = data.tachipnea
+        voletSwitch.isChecked = data.costalVolet
         if (data.ecofastPositive) {
             positiveEcofastButton.isActivated = true
             activateButton(positiveEcofastButton, resources)
@@ -105,8 +110,9 @@ open class HistoryPatientStatusDialog : DialogFragment() {
             activateButton(negativeEcofastButton, resources)
             deactivateButton(positiveEcofastButton, resources)
         }
-        helmetBeltSwitch.isChecked = data.helmetBelt
-        voletSwitch.isChecked = data.costalVolet
+        unstablePelvisSwitch.isChecked = data.pelvisStatus
+        amputationSwitch.isChecked = data.amputation
+        physiologicButton.isActivated = data.physiologicCriterion
         if (data.anatomicCriterion) {
             anatomicButton.isActivated = true
             activateButton(anatomicButton, resources)

@@ -86,11 +86,25 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         saveState = PatientStatusData(
                 closedTrauma = closedButton.isActivated,
                 piercingTrauma = piercingButton.isActivated,
-                helmetBelt = helmetBeltSwitch.isChecked, // MISSING PARAMETERS
-                ecofastPositive = positiveEcofastButton.isActivated,
+                helmetBelt = helmetBeltSwitch.isChecked,
+                hemorrage = hemorrageSwitch.isChecked,
+                airways = airwaysSwitch.isChecked,
+                tachipnea = tachipneaDyspneaSwitch.isChecked,
                 costalVolet = voletSwitch.isChecked,
+                ecofastPositive = positiveEcofastButton.isActivated,
+                ecofastNegative = negativeEcofastButton.isActivated,
+                pelvisStatus = unstablePelvisSwitch.isChecked,
+                amputation = amputationSwitch.isChecked,
+                sunkenSkull = sunkenSkullButton.isActivated,
+                otorrhagia = otorrhagiaButton.isActivated,
+                paraparesis = paraparesisButton.isActivated,
+                tetraparesis = tetraparesisButton.isActivated,
+                paresthesia = paresthesiaButton.isActivated,
                 physiologicCriterion = physiologicButton.isActivated,
-                anatomicCriterion = anatomicButton.isActivated
+                anatomicCriterion = anatomicButton.isActivated,
+                dynamicCriterion = dynamicButton.isActivated,
+                clinicalJudgement = clinicalJudgementButton.isActivated,
+                shockIndex = shockIndexText.text.toString().toInt()
                 )
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
@@ -112,6 +126,11 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                         piercingButton.isActivated = true
                         activateButton(piercingButton, resources)
                     }
+                    helmetBeltSwitch.isChecked = newSaveState.helmetBelt
+                    hemorrageSwitch.isChecked = newSaveState.hemorrage
+                    airwaysSwitch.isChecked = newSaveState.airways
+                    tachipneaDyspneaSwitch.isChecked = newSaveState.tachipnea
+                    voletSwitch.isChecked = newSaveState.costalVolet
                     if (newSaveState.ecofastPositive) {
                         positiveEcofastButton.isActivated = true
                         activateButton(positiveEcofastButton, resources)
@@ -122,8 +141,8 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                         activateButton(negativeEcofastButton, resources)
                         deactivateButton(positiveEcofastButton, resources)
                     }
-                    helmetBeltSwitch.isChecked = newSaveState.helmetBelt
-                    voletSwitch.isChecked = newSaveState.costalVolet
+                    unstablePelvisSwitch.isChecked = newSaveState.pelvisStatus
+                    amputationSwitch.isChecked = newSaveState.amputation
                     physiologicButton.isActivated = newSaveState.physiologicCriterion
                     if (newSaveState.physiologicCriterion) {
                         physiologicButton.isActivated = true
@@ -136,7 +155,6 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                     }
                 }
                 saveState = newSaveState
-                println("CAzzo ---------------- $newSaveState")
             }
         }).start()
     }

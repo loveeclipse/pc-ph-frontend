@@ -14,14 +14,16 @@ data class PatientStatusData(
     var ecofastNegative: Boolean = false,
     var pelvisStatus: Boolean = false,
     var amputation: Boolean = false,
-    var cranialFracture: Boolean = false,
+    var sunkenSkull: Boolean = false,
+    var otorrhagia: Boolean = false,
     var paraparesis: Boolean = false,
     var tetraparesis: Boolean = false,
     var paresthesia: Boolean = false,
     var physiologicCriterion: Boolean = false,
     var anatomicCriterion: Boolean = false,
     var dynamicCriterion: Boolean = false,
-    var shockIndex: Boolean = false,
+    var clinicalJudgement: Boolean = false,
+    var shockIndex: Int = 0,
 
     var event: String = "Modificato Stato Paziente"
 ) : PreHData("PatientStatusData", event), Serializable
