@@ -225,4 +225,5 @@
     <string name="ambulanza">Ambulanza</string>
     <string name="elicottero">Elicottero</string>
     <string name="medico_accompagna">Medico accompagna</string>
+    <string name="sipa">SIPA = 0</string>
 </resources>
