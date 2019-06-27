@@ -84,19 +84,18 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
 
     override fun onCancel(dialog: DialogInterface) {
         saveState = PatientStatusData(
-                closedButton.isActivated,
-                piercingButton.isActivated,
-                helmetBeltSwitch.isChecked, // MISSING PARAMETERS
-                positiveEcofastButton.isActivated,
-                voletSwitch.isChecked,
-                physiologicButton.isActivated,
-                anatomicButton.isActivated
+                closedTrauma = closedButton.isActivated,
+                piercingTrauma = piercingButton.isActivated,
+                helmetBelt = helmetBeltSwitch.isChecked, // MISSING PARAMETERS
+                ecofastPositive = positiveEcofastButton.isActivated,
+                costalVolet = voletSwitch.isChecked,
+                physiologicCriterion = physiologicButton.isActivated,
+                anatomicCriterion = anatomicButton.isActivated
                 )
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
         sharedPreferences.edit().putString("patientState", stateAsJson).apply()
         HistoryManager.addEntry(saveState, sharedPreferences)
-        super.onCancel(dialog)
     }
 
     private fun setSharedPreferences() {
