@@ -121,24 +121,24 @@ class TreatmentFragment : Fragment() {
 
         peripheralSpinner.onItemSelectedListener = spinnerAdapter(peripheralSpinner, peripheralButton)
         peripheralButton.setOnClickListener {
-            primaryDeactivateButton(peripheralButton, resources)
-            peripheralSpinner.setSelection(0)
             addHistoryEntry(peripheralButton.isPressed, peripheralSpinner.selectedItem.toString(),
                     "${peripheralSpinner.selectedItem} ${this.getString(R.string.gauge)} ${this.getString(R.string.periferica)}")
+            primaryDeactivateButton(peripheralButton, resources)
+            peripheralSpinner.setSelection(0)
         }
         centralSpinner.onItemSelectedListener = spinnerAdapter(centralSpinner, centralButton)
         centralButton.setOnClickListener {
-            primaryDeactivateButton(centralButton, resources)
-            centralSpinner.setSelection(0)
             addHistoryEntry(centralButton.isPressed, centralSpinner.selectedItem.toString(),
                     "${centralSpinner.selectedItem} ${this.getString(R.string.french)} ${this.getString(R.string.centrale)}")
+            primaryDeactivateButton(centralButton, resources)
+            centralSpinner.setSelection(0)
         }
         intraosseousSpinner.onItemSelectedListener = spinnerAdapter(intraosseousSpinner, intraosseousButton)
         intraosseousButton.setOnClickListener {
-            primaryDeactivateButton(intraosseousButton, resources)
-            intraosseousSpinner.setSelection(0)
             addHistoryEntry(intraosseousButton.isPressed, intraosseousSpinner.selectedItem.toString(),
                     "${intraosseousSpinner.selectedItem} ${this.getString(R.string.size)} ${this.getString(R.string.intraossea)}")
+            primaryDeactivateButton(intraosseousButton, resources)
+            intraosseousSpinner.setSelection(0)
         }
         hemostasisButton.setOnClickListener {
             addHistoryEntry(hemostasisButton.isPressed, "", this.getString(R.string.emostasi))
