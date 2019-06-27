@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import it.unibo.preh_frontend.utils.PermissionManager
+import it.unibo.preh_frontend.utils.CentralizationManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
                 mLastClickTime = SystemClock.elapsedRealtime()
                 val sharedPreferences = getSharedPreferences("preHData", Context.MODE_PRIVATE)
                 sharedPreferences.edit().clear().apply()
+                CentralizationManager.centralizationIsActive = false
 
                 navController.navigate(R.id.action_home_to_login)
             }
