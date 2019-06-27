@@ -142,6 +142,7 @@
                     android:layout_height="wrap_content"
                     style="@style/NormalTextStyle"
                     android:id="@+id/textView47"
+                    android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginEnd="@dimen/horizontalMargin"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/body_temperature_edittext"
@@ -171,6 +172,7 @@
                     android:layout_height="0dp"
                     android:background="@drawable/box"
                     android:id="@+id/constraintLayout13"
+                    android:layout_marginBottom="@dimen/verticalMargin"
                     app:layout_constraintTop_toBottomOf="@+id/textView51">
                 <TextView
                         android:text="@string/dx"
@@ -222,7 +224,7 @@
                 </RadioGroup>
                 <Switch
                         android:text="@string/fotoreagente"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/photoreagentDx_switch"
                         android:theme="@style/AppSwitchStyle"
@@ -235,6 +237,13 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/pupilDx_radiogroup"
                         app:layout_constraintStart_toStartOf="@+id/guideline90"/>
+                <View
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/view1"
+                        android:background="@android:color/darker_gray"
+                        app:layout_constraintStart_toEndOf="@id/photoreagentSx_switch"
+                        app:layout_constraintEnd_toStartOf="@id/photoreagentDx_switch"/>
                 <TextView
                         android:text="@string/sx"
                         android:layout_width="wrap_content"
@@ -283,7 +292,7 @@
                 </RadioGroup>
                 <Switch
                         android:text="@string/fotoreagente"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/photoreagentSx_switch"
                         android:theme="@style/AppSwitchStyle"
