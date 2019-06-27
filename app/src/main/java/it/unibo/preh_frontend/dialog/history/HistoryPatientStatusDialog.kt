@@ -41,7 +41,6 @@ open class HistoryPatientStatusDialog : DialogFragment() {
         val root = inflater.inflate(R.layout.fragment_patient_status_dialog, container, false)
 
         getComponents(root)
-
         setData(arguments?.get("data") as PatientStatusData)
 
         val exitButton = root.findViewById<ImageButton>(R.id.patient_image_button)
@@ -89,33 +88,33 @@ open class HistoryPatientStatusDialog : DialogFragment() {
 
     protected open fun setData(data: PatientStatusData) {
         if (data.closedTrauma) {
+            closedButton.isActivated = true
             activateButton(closedButton, resources)
         }
         if (data.piercingTrauma) {
+            piercingButton.isActivated = true
             activateButton(piercingButton, resources)
         }
-        if (data.ecofast) {
+        if (data.ecofastPositive) {
+            positiveEcofastButton.isActivated = true
             activateButton(positiveEcofastButton, resources)
             deactivateButton(negativeEcofastButton, resources)
-        } else {
+        }
+        if (data.ecofastNegative) {
+            negativeEcofastButton.isActivated = true
             activateButton(negativeEcofastButton, resources)
             deactivateButton(positiveEcofastButton, resources)
         }
-
         helmetBeltSwitch.isChecked = data.helmetBelt
         voletSwitch.isChecked = data.costalVolet
-
         if (data.anatomicCriterion) {
+            anatomicButton.isActivated = true
             activateButton(anatomicButton, resources)
-        } else {
-            deactivateButton(anatomicButton, resources)
         }
         if (data.physiologicCriterion) {
+            physiologicButton.isActivated = true
             activateButton(physiologicButton, resources)
-        } else {
-            deactivateButton(physiologicButton, resources)
         }
-
         // TODO Add the other data
     }
 

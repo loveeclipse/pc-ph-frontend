@@ -93,7 +93,6 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                 anatomicButton.isActivated
                 )
         val gson = Gson()
-        println("cazzo merda ------------ $saveState")
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
         sharedPreferences.edit().putString("patientState", stateAsJson).apply()
         HistoryManager.addEntry(saveState, sharedPreferences)
@@ -107,22 +106,38 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             if (newSaveState != null) {
                 this.activity?.runOnUiThread {
                     if (newSaveState.closedTrauma) {
-                        activateButton(closedButton, resources)
                         closedButton.isActivated = true
+                        activateButton(closedButton, resources)
                     }
                     if (newSaveState.piercingTrauma) {
-                        activateButton(piercingButton, resources)
                         piercingButton.isActivated = true
+                        activateButton(piercingButton, resources)
                     }
-                    if (newSaveState.ecofast) {
+                    if (newSaveState.ecofastPositive) {
+                        positiveEcofastButton.isActivated = true
                         activateButton(positiveEcofastButton, resources)
                         deactivateButton(negativeEcofastButton, resources)
-                        positiveEcofastButton.isActivated = true
+                    }
+                    if (newSaveState.ecofastNegative) {
+                        negativeEcofastButton.isActivated = true
+                        activateButton(negativeEcofastButton, resources)
+                        deactivateButton(positiveEcofastButton, resources)
                     }
                     helmetBeltSwitch.isChecked = newSaveState.helmetBelt
                     voletSwitch.isChecked = newSaveState.costalVolet
+                    physiologicButton.isActivated = newSaveState.physiologicCriterion
+                    if (newSaveState.physiologicCriterion) {
+                        physiologicButton.isActivated = true
+                        activateButton(physiologicButton, resources)
+                    }
+                    anatomicButton.isActivated = newSaveState.anatomicCriterion
+                    if (newSaveState.anatomicCriterion) {
+                        anatomicButton.isActivated = true
+                        activateButton(anatomicButton, resources)
+                    }
                 }
                 saveState = newSaveState
+                println("CAzzo ---------------- $newSaveState")
             }
         }).start()
     }

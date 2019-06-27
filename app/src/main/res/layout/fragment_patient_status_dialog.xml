@@ -98,6 +98,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/helmet_belt_switch"
                     android:theme="@style/RadioStyle"
+                    android:checked="true"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
                     app:layout_constraintStart_toStartOf="parent"
