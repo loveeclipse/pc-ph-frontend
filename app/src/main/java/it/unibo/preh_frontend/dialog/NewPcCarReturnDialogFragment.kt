@@ -35,11 +35,11 @@ class NewPcCarReturnDialogFragment : NewPcCarItemsDialogFragment() {
 
     private fun initSpinner() {
         var newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.returnCodeItems, R.layout.spinner_layout)
-        newAdapter.setDropDownViewResource(R.layout.dropdown_spinner_layout)
+        newAdapter.setDropDownViewResource(R.layout.dropdown_spinner_layout_dialog)
         returnCode.adapter = newAdapter
 
         newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.hospitalItems, R.layout.spinner_layout)
-        newAdapter.setDropDownViewResource(R.layout.dropdown_spinner_layout)
+        newAdapter.setDropDownViewResource(R.layout.dropdown_spinner_layout_dialog)
         hospital.adapter = newAdapter
     }
 

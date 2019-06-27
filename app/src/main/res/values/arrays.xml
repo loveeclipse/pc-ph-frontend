@@ -82,4 +82,10 @@
         <item>Ravenna</item>
         <item>Rimini</item>
     </string-array>
+
+    <string-array name="hospitalPlaceItems">
+        <item></item>
+        <item>Pronto soccorso</item>
+        <item>Sala operatoria</item>
+    </string-array>
 </resources>

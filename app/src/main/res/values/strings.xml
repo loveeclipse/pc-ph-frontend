@@ -234,4 +234,6 @@
 
     <string name="dosaggio">Dosaggio</string>
     <string name="cancel_button">Annulla</string>
+    
+    <string name="luogo_rilascio">Luogo rilascio</string>
 </resources>
