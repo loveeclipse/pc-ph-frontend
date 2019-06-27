@@ -121,7 +121,6 @@ open class HistoryPatientStatusDialog : DialogFragment() {
             physiologicButton.isActivated = true
             activateButton(physiologicButton, resources)
         }
-        // TODO Add the other data
     }
 
     companion object {
