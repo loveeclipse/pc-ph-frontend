@@ -20,6 +20,7 @@ import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.dialog.history.HistoryVitalParametersDialog
 import it.unibo.preh_frontend.model.VitalParametersData
 import it.unibo.preh_frontend.utils.HistoryManager
+import it.unibo.preh_frontend.utils.PhysiologicaCriteriaManager
 
 class VitalParametersDialog : HistoryVitalParametersDialog() {
 
@@ -43,14 +44,14 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
 
         setSharedPreferences()
 
-        cardiacFrequencyEditText.addTextChangedListener ( object : TextWatcher {
+        cardiacFrequencyEditText.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) { }
             override fun beforeTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) { }
             override fun afterTextChanged(text: Editable) {
                 checkSiSipa(text, arteriousPressureEditText.text)
             }
         })
-        arteriousPressureEditText.addTextChangedListener ( object : TextWatcher {
+        arteriousPressureEditText.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) { }
             override fun beforeTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) { }
             override fun afterTextChanged(text: Editable) {
@@ -113,6 +114,17 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
         respiratoryFreqSpinner.apply {
             adapter = newAdapter
             setSelection(1)
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    if (p2 == 2)
+                        PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext(),
+                                context.getString(R.string.frequenza_respiratoria_29_atti_min)).activeCentralization()
+                    else
+                        PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext(),
+                            context.getString(R.string.frequenza_respiratoria_29_atti_min)).deactivatesCentralization()
+                }
+                override fun onNothingSelected(p0: AdapterView<*>?) {}
+            }
         }
 
         newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.eyeOpeningItems, R.layout.spinner_layout)
