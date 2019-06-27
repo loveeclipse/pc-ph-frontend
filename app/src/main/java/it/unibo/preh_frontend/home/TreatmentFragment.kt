@@ -20,7 +20,6 @@ import it.unibo.preh_frontend.model.TreatmentHistoryData
 import it.unibo.preh_frontend.utils.PhysiologicaCriteriaManager
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
-import it.unibo.preh_frontend.utils.ButtonAppearance.primaryDeactivateButton
 import it.unibo.preh_frontend.utils.HistoryManager
 
 class TreatmentFragment : Fragment() {
@@ -119,25 +118,22 @@ class TreatmentFragment : Fragment() {
                 IppvDialogFragment().show(requireActivity().supportFragmentManager, "fragment_ippv_dialog")
         }
 
-        peripheralSpinner.onItemSelectedListener = spinnerAdapter(peripheralSpinner, peripheralButton)
+        peripheralSpinner.onItemSelectedListener = spinnerAdapter(peripheralButton)
         peripheralButton.setOnClickListener {
             addHistoryEntry(peripheralButton.isPressed, peripheralSpinner.selectedItem.toString(),
                     "${peripheralSpinner.selectedItem} ${this.getString(R.string.gauge)} ${this.getString(R.string.periferica)}")
-            primaryDeactivateButton(peripheralButton, resources)
             peripheralSpinner.setSelection(0)
         }
-        centralSpinner.onItemSelectedListener = spinnerAdapter(centralSpinner, centralButton)
+        centralSpinner.onItemSelectedListener = spinnerAdapter(centralButton)
         centralButton.setOnClickListener {
             addHistoryEntry(centralButton.isPressed, centralSpinner.selectedItem.toString(),
                     "${centralSpinner.selectedItem} ${this.getString(R.string.french)} ${this.getString(R.string.centrale)}")
-            primaryDeactivateButton(centralButton, resources)
             centralSpinner.setSelection(0)
         }
-        intraosseousSpinner.onItemSelectedListener = spinnerAdapter(intraosseousSpinner, intraosseousButton)
+        intraosseousSpinner.onItemSelectedListener = spinnerAdapter(intraosseousButton)
         intraosseousButton.setOnClickListener {
             addHistoryEntry(intraosseousButton.isPressed, intraosseousSpinner.selectedItem.toString(),
                     "${intraosseousSpinner.selectedItem} ${this.getString(R.string.size)} ${this.getString(R.string.intraossea)}")
-            primaryDeactivateButton(intraosseousButton, resources)
             intraosseousSpinner.setSelection(0)
         }
         hemostasisButton.setOnClickListener {
@@ -246,10 +242,10 @@ class TreatmentFragment : Fragment() {
         intraosseousSpinner.adapter = newAdapter
     }
 
-    private fun spinnerAdapter(spinner: Spinner, button: Button) = object : AdapterView.OnItemSelectedListener {
+    private fun spinnerAdapter(button: Button) = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(p0: AdapterView<*>?) {}
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            button.isEnabled = spinner.selectedItem != ""
+            button.isEnabled = (position != 0)
         }
     }
 

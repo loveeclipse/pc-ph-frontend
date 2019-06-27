@@ -56,11 +56,14 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         positiveEcofastButton.setOnClickListener {
             activateButton(positiveEcofastButton, resources)
             deactivateButton(negativeEcofastButton, resources)
+            setButtonColor(positiveEcofastButton, resources)
         }
         negativeEcofastButton.setOnClickListener {
             activateButton(negativeEcofastButton, resources)
             deactivateButton(positiveEcofastButton, resources)
+            setButtonColor(negativeEcofastButton, resources)
         }
+
         anatomicButton.setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("anatomic_criterion_fragment") == null)
                 AnatomicCriterionDialog().show(requireActivity().supportFragmentManager, "anatomic_criterion_fragment")
@@ -90,9 +93,9 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                 anatomicButton.isActivated
                 )
         val gson = Gson()
+        println("cazzo merda ------------ $saveState")
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
         sharedPreferences.edit().putString("patientState", stateAsJson).apply()
-
         HistoryManager.addEntry(saveState, sharedPreferences)
         super.onCancel(dialog)
     }
