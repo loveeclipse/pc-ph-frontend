@@ -23,7 +23,7 @@ data class PatientStatusData(
     var anatomicCriterion: Boolean = false,
     var dynamicCriterion: Boolean = false,
     var clinicalJudgement: Boolean = false,
-    var shockIndex: Int = 0,
+    var shockIndex: Double = 0.0,
 
     var event: String = "Modificato Stato Paziente"
 ) : PreHData("PatientStatusData", event), Serializable

@@ -17,6 +17,7 @@ import it.unibo.preh_frontend.dialog.history.HistoryPatientStatusDialog
 import it.unibo.preh_frontend.model.AnatomicCriterionData
 import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.model.PhysiologicCriterionData
+import it.unibo.preh_frontend.model.VitalParametersData
 import it.unibo.preh_frontend.utils.AnatomicCriteriaManager
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
@@ -104,7 +105,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                 anatomicCriterion = anatomicButton.isActivated,
                 dynamicCriterion = dynamicButton.isActivated,
                 clinicalJudgement = clinicalJudgementButton.isActivated,
-                shockIndex = shockIndexText.text.toString().toInt()
+                shockIndex = shockIndexText.text.toString().toDouble()
                 )
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
@@ -113,6 +114,11 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
     }
 
     private fun setSharedPreferences() {
+        val vitalParametersData = Gson().fromJson(sharedPreferences.getString("vitalParameters", null), VitalParametersData::class.java)
+        if (vitalParametersData != null) {
+            val siSipaValue = (vitalParametersData.cardiacFrequency / vitalParametersData.bloodPressure).toDouble()
+            shockIndexText.text = siSipaValue.toString()
+        }
         Thread(Runnable {
             val gson = Gson()
             val newSaveState = gson.fromJson(sharedPreferences.getString("patientState", null), PatientStatusData::class.java)

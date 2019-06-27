@@ -121,6 +121,7 @@ open class HistoryPatientStatusDialog : DialogFragment() {
             physiologicButton.isActivated = true
             activateButton(physiologicButton, resources)
         }
+        shockIndexText.text = data.shockIndex.toString()
     }
 
     companion object {

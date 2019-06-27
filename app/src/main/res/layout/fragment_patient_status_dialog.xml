@@ -317,7 +317,7 @@
                         app:layout_constraintEnd_toEndOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
-                    android:text="0"
+                    android:text="@string/default_shock_index"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/shock_index_text"
