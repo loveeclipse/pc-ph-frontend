@@ -596,6 +596,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/si_sipa"
+                    android:visibility="invisible"
                     android:layout_marginTop="@dimen/verticalMargin"
                     android:layout_marginBottom="@dimen/verticalMargin"
                     app:layout_constraintStart_toStartOf="parent"

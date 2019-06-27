@@ -5,6 +5,9 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.SystemClock
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +26,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var savedState: VitalParametersData
     private var parentDialog: Dialog? = null
-
+    private var mLastClickTime = SystemClock.elapsedRealtime()
     private lateinit var saveState: VitalParametersData
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -40,11 +43,25 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
 
         setSharedPreferences()
 
-        var first = true
+        cardiacFrequencyEditText.addTextChangedListener ( object : TextWatcher {
+            override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) { }
+            override fun beforeTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) { }
+            override fun afterTextChanged(text: Editable) {
+                checkSiSipa(text, arteriousPressureEditText.text)
+            }
+        })
+        arteriousPressureEditText.addTextChangedListener ( object : TextWatcher {
+            override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) { }
+            override fun beforeTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) { }
+            override fun afterTextChanged(text: Editable) {
+                checkSiSipa(cardiacFrequencyEditText.text, text)
+            }
+        })
+
         val exitButton = root.findViewById<ImageButton>(R.id.parameters_image_button)
         exitButton.setOnClickListener {
-            if (first) {
-                first = false
+            if (SystemClock.elapsedRealtime() - mLastClickTime > 1000) {
+                mLastClickTime = SystemClock.elapsedRealtime()
                 val builder = AlertDialog.Builder(requireContext())
                 builder.apply {
                     setCancelable(true)
@@ -74,6 +91,20 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
         }
 
         return root
+    }
+
+    private fun checkSiSipa(cardiacFrequencyEditable: Editable, arteriousPressureEditable: Editable) {
+        if (cardiacFrequencyEditable.isNotEmpty() &&
+                arteriousPressureEditable.isNotEmpty() &&
+                cardiacFrequencyEditable.toString().toInt() != 0 &&
+                arteriousPressureEditable.toString().toInt() != 0) {
+            val siSipaValue = cardiacFrequencyEditable.toString().toDouble() / arteriousPressureEditable.toString().toDouble()
+            siSipa.text = "SI/SIPA = $siSipaValue"
+            if (siSipaValue > 0.9)
+                siSipa.visibility = View.VISIBLE
+            else
+                siSipa.visibility = View.INVISIBLE
+        }
     }
 
     override fun initSpinner() {

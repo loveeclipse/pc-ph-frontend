@@ -34,6 +34,7 @@ open class HistoryVitalParametersDialog : DialogFragment() {
     protected lateinit var photoreagentDxSwitch: Switch
     protected lateinit var bodyTempEditText: EditText
     protected lateinit var gcsTextView: TextView
+    protected lateinit var siSipa: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_vital_parameters, container, false)
@@ -72,6 +73,7 @@ open class HistoryVitalParametersDialog : DialogFragment() {
             photoreagentDxSwitch = findViewById(R.id.photoreagentDx_switch)
             bodyTempEditText = findViewById(R.id.body_temperature_edittext)
             gcsTextView = findViewById(R.id.gcs_textview)
+            siSipa = findViewById(R.id.si_sipa)
         }
     }
 
@@ -142,6 +144,12 @@ open class HistoryVitalParametersDialog : DialogFragment() {
         photoreagentSxSwitch.isChecked = data.photoreagentSx
         photoreagentDxSwitch.isChecked = data.photoreagentDx
         bodyTempEditText.setText(data.temperature.toString())
+        val siSipaValue = cardiacFrequencyEditText.text.toString().toDouble() / arteriousPressureEditText.text.toString().toDouble()
+        siSipa.text = "SI/SIPA = $siSipaValue"
+        if (siSipaValue > 0.9)
+            siSipa.visibility = View.VISIBLE
+        else
+            siSipa.visibility = View.INVISIBLE
     }
 
     override fun onResume() {
