@@ -75,14 +75,14 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
 
     override fun initSpinner() {
         var newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.respiratoryFrequencyItems, R.layout.spinner_layout)
-        newAdapter.setDropDownViewResource(R.layout.spinner_layout)
+        newAdapter.setDropDownViewResource(R.layout.dropdown_spinner_layout_dialog)
         respiratoryFreqSpinner.apply {
             adapter = newAdapter
             setSelection(1)
         }
 
         newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.eyeOpeningItems, R.layout.spinner_layout)
-        newAdapter.setDropDownViewResource(R.layout.spinner_layout)
+        newAdapter.setDropDownViewResource(R.layout.dropdown_spinner_layout_dialog)
         eyesOpeningSpinner.apply {
             adapter = newAdapter
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -95,7 +95,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
         }
 
         newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.verbalResponseItems, R.layout.spinner_layout)
-        newAdapter.setDropDownViewResource(R.layout.spinner_layout)
+        newAdapter.setDropDownViewResource(R.layout.dropdown_spinner_layout_dialog)
         verbalResponseSpinner.apply {
             adapter = newAdapter
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -108,7 +108,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
         }
 
         newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.motorResponseItems, R.layout.spinner_layout)
-        newAdapter.setDropDownViewResource(R.layout.spinner_layout)
+        newAdapter.setDropDownViewResource(R.layout.dropdown_spinner_layout_dialog)
         motorResponseSpinner.apply {
             adapter = newAdapter
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
