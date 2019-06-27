@@ -313,6 +313,7 @@
                         app:layout_constraintGuide_percent="0.5"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <EditText
+                    android:hint="@string/frequenza_cattura_suggerimento_valori"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -582,6 +583,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/guideline6"/>
             <EditText
+                    android:hint="@string/pressione_arteriosa_sistolica_valori_suggeriti"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"

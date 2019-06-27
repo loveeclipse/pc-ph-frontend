@@ -28,6 +28,7 @@
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <EditText
+                android:hint="@string/amperaggio_suggerimento_valori"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -70,6 +71,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/amperage_edit_text"
                 app:layout_constraintStart_toEndOf="@id/guideline42"/>
         <EditText
+                android:hint="@string/frequenza_cattura_suggerimento_valori"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"

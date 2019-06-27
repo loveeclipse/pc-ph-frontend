@@ -34,7 +34,9 @@
     <string name="collare_cervicale">Collare Cervicale</string>
     <string name="pacing_transcutaneo">Pacing Transcutaneo</string>
     <string name="frequenza_di_cattura">Frequenza di cattura</string>
+    <string name="frequenza_cattura_suggerimento_valori">60 &#45; 120</string>
     <string name="amperaggio">Amperaggio</string>
+    <string name="amperaggio_suggerimento_valori">10 &#45; 200</string>
     <string name="conferma_pacing_transcutaneo">CONFERMA PACING TRANSCUTANEO</string>
 
     <string name="trattamenti">Trattamenti</string>
@@ -54,9 +56,13 @@
     <string name="mini_toracotomia">Mini Toracotomia</string>
     <string name="ippv">IPPV</string>
     <string name="vt">VT</string>
+    <string name="vt_suggerimento_valori">100 &#45; 1000</string>
     <string name="fr">FR</string>
+    <string name="fr_suggerimento_valori">8 &#45; 35</string>
     <string name="peep">PEEP</string>
+    <string name="peep_default">45</string>
     <string name="frazione_inspiratoria_ossigeno">Frazione inspiratoria ossigeno (FiO2)</string>
+    <string name="frazione_inspiratoria_ossigeno_default">35</string>
     <string name="circolo">Circolo</string>
     <string name="calibro">Calibro</string>
     <string name="tipologia">Tipologia</string>
@@ -116,7 +122,9 @@
     <string name="frequenza_respiratoria">Frequenza Respiratoria</string>
     <string name="saturazione_periferica">Saturazione Periferica O2</string>
     <string name="pressione_arteriosa_sistolica">Pressione arteriosa sistolica</string>
+    <string name="pressione_arteriosa_sistolica_valori_suggeriti">0 &#45; 250</string>
     <string name="frequenza_cardiaca">Frequenza cardiaca</string>
+    <string name="frequenza_cardiaca_valori_suggerimento">0 &#45; 300</string>
     <string name="ritmico">Ritmico</string>
     <string name="aritmico">Aritmico</string>
     <string name="tempo_riempimento_capillare">Tempo riempimento capillare</string>
