@@ -105,6 +105,8 @@
                     android:id="@+id/low_bloodpres_switch"
                     android:theme="@style/AppSwitchStyle"
                     android:textAppearance="@style/NormalTextStyle"
+                    android:layout_marginTop="@dimen/criterionVerticalSpace"
+                    android:layout_marginBottom="@dimen/criterionVerticalSpace"
                     android:layout_marginStart="@dimen/horizontalMargin"
                     android:layout_marginEnd="@dimen/horizontalMargin"
                     app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +116,7 @@
             <Switch
                     android:text="@string/ipertensione_arteriosa_sintomatica"
                     android:layout_width="0dp"
-                    android:layout_height="27dp"
+                    android:layout_height="wrap_content"
                     android:id="@+id/hypertension_switch"
                     android:theme="@style/AppSwitchStyle"
                     android:textAppearance="@style/NormalTextStyle"
