@@ -40,7 +40,10 @@ class NewPcCarReturnDialogFragment : NewPcCarItemsDialogFragment() {
 
         newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.hospitalItems, R.layout.spinner_layout)
         newAdapter.setDropDownViewResource(R.layout.dropdown_spinner_layout_dialog)
-        hospital.adapter = newAdapter
+        hospital.apply {
+            adapter = newAdapter
+            setSelection(1)
+        }
     }
 
     override fun getComponents(root: View) {

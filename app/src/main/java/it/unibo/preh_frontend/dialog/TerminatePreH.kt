@@ -43,25 +43,18 @@ class TerminatePreH : DialogFragment() {
                 val builder = AlertDialog.Builder(requireContext())
                 builder.apply {
                     setCancelable(true)
-                    setNegativeButton("No") { dialog, _ -> dialog.cancel() }
-                }
-                if (checkEveryField()) {
-                    builder.apply {
-                        setTitle("Conferma Terminazione Pre-H?")
-                        setPositiveButton("Si") { dialog, _ ->
-                            isTerminate = true
-                            dialog.cancel()
-                            parentDialog?.cancel()
-                        }
+                    setNegativeButton("No") { dialog, _ ->
+                        dialog.cancel()
+                        parentDialog?.dismiss()
                     }
-                } else {
-                    builder.apply {
-                        setTitle("Uscire senza salvare?")
-                        setMessage("Inserimento incompleto")
-                        setPositiveButton("Si") { dialog, _ ->
-                            dialog.cancel()
-                            parentDialog?.dismiss()
-                        }
+                }
+                builder.apply {
+                    setTitle("Conferma Terminazione Pre-H?")
+                    setPositiveButton("Si") { dialog, _ ->
+                        isTerminate = true
+                        dialog.cancel()
+                        parentDialog?.cancel()
+                        activity?.onBackPressed()
                     }
                 }
                 builder.create().show()
@@ -124,9 +117,5 @@ class TerminatePreH : DialogFragment() {
             returnCodeSpinner.setSelection(newPcCarReturnData.returnCode)
             hospitalSpinner.setSelection(newPcCarReturnData.hospital)
         }
-    }
-
-    private fun checkEveryField(): Boolean {
-        return hospitalPlaceSpinner.selectedItemPosition != 0
     }
 }

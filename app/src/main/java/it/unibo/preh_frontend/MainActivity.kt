@@ -29,24 +29,23 @@ class MainActivity : AppCompatActivity() {
             // FINISCE L'EVENTO DI PREH, ELIMINA LE SHAREDPREFERENCES E FAI LE ULTIME OPERAZIONI
             if (supportFragmentManager.findFragmentByTag("terminate_pre_h") == null)
                 TerminatePreH().show(supportFragmentManager, "terminate_pre_h")
-
-            if (SystemClock.elapsedRealtime() - mLastClickTime > 1000 && getTerminatePreHData()) {
-                mLastClickTime = SystemClock.elapsedRealtime()
-                val sharedPreferences = getSharedPreferences("preHData", Context.MODE_PRIVATE)
-                sharedPreferences.edit().clear().apply()
-                CentralizationManager.centralizationIsActive = false
-
-                navController.navigate(R.id.action_home_to_login)
-            }
         }
-
         PermissionManager.checkPermission(this, this,
                 Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()
 
-    override fun onBackPressed() {}
+    override fun onBackPressed() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime > 1000 && getTerminatePreHData()) {
+            mLastClickTime = SystemClock.elapsedRealtime()
+            val sharedPreferences = getSharedPreferences("preHData", Context.MODE_PRIVATE)
+            sharedPreferences.edit().clear().apply()
+            CentralizationManager.centralizationIsActive = false
+
+            navController.navigate(R.id.action_home_to_login)
+        }
+    }
 
     private fun getTerminatePreHData(): Boolean {
         val sharedPreferences = getSharedPreferences("preHData", Context.MODE_PRIVATE)
