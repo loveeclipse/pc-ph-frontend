@@ -2,8 +2,6 @@ package it.unibo.preh_frontend.dialog
 
 import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.LayoutInflater
@@ -17,7 +15,6 @@ import androidx.fragment.app.DialogFragment
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.NewPcCarReturnData
-import it.unibo.preh_frontend.model.TerminatePreHData
 
 class TerminatePreH : DialogFragment() {
     private lateinit var returnCodeSpinner: Spinner
@@ -25,15 +22,12 @@ class TerminatePreH : DialogFragment() {
     private lateinit var hospitalPlaceSpinner: Spinner
 
     private var parentDialog: Dialog? = null
-    private lateinit var sharedPreferences: SharedPreferences
     private var mLastClickTime = SystemClock.elapsedRealtime()
-    private var isTerminate = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.terminate_pre_h, container, false)
         parentDialog = dialog
         dialog?.setCanceledOnTouchOutside(false)
-        sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         getComponents(root)
         initSpinner()
         getPcCarData()
@@ -51,7 +45,6 @@ class TerminatePreH : DialogFragment() {
                 builder.apply {
                     setTitle("Conferma Terminazione Pre-H?")
                     setPositiveButton("Si") { dialog, _ ->
-                        isTerminate = true
                         dialog.cancel()
                         parentDialog?.cancel()
                         activity?.onBackPressed()
@@ -69,17 +62,6 @@ class TerminatePreH : DialogFragment() {
             override fun onBackPressed() {
             }
         }
-    }
-
-    override fun onCancel(dialog: DialogInterface) {
-        val drugsData = TerminatePreHData(
-                returnCode = returnCodeSpinner.selectedItemPosition,
-                hospital = hospitalSpinner.selectedItemPosition,
-                hospitalPlace = hospitalPlaceSpinner.selectedItemPosition,
-                terminate = isTerminate
-        )
-        val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
-        sharedPreferences.edit().putString("TerminatePreHData", Gson().toJson(drugsData)).apply()
     }
 
     override fun onResume() {
@@ -111,8 +93,8 @@ class TerminatePreH : DialogFragment() {
     }
 
     private fun getPcCarData() {
-        val newPcCarReturnData = Gson().fromJson(sharedPreferences.getString(
-                this.getString(R.string.partenza_dal_luogo_dell_incidente), null), NewPcCarReturnData::class.java)
+        val newPcCarReturnData = Gson().fromJson(requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+                .getString(this.getString(R.string.partenza_dal_luogo_dell_incidente), null), NewPcCarReturnData::class.java)
         if (newPcCarReturnData != null) {
             returnCodeSpinner.setSelection(newPcCarReturnData.returnCode)
             hospitalSpinner.setSelection(newPcCarReturnData.hospital)
