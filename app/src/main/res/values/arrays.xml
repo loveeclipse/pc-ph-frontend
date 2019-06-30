@@ -78,10 +78,11 @@
     <string-array name="hospitalItems">
         <item></item>
         <item>Cesena</item>
-        <item>Faenza</item>
         <item>Forlì</item>
         <item>Ravenna</item>
         <item>Rimini</item>
+        <item>Ferrara</item>
+        <item>Bologna</item>
     </string-array>
 
     <string-array name="hospitalPlaceItems">
