@@ -141,6 +141,8 @@
     <string name="pupille">Pupille</string>
     <string name="sx">SX</string>
     <string name="dx">DX</string>
+    <string name="minithoracotomySx">Minitoracotomia SX</string>
+    <string name="minithoracotomyDx">Minitoracotomia DX</string>
     <string name="miosi">Miosi</string>
     <string name="midriasi">Midriasi</string>
     <string name="fotoreagente">Fotoreagente</string>

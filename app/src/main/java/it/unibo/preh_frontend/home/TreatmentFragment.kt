@@ -108,10 +108,10 @@ class TreatmentFragment : Fragment() {
             addHistoryEntry(ambuButton.isPressed, "", this.getString(R.string.ambu))
         }
         minithoracotomySxButton.setOnClickListener {
-            setButtonColor(minithoracotomySxButton, resources, R.string.sx)
+            setButtonColor(minithoracotomySxButton, resources, R.string.minithoracotomySx)
         }
         minithoracotomyDxButton.setOnClickListener {
-            setButtonColor(minithoracotomyDxButton, resources, R.string.dx)
+            setButtonColor(minithoracotomyDxButton, resources, R.string.minithoracotomyDx)
         }
         ippvButton.setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("fragment_ippv_dialog") == null)
@@ -188,7 +188,7 @@ class TreatmentFragment : Fragment() {
         val treatmentData = TreatmentHistoryData(
                 treatmentBooleanValue,
                 treatmentStringValue,
-                "Effettuato $treatmentName"
+                "Trattamento: $treatmentName"
         )
         val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         sharedPreferences.edit().putString("ComplicationsHistoryData", Gson().toJson(treatmentData)).apply()
