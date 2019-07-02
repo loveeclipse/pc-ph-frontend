@@ -12,14 +12,19 @@ import android.widget.ImageButton
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.NewPcCarReturnData
+import it.unibo.preh_frontend.utils.CentralizationManager
 
 class TerminatePreH : DialogFragment() {
     private lateinit var returnCodeSpinner: Spinner
     private lateinit var hospitalSpinner: Spinner
     private lateinit var hospitalPlaceSpinner: Spinner
+    private lateinit var navController: NavController
 
     private var parentDialog: Dialog? = null
     private var mLastClickTime = SystemClock.elapsedRealtime()
@@ -31,6 +36,7 @@ class TerminatePreH : DialogFragment() {
         getComponents(root)
         initSpinner()
         getPcCarData()
+        navController = requireActivity().findNavController(R.id.nav_host_fragment)
         root.findViewById<ImageButton>(R.id.terminate_items_image_button).setOnClickListener {
             if (SystemClock.elapsedRealtime() - mLastClickTime > 1000) {
                 mLastClickTime = SystemClock.elapsedRealtime()
@@ -47,7 +53,7 @@ class TerminatePreH : DialogFragment() {
                     setPositiveButton("Si") { dialog, _ ->
                         dialog.cancel()
                         parentDialog?.cancel()
-                        activity?.onBackPressed()
+                        backPressed()
                     }
                 }
                 builder.create().show()
@@ -99,5 +105,12 @@ class TerminatePreH : DialogFragment() {
             returnCodeSpinner.setSelection(newPcCarReturnData.returnCode)
             hospitalSpinner.setSelection(newPcCarReturnData.hospital)
         }
+    }
+
+    private fun backPressed(){
+        val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
+        CentralizationManager.centralizationIsActive = false
+        navController.navigate(R.id.action_home_to_login)
     }
 }
