@@ -13,7 +13,6 @@ import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.NavController
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
@@ -107,7 +106,7 @@ class TerminatePreH : DialogFragment() {
         }
     }
 
-    private fun backPressed(){
+    private fun backPressed() {
         val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         sharedPreferences.edit().clear().apply()
         CentralizationManager.centralizationIsActive = false

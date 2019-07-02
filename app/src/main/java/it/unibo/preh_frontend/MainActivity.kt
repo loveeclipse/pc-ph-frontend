@@ -30,6 +30,6 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp() = navController.navigateUp()
 
     override fun onBackPressed() {
-        //DISABLED
+        // DISABLED
     }
 }
