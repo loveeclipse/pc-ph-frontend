@@ -10,10 +10,10 @@
                                                    tools:context=".home.ComplicationsFragment"
                                                    android:id="@+id/frameLayout3">
     <Switch
-            android:text="@string/arresto_cardio_circolatorio"
+            android:text="@string/shock_cardiocircolatorio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cardio_circulatory_arrest_switch"
+            android:id="@+id/cardiocirculatory_shock_switch"
             android:theme="@style/AppSwitchStyle"
             android:textAppearance="@style/NormalTextStyle"
             app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +25,7 @@
             android:id="@+id/deteriorating_state_consciousness_switch"
             android:theme="@style/AppSwitchStyle"
             android:textAppearance="@style/NormalTextStyle"
-            app:layout_constraintTop_toBottomOf="@+id/cardio_circulatory_arrest_switch"
+            app:layout_constraintTop_toBottomOf="@+id/cardiocirculatory_shock_switch"
             app:layout_constraintBottom_toTopOf="@id/aniso_midriasi_switch"/>
     <Switch
             android:text="@string/anisocoria_midriasi"
@@ -44,15 +44,6 @@
             android:theme="@style/AppSwitchStyle"
             android:textAppearance="@style/NormalTextStyle"
             app:layout_constraintTop_toBottomOf="@+id/aniso_midriasi_switch"
-            app:layout_constraintBottom_toTopOf="@id/cardiocirculatory_shock_switch"/>
-    <Switch
-            android:text="@string/shock_cardiocircolatorio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/cardiocirculatory_shock_switch"
-            android:theme="@style/AppSwitchStyle"
-            android:textAppearance="@style/NormalTextStyle"
-            app:layout_constraintTop_toBottomOf="@+id/respiratory_failure_switch"
             app:layout_constraintBottom_toTopOf="@id/landing_in_itinere_switch"/>
     <Switch
             android:text="@string/atterraggio_in_itinere_per_manovra_terapeutica"
@@ -61,7 +52,7 @@
             android:id="@+id/landing_in_itinere_switch"
             android:theme="@style/AppSwitchStyle"
             android:textAppearance="@style/NormalTextStyle"
-            app:layout_constraintTop_toBottomOf="@+id/cardiocirculatory_shock_switch"
+            app:layout_constraintTop_toBottomOf="@+id/respiratory_failure_switch"
             app:layout_constraintBottom_toTopOf="@id/itinere_button"/>
     <TextView
             android:text="@string/decesso"

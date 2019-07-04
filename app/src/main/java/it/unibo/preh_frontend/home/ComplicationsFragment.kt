@@ -19,11 +19,10 @@ import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 
 class ComplicationsFragment : Fragment() {
 
-    private lateinit var cardioCirculatoryArrestSwitch: Switch
+    private lateinit var cardioCirculatoryShockSwitch: Switch
     private lateinit var deterioratingStateConsciousnessSwitch: Switch
     private lateinit var anisoMidriasiSwitch: Switch
     private lateinit var respiratoryFailureSwitch: Switch
-    private lateinit var cardioCirculatoryShockSwitch: Switch
     private lateinit var landingInItinereSwitch: Switch
     private lateinit var deathInItinereButton: Button
     private lateinit var deathArrivalInPSButton: Button
@@ -42,9 +41,9 @@ class ComplicationsFragment : Fragment() {
 
         getComponents(root)
 
-        cardioCirculatoryArrestSwitch.setOnClickListener {
-            if (cardioCirculatoryArrestSwitch.isChecked)
-                addHistoryEntry(cardioCirculatoryArrestSwitch.isChecked, this.getString(R.string.arresto_cardio_circolatorio))
+        cardioCirculatoryShockSwitch.setOnClickListener {
+            if (cardioCirculatoryShockSwitch.isChecked)
+                addHistoryEntry(cardioCirculatoryShockSwitch.isChecked, this.getString(R.string.shock_cardiocircolatorio))
         }
         deterioratingStateConsciousnessSwitch.setOnClickListener {
             if (deterioratingStateConsciousnessSwitch.isChecked)
@@ -57,10 +56,6 @@ class ComplicationsFragment : Fragment() {
         respiratoryFailureSwitch.setOnClickListener {
             if (respiratoryFailureSwitch.isChecked)
                 addHistoryEntry(respiratoryFailureSwitch.isChecked, this.getString(R.string.insufficienza_respiratoria))
-        }
-        cardioCirculatoryShockSwitch.setOnClickListener {
-            if (cardioCirculatoryShockSwitch.isChecked)
-                addHistoryEntry(cardioCirculatoryShockSwitch.isChecked, this.getString(R.string.shock_cardiocircolatorio))
         }
         landingInItinereSwitch.setOnClickListener {
             if (landingInItinereSwitch.isChecked)
@@ -94,11 +89,10 @@ class ComplicationsFragment : Fragment() {
 
     private fun getComponents(root: View) {
         root.apply {
-            cardioCirculatoryArrestSwitch = findViewById(R.id.cardio_circulatory_arrest_switch)
+            cardioCirculatoryShockSwitch = findViewById(R.id.cardiocirculatory_shock_switch)
             deterioratingStateConsciousnessSwitch = findViewById(R.id.deteriorating_state_consciousness_switch)
             anisoMidriasiSwitch = findViewById(R.id.aniso_midriasi_switch)
             respiratoryFailureSwitch = findViewById(R.id.respiratory_failure_switch)
-            cardioCirculatoryShockSwitch = findViewById(R.id.cardiocirculatory_shock_switch)
             landingInItinereSwitch = findViewById(R.id.landing_in_itinere_switch)
             deathInItinereButton = findViewById(R.id.itinere_button)
             deathArrivalInPSButton = findViewById(R.id.arrival__in_ps_button)
@@ -123,11 +117,10 @@ class ComplicationsFragment : Fragment() {
     }
 
     private fun applySharedPreferences(savedState: ComplicationsData) {
-        cardioCirculatoryArrestSwitch.isChecked = savedState.cardioCirculatoryArrest
+        cardioCirculatoryShockSwitch.isChecked = savedState.cardioCirculatoryShock
         deterioratingStateConsciousnessSwitch.isChecked = savedState.deterioratingStateConsciousness
         anisoMidriasiSwitch.isChecked = savedState.anisoMidriasi
         respiratoryFailureSwitch.isChecked = savedState.respiratoryFailure
-        cardioCirculatoryShockSwitch.isChecked = savedState.cardioCirculatoryShock
         landingInItinereSwitch.isChecked = savedState.landingInItinere
         if (savedState.deathInItinere) {
             deathInItinereButton.isActivated = true
@@ -145,13 +138,12 @@ class ComplicationsFragment : Fragment() {
 
     fun getData(): ComplicationsData {
         return ComplicationsData(
-                cardioCirculatoryArrestSwitch.isChecked,
-                deterioratingStateConsciousnessSwitch.isChecked,
-                anisoMidriasiSwitch.isChecked,
-                respiratoryFailureSwitch.isChecked,
-                cardioCirculatoryShockSwitch.isChecked,
-                landingInItinereSwitch.isChecked,
-                deathInItinereButton.isActivated,
-                deathArrivalInPSButton.isActivated)
+                cardioCirculatoryShock = cardioCirculatoryShockSwitch.isChecked,
+                deterioratingStateConsciousness = deterioratingStateConsciousnessSwitch.isChecked,
+                anisoMidriasi = anisoMidriasiSwitch.isChecked,
+                respiratoryFailure = respiratoryFailureSwitch.isChecked,
+                landingInItinere = landingInItinereSwitch.isChecked,
+                deathInItinere = deathInItinereButton.isActivated,
+                deathInPs = deathArrivalInPSButton.isActivated)
     }
 }
