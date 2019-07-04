@@ -97,6 +97,7 @@ class HomeFragment : Fragment() {
                 when (homeTabs.selectedTabPosition) {
                     0 -> {
                         newFragment = DrugsFragment()
+                        savePreviousFragment()
                     }
                     1 -> {
                         newFragment = ManeuverFragment()
