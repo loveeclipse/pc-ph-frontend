@@ -24,6 +24,9 @@ import it.unibo.preh_frontend.utils.HistoryManager
 
 class TreatmentFragment : Fragment() {
 
+    private val ADD_OPTION: String = "Registrato"
+    private val REMOVE_OPTION: String = "Annullato"
+
     private lateinit var adrenalinButton: Button
     private lateinit var shockButton: Button
     private lateinit var resuscitationButton: Button
@@ -68,11 +71,13 @@ class TreatmentFragment : Fragment() {
         initSpinner()
 
         adrenalinButton.setOnClickListener {
-            activeAndChangeButton(resuscitationButton, R.string.termina_rianimazione, R.string.inizio_rianimazione)
+            if (!resuscitationButton.isActivated)
+                activeAndChangeButton(resuscitationButton, R.string.termina_rianimazione, R.string.inizio_rianimazione)
             addHistoryEntry(adrenalinButton.isPressed, "", this.getString(R.string.andrenalina_1mg))
         }
         shockButton.setOnClickListener {
-            activeAndChangeButton(resuscitationButton, R.string.termina_rianimazione, R.string.inizio_rianimazione)
+            if (!resuscitationButton.isActivated)
+                activeAndChangeButton(resuscitationButton, R.string.termina_rianimazione, R.string.inizio_rianimazione)
             addHistoryEntry(shockButton.isPressed, "count", this.getString(R.string.esegui_shock))
         }
         resuscitationButton.setOnClickListener {
@@ -184,16 +189,31 @@ class TreatmentFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
-    private fun addHistoryEntry(treatmentBooleanValue: Boolean?, treatmentStringValue: String?, treatmentName: String) {
+    private fun addHistoryEntry(
+        treatmentBooleanValue: Boolean?,
+        treatmentStringValue: String?,
+        treatmentName: String,
+        option: String = ADD_OPTION
+    ) {
         val treatmentData = TreatmentHistoryData(
                 treatmentBooleanValue,
                 treatmentStringValue,
-                "Trattamento: $treatmentName"
+                "$option $treatmentName"
         )
         val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         sharedPreferences.edit().putString("ComplicationsHistoryData", Gson().toJson(treatmentData)).apply()
         HistoryManager.addEntry(treatmentData, sharedPreferences)
     }
+
+    private fun setHistoryStatus(treatmentBooleanValue: Boolean?, treatmentStringValue: String?, maneuverName: String) {
+        when {
+            treatmentBooleanValue!! ->
+                addHistoryEntry(treatmentBooleanValue, treatmentStringValue, maneuverName, ADD_OPTION)
+            else ->
+                addHistoryEntry(treatmentBooleanValue, treatmentStringValue, maneuverName, REMOVE_OPTION)
+        }
+    }
+
     private fun getComponents(root: View) {
         root.apply {
             adrenalinButton = findViewById(R.id.adrenaline_button)
@@ -229,7 +249,8 @@ class TreatmentFragment : Fragment() {
     }
 
     private fun initSpinner() {
-        var newAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.gaugeSpinnerItems, R.layout.spinner_layout)
+        var newAdapter = ArrayAdapter.createFromResource(requireContext(),
+                R.array.gaugeSpinnerItems, R.layout.spinner_layout)
         newAdapter.setDropDownViewResource(R.layout.dropdown_spinner_layout)
         peripheralSpinner.adapter = newAdapter
 
@@ -267,10 +288,11 @@ class TreatmentFragment : Fragment() {
         if (!button.isActivated) {
             button.isActivated = true
             activateButton(button, resources)
-            addHistoryEntry(button.isPressed, "", this.getString(buttonText))
+            setHistoryStatus(button.isActivated, "", this.getString(buttonText))
         } else {
             button.isActivated = false
             deactivateButton(button, resources)
+            setHistoryStatus(button.isActivated, "", this.getString(buttonText))
         }
     }
 
