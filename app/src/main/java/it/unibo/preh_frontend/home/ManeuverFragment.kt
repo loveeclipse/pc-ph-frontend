@@ -20,6 +20,9 @@ import it.unibo.preh_frontend.model.ManeuverHistoryData
 
 class ManeuverFragment : Fragment() {
 
+    private val ADD_OPTION: String = "Applicazione"
+    private val REMOVE_OPTION: String = "Annullato"
+
     private lateinit var cervicalCollarSwitch: Switch
     private lateinit var immobilizationSwitch: Switch
     private lateinit var electricalCardioversionSwitch: Switch
@@ -34,27 +37,25 @@ class ManeuverFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_maneuver, container, false)
+
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
+
         getComponents(root)
+
         cervicalCollarSwitch.setOnClickListener {
-            if (cervicalCollarSwitch.isChecked)
-                addHistoryEntry(cervicalCollarSwitch.isChecked, this.getString(R.string.collare_cervicale))
+            setHistoryStatus(cervicalCollarSwitch.isChecked, this.getString(R.string.collare_cervicale))
         }
         immobilizationSwitch.setOnClickListener {
-            if (immobilizationSwitch.isChecked)
-                addHistoryEntry(immobilizationSwitch.isChecked, this.getString(R.string.immobilizzazione))
+            setHistoryStatus(immobilizationSwitch.isChecked, this.getString(R.string.immobilizzazione))
         }
         electricalCardioversionSwitch.setOnClickListener {
-            if (electricalCardioversionSwitch.isChecked)
-                addHistoryEntry(electricalCardioversionSwitch.isChecked, this.getString(R.string.cardioversione_elettrica_sincronizzata))
+            setHistoryStatus(electricalCardioversionSwitch.isChecked, this.getString(R.string.cardioversione_elettrica_sincronizzata))
         }
         gastricProbeSwitch.setOnClickListener {
-            if (gastricProbeSwitch.isChecked)
-                addHistoryEntry(gastricProbeSwitch.isChecked, this.getString(R.string.sonda_gastrica))
+            setHistoryStatus(gastricProbeSwitch.isChecked, this.getString(R.string.sonda_gastrica))
         }
         bladderProbeSwitch.setOnClickListener {
-            if (bladderProbeSwitch.isChecked)
-                addHistoryEntry(bladderProbeSwitch.isChecked, this.getString(R.string.sonda_vescicale))
+            setHistoryStatus(bladderProbeSwitch.isChecked, this.getString(R.string.sonda_vescicale))
         }
         root.findViewById<Button>(R.id.pacing_button).setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("fragment_pacing_dialog") == null)
@@ -72,14 +73,23 @@ class ManeuverFragment : Fragment() {
         super.onStart()
     }
 
-    private fun addHistoryEntry(maneuverValue: Boolean, maneuverName: String) {
+    private fun addHistoryEntry(maneuverValue: Boolean, option: String, maneuverName: String) {
         val maneuverData = ManeuverHistoryData(
                 maneuverValue,
-                "Applicata $maneuverName"
+                "$option $maneuverName"
         )
         val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         sharedPreferences.edit().putString("ManeuverHistoryData", Gson().toJson(maneuverData)).apply()
         HistoryManager.addEntry(maneuverData, sharedPreferences)
+    }
+
+    private fun setHistoryStatus(maneuverValue: Boolean, maneuverName: String) {
+        when {
+            maneuverValue ->
+                addHistoryEntry(maneuverValue, ADD_OPTION, maneuverName)
+            else ->
+                addHistoryEntry(maneuverValue, REMOVE_OPTION, maneuverName)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
