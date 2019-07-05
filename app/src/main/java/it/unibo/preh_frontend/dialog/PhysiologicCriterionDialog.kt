@@ -55,7 +55,13 @@ class PhysiologicCriterionDialog : DialogFragment() {
 
     override fun onCancel(dialog: DialogInterface) {
         // SharedPreferences
-        val criteria = PhysiologicCriterionData(GCSValueSwitch.isChecked, lowRespFrequencySwitch.isChecked, highRespFrequencySwitch.isChecked, ventilatorySupportSwitch.isChecked, lowBloodPressureSwitch.isChecked, hypertensionSwitch.isChecked)
+        val criteria = PhysiologicCriterionData(
+                GCSValueSwitch.isChecked,
+                lowRespFrequencySwitch.isChecked,
+                highRespFrequencySwitch.isChecked,
+                ventilatorySupportSwitch.isChecked,
+                lowBloodPressureSwitch.isChecked,
+                hypertensionSwitch.isChecked)
         val gson = Gson()
         val criteriaAsJson = gson.toJson(criteria, PhysiologicCriterionData::class.java)
         sharedPreferences.edit().putString("physiologicCriteria", criteriaAsJson).apply()

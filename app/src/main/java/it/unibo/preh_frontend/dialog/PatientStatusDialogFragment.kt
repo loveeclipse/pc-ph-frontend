@@ -38,6 +38,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
 
         getComponents(root)
         determineActiveCriteria()
+        setSharedPreferences()
 
         closedButton.setOnClickListener {
             setButtonColor(closedButton, resources)
@@ -74,8 +75,6 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                 PhysiologicCriterionDialog().show(requireActivity().supportFragmentManager, "physiologic_criterion_fragment")
         }
 
-        setSharedPreferences()
-
         val saveAndExitButton = root.findViewById<ImageButton>(R.id.patient_image_button)
         saveAndExitButton.setOnClickListener {
             parentDialog?.cancel()
@@ -106,7 +105,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                 dynamicCriterion = dynamicButton.isActivated,
                 clinicalJudgement = clinicalJudgementButton.isActivated,
                 shockIndex = shockIndexText.text.toString().toDouble()
-                )
+        )
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
         sharedPreferences.edit().putString("patientState", stateAsJson).apply()
@@ -121,46 +120,38 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
         }
         Thread(Runnable {
             val gson = Gson()
-            val newSaveState = gson.fromJson(sharedPreferences.getString("patientState", null), PatientStatusData::class.java)
-            if (newSaveState != null) {
+            val patientStatusData = gson.fromJson(sharedPreferences.getString("patientState", null), PatientStatusData::class.java)
+            if (patientStatusData != null) {
                 this.activity?.runOnUiThread {
-                    if (newSaveState.closedTrauma) {
+                    if (patientStatusData.closedTrauma) {
                         closedButton.isActivated = true
                         activateButton(closedButton, resources)
                     }
-                    if (newSaveState.piercingTrauma) {
+                    if (patientStatusData.piercingTrauma) {
                         piercingButton.isActivated = true
                         activateButton(piercingButton, resources)
                     }
-                    helmetBeltSwitch.isChecked = newSaveState.helmetBelt
-                    hemorrageSwitch.isChecked = newSaveState.hemorrage
-                    airwaysSwitch.isChecked = newSaveState.airways
-                    tachipneaDyspneaSwitch.isChecked = newSaveState.tachipnea
-                    voletSwitch.isChecked = newSaveState.costalVolet
-                    if (newSaveState.ecofastPositive) {
+                    helmetBeltSwitch.isChecked = patientStatusData.helmetBelt
+                    hemorrageSwitch.isChecked = patientStatusData.hemorrage
+                    airwaysSwitch.isChecked = patientStatusData.airways
+                    tachipneaDyspneaSwitch.isChecked = patientStatusData.tachipnea
+                    voletSwitch.isChecked = patientStatusData.costalVolet
+                    if (patientStatusData.ecofastPositive) {
                         positiveEcofastButton.isActivated = true
                         activateButton(positiveEcofastButton, resources)
                         deactivateButton(negativeEcofastButton, resources)
                     }
-                    if (newSaveState.ecofastNegative) {
+                    if (patientStatusData.ecofastNegative) {
                         negativeEcofastButton.isActivated = true
                         activateButton(negativeEcofastButton, resources)
                         deactivateButton(positiveEcofastButton, resources)
                     }
-                    unstablePelvisSwitch.isChecked = newSaveState.pelvisStatus
-                    amputationSwitch.isChecked = newSaveState.amputation
-                    physiologicButton.isActivated = newSaveState.physiologicCriterion
-                    if (newSaveState.physiologicCriterion) {
-                        physiologicButton.isActivated = true
-                        activateButton(physiologicButton, resources)
-                    }
-                    anatomicButton.isActivated = newSaveState.anatomicCriterion
-                    if (newSaveState.anatomicCriterion) {
-                        anatomicButton.isActivated = true
-                        activateButton(anatomicButton, resources)
-                    }
+                    unstablePelvisSwitch.isChecked = patientStatusData.pelvisStatus
+                    amputationSwitch.isChecked = patientStatusData.amputation
+                    determineActiveCriteria()
                 }
-                saveState = newSaveState
+                saveState = patientStatusData
+                println("--------------------- savedState in set: ${saveState.physiologicCriterion} ")
             }
         }).start()
     }

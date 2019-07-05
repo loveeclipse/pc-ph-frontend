@@ -5,7 +5,7 @@ import java.io.Serializable
 data class PatientStatusData(
     var closedTrauma: Boolean = false,
     var piercingTrauma: Boolean = false,
-    var helmetBelt: Boolean,
+    var helmetBelt: Boolean = true,
     var hemorrage: Boolean = false,
     var airways: Boolean = false,
     var tachipnea: Boolean = false,

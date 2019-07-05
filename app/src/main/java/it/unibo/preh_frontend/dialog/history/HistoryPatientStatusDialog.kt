@@ -112,7 +112,7 @@ open class HistoryPatientStatusDialog : DialogFragment() {
         }
         unstablePelvisSwitch.isChecked = data.pelvisStatus
         amputationSwitch.isChecked = data.amputation
-        physiologicButton.isActivated = data.physiologicCriterion
+        println("------------------- ${data.physiologicCriterion} ")
         if (data.anatomicCriterion) {
             anatomicButton.isActivated = true
             activateButton(anatomicButton, resources)
