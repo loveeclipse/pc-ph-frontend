@@ -16,8 +16,12 @@ import it.unibo.preh_frontend.model.ComplicationsData
 import it.unibo.preh_frontend.model.ComplicationsHistoryData
 import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
+import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
 
 class ComplicationsFragment : Fragment() {
+
+    private val ADD_OPTION: String = "Registrato"
+    private val REMOVE_OPTION: String = "Annullato"
 
     private lateinit var cardioCirculatoryShockSwitch: Switch
     private lateinit var deterioratingStateConsciousnessSwitch: Switch
@@ -42,38 +46,27 @@ class ComplicationsFragment : Fragment() {
         getComponents(root)
 
         cardioCirculatoryShockSwitch.setOnClickListener {
-            if (cardioCirculatoryShockSwitch.isChecked)
-                addHistoryEntry(cardioCirculatoryShockSwitch.isChecked, this.getString(R.string.shock_cardiocircolatorio))
+            setHistoryStatus(cardioCirculatoryShockSwitch.isChecked, this.getString(R.string.shock_cardiocircolatorio))
         }
         deterioratingStateConsciousnessSwitch.setOnClickListener {
-            if (deterioratingStateConsciousnessSwitch.isChecked)
-                addHistoryEntry(deterioratingStateConsciousnessSwitch.isChecked, this.getString(R.string.deterioramento_stato_di_coscenza))
+            setHistoryStatus(deterioratingStateConsciousnessSwitch.isChecked, this.getString(R.string.deterioramento_stato_di_coscenza))
         }
         anisoMidriasiSwitch.setOnClickListener {
-            if (anisoMidriasiSwitch.isChecked)
-                addHistoryEntry(anisoMidriasiSwitch.isChecked, this.getString(R.string.anisocoria_midriasi))
+            setHistoryStatus(anisoMidriasiSwitch.isChecked, this.getString(R.string.anisocoria_midriasi))
         }
         respiratoryFailureSwitch.setOnClickListener {
-            if (respiratoryFailureSwitch.isChecked)
-                addHistoryEntry(respiratoryFailureSwitch.isChecked, this.getString(R.string.insufficienza_respiratoria))
+            setHistoryStatus(respiratoryFailureSwitch.isChecked, this.getString(R.string.insufficienza_respiratoria))
         }
         landingInItinereSwitch.setOnClickListener {
-            if (landingInItinereSwitch.isChecked)
-                addHistoryEntry(landingInItinereSwitch.isChecked, this.getString(R.string.atterraggio_in_itinere_per_manovra_terapeutica))
+            setHistoryStatus(landingInItinereSwitch.isChecked, this.getString(R.string.atterraggio_in_itinere_per_manovra_terapeutica))
         }
         deathInItinereButton.setOnClickListener {
-            setButtonColor(deathInItinereButton, resources)
-            deathInItinereButton.isEnabled = false
-            deathArrivalInPSButton.isEnabled = false
-            if (deathInItinereButton.isPressed)
-                addHistoryEntry(deathInItinereButton.isPressed, "${this.getString(R.string.decesso)} ${this.getString(R.string.in_itinere)}")
+            setButtonColor(deathInItinereButton, deathArrivalInPSButton, resources,
+                    "${this.getString(R.string.decesso)} ${this.getString(R.string.in_itinere)}")
         }
         deathArrivalInPSButton.setOnClickListener {
-            setButtonColor(deathArrivalInPSButton, resources)
-            deathArrivalInPSButton.isEnabled = false
-            deathInItinereButton.isEnabled = false
-            if (deathArrivalInPSButton.isPressed)
-                addHistoryEntry(deathArrivalInPSButton.isPressed, "${this.getString(R.string.decesso)} ${this.getString(R.string.all_arrivo_in_ps)}")
+            setButtonColor(deathArrivalInPSButton, deathInItinereButton, resources,
+                    "${this.getString(R.string.decesso)} ${this.getString(R.string.all_arrivo_in_ps)}")
         }
         return root
     }
@@ -99,21 +92,35 @@ class ComplicationsFragment : Fragment() {
         }
     }
 
-    private fun setButtonColor(button: Button, resources: Resources) {
-        if (!button.isActivated) {
-            button.isActivated = true
-            activateButton(button, resources)
+    private fun setButtonColor(buttonPressed: Button, buttonSecondary: Button, resources: Resources, complicationsName: String) {
+        if (!buttonPressed.isActivated) {
+            buttonPressed.isActivated = true
+            activateButton(buttonPressed, resources)
+            setHistoryStatus(buttonPressed.isActivated, complicationsName)
+        } else {
+            buttonPressed.isActivated = false
+            deactivateButton(buttonPressed, resources)
+            setHistoryStatus(buttonPressed.isActivated, complicationsName)
         }
     }
 
-    private fun addHistoryEntry(complicationsValue: Boolean, complicationsName: String) {
+    private fun addHistoryEntry(complicationsValue: Boolean, option: String, complicationsName: String) {
         val complicationsData = ComplicationsHistoryData(
                 complicationsValue,
-                complicationsName
+                "$option $complicationsName"
         )
         val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         sharedPreferences.edit().putString("ComplicationsHistoryData", Gson().toJson(complicationsData)).apply()
         HistoryManager.addEntry(complicationsData, sharedPreferences)
+    }
+
+    private fun setHistoryStatus(complicationsValue: Boolean, complicationsName: String) {
+        when {
+            complicationsValue ->
+                addHistoryEntry(complicationsValue, ADD_OPTION, complicationsName)
+            else ->
+                addHistoryEntry(complicationsValue, REMOVE_OPTION, complicationsName)
+        }
     }
 
     private fun applySharedPreferences(savedState: ComplicationsData) {
@@ -124,14 +131,10 @@ class ComplicationsFragment : Fragment() {
         landingInItinereSwitch.isChecked = savedState.landingInItinere
         if (savedState.deathInItinere) {
             deathInItinereButton.isActivated = true
-            deathInItinereButton.isEnabled = false
-            deathArrivalInPSButton.isEnabled = false
             activateButton(deathInItinereButton, resources)
         }
         if (savedState.deathInPs) {
             deathArrivalInPSButton.isActivated = true
-            deathInItinereButton.isEnabled = false
-            deathArrivalInPSButton.isEnabled = false
             activateButton(deathArrivalInPSButton, resources)
         }
     }
