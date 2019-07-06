@@ -8,13 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Switch
 import com.google.gson.Gson
 
 import it.unibo.preh_frontend.R
+import it.unibo.preh_frontend.dt_model.DtAnagraphicData
+import it.unibo.preh_frontend.dt_model.DtPatientData
 import it.unibo.preh_frontend.model.AnagraphicData
 import it.unibo.preh_frontend.utils.HistoryManager
+import it.unibo.preh_frontend.utils.RetrofitClient
 
 class AnagraphicDialogFragment : Fragment() {
 
@@ -27,6 +31,8 @@ class AnagraphicDialogFragment : Fragment() {
     private lateinit var anticoagulantsSwitch: Switch
     private lateinit var antiplateletsSwitch: Switch
 
+    private lateinit var root: View
+
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
@@ -35,7 +41,7 @@ class AnagraphicDialogFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_anagrafic, container, false)
+        root = inflater.inflate(R.layout.fragment_anagrafic, container, false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
@@ -81,6 +87,16 @@ class AnagraphicDialogFragment : Fragment() {
         val stateAsJson = gson.toJson(anagraphicData, AnagraphicData::class.java)
         sharedPreferences.edit().putString("anagraphicData", stateAsJson).apply()
         HistoryManager.addEntry(anagraphicData, sharedPreferences)
+        RetrofitClient.service.postPatientAnagraphicData(DtPatientData("evento","missione",
+                DtAnagraphicData(nameEditText.text.toString(),
+                                surnameEditText.text.toString(),
+                                residenceEditText.text.toString(),
+                                birthplaceEditText.text.toString(),
+                                birthdayEditText.text.toString(),
+                                root.findViewById<RadioButton>(genderRadioGroup.checkedRadioButtonId).text.toString(),
+                                anticoagulantsSwitch.isChecked,
+                                antiplateletsSwitch.isChecked)))
+
         super.onStop()
     }
 
