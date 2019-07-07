@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import it.unibo.preh_frontend.utils.PermissionManager
 import it.unibo.preh_frontend.dialog.TerminatePreH
+import it.unibo.preh_frontend.utils.RetrofitClient
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         }
         PermissionManager.checkPermission(this, this,
                 Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+        RetrofitClient.obtainServiceLocation()
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()

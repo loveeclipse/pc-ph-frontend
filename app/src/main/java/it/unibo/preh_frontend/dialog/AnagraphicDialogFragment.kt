@@ -87,17 +87,21 @@ class AnagraphicDialogFragment : Fragment() {
         val stateAsJson = gson.toJson(anagraphicData, AnagraphicData::class.java)
         sharedPreferences.edit().putString("anagraphicData", stateAsJson).apply()
         HistoryManager.addEntry(anagraphicData, sharedPreferences)
-        RetrofitClient.service.postPatientAnagraphicData(DtPatientData("evento","missione",
-                DtAnagraphicData(nameEditText.text.toString(),
-                                surnameEditText.text.toString(),
-                                residenceEditText.text.toString(),
-                                birthplaceEditText.text.toString(),
-                                birthdayEditText.text.toString(),
-                                root.findViewById<RadioButton>(genderRadioGroup.checkedRadioButtonId).text.toString(),
-                                anticoagulantsSwitch.isChecked,
-                                antiplateletsSwitch.isChecked)))
-
+        sendDataToDt()
         super.onStop()
+    }
+
+    private fun sendDataToDt(){
+        //Gli evento e missione dovranno essere quelli ottenuti dal servizio
+        RetrofitClient.patientService.postPatientAnagraphicData(DtPatientData("evento","missione",
+                DtAnagraphicData(nameEditText.text.toString(),
+                        surnameEditText.text.toString(),
+                        residenceEditText.text.toString(),
+                        birthplaceEditText.text.toString(),
+                        birthdayEditText.text.toString(),
+                        root.findViewById<RadioButton>(genderRadioGroup.checkedRadioButtonId).text.toString(),
+                        anticoagulantsSwitch.isChecked,
+                        antiplateletsSwitch.isChecked)))
     }
 
     private fun applySharedPreferences(anagraphicData: AnagraphicData) {
