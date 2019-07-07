@@ -14,8 +14,7 @@ import android.widget.Switch
 import com.google.gson.Gson
 
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.dt_model.DtAnagraphicData
-import it.unibo.preh_frontend.dt_model.DtPatientData
+import it.unibo.preh_frontend.dt_model.PatientData
 import it.unibo.preh_frontend.model.AnagraphicData
 import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.utils.RetrofitClient
@@ -93,8 +92,8 @@ class AnagraphicDialogFragment : Fragment() {
 
     private fun sendDataToDt(){
         //Gli evento e missione dovranno essere quelli ottenuti dal servizio
-        RetrofitClient.patientService.postPatientAnagraphicData(DtPatientData("evento","missione",
-                DtAnagraphicData(nameEditText.text.toString(),
+        RetrofitClient.patientService.postPatientAnagraphicData(PatientData("evento","missione",
+                it.unibo.preh_frontend.dt_model.AnagraphicData(nameEditText.text.toString(),
                         surnameEditText.text.toString(),
                         residenceEditText.text.toString(),
                         birthplaceEditText.text.toString(),
