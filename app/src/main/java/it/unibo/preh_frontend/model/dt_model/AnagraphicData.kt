@@ -1,4 +1,4 @@
-package it.unibo.preh_frontend.dt_model
+package it.unibo.preh_frontend.model.dt_model
 
 data class AnagraphicData(val name: String = "",
                           val surname: String = "",
