@@ -90,9 +90,9 @@ class AnagraphicDialogFragment : Fragment() {
         super.onStop()
     }
 
-    private fun sendDataToDt(){
-        //Gli evento e missione dovranno essere quelli ottenuti dal servizio
-        RetrofitClient.patientService.postPatientAnagraphicData(PatientData("evento","missione",
+    private fun sendDataToDt() {
+        // Gli evento e missione dovranno essere quelli ottenuti dal servizio
+        RetrofitClient.patientService.postPatientAnagraphicData(PatientData("evento", "missione",
                 it.unibo.preh_frontend.model.dt_model.AnagraphicData(nameEditText.text.toString(),
                         surnameEditText.text.toString(),
                         residenceEditText.text.toString(),

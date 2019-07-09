@@ -1,8 +1,6 @@
 package it.unibo.preh_frontend.utils
 
 import android.util.Log
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import it.unibo.preh_frontend.utils.api.DiscoveryApi
 import it.unibo.preh_frontend.utils.api.EventPreHApi
 import it.unibo.preh_frontend.utils.api.MissionPreHApi
@@ -33,53 +31,50 @@ object RetrofitClient {
 
     var discoveryService: DiscoveryApi = retrofitClient.baseUrl(discoveryServiceUrl).build().create(DiscoveryApi::class.java)
 
-
-    fun obtainServiceLocation(){
-        //I vari baseUrl saranno ottenuti dal discoveryService all'avvio applicazione
-        discoveryService.getService("patients-service").enqueue(object : Callback<String>{
+    fun obtainServiceLocation() {
+        // I vari baseUrl saranno ottenuti dal discoveryService all'avvio applicazione
+        discoveryService.getService("patients-service").enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>?, response: Response<String>?) {
-                Log.d("TEST",response!!.body())
-                Log.d("TEST",response.message())
+                Log.d("TEST", response!!.body())
+                Log.d("TEST", response.message())
                 patientServiceUrl = response!!.body()
                 patientService = retrofitClient.baseUrl(patientServiceUrl).build().create(PatientPreHApi::class.java)
             }
 
             override fun onFailure(call: Call<String>?, t: Throwable?) {
-                Log.d("TEST",call!!.request().url().toString())
+                Log.d("TEST", call!!.request().url().toString())
                 t!!.printStackTrace()
-                Log.e("ERROR","FAILED TO OBTAIN SERVICE LOCATION")
+                Log.e("ERROR", "FAILED TO OBTAIN SERVICE LOCATION")
             }
         })
-        discoveryService.getService("events-service").enqueue(object : Callback<String>{
+        discoveryService.getService("events-service").enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>?, response: Response<String>?) {
-                Log.d("TEST",response!!.body())
+                Log.d("TEST", response!!.body())
                 eventServiceUrl = response!!.body()
                 eventService = retrofitClient.baseUrl(eventServiceUrl).build().create(EventPreHApi::class.java)
             }
 
             override fun onFailure(call: Call<String>?, t: Throwable?) {
                 t!!.printStackTrace()
-                Log.d("TEST",call!!.request().url().toString())
-                Log.e("ERROR","FAILED TO OBTAIN SERVICE LOCATION")
+                Log.d("TEST", call!!.request().url().toString())
+                Log.e("ERROR", "FAILED TO OBTAIN SERVICE LOCATION")
             }
         })
 
-        discoveryService.getService("missions-service").enqueue(object : Callback<String>{
+        discoveryService.getService("missions-service").enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>?, response: Response<String>?) {
-                Log.d("TEST",response!!.body())
+                Log.d("TEST", response!!.body())
                 missionServiceUrl = response!!.body()
                 missionService = retrofitClient.baseUrl(eventServiceUrl).build().create(MissionPreHApi::class.java)
-
             }
 
             override fun onFailure(call: Call<String>?, t: Throwable?) {
                 t!!.printStackTrace()
-                Log.d("TEST",call!!.request().url().toString())
-                Log.e("ERROR","FAILED TO OBTAIN SERVICE LOCATION")
+                Log.d("TEST", call!!.request().url().toString())
+                Log.e("ERROR", "FAILED TO OBTAIN SERVICE LOCATION")
             }
         })
 
-        //TODO Controllare che il discovery ritorni il path intero e non solo ip e porta
+        // TODO Controllare che il discovery ritorni il path intero e non solo ip e porta
     }
-
 }
