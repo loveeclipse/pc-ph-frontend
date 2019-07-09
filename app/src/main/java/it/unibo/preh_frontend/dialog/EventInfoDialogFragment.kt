@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import it.unibo.preh_frontend.R
+import it.unibo.preh_frontend.utils.RetrofitClient
+
 class EventInfoDialogFragment : Fragment() {
 
     override fun onCreateView(
@@ -17,6 +19,7 @@ class EventInfoDialogFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_event_info, container, false)
 
         // GET THE PCCAR DATA (MOCK)
+        val eventInformation = RetrofitClient.getEventInformation()
 
         return root
     }

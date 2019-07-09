@@ -15,6 +15,9 @@ import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.NewPcCarReturnData
 import it.unibo.preh_frontend.utils.HistoryManager
+import it.unibo.preh_frontend.model.dt_model.TrackingStep
+import it.unibo.preh_frontend.utils.RetrofitClient
+import it.unibo.preh_frontend.model.dt_model.ReturnInformation
 
 class NewPcCarReturnDialogFragment : NewPcCarItemsDialogFragment() {
     private lateinit var returnCode: Spinner
@@ -87,6 +90,11 @@ class NewPcCarReturnDialogFragment : NewPcCarItemsDialogFragment() {
             val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
             sharedPreferences.edit().putString(it, Gson().toJson(newPcCarReturnData)).apply()
             HistoryManager.addEntry(newPcCarReturnData, sharedPreferences)
+
+            RetrofitClient.sendTrackingStep("departure-onsite",
+                                                    TrackingStep(newPcCarReturnData.eventTime, newPcCarReturnData.place))
+            RetrofitClient.sendReturnInformation(ReturnInformation(newPcCarReturnData.returnCode,
+                                                        hospital.selectedItem.toString(), null))
         }
     }
 

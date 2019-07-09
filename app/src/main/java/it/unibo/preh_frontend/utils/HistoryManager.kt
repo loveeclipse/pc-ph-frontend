@@ -22,7 +22,7 @@ object HistoryManager {
     private val historyType = object : TypeToken<ArrayList<PreHData>>() {}.type
     private val typeFactory = RuntimeTypeAdapterFactory
             .of(PreHData::class.java, "type")
-            .registerSubtype(AnagraphicData::class.java, "AnagraphicData")
+            .registerSubtype(AnagraphicData::class.java, "Anagraphic")
             .registerSubtype(ComplicationsHistoryData::class.java, "ComplicationsHistoryData")
             .registerSubtype(ManeuverData::class.java, "ManeuverData")
             .registerSubtype(ManeuverHistoryData::class.java, "ManeuverHistoryData")

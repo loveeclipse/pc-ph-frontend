@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import it.unibo.preh_frontend.R
 import android.widget.ArrayAdapter
+import it.unibo.preh_frontend.utils.DtIdentifiers
 
 class LoginFragment : Fragment() {
 
@@ -39,6 +40,10 @@ class LoginFragment : Fragment() {
 
         root.findViewById<Button>(R.id.confirmButton).setOnClickListener {
             setDoctorAndVehicle("Dott. " + medicSpinner.selectedItem.toString(), vehicleSpinner.selectedItem.toString())
+            DtIdentifiers.vehicle = vehicleSpinner.selectedItem.toString()
+            DtIdentifiers.doctor = medicSpinner.selectedItem.toString()
+            // Obtain eventUuid and missionUuid
+            // Update medic to missionService
             findNavController().navigate(R.id.action_login_to_home)
         }
         return root

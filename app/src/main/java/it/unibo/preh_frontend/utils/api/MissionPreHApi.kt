@@ -1,44 +1,43 @@
 package it.unibo.preh_frontend.utils.api
 
-import it.unibo.preh_frontend.model.dt_model.TimelineItem
+import it.unibo.preh_frontend.model.dt_model.OngoingMissions
+import it.unibo.preh_frontend.model.dt_model.ReturnInformation
+import it.unibo.preh_frontend.model.dt_model.TrackingStep
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MissionPreHApi {
-    @PUT("/events-tracking/{eventId}/missions/{missionId}/chosen-hospital'")
-    fun insertChosenHospital(@Path("eventId") eventId: String,
-                             @Path("missionId") missionId: String,
-                             @Body chosenHospital: String) : Call<Void>
+    @GET("/missions")
+    fun getOngoingMissions(
+        @Query("vehicle") vehicle: String,
+        @Query("ongoing") ongoing: Boolean = true
+    ): Call<OngoingMissions>
 
-    @PUT("/events-tracking/{eventId}/missions/{missionId}/timeline/oc-call'")
-    fun setOcCall(@Path("eventId") eventId: String,
-                  @Path("missionId") missionId: String,
-                  @Body ocCall: TimelineItem): Call<Void>
+    @PUT("/missions/{missionId}/return-information")
+    fun insertReturnInformation(
+        @Path("missionId") missionId: String,
+        @Body returnInformation: ReturnInformation
+    ): Call<Void>
 
-    @PUT("/events-tracking/{eventId}/mission/{missionId}/timeline/crew-departure")
-    fun setCrewDeparture(@Path("eventId") eventId: String,
-                         @Path("missionId") missionId: String,
-                         @Body crewDeparture: TimelineItem): Call<Void>
+    @PUT("/missions/{missionId}/tracking/{trackingStep}'")
+    fun putNewTrackingStep(
+        @Path("missionId") missionId: String,
+        @Path("trackingStep") trackingStep: String,
+        @Body missionTrackingItem: TrackingStep
+    ): Call<Void>
+    @PUT("/missions/{missionId}/ongoing")
+    fun putOngoingStatus(
+        @Path("missionId") missionId: String,
+        @Body ongoing: Boolean
+    ): Call<Void>
 
-    @PUT("/events-tracking/{eventId}/missions/{missionId}/timeline/arrival-onsite")
-    fun setArrivalOnSite(@Path("eventId") eventId: String,
-                         @Path("missionId") missionId: String,
-                         @Body siteArrival: TimelineItem): Call<Void>
-
-    @PUT("/events-tracking/{eventId}/missions/{missionId}/timeline/departure-onsite")
-    fun setDepartureFromSite(@Path("eventId") eventId: String,
-                         @Path("missionId") missionId: String,
-                         @Body siteDeparture: TimelineItem): Call<Void>
-
-    @PUT("/events-tracking/{eventId}/events/{missionId}/timeline/landing-helipad")
-    fun setLandingOnHelipad(@Path("eventId") eventId: String,
-                         @Path("missionId") missionId: String,
-                         @Body landing: TimelineItem): Call<Void>
-
-    @PUT("/events-tracking/{eventId}/missions/{missionId}/timeline/arrival-er")
-    fun setArrivalAtER(@Path("eventId") eventId: String,
-                         @Path("missionId") missionId: String,
-                         @Body arrivalER: TimelineItem): Call<Void>
+    @PUT("missions/{missionId}/medic")
+    fun putMissionMedic(
+        @Path("missionId") missionId: String,
+        @Body medic: String
+    ): Call<Void>
 }

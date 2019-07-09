@@ -14,8 +14,8 @@ import android.widget.Switch
 import com.google.gson.Gson
 
 import it.unibo.preh_frontend.R
-import it.unibo.preh_frontend.model.dt_model.PatientData
 import it.unibo.preh_frontend.model.AnagraphicData
+import it.unibo.preh_frontend.model.dt_model.Anagraphic
 import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.utils.RetrofitClient
 
@@ -86,21 +86,20 @@ class AnagraphicDialogFragment : Fragment() {
         val stateAsJson = gson.toJson(anagraphicData, AnagraphicData::class.java)
         sharedPreferences.edit().putString("anagraphicData", stateAsJson).apply()
         HistoryManager.addEntry(anagraphicData, sharedPreferences)
-        sendDataToDt()
+        addAnagraphicToPatientDt()
         super.onStop()
     }
 
-    private fun sendDataToDt(){
-        //Gli evento e missione dovranno essere quelli ottenuti dal servizio
-        RetrofitClient.patientService.postPatientAnagraphicData(PatientData("evento","missione",
-                it.unibo.preh_frontend.model.dt_model.AnagraphicData(nameEditText.text.toString(),
-                        surnameEditText.text.toString(),
-                        residenceEditText.text.toString(),
-                        birthplaceEditText.text.toString(),
-                        birthdayEditText.text.toString(),
-                        root.findViewById<RadioButton>(genderRadioGroup.checkedRadioButtonId).text.toString(),
-                        anticoagulantsSwitch.isChecked,
-                        antiplateletsSwitch.isChecked)))
+    private fun addAnagraphicToPatientDt() {
+        // Gli evento e missione dovranno essere quelli ottenuti dal servizio
+        RetrofitClient.putAnagraphicData(Anagraphic(nameEditText.text.toString(),
+                                                    surnameEditText.text.toString(),
+                                                    residenceEditText.text.toString(),
+                                                    birthplaceEditText.text.toString(),
+                                                    birthdayEditText.text.toString(),
+                                                    root.findViewById<RadioButton>(genderRadioGroup.checkedRadioButtonId).text.toString(),
+                                                    anticoagulantsSwitch.isChecked,
+                                                    antiplateletsSwitch.isChecked))
     }
 
     private fun applySharedPreferences(anagraphicData: AnagraphicData) {

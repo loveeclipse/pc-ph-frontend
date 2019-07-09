@@ -7,5 +7,5 @@ import retrofit2.http.Path
 
 interface EventPreHApi {
     @GET("events/{eventId}")
-    fun getEventData(@Path("eventId") eventId : String) : Call<EventInformation>
+    fun getEventData(@Path("eventId") eventId: String): Call<EventInformation>
 }

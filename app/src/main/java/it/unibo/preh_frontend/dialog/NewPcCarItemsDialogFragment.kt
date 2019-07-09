@@ -24,7 +24,9 @@ import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.utils.PermissionManager
 import it.unibo.preh_frontend.model.NewPcCarData
 import it.unibo.preh_frontend.utils.HistoryManager
+import it.unibo.preh_frontend.utils.RetrofitClient
 import java.io.IOException
+import it.unibo.preh_frontend.model.dt_model.TrackingStep
 import java.util.Locale
 
 open class NewPcCarItemsDialogFragment : DialogFragment() {
@@ -128,6 +130,15 @@ open class NewPcCarItemsDialogFragment : DialogFragment() {
             val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
             sharedPreferences.edit().putString(it, Gson().toJson(newPcCarData)).apply()
             HistoryManager.addEntry(newPcCarData, sharedPreferences)
+            when (it) {
+                resources.getString(R.string.partenza_dell_equipaggio) ->
+                    RetrofitClient.sendTrackingStep("crew-departure", TrackingStep(newPcCarData.eventTime, newPcCarData.place))
+                resources.getString(R.string.arrivo_sul_luogo_dell_incidente) ->
+                    RetrofitClient.sendTrackingStep("arrival-onsite", TrackingStep(newPcCarData.eventTime, newPcCarData.place))
+                resources.getString(R.string.atterraggio_in_eliporto) ->
+                    RetrofitClient.sendTrackingStep("landing-helipad", TrackingStep(newPcCarData.eventTime, newPcCarData.place))
+                else -> {}
+            }
         }
         super.onCancel(dialog)
     }
