@@ -27,6 +27,8 @@ import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.utils.RetrofitClient
 import java.io.IOException
 import it.unibo.preh_frontend.model.dt_model.TrackingStep
+import it.unibo.preh_frontend.model.dt_model.PatientData
+import it.unibo.preh_frontend.utils.DtIdentifiers
 import java.util.Locale
 
 open class NewPcCarItemsDialogFragment : DialogFragment() {
@@ -133,8 +135,10 @@ open class NewPcCarItemsDialogFragment : DialogFragment() {
             when (it) {
                 resources.getString(R.string.partenza_dell_equipaggio) ->
                     RetrofitClient.sendTrackingStep("crew-departure", TrackingStep(newPcCarData.eventTime, newPcCarData.place))
-                resources.getString(R.string.arrivo_sul_luogo_dell_incidente) ->
+                resources.getString(R.string.arrivo_sul_luogo_dell_incidente) -> {
                     RetrofitClient.sendTrackingStep("arrival-onsite", TrackingStep(newPcCarData.eventTime, newPcCarData.place))
+                    RetrofitClient.createPatient(PatientData(DtIdentifiers.assignedEvent!!, DtIdentifiers.assignedMission!!))
+                }
                 resources.getString(R.string.atterraggio_in_eliporto) ->
                     RetrofitClient.sendTrackingStep("landing-helipad", TrackingStep(newPcCarData.eventTime, newPcCarData.place))
                 else -> {}

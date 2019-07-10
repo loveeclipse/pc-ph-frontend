@@ -2,11 +2,19 @@ package it.unibo.preh_frontend.utils
 
 object DtIdentifiers {
 
-    // UUID
-    lateinit var assignedEvent: String
-    lateinit var assignedMission: String
-    lateinit var patientId: String
+    // UUID's
+    var assignedEvent: String? = null
+    var assignedMission: String? = null
+    var patientId: String? = null
 
-    lateinit var vehicle: String
-    lateinit var doctor: String
+    var vehicle: String? = null
+    var doctor: String? = null
+
+    fun clear() {
+        assignedEvent = null
+        assignedMission = null
+        patientId = null
+        vehicle = null
+        doctor = null
+    }
 }

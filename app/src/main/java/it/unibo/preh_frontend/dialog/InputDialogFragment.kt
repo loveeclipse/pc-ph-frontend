@@ -15,7 +15,12 @@ import com.google.gson.Gson
 
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.DrugsData
+import it.unibo.preh_frontend.model.dt_model.Drug
 import it.unibo.preh_frontend.utils.HistoryManager
+import it.unibo.preh_frontend.utils.RetrofitClient
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.Calendar
 
 class InputDialogFragment : DialogFragment() {
 
@@ -49,11 +54,30 @@ class InputDialogFragment : DialogFragment() {
                 unitEditText.text.toString(),
                 "Somministrazione ${inputValueEditText.text} ${unitEditText.text} ${arguments?.get(drugName)}"
         )
+        val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+        sendDrugToDt(time)
         val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         sharedPreferences.edit().putString("DrugsData", Gson().toJson(drugsData)).apply()
         HistoryManager.addEntry(drugsData, sharedPreferences)
 
         super.onCancel(dialog)
+    }
+
+    private fun sendDrugToDt(time: String) {
+        val dtDrugName = when(arguments?.get(drugName).toString()){
+            this.getString(R.string.cristalloidi) -> "crystalloids"
+            this.getString(R.string.succinilcolina) -> "succinylcholine"
+            this.getString(R.string.fentanil) -> "fentanyl"
+            this.getString(R.string.ketamina) -> "ketamine"
+            else -> ""
+        }
+        if(dtDrugName != "") {
+            val drug = Drug(dtDrugName,
+                    inputValueEditText.text.toString().toInt(),
+                    unitEditText.text.toString(),
+                    time)
+            RetrofitClient.postDrugs(drug)
+        }
     }
 
     override fun onResume() {

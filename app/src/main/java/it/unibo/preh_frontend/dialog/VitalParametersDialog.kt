@@ -14,13 +14,19 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageButton
+import android.widget.RadioButton
 import androidx.appcompat.app.AlertDialog
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.dialog.history.HistoryVitalParametersDialog
 import it.unibo.preh_frontend.model.VitalParametersData
+import it.unibo.preh_frontend.model.dt_model.VitalParameters
 import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.utils.PhysiologicaCriteriaManager
+import it.unibo.preh_frontend.utils.RetrofitClient
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.Calendar
 
 class VitalParametersDialog : HistoryVitalParametersDialog() {
 
@@ -29,9 +35,10 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
     private var parentDialog: Dialog? = null
     private var mLastClickTime = SystemClock.elapsedRealtime()
     private lateinit var saveState: VitalParametersData
+    private lateinit var root: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_vital_parameters, container, false)
+        root = inflater.inflate(R.layout.fragment_vital_parameters, container, false)
         parentDialog = dialog
         isCancelable = false
         dialog?.setCanceledOnTouchOutside(false)
@@ -80,7 +87,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
                 } else {
                     builder.apply {
                         setTitle("Uscire senza salvare?")
-                        setMessage("Inserimento incompleto")
+                        setMessage("Inserimento incompleto o errato")
                         setPositiveButton("Si") { dialog, _ ->
                             dialog.cancel()
                             parentDialog?.dismiss()
@@ -176,7 +183,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
                 capillarFillingTimeRadioGroup.checkedRadioButtonId != -1 &&
                 mucousSkinColourRadiogroup.checkedRadioButtonId != -1 &&
                 pupilSxRadiogroup.checkedRadioButtonId != -1 &&
-                pupilDXRadiogroup.checkedRadioButtonId != -1 &&
+                pupilDxRadiogroup.checkedRadioButtonId != -1 &&
                 bodyTempEditText.text.toString() != "")
     }
 
@@ -198,7 +205,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
                     verbalResponseSpinner.setSelection(newSaveState.verbalResponse)
                     motorResponseSpinner.setSelection(newSaveState.motorResponse)
                     pupilSxRadiogroup.check(newSaveState.pupilSx)
-                    pupilDXRadiogroup.check(newSaveState.pupilDx)
+                    pupilDxRadiogroup.check(newSaveState.pupilDx)
                     photoreagentSxSwitch.isChecked = newSaveState.photoreagentSx
                     photoreagentDxSwitch.isChecked = newSaveState.photoreagentDx
                     bodyTempEditText.setText(newSaveState.temperature.toString())
@@ -221,16 +228,73 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
                 verbalResponseSpinner.selectedItemPosition,
                 motorResponseSpinner.selectedItemPosition,
                 pupilSxRadiogroup.checkedRadioButtonId,
-                pupilDXRadiogroup.checkedRadioButtonId,
+                pupilDxRadiogroup.checkedRadioButtonId,
                 photoreagentSxSwitch.isChecked,
                 photoreagentDxSwitch.isChecked,
                 bodyTempEditText.text.toString().toDouble()
         )
+        sendVitalParametersToDt()
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState)
         sharedPreferences.edit().putString("vitalParameters", stateAsJson).apply()
         HistoryManager.addEntry(saveState, sharedPreferences)
         super.onCancel(dialog)
+    }
+
+    private fun sendVitalParametersToDt() {
+        val airways = when(airwaysRadiogroup.checkedRadioButtonId){
+            R.id.pervious_radio -> "open"
+            R.id.impervious_radio -> "closed"
+            else -> "open"
+        }
+        val beatType = when(beatTypeRadiogroup.checkedRadioButtonId){
+            R.id.rithmic_radio -> "rithmic"
+            R.id.arithmic_radio -> "arithmic"
+            else -> "rithmic"
+        }
+        val capillarFillingTime = when(capillarFillingTimeRadioGroup.checkedRadioButtonId){
+            R.id.normal_radio -> "normal"
+            R.id.increased_radio -> "augmented"
+            R.id.null_radio -> "none"
+            else -> "normal"
+        }
+        val skinColor = when(mucousSkinColourRadiogroup.checkedRadioButtonId){
+            R.id.color_normal_radio -> "normal"
+            R.id.pale_radio -> "pale"
+            R.id.cyanotic_radio -> "cyanotic"
+            else -> "normal"
+        }
+        val leftPupil = when(pupilSxRadiogroup.checkedRadioButtonId){
+            R.id.normalSx_radio -> "normal"
+            R.id.midriasisSx_radio -> "mydriasis"
+            R.id.miosisSx_radio -> "miosis"
+            else -> "normal"
+        }
+        val rightPupil = when(pupilDxRadiogroup.checkedRadioButtonId){
+            R.id.normalDx_radio -> "normal"
+            R.id.midriasisDx_radio -> "mydriasis"
+            R.id.miosisDx_radio -> "miosis"
+            else -> "normal"
+        }
+        val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+        val vitalParameters = VitalParameters(airways,
+                respiratoryFreqSpinner.selectedItem.toString(),
+                saveState.periphericalSaturation,
+                saveState.cardiacFrequency,
+                beatType,
+                saveState.bloodPressure,
+                capillarFillingTime,
+                skinColor,
+                eyesOpeningSpinner.selectedItem.toString(),
+                verbalResponseSpinner.selectedItem.toString(),
+                motorResponseSpinner.selectedItem.toString(),
+                leftPupil,
+                rightPupil,
+                saveState.photoreagentSx,
+                saveState.photoreagentDx,
+                saveState.temperature,
+                time)
+        RetrofitClient.postPatientVitalParameters(vitalParameters)
     }
 
     override fun onResume() {

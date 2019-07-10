@@ -96,7 +96,7 @@ open class HistoryPatientStatusDialog : DialogFragment() {
             activateButton(piercingButton, resources)
         }
         helmetBeltSwitch.isChecked = data.helmetBelt
-        hemorrageSwitch.isChecked = data.hemorrage
+        hemorrageSwitch.isChecked = data.hemorrhage
         airwaysSwitch.isChecked = data.airways
         tachipneaDyspneaSwitch.isChecked = data.tachipnea
         voletSwitch.isChecked = data.costalVolet

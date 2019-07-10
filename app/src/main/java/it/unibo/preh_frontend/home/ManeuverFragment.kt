@@ -11,12 +11,15 @@ import android.widget.Button
 import android.widget.Switch
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
-
+import it.unibo.preh_frontend.utils.RetrofitClient
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.ManeuverData
 import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.dialog.PacingDialogFragment
 import it.unibo.preh_frontend.model.ManeuverHistoryData
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.Calendar
 
 class ManeuverFragment : Fragment() {
 
@@ -43,19 +46,49 @@ class ManeuverFragment : Fragment() {
         getComponents(root)
 
         cervicalCollarSwitch.setOnClickListener {
-            setHistoryStatus(cervicalCollarSwitch.isChecked, this.getString(R.string.collare_cervicale))
+            if (cervicalCollarSwitch.isChecked) {
+                val time: String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+                RetrofitClient.postSimpleManeuver("cervical-collar", time)
+                setHistoryStatus(cervicalCollarSwitch.isChecked, this.getString(R.string.collare_cervicale))
+            } else {
+                RetrofitClient.deleteSimpleManeuver("cervical-collar")
+            }
         }
         immobilizationSwitch.setOnClickListener {
-            setHistoryStatus(immobilizationSwitch.isChecked, this.getString(R.string.immobilizzazione))
+            if (immobilizationSwitch.isChecked) {
+                val time: String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+                RetrofitClient.postSimpleManeuver("immobilisation", time)
+                setHistoryStatus(immobilizationSwitch.isChecked, this.getString(R.string.immobilizzazione))
+            } else {
+                RetrofitClient.deleteSimpleManeuver("immobilisation")
+            }
         }
         electricalCardioversionSwitch.setOnClickListener {
-            setHistoryStatus(electricalCardioversionSwitch.isChecked, this.getString(R.string.cardioversione_elettrica_sincronizzata))
+            if (electricalCardioversionSwitch.isChecked) {
+                val time: String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+                RetrofitClient.postSimpleManeuver("electrical-cardioversion", time)
+                setHistoryStatus(electricalCardioversionSwitch.isChecked, this.getString(R.string.cardioversione_elettrica_sincronizzata))
+            } else {
+                RetrofitClient.deleteSimpleManeuver("electrical-cardioversion")
+            }
         }
         gastricProbeSwitch.setOnClickListener {
-            setHistoryStatus(gastricProbeSwitch.isChecked, this.getString(R.string.sonda_gastrica))
+            if (gastricProbeSwitch.isChecked) {
+                val time: String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+                RetrofitClient.postSimpleManeuver("feeding-tube", time)  //TODO Controlla se non mettere gastric-probe
+                setHistoryStatus(gastricProbeSwitch.isChecked, this.getString(R.string.sonda_gastrica))
+            } else {
+                RetrofitClient.deleteSimpleManeuver("feeding-tube")
+            }
         }
         bladderProbeSwitch.setOnClickListener {
-            setHistoryStatus(bladderProbeSwitch.isChecked, this.getString(R.string.sonda_vescicale))
+            if (bladderProbeSwitch.isChecked) {
+                val time: String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+                RetrofitClient.postSimpleManeuver("vesical-catheter", time)
+                setHistoryStatus(bladderProbeSwitch.isChecked, this.getString(R.string.sonda_vescicale))
+            } else {
+                RetrofitClient.deleteSimpleManeuver("vesical-catheter")
+            }
         }
         root.findViewById<Button>(R.id.pacing_button).setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("fragment_pacing_dialog") == null)

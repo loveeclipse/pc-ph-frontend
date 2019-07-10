@@ -91,15 +91,23 @@ class AnagraphicDialogFragment : Fragment() {
     }
 
     private fun addAnagraphicToPatientDt() {
-        // Gli evento e missione dovranno essere quelli ottenuti dal servizio
-        RetrofitClient.putAnagraphicData(Anagraphic(nameEditText.text.toString(),
-                                                    surnameEditText.text.toString(),
-                                                    residenceEditText.text.toString(),
-                                                    birthplaceEditText.text.toString(),
-                                                    birthdayEditText.text.toString(),
-                                                    root.findViewById<RadioButton>(genderRadioGroup.checkedRadioButtonId).text.toString(),
+        val gender = when(genderRadioGroup.checkedRadioButtonId){
+            R.id.male_radio -> "male"
+            R.id.female_radio -> "female"
+            else -> null
+        }
+        RetrofitClient.putAnagraphicData(Anagraphic(nullEmptyField(nameEditText.text.toString()),
+                                                    nullEmptyField(surnameEditText.text.toString()),
+                                                    nullEmptyField(residenceEditText.text.toString()),
+                                                    nullEmptyField(birthplaceEditText.text.toString()),
+                                                    nullEmptyField(birthdayEditText.text.toString()),
+                                                    gender,
                                                     anticoagulantsSwitch.isChecked,
                                                     antiplateletsSwitch.isChecked))
+    }
+
+    private fun nullEmptyField(text: String): String? {
+        return if(text == "") null else text
     }
 
     private fun applySharedPreferences(anagraphicData: AnagraphicData) {

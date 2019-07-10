@@ -17,6 +17,10 @@ import it.unibo.preh_frontend.model.ComplicationsHistoryData
 import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
+import it.unibo.preh_frontend.utils.RetrofitClient
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.Calendar
 
 class ComplicationsFragment : Fragment() {
 
@@ -33,6 +37,9 @@ class ComplicationsFragment : Fragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
 
+    private var deathInItinere = false
+    private var deathInPs = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,27 +53,72 @@ class ComplicationsFragment : Fragment() {
         getComponents(root)
 
         cardioCirculatoryShockSwitch.setOnClickListener {
-            setHistoryStatus(cardioCirculatoryShockSwitch.isChecked, this.getString(R.string.shock_cardiocircolatorio))
+            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            if (cardioCirculatoryShockSwitch.isChecked) {
+                setHistoryStatus(cardioCirculatoryShockSwitch.isChecked, this.getString(R.string.shock_cardiocircolatorio))
+                RetrofitClient.postComplication("cardiocirculatory-shock",time)
+            } else {
+                RetrofitClient.deleteComplication("cardiocirculatory-shock")
+            }
         }
         deterioratingStateConsciousnessSwitch.setOnClickListener {
-            setHistoryStatus(deterioratingStateConsciousnessSwitch.isChecked, this.getString(R.string.deterioramento_stato_di_coscenza))
+            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            if (deterioratingStateConsciousnessSwitch.isChecked) {
+                setHistoryStatus(deterioratingStateConsciousnessSwitch.isChecked, this.getString(R.string.deterioramento_stato_di_coscenza))
+                RetrofitClient.postComplication("impaired-consciousness",time)
+            } else {
+            }
         }
         anisoMidriasiSwitch.setOnClickListener {
-            setHistoryStatus(anisoMidriasiSwitch.isChecked, this.getString(R.string.anisocoria_midriasi))
+            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            if (anisoMidriasiSwitch.isChecked) {
+                setHistoryStatus(anisoMidriasiSwitch.isChecked, this.getString(R.string.anisocoria_midriasi))
+                RetrofitClient.postComplication("anisocoria-mydriasis",time)
+            } else {
+                RetrofitClient.deleteComplication("anisocoria-mydriasis")
+            }
         }
         respiratoryFailureSwitch.setOnClickListener {
-            setHistoryStatus(respiratoryFailureSwitch.isChecked, this.getString(R.string.insufficienza_respiratoria))
+            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            if (respiratoryFailureSwitch.isChecked) {
+                setHistoryStatus(respiratoryFailureSwitch.isChecked, this.getString(R.string.insufficienza_respiratoria))
+                RetrofitClient.postComplication("respiratory-failure",time)
+            } else {
+                RetrofitClient.deleteComplication("respiratory-failure")
+            }
         }
         landingInItinereSwitch.setOnClickListener {
-            setHistoryStatus(landingInItinereSwitch.isChecked, this.getString(R.string.atterraggio_in_itinere_per_manovra_terapeutica))
+            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            if (landingInItinereSwitch.isChecked) {
+                setHistoryStatus(landingInItinereSwitch.isChecked, this.getString(R.string.atterraggio_in_itinere_per_manovra_terapeutica))
+                RetrofitClient.postComplication("landing-in-itinere",time)
+            } else {
+                RetrofitClient.deleteComplication("landing-in-itinere")
+            }
         }
         deathInItinereButton.setOnClickListener {
+            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
             setButtonColor(deathInItinereButton, deathArrivalInPSButton, resources,
                     "${this.getString(R.string.decesso)} ${this.getString(R.string.in_itinere)}")
+            if (!deathInItinere) {
+                deathInItinere = true
+                RetrofitClient.postComplication("demise-in-itinere", time) //TODO Controllare se tenere DEMISE
+            } else {
+                deathInItinere = false
+                RetrofitClient.deleteComplication("demise-in-itinere")
+            }
         }
         deathArrivalInPSButton.setOnClickListener {
+            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
             setButtonColor(deathArrivalInPSButton, deathInItinereButton, resources,
                     "${this.getString(R.string.decesso)} ${this.getString(R.string.all_arrivo_in_ps)}")
+            if (!deathInPs) {
+                deathInPs = true
+                RetrofitClient.postComplication("demise-in-ps", time)
+            } else {
+                deathInPs = false
+                RetrofitClient.deleteComplication("demise-in-ps")
+            }
         }
         return root
     }

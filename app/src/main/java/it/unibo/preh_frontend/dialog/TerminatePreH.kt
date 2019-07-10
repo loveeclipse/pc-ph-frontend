@@ -17,7 +17,10 @@ import androidx.navigation.findNavController
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.NewPcCarReturnData
+import it.unibo.preh_frontend.model.dt_model.ReturnInformation
 import it.unibo.preh_frontend.utils.CentralizationManager
+import it.unibo.preh_frontend.utils.DtIdentifiers
+import it.unibo.preh_frontend.utils.RetrofitClient
 
 class TerminatePreH : DialogFragment() {
     private lateinit var returnCodeSpinner: Spinner
@@ -50,6 +53,7 @@ class TerminatePreH : DialogFragment() {
                 builder.apply {
                     setTitle("Conferma Terminazione Pre-H?")
                     setPositiveButton("Si") { dialog, _ ->
+                        sendReturnInformationToDt()
                         dialog.cancel()
                         parentDialog?.cancel()
                         backPressed()
@@ -107,9 +111,23 @@ class TerminatePreH : DialogFragment() {
     }
 
     private fun backPressed() {
+        setMissionOngoingState()
         val sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
         sharedPreferences.edit().clear().apply()
         CentralizationManager.centralizationIsActive = false
+        DtIdentifiers.clear()
         navController.navigate(R.id.action_home_to_login)
+    }
+
+    private fun sendReturnInformationToDt() {
+        if (hospitalPlaceSpinner.selectedItem.toString().equals("Pronto soccorso")) {
+            RetrofitClient.sendReturnInformation(ReturnInformation(returnCodeSpinner.selectedItem.toString().toInt(), hospitalSpinner.selectedItem.toString(), hospitalPlaceSpinner.selectedItem.toString()))
+        } else {
+            RetrofitClient.sendReturnInformation(ReturnInformation(returnCodeSpinner.selectedItem.toString().toInt(), hospitalSpinner.selectedItem.toString(), null))
+        }
+    }
+
+    private fun setMissionOngoingState() {
+        RetrofitClient.putMissionOngoingState(false)
     }
 }

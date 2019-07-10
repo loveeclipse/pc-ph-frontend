@@ -17,6 +17,7 @@ import androidx.navigation.ui.NavigationUI
 import it.unibo.preh_frontend.R
 import android.widget.ArrayAdapter
 import it.unibo.preh_frontend.utils.DtIdentifiers
+import it.unibo.preh_frontend.utils.RetrofitClient
 
 class LoginFragment : Fragment() {
 
@@ -44,6 +45,7 @@ class LoginFragment : Fragment() {
             DtIdentifiers.doctor = medicSpinner.selectedItem.toString()
             // Obtain eventUuid and missionUuid
             // Update medic to missionService
+            RetrofitClient.getOngoingMissions()
             findNavController().navigate(R.id.action_login_to_home)
         }
         return root

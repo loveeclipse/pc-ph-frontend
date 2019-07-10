@@ -289,7 +289,7 @@
                             android:checked="true"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/normalSx_button"/>
+                            android:id="@+id/normalSx_radio"/>
                 </RadioGroup>
                 <Switch
                         android:text="@string/fotoreagente"

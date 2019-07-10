@@ -18,15 +18,22 @@ import it.unibo.preh_frontend.model.AnatomicCriterionData
 import it.unibo.preh_frontend.model.PatientStatusData
 import it.unibo.preh_frontend.model.PhysiologicCriterionData
 import it.unibo.preh_frontend.model.VitalParametersData
+import it.unibo.preh_frontend.model.dt_model.PatientStatus
 import it.unibo.preh_frontend.utils.AnatomicCriteriaManager
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
+import it.unibo.preh_frontend.utils.CentralizationManager
 import it.unibo.preh_frontend.utils.HistoryManager
+import it.unibo.preh_frontend.utils.RetrofitClient
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.Calendar
 
 class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var saveState: PatientStatusData
+    private var ecofastState = false
     private var parentDialog: Dialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -59,11 +66,13 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
             activateButton(positiveEcofastButton, resources)
             deactivateButton(negativeEcofastButton, resources)
             setButtonColor(positiveEcofastButton, resources)
+            ecofastState = true
         }
         negativeEcofastButton.setOnClickListener {
             activateButton(negativeEcofastButton, resources)
             deactivateButton(positiveEcofastButton, resources)
             setButtonColor(negativeEcofastButton, resources)
+            ecofastState = false
         }
 
         anatomicButton.setOnClickListener {
@@ -87,7 +96,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                 closedTrauma = closedButton.isActivated,
                 piercingTrauma = piercingButton.isActivated,
                 helmetBelt = helmetBeltSwitch.isChecked,
-                hemorrage = hemorrageSwitch.isChecked,
+                hemorrhage = hemorrageSwitch.isChecked,
                 airways = airwaysSwitch.isChecked,
                 tachipnea = tachipneaDyspneaSwitch.isChecked,
                 costalVolet = voletSwitch.isChecked,
@@ -99,22 +108,45 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                 otorrhagia = otorrhagiaButton.isActivated,
                 paraparesis = paraparesisButton.isActivated,
                 tetraparesis = tetraparesisButton.isActivated,
-                paresthesia = paresthesiaButton.isActivated,
+                paraesthesia = paresthesiaButton.isActivated,
                 physiologicCriterion = physiologicButton.isActivated,
                 anatomicCriterion = anatomicButton.isActivated,
                 dynamicCriterion = dynamicButton.isActivated,
                 clinicalJudgement = clinicalJudgementButton.isActivated,
                 shockIndex = shockIndexText.text.toString().toDouble()
         )
+        sendStatusToDt()
         val gson = Gson()
         val stateAsJson = gson.toJson(saveState, PatientStatusData::class.java)
         sharedPreferences.edit().putString("patientState", stateAsJson).apply()
         HistoryManager.addEntry(saveState, sharedPreferences)
     }
 
+    private fun sendStatusToDt() {
+        val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+        val patientState = PatientStatus(CentralizationManager.centralizationIsActive,
+                saveState.closedTrauma,
+                saveState.piercingTrauma,
+                saveState.helmetBelt,
+                saveState.hemorrhage,
+                saveState.airways,
+                saveState.tachipnea,
+                saveState.costalVolet,
+                ecofastState,
+                saveState.pelvisStatus,
+                saveState.amputation,
+                saveState.sunkenSkull,
+                saveState.otorrhagia,
+                saveState.paraparesis,
+                saveState.tetraparesis,
+                saveState.paraesthesia,
+                time)
+        RetrofitClient.putPatientStatus(patientState)
+    }
+
     private fun setSharedPreferences() {
         val vitalParametersData = Gson().fromJson(sharedPreferences.getString("vitalParameters", null), VitalParametersData::class.java)
-        if (vitalParametersData != null) {
+        if (vitalParametersData != null && vitalParametersData.bloodPressure != 0 && vitalParametersData.cardiacFrequency != 0) {
             val siSipaValue = (vitalParametersData.cardiacFrequency / vitalParametersData.bloodPressure).toDouble()
             shockIndexText.text = siSipaValue.toString()
         }
@@ -132,7 +164,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                         activateButton(piercingButton, resources)
                     }
                     helmetBeltSwitch.isChecked = patientStatusData.helmetBelt
-                    hemorrageSwitch.isChecked = patientStatusData.hemorrage
+                    hemorrageSwitch.isChecked = patientStatusData.hemorrhage
                     airwaysSwitch.isChecked = patientStatusData.airways
                     tachipneaDyspneaSwitch.isChecked = patientStatusData.tachipnea
                     voletSwitch.isChecked = patientStatusData.costalVolet

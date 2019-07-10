@@ -7,5 +7,5 @@ import java.util.Calendar
 open class PreHData(
     var type: String,
     val eventName: String,
-    val eventTime: String = SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
+    val eventTime: String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
 )

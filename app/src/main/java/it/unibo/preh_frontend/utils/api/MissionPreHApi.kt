@@ -1,5 +1,6 @@
 package it.unibo.preh_frontend.utils.api
 
+import it.unibo.preh_frontend.model.dt_model.MissionInformation
 import it.unibo.preh_frontend.model.dt_model.OngoingMissions
 import it.unibo.preh_frontend.model.dt_model.ReturnInformation
 import it.unibo.preh_frontend.model.dt_model.TrackingStep
@@ -17,13 +18,16 @@ interface MissionPreHApi {
         @Query("ongoing") ongoing: Boolean = true
     ): Call<OngoingMissions>
 
+    @GET("/missions/{missionId}")
+    fun getMissionInformation(@Path("missionId") missionId: String) : Call<MissionInformation>
+
     @PUT("/missions/{missionId}/return-information")
     fun insertReturnInformation(
         @Path("missionId") missionId: String,
         @Body returnInformation: ReturnInformation
     ): Call<Void>
 
-    @PUT("/missions/{missionId}/tracking/{trackingStep}'")
+    @PUT("/missions/{missionId}/tracking/{trackingStep}")
     fun putNewTrackingStep(
         @Path("missionId") missionId: String,
         @Path("trackingStep") trackingStep: String,
