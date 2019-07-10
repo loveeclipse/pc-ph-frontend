@@ -102,8 +102,8 @@ object RetrofitClient {
 
     fun sendTrackingStep(trackingStep: String, trackingStepItem: TrackingStep) {
         if (DtIdentifiers.assignedMission != null) {
-            Log.d("TEST","MISSIONID    ${DtIdentifiers.assignedMission}")
-            Log.d("TEST","TRACKINGSTEP    $trackingStep")
+            Log.d("TEST", "MISSIONID    ${DtIdentifiers.assignedMission}")
+            Log.d("TEST", "TRACKINGSTEP    $trackingStep")
             missionService.putNewTrackingStep(DtIdentifiers.assignedMission!!, trackingStep, trackingStepItem).enqueue(BasicVoidCallback)
         } else {
             Log.e("BAD_ID", "The given id was not yet set")
@@ -143,7 +143,7 @@ object RetrofitClient {
                 override fun onResponse(call: Call<OngoingMissions>, response: Response<OngoingMissions>) {
                     if (response.code() == 200) {
                         val ongoingMissions = OngoingMissions(response.body()!!.ids, response.body()!!.links)
-                        Log.d("TEST","MISIONID   ${ongoingMissions.ids[0]}")
+                        Log.d("TEST", "MISIONID   ${ongoingMissions.ids[0]}")
                         DtIdentifiers.assignedMission = ongoingMissions.ids[0]
                         getMissionInformation()
                         putMissionMedic()
@@ -155,19 +155,18 @@ object RetrofitClient {
         }
     }
 
-    fun getMissionInformation(){
-        if(DtIdentifiers.assignedMission != null){
-            missionService.getMissionInformation(DtIdentifiers.assignedMission!!).enqueue(object : Callback<MissionInformation>{
+    fun getMissionInformation() {
+        if (DtIdentifiers.assignedMission != null) {
+            missionService.getMissionInformation(DtIdentifiers.assignedMission!!).enqueue(object : Callback<MissionInformation> {
                 override fun onFailure(call: Call<MissionInformation>, t: Throwable) {
                     t.printStackTrace()
                     Log.d("TEST", call.request().url().toString())
                 }
 
                 override fun onResponse(call: Call<MissionInformation>, response: Response<MissionInformation>) {
-                   DtIdentifiers.assignedEvent = response.body()!!.eventId
-                   Log.d("TEST","EVENTID     ${DtIdentifiers.assignedEvent}")
+                    DtIdentifiers.assignedEvent = response.body()!!.eventId
+                    Log.d("TEST", "EVENTID     ${DtIdentifiers.assignedEvent}")
                 }
-
             })
         }
     }

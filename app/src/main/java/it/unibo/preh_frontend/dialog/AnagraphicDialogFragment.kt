@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Switch
 import com.google.gson.Gson
@@ -91,7 +90,7 @@ class AnagraphicDialogFragment : Fragment() {
     }
 
     private fun addAnagraphicToPatientDt() {
-        val gender = when(genderRadioGroup.checkedRadioButtonId){
+        val gender = when (genderRadioGroup.checkedRadioButtonId) {
             R.id.male_radio -> "male"
             R.id.female_radio -> "female"
             else -> null
@@ -107,7 +106,7 @@ class AnagraphicDialogFragment : Fragment() {
     }
 
     private fun nullEmptyField(text: String): String? {
-        return if(text == "") null else text
+        return if (text == "") null else text
     }
 
     private fun applySharedPreferences(anagraphicData: AnagraphicData) {

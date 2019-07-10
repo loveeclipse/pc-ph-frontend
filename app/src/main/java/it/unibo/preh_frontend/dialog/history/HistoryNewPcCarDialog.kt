@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import it.unibo.preh_frontend.model.NewPcCarData
 import it.unibo.preh_frontend.R
+import it.unibo.preh_frontend.utils.DateManager
 
 open class HistoryNewPcCarDialog : DialogFragment() {
     open lateinit var type: TextView
@@ -42,7 +43,7 @@ open class HistoryNewPcCarDialog : DialogFragment() {
     private fun setData(data: NewPcCarData) {
         type.text = data.eventName
         place.setText(data.place)
-        time.setText(data.eventTime)
+        time.setText(DateManager.getHistoryRepresentation(data.eventTime))
     }
 
     override fun onResume() {

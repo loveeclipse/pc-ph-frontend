@@ -19,7 +19,7 @@ interface MissionPreHApi {
     ): Call<OngoingMissions>
 
     @GET("/missions/{missionId}")
-    fun getMissionInformation(@Path("missionId") missionId: String) : Call<MissionInformation>
+    fun getMissionInformation(@Path("missionId") missionId: String): Call<MissionInformation>
 
     @PUT("/missions/{missionId}/return-information")
     fun insertReturnInformation(

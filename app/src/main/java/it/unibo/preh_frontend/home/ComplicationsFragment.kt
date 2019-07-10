@@ -56,7 +56,7 @@ class ComplicationsFragment : Fragment() {
             val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
             if (cardioCirculatoryShockSwitch.isChecked) {
                 setHistoryStatus(cardioCirculatoryShockSwitch.isChecked, this.getString(R.string.shock_cardiocircolatorio))
-                RetrofitClient.postComplication("cardiocirculatory-shock",time)
+                RetrofitClient.postComplication("cardiocirculatory-shock", time)
             } else {
                 RetrofitClient.deleteComplication("cardiocirculatory-shock")
             }
@@ -65,7 +65,7 @@ class ComplicationsFragment : Fragment() {
             val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
             if (deterioratingStateConsciousnessSwitch.isChecked) {
                 setHistoryStatus(deterioratingStateConsciousnessSwitch.isChecked, this.getString(R.string.deterioramento_stato_di_coscenza))
-                RetrofitClient.postComplication("impaired-consciousness",time)
+                RetrofitClient.postComplication("impaired-consciousness", time)
             } else {
             }
         }
@@ -73,7 +73,7 @@ class ComplicationsFragment : Fragment() {
             val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
             if (anisoMidriasiSwitch.isChecked) {
                 setHistoryStatus(anisoMidriasiSwitch.isChecked, this.getString(R.string.anisocoria_midriasi))
-                RetrofitClient.postComplication("anisocoria-mydriasis",time)
+                RetrofitClient.postComplication("anisocoria-mydriasis", time)
             } else {
                 RetrofitClient.deleteComplication("anisocoria-mydriasis")
             }
@@ -82,7 +82,7 @@ class ComplicationsFragment : Fragment() {
             val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
             if (respiratoryFailureSwitch.isChecked) {
                 setHistoryStatus(respiratoryFailureSwitch.isChecked, this.getString(R.string.insufficienza_respiratoria))
-                RetrofitClient.postComplication("respiratory-failure",time)
+                RetrofitClient.postComplication("respiratory-failure", time)
             } else {
                 RetrofitClient.deleteComplication("respiratory-failure")
             }
@@ -91,7 +91,7 @@ class ComplicationsFragment : Fragment() {
             val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
             if (landingInItinereSwitch.isChecked) {
                 setHistoryStatus(landingInItinereSwitch.isChecked, this.getString(R.string.atterraggio_in_itinere_per_manovra_terapeutica))
-                RetrofitClient.postComplication("landing-in-itinere",time)
+                RetrofitClient.postComplication("landing-in-itinere", time)
             } else {
                 RetrofitClient.deleteComplication("landing-in-itinere")
             }
@@ -102,7 +102,7 @@ class ComplicationsFragment : Fragment() {
                     "${this.getString(R.string.decesso)} ${this.getString(R.string.in_itinere)}")
             if (!deathInItinere) {
                 deathInItinere = true
-                RetrofitClient.postComplication("demise-in-itinere", time) //TODO Controllare se tenere DEMISE
+                RetrofitClient.postComplication("demise-in-itinere", time) // TODO Controllare se tenere DEMISE
             } else {
                 deathInItinere = false
                 RetrofitClient.deleteComplication("demise-in-itinere")

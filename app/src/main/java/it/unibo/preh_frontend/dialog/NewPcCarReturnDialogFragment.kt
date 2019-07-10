@@ -18,6 +18,7 @@ import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.model.dt_model.TrackingStep
 import it.unibo.preh_frontend.utils.RetrofitClient
 import it.unibo.preh_frontend.model.dt_model.ReturnInformation
+import it.unibo.preh_frontend.utils.DateManager
 
 class NewPcCarReturnDialogFragment : NewPcCarItemsDialogFragment() {
     private lateinit var returnCode: Spinner
@@ -92,7 +93,7 @@ class NewPcCarReturnDialogFragment : NewPcCarItemsDialogFragment() {
             HistoryManager.addEntry(newPcCarReturnData, sharedPreferences)
 
             RetrofitClient.sendTrackingStep("departure-onsite",
-                                                    TrackingStep(newPcCarReturnData.eventTime, newPcCarReturnData.place))
+                                                    TrackingStep(DateManager.getStandardRepresentation(newPcCarReturnData.eventTime), newPcCarReturnData.place))
             RetrofitClient.sendReturnInformation(ReturnInformation(newPcCarReturnData.returnCode,
                                                         hospital.selectedItem.toString(), null))
         }

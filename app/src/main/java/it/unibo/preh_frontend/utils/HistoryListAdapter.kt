@@ -40,7 +40,7 @@ class HistoryListAdapter(private var activity: Activity, private var items: Arra
         }
         val historyItem = items[position]
         viewHolder.eventName?.text = historyItem.eventName
-        viewHolder.eventDate?.text = historyItem.eventTime
+        viewHolder.eventDate?.text = DateManager.getHistoryRepresentation(historyItem.eventTime)
 
         return view
     }

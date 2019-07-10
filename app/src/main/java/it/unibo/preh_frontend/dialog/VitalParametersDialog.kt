@@ -14,7 +14,6 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageButton
-import android.widget.RadioButton
 import androidx.appcompat.app.AlertDialog
 import com.google.gson.Gson
 import it.unibo.preh_frontend.R
@@ -242,35 +241,35 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
     }
 
     private fun sendVitalParametersToDt() {
-        val airways = when(airwaysRadiogroup.checkedRadioButtonId){
+        val airways = when (airwaysRadiogroup.checkedRadioButtonId) {
             R.id.pervious_radio -> "open"
             R.id.impervious_radio -> "closed"
             else -> "open"
         }
-        val beatType = when(beatTypeRadiogroup.checkedRadioButtonId){
+        val beatType = when (beatTypeRadiogroup.checkedRadioButtonId) {
             R.id.rithmic_radio -> "rithmic"
             R.id.arithmic_radio -> "arithmic"
             else -> "rithmic"
         }
-        val capillarFillingTime = when(capillarFillingTimeRadioGroup.checkedRadioButtonId){
+        val capillarFillingTime = when (capillarFillingTimeRadioGroup.checkedRadioButtonId) {
             R.id.normal_radio -> "normal"
             R.id.increased_radio -> "augmented"
             R.id.null_radio -> "none"
             else -> "normal"
         }
-        val skinColor = when(mucousSkinColourRadiogroup.checkedRadioButtonId){
+        val skinColor = when (mucousSkinColourRadiogroup.checkedRadioButtonId) {
             R.id.color_normal_radio -> "normal"
             R.id.pale_radio -> "pale"
             R.id.cyanotic_radio -> "cyanotic"
             else -> "normal"
         }
-        val leftPupil = when(pupilSxRadiogroup.checkedRadioButtonId){
+        val leftPupil = when (pupilSxRadiogroup.checkedRadioButtonId) {
             R.id.normalSx_radio -> "normal"
             R.id.midriasisSx_radio -> "mydriasis"
             R.id.miosisSx_radio -> "miosis"
             else -> "normal"
         }
-        val rightPupil = when(pupilDxRadiogroup.checkedRadioButtonId){
+        val rightPupil = when (pupilDxRadiogroup.checkedRadioButtonId) {
             R.id.normalDx_radio -> "normal"
             R.id.midriasisDx_radio -> "mydriasis"
             R.id.miosisDx_radio -> "miosis"

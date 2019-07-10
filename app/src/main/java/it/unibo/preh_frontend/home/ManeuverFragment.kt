@@ -75,7 +75,7 @@ class ManeuverFragment : Fragment() {
         gastricProbeSwitch.setOnClickListener {
             if (gastricProbeSwitch.isChecked) {
                 val time: String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
-                RetrofitClient.postSimpleManeuver("feeding-tube", time)  //TODO Controlla se non mettere gastric-probe
+                RetrofitClient.postSimpleManeuver("feeding-tube", time) // TODO Controlla se non mettere gastric-probe
                 setHistoryStatus(gastricProbeSwitch.isChecked, this.getString(R.string.sonda_gastrica))
             } else {
                 RetrofitClient.deleteSimpleManeuver("feeding-tube")
