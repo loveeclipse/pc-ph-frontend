@@ -135,28 +135,28 @@ class TreatmentFragment : Fragment() {
         peripheralButton.setOnClickListener {
             addHistoryEntry(peripheralButton.isPressed, peripheralSpinner.selectedItem.toString(),
                     "${peripheralSpinner.selectedItem} ${this.getString(R.string.gauge)} ${this.getString(R.string.periferica)}")
-            peripheralSpinner.setSelection(0)
             val time = DateManager.getStandardRepresentation()
             val peripheralInjection = InjectionTreatment("peripheral", peripheralSpinner.selectedItem.toString() + "-" + this.getString(R.string.gauge), time)
             RetrofitClient.postInjectionTreatment(peripheralInjection)
+            peripheralSpinner.setSelection(0)
         }
         centralSpinner.onItemSelectedListener = spinnerAdapter(centralButton)
         centralButton.setOnClickListener {
             addHistoryEntry(centralButton.isPressed, centralSpinner.selectedItem.toString(),
                     "${centralSpinner.selectedItem} ${this.getString(R.string.french)} ${this.getString(R.string.centrale)}")
-            centralSpinner.setSelection(0)
             val time = DateManager.getStandardRepresentation()
             val centralInjection = InjectionTreatment("central", centralSpinner.selectedItem.toString() + "-" + this.getString(R.string.french), time)
             RetrofitClient.postInjectionTreatment(centralInjection)
+            centralSpinner.setSelection(0)
         }
         intraosseousSpinner.onItemSelectedListener = spinnerAdapter(intraosseousButton)
         intraosseousButton.setOnClickListener {
             addHistoryEntry(intraosseousButton.isPressed, intraosseousSpinner.selectedItem.toString(),
                     "${intraosseousSpinner.selectedItem} ${this.getString(R.string.size)} ${this.getString(R.string.intraossea)}")
-            intraosseousSpinner.setSelection(0)
             val time = DateManager.getStandardRepresentation()
             val intraosseusInjection = InjectionTreatment("intreosseus", intraosseousSpinner.selectedItem.toString() + "-" + this.getString(R.string.size), time)
             RetrofitClient.postInjectionTreatment(intraosseusInjection)
+            intraosseousSpinner.setSelection(0)
         }
         hemostasisButton.setOnClickListener {
             addHistoryEntry(hemostasisButton.isPressed, "", this.getString(R.string.emostasi))

@@ -70,8 +70,9 @@ class InputDialogFragment : DialogFragment() {
             else -> ""
         }
         if (dtDrugName != "") {
-            val drug = Drug(dtDrugName,
-                    inputValueEditText.text.toString().toInt(),
+            val drug = Drug(
+                    dtDrugName,
+                    inputValueEditText.text.toString().toDouble(),
                     unitEditText.text.toString(),
                     time)
             RetrofitClient.postDrugs(drug)
