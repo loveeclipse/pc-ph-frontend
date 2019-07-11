@@ -10,13 +10,13 @@ import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.utils.CurrentEventInfo
 
 class EventInfoDialogFragment : Fragment() {
-    lateinit var dispatchCodeTextView: TextView
-    lateinit var dynamicTextView: TextView
-    lateinit var secondaryTextView: TextView
-    lateinit var addressTextView: TextView
-    lateinit var involvedVehiclesTextView: TextView
-    lateinit var patientNumberTextView: TextView
-    lateinit var noteTextView: TextView
+    private lateinit var dispatchCodeTextView: TextView
+    private lateinit var dynamicTextView: TextView
+    private lateinit var secondaryTextView: TextView
+    private lateinit var addressTextView: TextView
+    private lateinit var involvedVehiclesTextView: TextView
+    private lateinit var patientNumberTextView: TextView
+    private lateinit var noteTextView: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
