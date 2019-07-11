@@ -100,10 +100,10 @@ class ComplicationsFragment : Fragment() {
                     "${this.getString(R.string.decesso)} ${this.getString(R.string.in_itinere)}")
             if (!deathInItinere) {
                 deathInItinere = true
-                RetrofitClient.postComplication("demise-in-itinere", time) // TODO Controllare se tenere DEMISE
+                RetrofitClient.postComplication("death-in-itinere", time)
             } else {
                 deathInItinere = false
-                RetrofitClient.deleteComplication("demise-in-itinere")
+                RetrofitClient.deleteComplication("death-in-itinere")
             }
         }
         deathArrivalInPSButton.setOnClickListener {
