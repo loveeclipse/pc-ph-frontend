@@ -122,10 +122,12 @@ class TerminatePreH : DialogFragment() {
     }
 
     private fun sendReturnInformationToDt() {
-        if (hospitalPlaceSpinner.selectedItem.toString().equals("Pronto soccorso")) {
-            RetrofitClient.sendReturnInformation(ReturnInformation(returnCodeSpinner.selectedItem.toString().toInt(), hospitalSpinner.selectedItem.toString(), hospitalPlaceSpinner.selectedItem.toString()))
-        } else {
-            RetrofitClient.sendReturnInformation(ReturnInformation(returnCodeSpinner.selectedItem.toString().toInt(), hospitalSpinner.selectedItem.toString(), null))
+        when {
+            returnCodeSpinner.selectedItem.toString() == "" ->
+                RetrofitClient.sendReturnInformation(ReturnInformation(0,
+                    hospitalSpinner.selectedItem.toString(), hospitalPlaceSpinner.selectedItem.toString()))
+            else -> RetrofitClient.sendReturnInformation(ReturnInformation(returnCodeSpinner.selectedItem.toString().toInt(),
+                    hospitalSpinner.selectedItem.toString(), hospitalPlaceSpinner.selectedItem.toString()))
         }
     }
 

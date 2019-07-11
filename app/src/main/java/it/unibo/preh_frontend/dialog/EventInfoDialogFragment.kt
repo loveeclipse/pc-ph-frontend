@@ -32,7 +32,7 @@ class EventInfoDialogFragment : Fragment() {
         addressTextView = root.findViewById(R.id.address_text)
         involvedVehiclesTextView = root.findViewById(R.id.involved_vehicles_text)
         patientNumberTextView = root.findViewById(R.id.patient_number_text)
-        noteTextView = root.findViewById(R.id.note_edit_text)
+        noteTextView = root.findViewById(R.id.event_note_text)
 
         setEventInformation()
 
