@@ -93,7 +93,7 @@ class NewPcCarReturnDialogFragment : NewPcCarItemsDialogFragment() {
             HistoryManager.addEntry(newPcCarReturnData, sharedPreferences)
 
             RetrofitClient.sendTrackingStep("departure-onsite",
-                                                    TrackingStep(DateManager.getStandardRepresentation(newPcCarReturnData.eventTime), newPcCarReturnData.place))
+                    TrackingStep(DateManager.getStandardRepresentation(newPcCarReturnData.eventTime), newPcCarReturnData.place))
             RetrofitClient.sendReturnInformation(ReturnInformation(newPcCarReturnData.returnCode,
                                                         hospital.selectedItem.toString(), null))
         }

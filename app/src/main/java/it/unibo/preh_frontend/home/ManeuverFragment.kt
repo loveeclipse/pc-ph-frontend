@@ -55,10 +55,10 @@ class ManeuverFragment : Fragment() {
         immobilizationSwitch.setOnClickListener {
             if (immobilizationSwitch.isChecked) {
                 val time: String = DateManager.getStandardRepresentation()
-                RetrofitClient.postSimpleManeuver("immobilisation", time)
+                RetrofitClient.postSimpleManeuver("immobilization", time)
                 setHistoryStatus(immobilizationSwitch.isChecked, this.getString(R.string.immobilizzazione))
             } else {
-                RetrofitClient.deleteSimpleManeuver("immobilisation")
+                RetrofitClient.deleteSimpleManeuver("immobilization")
             }
         }
         electricalCardioversionSwitch.setOnClickListener {

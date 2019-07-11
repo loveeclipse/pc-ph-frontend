@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        RetrofitClient.obtainServiceLocation()
         setContentView(R.layout.activity_main)
         navController = findNavController(R.id.nav_host_fragment)
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -26,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         }
         PermissionManager.checkPermission(this, this,
                 Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-        RetrofitClient.obtainServiceLocation()
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()
