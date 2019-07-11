@@ -23,11 +23,9 @@ import it.unibo.preh_frontend.utils.AnatomicCriteriaManager
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
 import it.unibo.preh_frontend.utils.CentralizationManager
+import it.unibo.preh_frontend.utils.DateManager
 import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.utils.RetrofitClient
-import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.Calendar
 
 class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
 
@@ -123,7 +121,7 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
     }
 
     private fun sendStatusToDt() {
-        val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+        val time = DateManager.getStandardRepresentation()
         val patientState = PatientStatus(CentralizationManager.centralizationIsActive,
                 saveState.closedTrauma,
                 saveState.piercingTrauma,

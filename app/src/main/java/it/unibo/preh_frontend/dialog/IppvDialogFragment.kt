@@ -14,11 +14,9 @@ import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.dialog.history.HistoryIppvDialog
 import it.unibo.preh_frontend.model.IppvData
 import it.unibo.preh_frontend.model.dt_model.IppvTreatment
+import it.unibo.preh_frontend.utils.DateManager
 import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.utils.RetrofitClient
-import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.Calendar
 
 class IppvDialogFragment : HistoryIppvDialog() {
     private lateinit var parentDialog: Dialog
@@ -68,7 +66,7 @@ class IppvDialogFragment : HistoryIppvDialog() {
     }
 
     private fun sendIppvDataToDt() {
-        val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+        val time = DateManager.getStandardRepresentation()
         val ippvTreatment = IppvTreatment(vtEditText.text.toString().toInt(),
                 frEditText.text.toString().toInt(),
                 peepEditText.text.toString().toInt(),

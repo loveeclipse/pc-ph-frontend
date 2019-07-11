@@ -17,9 +17,7 @@ import it.unibo.preh_frontend.model.ManeuverData
 import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.dialog.PacingDialogFragment
 import it.unibo.preh_frontend.model.ManeuverHistoryData
-import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.Calendar
+import it.unibo.preh_frontend.utils.DateManager
 
 class ManeuverFragment : Fragment() {
 
@@ -47,7 +45,7 @@ class ManeuverFragment : Fragment() {
 
         cervicalCollarSwitch.setOnClickListener {
             if (cervicalCollarSwitch.isChecked) {
-                val time: String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+                val time: String = DateManager.getStandardRepresentation()
                 RetrofitClient.postSimpleManeuver("cervical-collar", time)
                 setHistoryStatus(cervicalCollarSwitch.isChecked, this.getString(R.string.collare_cervicale))
             } else {
@@ -56,7 +54,7 @@ class ManeuverFragment : Fragment() {
         }
         immobilizationSwitch.setOnClickListener {
             if (immobilizationSwitch.isChecked) {
-                val time: String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+                val time: String = DateManager.getStandardRepresentation()
                 RetrofitClient.postSimpleManeuver("immobilisation", time)
                 setHistoryStatus(immobilizationSwitch.isChecked, this.getString(R.string.immobilizzazione))
             } else {
@@ -65,7 +63,7 @@ class ManeuverFragment : Fragment() {
         }
         electricalCardioversionSwitch.setOnClickListener {
             if (electricalCardioversionSwitch.isChecked) {
-                val time: String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+                val time: String = DateManager.getStandardRepresentation()
                 RetrofitClient.postSimpleManeuver("electrical-cardioversion", time)
                 setHistoryStatus(electricalCardioversionSwitch.isChecked, this.getString(R.string.cardioversione_elettrica_sincronizzata))
             } else {
@@ -74,7 +72,7 @@ class ManeuverFragment : Fragment() {
         }
         gastricProbeSwitch.setOnClickListener {
             if (gastricProbeSwitch.isChecked) {
-                val time: String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+                val time: String = DateManager.getStandardRepresentation()
                 RetrofitClient.postSimpleManeuver("feeding-tube", time) // TODO Controlla se non mettere gastric-probe
                 setHistoryStatus(gastricProbeSwitch.isChecked, this.getString(R.string.sonda_gastrica))
             } else {
@@ -83,7 +81,7 @@ class ManeuverFragment : Fragment() {
         }
         bladderProbeSwitch.setOnClickListener {
             if (bladderProbeSwitch.isChecked) {
-                val time: String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+                val time: String = DateManager.getStandardRepresentation()
                 RetrofitClient.postSimpleManeuver("vesical-catheter", time)
                 setHistoryStatus(bladderProbeSwitch.isChecked, this.getString(R.string.sonda_vescicale))
             } else {

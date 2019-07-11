@@ -18,9 +18,7 @@ import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
 import it.unibo.preh_frontend.utils.RetrofitClient
-import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.Calendar
+import it.unibo.preh_frontend.utils.DateManager
 
 class ComplicationsFragment : Fragment() {
 
@@ -53,7 +51,7 @@ class ComplicationsFragment : Fragment() {
         getComponents(root)
 
         cardioCirculatoryShockSwitch.setOnClickListener {
-            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            val time = DateManager.getStandardRepresentation()
             if (cardioCirculatoryShockSwitch.isChecked) {
                 setHistoryStatus(cardioCirculatoryShockSwitch.isChecked, this.getString(R.string.shock_cardiocircolatorio))
                 RetrofitClient.postComplication("cardiocirculatory-shock", time)
@@ -62,7 +60,7 @@ class ComplicationsFragment : Fragment() {
             }
         }
         deterioratingStateConsciousnessSwitch.setOnClickListener {
-            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            val time = DateManager.getStandardRepresentation()
             if (deterioratingStateConsciousnessSwitch.isChecked) {
                 setHistoryStatus(deterioratingStateConsciousnessSwitch.isChecked, this.getString(R.string.deterioramento_stato_di_coscenza))
                 RetrofitClient.postComplication("impaired-consciousness", time)
@@ -70,7 +68,7 @@ class ComplicationsFragment : Fragment() {
             }
         }
         anisoMidriasiSwitch.setOnClickListener {
-            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            val time = DateManager.getStandardRepresentation()
             if (anisoMidriasiSwitch.isChecked) {
                 setHistoryStatus(anisoMidriasiSwitch.isChecked, this.getString(R.string.anisocoria_midriasi))
                 RetrofitClient.postComplication("anisocoria-mydriasis", time)
@@ -79,7 +77,7 @@ class ComplicationsFragment : Fragment() {
             }
         }
         respiratoryFailureSwitch.setOnClickListener {
-            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            val time = DateManager.getStandardRepresentation()
             if (respiratoryFailureSwitch.isChecked) {
                 setHistoryStatus(respiratoryFailureSwitch.isChecked, this.getString(R.string.insufficienza_respiratoria))
                 RetrofitClient.postComplication("respiratory-failure", time)
@@ -88,7 +86,7 @@ class ComplicationsFragment : Fragment() {
             }
         }
         landingInItinereSwitch.setOnClickListener {
-            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            val time = DateManager.getStandardRepresentation()
             if (landingInItinereSwitch.isChecked) {
                 setHistoryStatus(landingInItinereSwitch.isChecked, this.getString(R.string.atterraggio_in_itinere_per_manovra_terapeutica))
                 RetrofitClient.postComplication("landing-in-itinere", time)
@@ -97,7 +95,7 @@ class ComplicationsFragment : Fragment() {
             }
         }
         deathInItinereButton.setOnClickListener {
-            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            val time = DateManager.getStandardRepresentation()
             setButtonColor(deathInItinereButton, deathArrivalInPSButton, resources,
                     "${this.getString(R.string.decesso)} ${this.getString(R.string.in_itinere)}")
             if (!deathInItinere) {
@@ -109,7 +107,7 @@ class ComplicationsFragment : Fragment() {
             }
         }
         deathArrivalInPSButton.setOnClickListener {
-            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            val time = DateManager.getStandardRepresentation()
             setButtonColor(deathArrivalInPSButton, deathInItinereButton, resources,
                     "${this.getString(R.string.decesso)} ${this.getString(R.string.all_arrivo_in_ps)}")
             if (!deathInPs) {

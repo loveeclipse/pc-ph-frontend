@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.utils.CurrentEventInfo
-import it.unibo.preh_frontend.utils.RetrofitClient
 
 class EventInfoDialogFragment : Fragment() {
     lateinit var dispatchCodeTextView: TextView

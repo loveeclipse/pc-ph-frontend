@@ -20,12 +20,10 @@ import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.dialog.history.HistoryVitalParametersDialog
 import it.unibo.preh_frontend.model.VitalParametersData
 import it.unibo.preh_frontend.model.dt_model.VitalParameters
+import it.unibo.preh_frontend.utils.DateManager
 import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.utils.PhysiologicaCriteriaManager
 import it.unibo.preh_frontend.utils.RetrofitClient
-import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.Calendar
 
 class VitalParametersDialog : HistoryVitalParametersDialog() {
 
@@ -300,7 +298,7 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
             5 -> "1 - None"
             else -> "ND - Not Determinable"
         }
-        val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+        val time = DateManager.getStandardRepresentation()
         val vitalParameters = VitalParameters(airways,
                 respiratoryFreqSpinner.selectedItem.toString(),
                 saveState.periphericalSaturation,

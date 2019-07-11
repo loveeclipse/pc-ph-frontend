@@ -24,9 +24,7 @@ import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.utils.RetrofitClient
 import it.unibo.preh_frontend.model.dt_model.SimpleTreatment
 import it.unibo.preh_frontend.model.dt_model.InjectionTreatment
-import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.Calendar
+import it.unibo.preh_frontend.utils.DateManager
 
 class TreatmentFragment : Fragment() {
 
@@ -104,7 +102,7 @@ class TreatmentFragment : Fragment() {
         }
         trachealTubeButton.setOnClickListener {
             setButtonColor(trachealTubeButton, resources, R.string.tubo_tracheale)
-            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            val time = DateManager.getStandardRepresentation()
             if (trachealTubeButton.isActivated) {
                 PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext(),
                         this.getString(R.string.necessit_supporto_ventilatorio)).activeCentralization()
@@ -138,7 +136,7 @@ class TreatmentFragment : Fragment() {
             addHistoryEntry(peripheralButton.isPressed, peripheralSpinner.selectedItem.toString(),
                     "${peripheralSpinner.selectedItem} ${this.getString(R.string.gauge)} ${this.getString(R.string.periferica)}")
             peripheralSpinner.setSelection(0)
-            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            val time = DateManager.getStandardRepresentation()
             val peripheralInjection = InjectionTreatment("peripheral", peripheralSpinner.selectedItem.toString() + "   " + this.getString(R.string.gauge), time)
             RetrofitClient.postInjectionTreatment(peripheralInjection)
         }
@@ -147,7 +145,7 @@ class TreatmentFragment : Fragment() {
             addHistoryEntry(centralButton.isPressed, centralSpinner.selectedItem.toString(),
                     "${centralSpinner.selectedItem} ${this.getString(R.string.french)} ${this.getString(R.string.centrale)}")
             centralSpinner.setSelection(0)
-            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            val time = DateManager.getStandardRepresentation()
             val centralInjection = InjectionTreatment("central", centralSpinner.selectedItem.toString() + "   " + this.getString(R.string.french), time)
             RetrofitClient.postInjectionTreatment(centralInjection)
         }
@@ -156,7 +154,7 @@ class TreatmentFragment : Fragment() {
             addHistoryEntry(intraosseousButton.isPressed, intraosseousSpinner.selectedItem.toString(),
                     "${intraosseousSpinner.selectedItem} ${this.getString(R.string.size)} ${this.getString(R.string.intraossea)}")
             intraosseousSpinner.setSelection(0)
-            val time = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time)
+            val time = DateManager.getStandardRepresentation()
             val intraosseusInjection = InjectionTreatment("intreosseus", intraosseousSpinner.selectedItem.toString() + "  " + this.getString(R.string.size), time)
             RetrofitClient.postInjectionTreatment(intraosseusInjection)
         }
