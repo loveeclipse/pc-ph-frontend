@@ -135,9 +135,11 @@ open class NewPcCarItemsDialogFragment : DialogFragment() {
             HistoryManager.addEntry(newPcCarData, sharedPreferences)
             when (it) {
                 resources.getString(R.string.partenza_dell_equipaggio) ->
-                    RetrofitClient.sendTrackingStep("crew-departure", TrackingStep(DateManager.getStandardRepresentation(newPcCarData.eventTime), newPcCarData.place))
+                    RetrofitClient.sendTrackingStep("crew-departure",
+                            TrackingStep(DateManager.getStandardRepresentation(newPcCarData.eventTime), newPcCarData.place))
                 resources.getString(R.string.arrivo_sul_luogo_dell_incidente) -> {
-                    RetrofitClient.sendTrackingStep("arrival-onsite", TrackingStep(DateManager.getStandardRepresentation(newPcCarData.eventTime), newPcCarData.place))
+                    RetrofitClient.sendTrackingStep("arrival-onsite",
+                            TrackingStep(DateManager.getStandardRepresentation(newPcCarData.eventTime), newPcCarData.place))
                     RetrofitClient.createPatient(PatientData(DtIdentifiers.assignedEvent!!, DtIdentifiers.assignedMission!!))
                 }
                 resources.getString(R.string.atterraggio_in_eliporto) ->

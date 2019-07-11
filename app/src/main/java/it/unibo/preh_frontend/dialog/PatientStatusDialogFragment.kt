@@ -143,14 +143,16 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
     }
 
     private fun setSharedPreferences() {
-        val vitalParametersData = Gson().fromJson(sharedPreferences.getString("vitalParameters", null), VitalParametersData::class.java)
+        val vitalParametersData = Gson().fromJson(sharedPreferences.getString("vitalParameters", null),
+                VitalParametersData::class.java)
         if (vitalParametersData != null && vitalParametersData.bloodPressure != 0 && vitalParametersData.cardiacFrequency != 0) {
             val siSipaValue = (vitalParametersData.cardiacFrequency / vitalParametersData.bloodPressure).toDouble()
             shockIndexText.text = siSipaValue.toString()
         }
         Thread(Runnable {
             val gson = Gson()
-            val patientStatusData = gson.fromJson(sharedPreferences.getString("patientState", null), PatientStatusData::class.java)
+            val patientStatusData = gson.fromJson(sharedPreferences.getString("patientState", null),
+                    PatientStatusData::class.java)
             if (patientStatusData != null) {
                 this.activity?.runOnUiThread {
                     if (patientStatusData.closedTrauma) {
@@ -181,7 +183,6 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
                     determineActiveCriteria()
                 }
                 saveState = patientStatusData
-                println("--------------------- savedState in set: ${saveState.physiologicCriterion} ")
             }
         }).start()
     }
@@ -195,8 +196,10 @@ class PatientStatusDialogFragment : HistoryPatientStatusDialog() {
 
     private fun determineActiveCriteria() {
         val gson = Gson()
-        val anatomicCriteria = gson.fromJson(sharedPreferences.getString("anatomicCriteria", null), AnatomicCriterionData::class.java)
-        val physiologicCriteria = gson.fromJson(sharedPreferences.getString("physiologicCriteria", null), PhysiologicCriterionData::class.java)
+        val anatomicCriteria = gson.fromJson(sharedPreferences.getString("anatomicCriteria", null),
+                AnatomicCriterionData::class.java)
+        val physiologicCriteria = gson.fromJson(sharedPreferences.getString("physiologicCriteria", null),
+                PhysiologicCriterionData::class.java)
         // val dynamicCriteria = gson.fromJson(sharedPreferences.getString("dynamicCriteria",null),DynamicCriterionData::class.java)
 
         if (anatomicCriteria != null && anatomicCriteria.hasTrueFields()) {

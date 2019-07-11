@@ -96,7 +96,7 @@ object RetrofitClient {
         if (DtIdentifiers.patientId != null) {
             patientService.putPatientAnagraphic(DtIdentifiers.patientId!!, anagraphic).enqueue(BasicVoidCallback)
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given patientId was not yet set")
         }
     }
 
@@ -106,7 +106,7 @@ object RetrofitClient {
             Log.d("TEST", "TRACKINGSTEP    $trackingStep")
             missionService.putNewTrackingStep(DtIdentifiers.assignedMission!!, trackingStep, trackingStepItem).enqueue(BasicVoidCallback)
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given missionId was not yet set")
         }
     }
 
@@ -114,7 +114,7 @@ object RetrofitClient {
         if (DtIdentifiers.assignedMission != null) {
             missionService.insertReturnInformation(DtIdentifiers.assignedMission!!, returnInformation).enqueue(BasicVoidCallback)
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given missionId was not yet set")
         }
     }
 
@@ -122,7 +122,7 @@ object RetrofitClient {
         if (DtIdentifiers.assignedMission != null) {
             missionService.putMissionMedic(DtIdentifiers.assignedMission!!, DtIdentifiers.doctor!!).enqueue(BasicVoidCallback)
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given missionId was not yet set")
         }
     }
 
@@ -130,7 +130,7 @@ object RetrofitClient {
         if (DtIdentifiers.assignedMission != null) {
             missionService.putOngoingStatus(DtIdentifiers.assignedMission!!, ongoingState).enqueue(BasicVoidCallback)
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given missionId was not yet set")
         }
     }
 
@@ -146,14 +146,12 @@ object RetrofitClient {
                         Log.d("TEST", "MISIONID   ${ongoingMissions.ids[0]}")
                         DtIdentifiers.assignedMission = ongoingMissions.ids[0]
                         getMissionInformation()
-                        getEventInformation()
-                        getOngoingMissionsByEventId()
                         putMissionMedic()
                     }
                 }
             })
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given vehicleId was not yet set")
         }
     }
 
@@ -167,11 +165,12 @@ object RetrofitClient {
                     if (response.code() == 200) {
                         val ongoingMissions = OngoingMissions(response.body()!!.ids, response.body()!!.links)
                         CurrentEventInfo.involvedVehicles = ongoingMissions.ids.size
+                        Log.d("TEST", "NUMERO MEZZI    ${CurrentEventInfo.involvedVehicles}")
                     }
                 }
             })
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given eventId was not yet set")
         }
     }
 
@@ -185,9 +184,12 @@ object RetrofitClient {
 
                 override fun onResponse(call: Call<MissionInformation>, response: Response<MissionInformation>) {
                     DtIdentifiers.assignedEvent = response.body()!!.eventId
+                    getEventInformation()
                     Log.d("TEST", "EVENTID     ${DtIdentifiers.assignedEvent}")
                 }
             })
+        } else {
+            Log.e("BAD_ID", "The given missionId was not yet set")
         }
     }
 
@@ -197,6 +199,7 @@ object RetrofitClient {
                 override fun onResponse(call: Call<EventInformation>, response: Response<EventInformation>) {
                     val eventInformation: EventInformation = response.body()!!
                     CurrentEventInfo.set(eventInformation)
+                    getOngoingMissionsByEventId()
                 }
 
                 override fun onFailure(call: Call<EventInformation>, t: Throwable) {
@@ -205,7 +208,7 @@ object RetrofitClient {
                 }
             })
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given eventId was not yet set")
         }
     }
 
@@ -213,7 +216,7 @@ object RetrofitClient {
         if (DtIdentifiers.patientId != null) {
             patientService.putPatientStatus(DtIdentifiers.patientId!!, patientStatus).enqueue(BasicVoidCallback)
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given patientId was not yet set")
         }
     }
 
@@ -221,7 +224,7 @@ object RetrofitClient {
         if (DtIdentifiers.patientId != null) {
             patientService.postVitalParameters(DtIdentifiers.patientId!!, vitalParameters).enqueue(BasicStringCallback)
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given patientId was not yet set")
         }
     }
 
@@ -229,7 +232,7 @@ object RetrofitClient {
         if (DtIdentifiers.patientId != null) {
         patientService.postDrugs(DtIdentifiers.patientId!!, drug).enqueue(BasicStringCallback)
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given patientId was not yet set")
         }
     }
 
@@ -237,7 +240,7 @@ object RetrofitClient {
         if (DtIdentifiers.patientId != null) {
             patientService.postSimpleManeuver(DtIdentifiers.patientId!!, simpleManeuver, executionTime).enqueue(BasicVoidCallback)
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given patientId was not yet set")
         }
     }
 
@@ -245,7 +248,7 @@ object RetrofitClient {
         if (DtIdentifiers.patientId != null) {
             patientService.deleteSimpleManeuver(DtIdentifiers.patientId!!, simpleManeuver).enqueue(BasicVoidCallback)
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given patientId was not yet set")
         }
     }
 
@@ -253,7 +256,7 @@ object RetrofitClient {
         if (DtIdentifiers.patientId != null) {
             patientService.postSimpleTreatment(DtIdentifiers.patientId!!, simpleTreatment).enqueue(BasicStringCallback)
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given patientId was not yet set")
         }
     }
 
@@ -261,7 +264,7 @@ object RetrofitClient {
         if (DtIdentifiers.patientId != null) {
             patientService.postInjectionTreatment(DtIdentifiers.patientId!!, injectionTreatment).enqueue(BasicStringCallback)
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given patientId was not yet set")
         }
     }
 
@@ -269,7 +272,7 @@ object RetrofitClient {
         if (DtIdentifiers.patientId != null) {
             patientService.postIppvTreatment(DtIdentifiers.patientId!!, ippvTreatment).enqueue(BasicStringCallback)
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given patientId was not yet set")
         }
     }
 
@@ -277,7 +280,7 @@ object RetrofitClient {
         if (DtIdentifiers.patientId != null) {
             patientService.postComplication(DtIdentifiers.patientId!!, complication, time).enqueue(BasicVoidCallback)
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given patientId was not yet set")
         }
     }
 
@@ -285,7 +288,7 @@ object RetrofitClient {
         if (DtIdentifiers.patientId != null) {
             patientService.deleteComplication(DtIdentifiers.patientId!!, complication).enqueue(BasicVoidCallback)
         } else {
-            Log.e("BAD_ID", "The given id was not yet set")
+            Log.e("BAD_ID", "The given patientId was not yet set")
         }
     }
 

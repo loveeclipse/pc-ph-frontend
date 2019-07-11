@@ -137,7 +137,7 @@ class TreatmentFragment : Fragment() {
                     "${peripheralSpinner.selectedItem} ${this.getString(R.string.gauge)} ${this.getString(R.string.periferica)}")
             peripheralSpinner.setSelection(0)
             val time = DateManager.getStandardRepresentation()
-            val peripheralInjection = InjectionTreatment("peripheral", peripheralSpinner.selectedItem.toString() + "   " + this.getString(R.string.gauge), time)
+            val peripheralInjection = InjectionTreatment("peripheral", peripheralSpinner.selectedItem.toString() + "-" + this.getString(R.string.gauge), time)
             RetrofitClient.postInjectionTreatment(peripheralInjection)
         }
         centralSpinner.onItemSelectedListener = spinnerAdapter(centralButton)
@@ -146,7 +146,7 @@ class TreatmentFragment : Fragment() {
                     "${centralSpinner.selectedItem} ${this.getString(R.string.french)} ${this.getString(R.string.centrale)}")
             centralSpinner.setSelection(0)
             val time = DateManager.getStandardRepresentation()
-            val centralInjection = InjectionTreatment("central", centralSpinner.selectedItem.toString() + "   " + this.getString(R.string.french), time)
+            val centralInjection = InjectionTreatment("central", centralSpinner.selectedItem.toString() + "-" + this.getString(R.string.french), time)
             RetrofitClient.postInjectionTreatment(centralInjection)
         }
         intraosseousSpinner.onItemSelectedListener = spinnerAdapter(intraosseousButton)
@@ -155,7 +155,7 @@ class TreatmentFragment : Fragment() {
                     "${intraosseousSpinner.selectedItem} ${this.getString(R.string.size)} ${this.getString(R.string.intraossea)}")
             intraosseousSpinner.setSelection(0)
             val time = DateManager.getStandardRepresentation()
-            val intraosseusInjection = InjectionTreatment("intreosseus", intraosseousSpinner.selectedItem.toString() + "  " + this.getString(R.string.size), time)
+            val intraosseusInjection = InjectionTreatment("intreosseus", intraosseousSpinner.selectedItem.toString() + "-" + this.getString(R.string.size), time)
             RetrofitClient.postInjectionTreatment(intraosseusInjection)
         }
         hemostasisButton.setOnClickListener {
