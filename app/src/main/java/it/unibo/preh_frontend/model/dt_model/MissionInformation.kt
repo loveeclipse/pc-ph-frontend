@@ -5,5 +5,5 @@ data class MissionInformation(
     val vehicle: String,
     val returnInformation: ReturnInformation?,
     val tracking: TrackingHistory?,
-    val ongoing: Boolean?
+    val ongoing: Boolean
 )
