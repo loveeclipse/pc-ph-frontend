@@ -96,7 +96,7 @@ class ComplicationsFragment : Fragment() {
         }
         deathInItinereButton.setOnClickListener {
             val time = DateManager.getStandardRepresentation()
-            setButtonColor(deathInItinereButton, deathArrivalInPSButton, resources,
+            setButtonColor(deathInItinereButton, resources,
                     "${this.getString(R.string.decesso)} ${this.getString(R.string.in_itinere)}")
             if (!deathInItinere) {
                 deathInItinere = true
@@ -108,7 +108,7 @@ class ComplicationsFragment : Fragment() {
         }
         deathArrivalInPSButton.setOnClickListener {
             val time = DateManager.getStandardRepresentation()
-            setButtonColor(deathArrivalInPSButton, deathInItinereButton, resources,
+            setButtonColor(deathArrivalInPSButton, resources,
                     "${this.getString(R.string.decesso)} ${this.getString(R.string.all_arrivo_in_ps)}")
             if (!deathInPs) {
                 deathInPs = true
@@ -142,7 +142,7 @@ class ComplicationsFragment : Fragment() {
         }
     }
 
-    private fun setButtonColor(buttonPressed: Button, buttonSecondary: Button, resources: Resources, complicationsName: String) {
+    private fun setButtonColor(buttonPressed: Button, resources: Resources, complicationsName: String) {
         if (!buttonPressed.isActivated) {
             buttonPressed.isActivated = true
             activateButton(buttonPressed, resources)
