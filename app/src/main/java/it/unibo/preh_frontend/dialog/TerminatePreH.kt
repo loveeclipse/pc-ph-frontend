@@ -54,7 +54,7 @@ class TerminatePreH : DialogFragment() {
                 builder.apply {
                     setTitle("Conferma Terminazione Pre-H?")
                     setPositiveButton("Si") { dialog, _ ->
-                        sendReturnInformationToDt()
+                        //sendReturnInformationToDt()
                         dialog.cancel()
                         parentDialog?.cancel()
                         backPressed()
@@ -122,7 +122,7 @@ class TerminatePreH : DialogFragment() {
     }
 
     private fun sendReturnInformationToDt() {
-        if (hospitalPlaceSpinner.selectedItem.toString().equals("Pronto soccorso")) {
+        if (hospitalPlaceSpinner.selectedItem.toString() == "Pronto soccorso") {
             RetrofitClient.sendReturnInformation(ReturnInformation(returnCodeSpinner.selectedItem.toString().toInt(), hospitalSpinner.selectedItem.toString(), hospitalPlaceSpinner.selectedItem.toString()))
         } else {
             RetrofitClient.sendReturnInformation(ReturnInformation(returnCodeSpinner.selectedItem.toString().toInt(), hospitalSpinner.selectedItem.toString(), null))
