@@ -19,6 +19,7 @@ import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.NewPcCarReturnData
 import it.unibo.preh_frontend.model.dt_model.ReturnInformation
 import it.unibo.preh_frontend.utils.CentralizationManager
+import it.unibo.preh_frontend.utils.CurrentEventInfo
 import it.unibo.preh_frontend.utils.DtIdentifiers
 import it.unibo.preh_frontend.utils.RetrofitClient
 
@@ -116,6 +117,7 @@ class TerminatePreH : DialogFragment() {
         sharedPreferences.edit().clear().apply()
         CentralizationManager.centralizationIsActive = false
         DtIdentifiers.clear()
+        CurrentEventInfo.clear()
         navController.navigate(R.id.action_home_to_login)
     }
 

@@ -102,8 +102,8 @@ object RetrofitClient {
 
     fun sendTrackingStep(trackingStep: String, trackingStepItem: TrackingStep) {
         if (DtIdentifiers.assignedMission != null) {
-            Log.d("TEST","MISSIONID    ${DtIdentifiers.assignedMission}")
-            Log.d("TEST","TRACKINGSTEP    $trackingStep")
+            Log.d("TEST", "MISSIONID    ${DtIdentifiers.assignedMission}")
+            Log.d("TEST", "TRACKINGSTEP    $trackingStep")
             missionService.putNewTrackingStep(DtIdentifiers.assignedMission!!, trackingStep, trackingStepItem).enqueue(BasicVoidCallback)
         } else {
             Log.e("BAD_ID", "The given id was not yet set")
@@ -134,18 +134,20 @@ object RetrofitClient {
         }
     }
 
-    fun getOngoingMissions() {
+    fun getOngoingMissionsByVehicle() {
         if (DtIdentifiers.vehicle != null) {
-            missionService.getOngoingMissions(DtIdentifiers.vehicle!!).enqueue(object : Callback<OngoingMissions> {
+            missionService.getOngoingMissionsByVehicle(DtIdentifiers.vehicle!!).enqueue(object : Callback<OngoingMissions> {
                 override fun onFailure(call: Call<OngoingMissions>, t: Throwable) {
                 }
 
                 override fun onResponse(call: Call<OngoingMissions>, response: Response<OngoingMissions>) {
                     if (response.code() == 200) {
                         val ongoingMissions = OngoingMissions(response.body()!!.ids, response.body()!!.links)
-                        Log.d("TEST","MISIONID   ${ongoingMissions.ids[0]}")
+                        Log.d("TEST", "MISIONID   ${ongoingMissions.ids[0]}")
                         DtIdentifiers.assignedMission = ongoingMissions.ids[0]
                         getMissionInformation()
+                        getEventInformation()
+                        getOngoingMissionsByEventId()
                         putMissionMedic()
                     }
                 }
@@ -155,30 +157,55 @@ object RetrofitClient {
         }
     }
 
-    fun getMissionInformation(){
-        if(DtIdentifiers.assignedMission != null){
-            missionService.getMissionInformation(DtIdentifiers.assignedMission!!).enqueue(object : Callback<MissionInformation>{
+    fun getOngoingMissionsByEventId() {
+        if (DtIdentifiers.assignedEvent != null) {
+            missionService.getOngoingMissionsByEventId(DtIdentifiers.assignedEvent!!).enqueue(object : Callback<OngoingMissions> {
+                override fun onFailure(call: Call<OngoingMissions>, t: Throwable) {
+                }
+
+                override fun onResponse(call: Call<OngoingMissions>, response: Response<OngoingMissions>) {
+                    if (response.code() == 200) {
+                        val ongoingMissions = OngoingMissions(response.body()!!.ids, response.body()!!.links)
+                        CurrentEventInfo.involvedVehicles = ongoingMissions.ids.size
+                    }
+                }
+            })
+        } else {
+            Log.e("BAD_ID", "The given id was not yet set")
+        }
+    }
+
+    fun getMissionInformation() {
+        if (DtIdentifiers.assignedMission != null) {
+            missionService.getMissionInformation(DtIdentifiers.assignedMission!!).enqueue(object : Callback<MissionInformation> {
                 override fun onFailure(call: Call<MissionInformation>, t: Throwable) {
                     t.printStackTrace()
                     Log.d("TEST", call.request().url().toString())
                 }
 
                 override fun onResponse(call: Call<MissionInformation>, response: Response<MissionInformation>) {
-                   DtIdentifiers.assignedEvent = response.body()!!.eventId
-                   Log.d("TEST","EVENTID     ${DtIdentifiers.assignedEvent}")
+                    DtIdentifiers.assignedEvent = response.body()!!.eventId
+                    Log.d("TEST", "EVENTID     ${DtIdentifiers.assignedEvent}")
                 }
-
             })
         }
     }
 
-    // TODO TEST CHE NON CRASHI TUTTO (RUNNA IN THREAD DIVERSO DA QUELLO DA QUELLO DELL'ACTIVITY)
-    fun getEventInformation(): EventInformation? {
-        return if (DtIdentifiers.assignedEvent != null) {
-            eventService.getEventData(DtIdentifiers.assignedEvent!!).execute().body()
+    fun getEventInformation() {
+        if (DtIdentifiers.assignedEvent != null) {
+            eventService.getEventData(DtIdentifiers.assignedEvent!!).enqueue(object : Callback<EventInformation> {
+                override fun onResponse(call: Call<EventInformation>, response: Response<EventInformation>) {
+                    val eventInformation: EventInformation = response.body()!!
+                    CurrentEventInfo.set(eventInformation)
+                }
+
+                override fun onFailure(call: Call<EventInformation>, t: Throwable) {
+                    t.printStackTrace()
+                    Log.d("TEST", call.request().url().toString())
+                }
+            })
         } else {
             Log.e("BAD_ID", "The given id was not yet set")
-            null
         }
     }
 

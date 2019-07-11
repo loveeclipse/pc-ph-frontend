@@ -64,14 +64,14 @@ class InputDialogFragment : DialogFragment() {
     }
 
     private fun sendDrugToDt(time: String) {
-        val dtDrugName = when(arguments?.get(drugName).toString()){
+        val dtDrugName = when (arguments?.get(drugName).toString()) {
             this.getString(R.string.cristalloidi) -> "crystalloids"
             this.getString(R.string.succinilcolina) -> "succinylcholine"
             this.getString(R.string.fentanil) -> "fentanyl"
             this.getString(R.string.ketamina) -> "ketamine"
             else -> ""
         }
-        if(dtDrugName != "") {
+        if (dtDrugName != "") {
             val drug = Drug(dtDrugName,
                     inputValueEditText.text.toString().toInt(),
                     unitEditText.text.toString(),

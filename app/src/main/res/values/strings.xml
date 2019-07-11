@@ -207,8 +207,8 @@
     <string name="dinamica">Dinamica</string>
     <string name="secondario">Secondario</string>
     <string name="indirizzo">Indirizzo</string>
-    <string name="mezzi_coinvolti">Mezzi coinvolti</string>
-    <string name="numero_pazienti">Numero pazieti</string>
+    <string name="mezzi_coinvolti">Missioni attive su evento</string>
+    <string name="numero_pazienti">Numero pazienti</string>
     <string name="emptyText">-------------</string>
 
     <string name="note">Note</string>

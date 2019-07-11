@@ -45,7 +45,7 @@ class LoginFragment : Fragment() {
             DtIdentifiers.doctor = medicSpinner.selectedItem.toString()
             // Obtain eventUuid and missionUuid
             // Update medic to missionService
-            RetrofitClient.getOngoingMissions()
+            RetrofitClient.getOngoingMissionsByVehicle()
             findNavController().navigate(R.id.action_login_to_home)
         }
         return root

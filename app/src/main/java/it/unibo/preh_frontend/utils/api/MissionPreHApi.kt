@@ -13,13 +13,21 @@ import retrofit2.http.Query
 
 interface MissionPreHApi {
     @GET("/missions")
-    fun getOngoingMissions(
+    fun getOngoingMissionsByVehicle(
         @Query("vehicle") vehicle: String,
         @Query("ongoing") ongoing: Boolean = true
     ): Call<OngoingMissions>
 
+    @GET("/missions")
+    fun getOngoingMissionsByEventId(
+        @Query("eventId") eventId: String,
+        @Query("ongoing") ongoing: Boolean = true
+    ): Call<OngoingMissions>
+
     @GET("/missions/{missionId}")
-    fun getMissionInformation(@Path("missionId") missionId: String) : Call<MissionInformation>
+    fun getMissionInformation(
+        @Path("missionId") missionId: String
+    ): Call<MissionInformation>
 
     @PUT("/missions/{missionId}/return-information")
     fun insertReturnInformation(
