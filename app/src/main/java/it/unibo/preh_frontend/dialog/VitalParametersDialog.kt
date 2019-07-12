@@ -105,10 +105,15 @@ class VitalParametersDialog : HistoryVitalParametersDialog() {
                 arteriousPressureEditable.toString().toInt() != 0) {
             val siSipaValue = cardiacFrequencyEditable.toString().toDouble() / arteriousPressureEditable.toString().toDouble()
             siSipa.text = "SI/SIPA = $siSipaValue"
-            if (siSipaValue > 0.9)
+            if (siSipaValue > 0.9) {
+                PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext(),
+                        context!!.getString(R.string.ipertensione_arteriosa_sintomatica)).activeCentralization()
                 siSipa.visibility = View.VISIBLE
-            else
+            } else {
+                PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext(),
+                        context!!.getString(R.string.ipertensione_arteriosa_sintomatica)).deactivatesCentralization()
                 siSipa.visibility = View.INVISIBLE
+            }
         }
     }
 
