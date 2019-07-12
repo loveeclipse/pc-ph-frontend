@@ -31,6 +31,14 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 object RetrofitClient {
 
     private const val DELAY_IN_MILLIS = 1000L
+    private const val EVENTS = "events"
+    private const val MISSIONS = "missions"
+    private const val PATIENTS = "patients"
+    private val discoveryNames: Map<String, String> = mapOf(
+            EVENTS to "events-service",
+            MISSIONS to "missions-service",
+            PATIENTS to "patients-service"
+    )
 
     lateinit var patientServiceUrl: String
     lateinit var eventServiceUrl: String
@@ -52,44 +60,43 @@ object RetrofitClient {
 
     fun obtainServiceLocation() {
         Log.d("ABCDE", "ON obtainServiceLocation ")
-        discoveryService.getService("patients-service").enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>?, response: Response<String>?) {
+        getService(discoveryNames.getValue(EVENTS))
+        getService(discoveryNames.getValue(MISSIONS))
+        getService(discoveryNames.getValue(PATIENTS))
+    }
+
+    fun getService(name: String) {
+        discoveryService.getService(name).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
                 Log.d("ABCDE", "patients start")
-                patientServiceUrl = response!!.body().toString()
-                patientService = retrofitClient.baseUrl(patientServiceUrl).build().create(PatientPreHApi::class.java)
+                when (response.code()) {
+                    in 200 .. 299 ->
+                        when (name) {
+                            discoveryNames.getValue(PATIENTS) ->
+                            {
+                                patientServiceUrl = response.body().toString()
+                                patientService = retrofitClient.baseUrl(patientServiceUrl).build().create(PatientPreHApi::class.java)
+                            }
+                            discoveryNames.getValue(EVENTS) ->
+                            {
+                                eventServiceUrl = response.body().toString()
+                                eventService = retrofitClient.baseUrl(eventServiceUrl).build().create(EventPreHApi::class.java)
+                            }
+                            discoveryNames.getValue(MISSIONS) ->
+                            {
+                                missionServiceUrl = response.body().toString()
+                                missionService = retrofitClient.baseUrl(missionServiceUrl).build().create(MissionPreHApi::class.java)
+                            }
+                        }
+                    503 ->
+                        Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
+                }
                 Log.d("ABCDE", "patients end")
             }
 
-            override fun onFailure(call: Call<String>?, t: Throwable?) {
-                call?.clone()?.enqueue(this)
-                t!!.printStackTrace()
-            }
-        })
-        discoveryService.getService("events-service").enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>?, response: Response<String>?) {
-                Log.d("ABCDE", "event start")
-                eventServiceUrl = response!!.body().toString()
-                eventService = retrofitClient.baseUrl(eventServiceUrl).build().create(EventPreHApi::class.java)
-                Log.d("ABCDE", "event end")
-            }
-
-            override fun onFailure(call: Call<String>?, t: Throwable?) {
-                call?.clone()?.enqueue(this)
-                t!!.printStackTrace()
-            }
-        })
-
-        discoveryService.getService("missions-service").enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>?, response: Response<String>?) {
-                Log.d("ABCDE", "mission start")
-                missionServiceUrl = response!!.body().toString()
-                missionService = retrofitClient.baseUrl(missionServiceUrl).build().create(MissionPreHApi::class.java)
-                Log.d("ABCDE", "mission end")
-            }
-
-            override fun onFailure(call: Call<String>?, t: Throwable?) {
-                call?.clone()?.enqueue(this)
-                t!!.printStackTrace()
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
+                t.printStackTrace()
             }
         })
     }
@@ -97,19 +104,26 @@ object RetrofitClient {
     fun createPatient(patientData: PatientData) {
         if (patientService != null) {
             patientService!!.postNewPatient(patientData).enqueue(object : Callback<String> {
-                override fun onResponse(call: Call<String>?, response: Response<String>?) {
-                    DtIdentifiers.patientId = response!!.body().toString()
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    when (response.code()) {
+                        in 200..299 ->
+                            DtIdentifiers.patientId = response.body().toString()
+                        503 ->
+                        {
+                            getService(discoveryNames.getValue(PATIENTS))
+                            Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
+                        }
+                    }
                 }
 
-                override fun onFailure(call: Call<String>?, t: Throwable?) {
-                    call!!.clone().enqueue(this)
-                    t!!.printStackTrace()
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
+                    t.printStackTrace()
                 }
             })
         } else {
             Log.e("TEST", "Service not init.")
-            Handler()
-                    .postDelayed({ createPatient(patientData) }, DELAY_IN_MILLIS)
+            Handler().postDelayed({ createPatient(patientData) }, DELAY_IN_MILLIS)
         }
     }
 
@@ -118,8 +132,7 @@ object RetrofitClient {
             patientService!!.putPatientAnagraphic(DtIdentifiers.patientId!!, anagraphic).enqueue(BasicVoidCallback)
         } else {
             Log.e("BAD_ID", "The given patientId was not yet set")
-            Handler()
-                    .postDelayed({ putAnagraphicData(anagraphic) }, DELAY_IN_MILLIS)
+            Handler().postDelayed({ putAnagraphicData(anagraphic) }, DELAY_IN_MILLIS)
         }
     }
 
@@ -131,8 +144,7 @@ object RetrofitClient {
                     .enqueue(BasicVoidCallback)
         } else {
             Log.e("BAD_ID", "The given missionId was not yet set")
-            Handler()
-                    .postDelayed({ sendTrackingStep(trackingStep, trackingStepItem) }, DELAY_IN_MILLIS)
+            Handler().postDelayed({ sendTrackingStep(trackingStep, trackingStepItem) }, DELAY_IN_MILLIS)
         }
     }
 
@@ -142,8 +154,7 @@ object RetrofitClient {
                     returnInformation).enqueue(BasicVoidCallback)
         } else {
             Log.e("BAD_ID", "The given missionId was not yet set")
-            Handler()
-                    .postDelayed({ sendReturnInformation(returnInformation) }, DELAY_IN_MILLIS)
+            Handler().postDelayed({ sendReturnInformation(returnInformation) }, DELAY_IN_MILLIS)
         }
     }
 
@@ -153,10 +164,7 @@ object RetrofitClient {
                     DtIdentifiers.doctor!!).enqueue(BasicVoidCallback)
         } else {
             Log.e("BAD_ID", "The given missionId was not yet set")
-            Handler()
-                    .postDelayed({
-                        Log.e("RETRAY", "RETRY medic")
-                        putMissionMedic() }, DELAY_IN_MILLIS)
+            Handler().postDelayed({ putMissionMedic() }, DELAY_IN_MILLIS)
         }
     }
 
@@ -174,24 +182,35 @@ object RetrofitClient {
             missionService!!
                     .getOngoingMissionsByVehicle(DtIdentifiers.vehicle!!)
                     .enqueue(object : Callback<OngoingMissions> {
-                override fun onFailure(call: Call<OngoingMissions>, t: Throwable) {}
+                        override fun onResponse(call: Call<OngoingMissions>, response: Response<OngoingMissions>) {
+                            when (response.code()) {
+                                204 ->
+                                    Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
+                                in 200..299 ->
+                                {
+                                    loginFragment.navigateApplicationFragments()
+                                    val ongoingMissions = OngoingMissions(response.body()!!.ids, response.body()!!.links)
+                                    Log.d("TEST", "MISIONID   ${ongoingMissions.ids[0]}")
+                                    DtIdentifiers.assignedMission = ongoingMissions.ids[0]
+                                    getMissionInformation()
+                                    putMissionMedic()
+                                }
+                                503 ->
+                                {
+                                    getService(discoveryNames.getValue(MISSIONS))
+                                    Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
+                                }
+                            }
+                        }
 
-                override fun onResponse(call: Call<OngoingMissions>, response: Response<OngoingMissions>) {
-                    if (response.code() == 200) {
-                        loginFragment.navigateApplicationFragments()
-                        val ongoingMissions = OngoingMissions(response.body()!!.ids, response.body()!!.links)
-                        Log.d("TEST", "MISIONID   ${ongoingMissions.ids[0]}")
-                        DtIdentifiers.assignedMission = ongoingMissions.ids[0]
-                        getMissionInformation()
-                        putMissionMedic()
-                    }
-                }
-            })
+                        override fun onFailure(call: Call<OngoingMissions>, t: Throwable) {
+                            Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
+                            t.printStackTrace()
+                        }
+                    })
         } else {
             Log.e("BAD_ID", "The given vehicleId was not yet set")
-            Handler().postDelayed({
-                Log.e("RETRY", "RETRY Mission")
-                getOngoingMissionsByVehicle(loginFragment) }, DELAY_IN_MILLIS)
+            Handler().postDelayed({ getOngoingMissionsByVehicle(loginFragment) }, DELAY_IN_MILLIS)
         }
     }
 
@@ -200,22 +219,30 @@ object RetrofitClient {
             missionService!!
                     .getOngoingMissionsByEventId(DtIdentifiers.assignedEvent!!)
                     .enqueue(object : Callback<OngoingMissions> {
-                override fun onFailure(call: Call<OngoingMissions>, t: Throwable) {
-                }
+                        override fun onResponse(call: Call<OngoingMissions>, response: Response<OngoingMissions>) {
+                            when (response.code()) {
+                                in 200..299 ->
+                                {
+                                    val ongoingMissions = OngoingMissions(response.body()!!.ids, response.body()!!.links)
+                                    CurrentEventInfo.involvedVehicles = ongoingMissions.ids.size
+                                    Log.d("TEST", "NUMERO MEZZI    ${CurrentEventInfo.involvedVehicles}")
+                                }
+                                503 ->
+                                {
+                                    getService(discoveryNames.getValue(MISSIONS))
+                                    Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
+                                }
+                            }
+                        }
 
-                override fun onResponse(call: Call<OngoingMissions>, response: Response<OngoingMissions>) {
-                    if (response.code() == 200) {
-                        val ongoingMissions = OngoingMissions(response.body()!!.ids, response.body()!!.links)
-                        CurrentEventInfo.involvedVehicles = ongoingMissions.ids.size
-                        Log.d("TEST", "NUMERO MEZZI    ${CurrentEventInfo.involvedVehicles}")
-                    }
-                }
-            })
+                        override fun onFailure(call: Call<OngoingMissions>, t: Throwable) {
+                            Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
+                            t.printStackTrace()
+                        }
+                    })
         } else {
             Log.e("BAD_ID", "The given eventId was not yet set")
-            Handler().postDelayed({
-                Log.e("RETRY", "RETRY count mission")
-                getOngoingMissionsByEventId() }, DELAY_IN_MILLIS)
+            Handler().postDelayed({ getOngoingMissionsByEventId() }, DELAY_IN_MILLIS)
         }
     }
 
@@ -224,25 +251,30 @@ object RetrofitClient {
             missionService!!
                     .getMissionInformation(DtIdentifiers.assignedMission!!)
                     .enqueue(object : Callback<MissionInformation> {
-                override fun onFailure(call: Call<MissionInformation>, t: Throwable) {
-                    t.printStackTrace()
-                    Log.d("TEST", call.request().url().toString())
-                }
+                        override fun onResponse(call: Call<MissionInformation>, response: Response<MissionInformation>) {
+                            when (response.code()) {
+                                in 200..299 ->
+                                {
+                                    DtIdentifiers.assignedEvent = response.body()!!.eventId
+                                    getEventInformation()
+                                    Log.d("TEST", "EVENTID     ${DtIdentifiers.assignedEvent}")
+                                }
+                                503 ->
+                                {
+                                    getService(discoveryNames.getValue(MISSIONS))
+                                    Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
+                                }
+                            }
+                        }
 
-                override fun onResponse(call: Call<MissionInformation>, response: Response<MissionInformation>?) {
-                    DtIdentifiers.assignedEvent =
-                            response!!
-                            .body()!!.eventId
-                    getEventInformation()
-                    Log.d("TEST", "EVENTID     ${DtIdentifiers.assignedEvent}")
-                }
-            })
+                        override fun onFailure(call: Call<MissionInformation>, t: Throwable) {
+                            Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
+                            t.printStackTrace()
+                        }
+                    })
         } else {
             Log.e("BAD_ID", "The given missionId was not yet set")
-            Handler()
-                    .postDelayed({
-                        Log.e("RETRY", "RETRY mission")
-                        getMissionInformation() }, DELAY_IN_MILLIS)
+            Handler().postDelayed({ getMissionInformation() }, DELAY_IN_MILLIS)
         }
     }
 
@@ -251,23 +283,30 @@ object RetrofitClient {
             eventService!!
                     .getEventData(DtIdentifiers.assignedEvent!!)
                     .enqueue(object : Callback<EventInformation> {
-                override fun onResponse(call: Call<EventInformation>, response: Response<EventInformation>) {
-                    val eventInformation: EventInformation = response.body()!!
-                    CurrentEventInfo.set(eventInformation)
-                    getOngoingMissionsByEventId()
-                }
+                        override fun onResponse(call: Call<EventInformation>, response: Response<EventInformation>) {
+                            when (response.code()) {
+                                in 200..299 ->
+                                {
+                                    val eventInformation: EventInformation = response.body()!!
+                                    CurrentEventInfo.set(eventInformation)
+                                    getOngoingMissionsByEventId()
+                                }
+                                503 ->
+                                {
+                                    getService(discoveryNames.getValue(EVENTS))
+                                    Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
+                                }
+                            }
+                        }
 
-                override fun onFailure(call: Call<EventInformation>, t: Throwable) {
-                    t.printStackTrace()
-                    Log.d("TEST", call.request().url().toString())
-                }
-            })
+                        override fun onFailure(call: Call<EventInformation>, t: Throwable) {
+                            Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
+                            t.printStackTrace()
+                        }
+                    })
         } else {
             Log.e("BAD_ID", "The given eventId was not yet set")
-            Handler()
-                    .postDelayed({
-                        Log.e("RETRY", "RETRY event")
-                        getEventInformation() }, DELAY_IN_MILLIS)
+            Handler().postDelayed({ getEventInformation() }, DELAY_IN_MILLIS)
         }
     }
 
@@ -278,8 +317,7 @@ object RetrofitClient {
                     .enqueue(BasicVoidCallback)
         } else {
             Log.e("BAD_ID", "The given patientId was not yet set")
-            Handler()
-                    .postDelayed({ putPatientStatus(patientStatus) }, DELAY_IN_MILLIS)
+            Handler().postDelayed({ putPatientStatus(patientStatus) }, DELAY_IN_MILLIS)
         }
     }
 
@@ -290,20 +328,18 @@ object RetrofitClient {
                     .enqueue(BasicStringCallback)
         } else {
             Log.e("BAD_ID", "The given patientId was not yet set")
-            Handler()
-                    .postDelayed({ postPatientVitalParameters(vitalParameters) }, DELAY_IN_MILLIS)
+            Handler().postDelayed({ postPatientVitalParameters(vitalParameters) }, DELAY_IN_MILLIS)
         }
     }
 
     fun postDrugs(drug: Drug) {
         if (DtIdentifiers.patientId != null && patientService != null) {
-        patientService!!
-                .postDrugs(DtIdentifiers.patientId!!, drug)
-                .enqueue(BasicStringCallback)
+            patientService!!
+                    .postDrugs(DtIdentifiers.patientId!!, drug)
+                    .enqueue(BasicStringCallback)
         } else {
             Log.e("BAD_ID", "The given patientId was not yet set")
-            Handler()
-                    .postDelayed({ postDrugs(drug) }, DELAY_IN_MILLIS)
+            Handler().postDelayed({ postDrugs(drug) }, DELAY_IN_MILLIS)
         }
     }
 
@@ -386,12 +422,22 @@ object RetrofitClient {
 
     object BasicVoidCallback : Callback<Void> {
         override fun onResponse(call: Call<Void>, response: Response<Void>) {
-            Log.d("TEST", call.request().url().toString())
-            Log.d("TEST", response.code().toString())
+            when (response.code()) {
+                in 200..299 ->
+                {
+                    Log.d("TEST", call.request().url().toString())
+                    Log.d("TEST", response.code().toString())
+                }
+                503 ->
+                {
+                    getService(discoveryNames.getValue(call.request().url().encodedPathSegments().first()))
+                    Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
+                }
+            }
         }
 
         override fun onFailure(call: Call<Void>, t: Throwable) {
-            call.clone().enqueue(this)
+            Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
             t.printStackTrace()
             Log.d("TEST", call.request().url().toString())
         }
@@ -399,12 +445,22 @@ object RetrofitClient {
 
     object BasicStringCallback : Callback<String> {
         override fun onResponse(call: Call<String>, response: Response<String>) {
-            Log.d("TEST", call.request().url().toString())
-            Log.d("TEST", response.code().toString())
+            when (response.code()) {
+                in 200..299 ->
+                {
+                    Log.d("TEST", call.request().url().toString())
+                    Log.d("TEST", response.code().toString())
+                }
+                503 ->
+                {
+                    getService(discoveryNames.getValue(call.request().url().encodedPathSegments().first()))
+                    Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
+                }
+            }
         }
 
         override fun onFailure(call: Call<String>, t: Throwable) {
-            call.clone().enqueue(this)
+            Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
             t.printStackTrace()
             Log.d("TEST", call.request().url().toString())
         }
