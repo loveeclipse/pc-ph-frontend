@@ -88,7 +88,7 @@ object RetrofitClient {
                                 missionService = retrofitClient.baseUrl(missionServiceUrl).build().create(MissionPreHApi::class.java)
                             }
                         }
-                    503 ->
+                    else ->
                         Handler().postDelayed({ call.clone().enqueue(this) }, DELAY_IN_MILLIS)
                 }
                 Log.d("ABCDE", "patients end")
