@@ -89,7 +89,7 @@
             app:layout_constraintTop_toBottomOf="@+id/confirmButton"
             android:layout_marginBottom="70dp"
             app:layout_constraintBottom_toTopOf="@+id/mission_search_textview"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
     <TextView
             android:text="@string/ricerca_missione_in_corso"
             android:layout_width="0dp"
