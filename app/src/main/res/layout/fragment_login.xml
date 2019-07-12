@@ -25,6 +25,8 @@
             android:text="@string/conferma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@drawable/bg_button"
+            android:textColor="@color/text_color"
             android:paddingVertical="@dimen/buttonVerticalPadding"
             android:paddingHorizontal="@dimen/buttonHorizontalPadding"
             android:id="@+id/confirmButton"

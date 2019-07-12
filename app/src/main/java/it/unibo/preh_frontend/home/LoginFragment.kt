@@ -49,8 +49,8 @@ class LoginFragment : Fragment() {
         vehicleSpinner.adapter = adapter
 
         root.findViewById<Button>(R.id.confirmButton).setOnClickListener {
+            it.isEnabled = false
             missionProgressBar.visibility = View.VISIBLE
-
             missionTextView.visibility = View.VISIBLE
 
             setDoctorAndVehicle("Dott. " + medicSpinner.selectedItem.toString(), vehicleSpinner.selectedItem.toString())
