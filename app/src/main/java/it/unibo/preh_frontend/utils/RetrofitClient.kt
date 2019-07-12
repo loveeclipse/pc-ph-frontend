@@ -70,7 +70,7 @@ object RetrofitClient {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 Log.d("ABCDE", "patients start")
                 when (response.code()) {
-                    in 200 .. 299 ->
+                    in 200..299 ->
                         when (name) {
                             discoveryNames.getValue(PATIENTS) ->
                             {

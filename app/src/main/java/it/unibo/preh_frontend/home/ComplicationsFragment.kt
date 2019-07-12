@@ -51,53 +51,53 @@ class ComplicationsFragment : Fragment() {
         getComponents(root)
 
         cardioCirculatoryShockSwitch.setOnClickListener {
+            setHistoryStatus(cardioCirculatoryShockSwitch.isChecked, this.getString(R.string.shock_cardiocircolatorio))
             val time = DateManager.getStandardRepresentation()
             if (cardioCirculatoryShockSwitch.isChecked) {
-                setHistoryStatus(cardioCirculatoryShockSwitch.isChecked, this.getString(R.string.shock_cardiocircolatorio))
                 RetrofitClient.postComplication("cardiocirculatory-shock", time)
             } else {
                 RetrofitClient.deleteComplication("cardiocirculatory-shock")
             }
         }
         deterioratingStateConsciousnessSwitch.setOnClickListener {
+            setHistoryStatus(deterioratingStateConsciousnessSwitch.isChecked, this.getString(R.string.deterioramento_stato_di_coscenza))
             val time = DateManager.getStandardRepresentation()
             if (deterioratingStateConsciousnessSwitch.isChecked) {
-                setHistoryStatus(deterioratingStateConsciousnessSwitch.isChecked, this.getString(R.string.deterioramento_stato_di_coscenza))
                 RetrofitClient.postComplication("impaired-consciousness", time)
             } else {
             }
         }
         anisoMidriasiSwitch.setOnClickListener {
+            setHistoryStatus(anisoMidriasiSwitch.isChecked, this.getString(R.string.anisocoria_midriasi))
             val time = DateManager.getStandardRepresentation()
             if (anisoMidriasiSwitch.isChecked) {
-                setHistoryStatus(anisoMidriasiSwitch.isChecked, this.getString(R.string.anisocoria_midriasi))
                 RetrofitClient.postComplication("anisocoria-mydriasis", time)
             } else {
                 RetrofitClient.deleteComplication("anisocoria-mydriasis")
             }
         }
         respiratoryFailureSwitch.setOnClickListener {
+            setHistoryStatus(respiratoryFailureSwitch.isChecked, this.getString(R.string.insufficienza_respiratoria))
             val time = DateManager.getStandardRepresentation()
             if (respiratoryFailureSwitch.isChecked) {
-                setHistoryStatus(respiratoryFailureSwitch.isChecked, this.getString(R.string.insufficienza_respiratoria))
                 RetrofitClient.postComplication("respiratory-failure", time)
             } else {
                 RetrofitClient.deleteComplication("respiratory-failure")
             }
         }
         landingInItinereSwitch.setOnClickListener {
+            setHistoryStatus(landingInItinereSwitch.isChecked, this.getString(R.string.atterraggio_in_itinere_per_manovra_terapeutica))
             val time = DateManager.getStandardRepresentation()
             if (landingInItinereSwitch.isChecked) {
-                setHistoryStatus(landingInItinereSwitch.isChecked, this.getString(R.string.atterraggio_in_itinere_per_manovra_terapeutica))
                 RetrofitClient.postComplication("landing-in-itinere", time)
             } else {
                 RetrofitClient.deleteComplication("landing-in-itinere")
             }
         }
         deathInItinereButton.setOnClickListener {
-            val time = DateManager.getStandardRepresentation()
             setButtonColor(deathInItinereButton, resources,
                     "${this.getString(R.string.decesso)} ${this.getString(R.string.in_itinere)}")
+            val time = DateManager.getStandardRepresentation()
             if (!deathInItinere) {
                 deathInItinere = true
                 RetrofitClient.postComplication("death-in-itinere", time)
@@ -107,9 +107,9 @@ class ComplicationsFragment : Fragment() {
             }
         }
         deathArrivalInPSButton.setOnClickListener {
-            val time = DateManager.getStandardRepresentation()
             setButtonColor(deathArrivalInPSButton, resources,
                     "${this.getString(R.string.decesso)} ${this.getString(R.string.all_arrivo_in_ps)}")
+            val time = DateManager.getStandardRepresentation()
             if (!deathInPs) {
                 deathInPs = true
                 RetrofitClient.postComplication("demise-in-ps", time)

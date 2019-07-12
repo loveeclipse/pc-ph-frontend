@@ -44,46 +44,46 @@ class ManeuverFragment : Fragment() {
         getComponents(root)
 
         cervicalCollarSwitch.setOnClickListener {
+            setHistoryStatus(cervicalCollarSwitch.isChecked, this.getString(R.string.collare_cervicale))
             if (cervicalCollarSwitch.isChecked) {
                 val time: String = DateManager.getStandardRepresentation()
                 RetrofitClient.postSimpleManeuver("cervical-collar", time)
-                setHistoryStatus(cervicalCollarSwitch.isChecked, this.getString(R.string.collare_cervicale))
             } else {
                 RetrofitClient.deleteSimpleManeuver("cervical-collar")
             }
         }
         immobilizationSwitch.setOnClickListener {
+            setHistoryStatus(immobilizationSwitch.isChecked, this.getString(R.string.immobilizzazione))
             if (immobilizationSwitch.isChecked) {
                 val time: String = DateManager.getStandardRepresentation()
                 RetrofitClient.postSimpleManeuver("immobilization", time)
-                setHistoryStatus(immobilizationSwitch.isChecked, this.getString(R.string.immobilizzazione))
             } else {
                 RetrofitClient.deleteSimpleManeuver("immobilization")
             }
         }
         electricalCardioversionSwitch.setOnClickListener {
+            setHistoryStatus(electricalCardioversionSwitch.isChecked, this.getString(R.string.cardioversione_elettrica_sincronizzata))
             if (electricalCardioversionSwitch.isChecked) {
                 val time: String = DateManager.getStandardRepresentation()
                 RetrofitClient.postSimpleManeuver("electrical-cardioversion", time)
-                setHistoryStatus(electricalCardioversionSwitch.isChecked, this.getString(R.string.cardioversione_elettrica_sincronizzata))
             } else {
                 RetrofitClient.deleteSimpleManeuver("electrical-cardioversion")
             }
         }
         gastricProbeSwitch.setOnClickListener {
+            setHistoryStatus(gastricProbeSwitch.isChecked, this.getString(R.string.sonda_gastrica))
             if (gastricProbeSwitch.isChecked) {
                 val time: String = DateManager.getStandardRepresentation()
                 RetrofitClient.postSimpleManeuver("feeding-tube", time) // TODO Controlla se non mettere gastric-probe
-                setHistoryStatus(gastricProbeSwitch.isChecked, this.getString(R.string.sonda_gastrica))
             } else {
                 RetrofitClient.deleteSimpleManeuver("feeding-tube")
             }
         }
         bladderProbeSwitch.setOnClickListener {
+            setHistoryStatus(bladderProbeSwitch.isChecked, this.getString(R.string.sonda_vescicale))
             if (bladderProbeSwitch.isChecked) {
                 val time: String = DateManager.getStandardRepresentation()
                 RetrofitClient.postSimpleManeuver("vesical-catheter", time)
-                setHistoryStatus(bladderProbeSwitch.isChecked, this.getString(R.string.sonda_vescicale))
             } else {
                 RetrofitClient.deleteSimpleManeuver("vesical-catheter")
             }
