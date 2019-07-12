@@ -76,8 +76,8 @@
             app:layout_constraintGuide_percent="0.8"/>
     <ProgressBar
             style="@android:style/Widget.Material.ProgressBar.Large"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:indeterminate="true"
             android:id="@+id/mission_search_progressbar"
             android:layout_marginStart="60dp"
