@@ -2,6 +2,7 @@ package it.unibo.preh_frontend.utils
 
 import android.os.Handler
 import android.util.Log
+import it.unibo.preh_frontend.home.LoginFragment
 import it.unibo.preh_frontend.model.dt_model.Anagraphic
 import it.unibo.preh_frontend.model.dt_model.Drug
 import it.unibo.preh_frontend.model.dt_model.EventInformation
@@ -168,7 +169,7 @@ object RetrofitClient {
         }
     }
 
-    fun getOngoingMissionsByVehicle() {
+    fun getOngoingMissionsByVehicle(loginFragment: LoginFragment) {
         if (DtIdentifiers.vehicle != null && missionService != null) {
             missionService!!
                     .getOngoingMissionsByVehicle(DtIdentifiers.vehicle!!)
@@ -177,6 +178,7 @@ object RetrofitClient {
 
                 override fun onResponse(call: Call<OngoingMissions>, response: Response<OngoingMissions>) {
                     if (response.code() == 200) {
+                        loginFragment.navigateApplicationFragments()
                         val ongoingMissions = OngoingMissions(response.body()!!.ids, response.body()!!.links)
                         Log.d("TEST", "MISIONID   ${ongoingMissions.ids[0]}")
                         DtIdentifiers.assignedMission = ongoingMissions.ids[0]
@@ -189,7 +191,7 @@ object RetrofitClient {
             Log.e("BAD_ID", "The given vehicleId was not yet set")
             Handler().postDelayed({
                 Log.e("RETRY", "RETRY Mission")
-                getOngoingMissionsByVehicle() }, DELAY_IN_MILLIS)
+                getOngoingMissionsByVehicle(loginFragment) }, DELAY_IN_MILLIS)
         }
     }
 

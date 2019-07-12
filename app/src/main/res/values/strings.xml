@@ -237,4 +237,5 @@
     <string name="cancel_button">Annulla</string>
     
     <string name="luogo_rilascio">Luogo rilascio</string>
+    <string name="ricerca_missione_in_corso">Ricerca missione in corso</string>
 </resources>
