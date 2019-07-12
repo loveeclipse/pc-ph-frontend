@@ -52,6 +52,8 @@ class AnagraphicDialogFragment : Fragment() {
         anticoagulantsSwitch = root.findViewById(R.id.anticoagulants_switch)
         antiplateletsSwitch = root.findViewById(R.id.antiplatelets_switch)
 
+        RetrofitClient.getEventInformation()
+
         return root
     }
 
