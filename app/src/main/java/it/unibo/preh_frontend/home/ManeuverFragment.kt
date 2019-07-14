@@ -74,18 +74,18 @@ class ManeuverFragment : Fragment() {
             setHistoryStatus(gastricProbeSwitch.isChecked, this.getString(R.string.sonda_gastrica))
             if (gastricProbeSwitch.isChecked) {
                 val time: String = DateManager.getStandardRepresentation()
-                RetrofitClient.postSimpleManeuver("feeding-tube", time) // TODO Controlla se non mettere gastric-probe
+                RetrofitClient.postSimpleManeuver("gastric-probe", time)
             } else {
-                RetrofitClient.deleteSimpleManeuver("feeding-tube")
+                RetrofitClient.deleteSimpleManeuver("gastric-probe")
             }
         }
         bladderProbeSwitch.setOnClickListener {
             setHistoryStatus(bladderProbeSwitch.isChecked, this.getString(R.string.sonda_vescicale))
             if (bladderProbeSwitch.isChecked) {
                 val time: String = DateManager.getStandardRepresentation()
-                RetrofitClient.postSimpleManeuver("vesical-catheter", time)
+                RetrofitClient.postSimpleManeuver("bladder-catheter", time)
             } else {
-                RetrofitClient.deleteSimpleManeuver("vesical-catheter")
+                RetrofitClient.deleteSimpleManeuver("bladder-catheter")
             }
         }
         root.findViewById<Button>(R.id.pacing_button).setOnClickListener {
