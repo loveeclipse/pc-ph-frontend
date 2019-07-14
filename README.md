@@ -17,7 +17,7 @@ It is possible to download the source code and all the release Apk at the follow
 https://github.com/loveeclipse/pc-18-preh-frontend/releases
 
 ## Team members
-Nicola Atti (nicola.atti@studio.unibo.it)
-Chiara Volonnino (chiara.volonnino@studio.unibo.it)
+Nicola Atti (nicola.atti@studio.unibo.it)  
+Chiara Volonnino (chiara.volonnino@studio.unibo.it)  
 Marco Canducci (marco.canducci@studio.unibo.it)  
 Daniele Schiavi (daniele.schiavi@studio.unibo.it)
