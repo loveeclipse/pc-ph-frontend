@@ -29,7 +29,7 @@ open class HistoryVitalParametersDialog : DialogFragment() {
     protected lateinit var verbalResponseSpinner: Spinner
     protected lateinit var motorResponseSpinner: Spinner
     protected lateinit var pupilSxRadiogroup: RadioGroup
-    protected lateinit var pupilDXRadiogroup: RadioGroup
+    protected lateinit var pupilDxRadiogroup: RadioGroup
     protected lateinit var photoreagentSxSwitch: Switch
     protected lateinit var photoreagentDxSwitch: Switch
     protected lateinit var bodyTempEditText: EditText
@@ -68,7 +68,7 @@ open class HistoryVitalParametersDialog : DialogFragment() {
             verbalResponseSpinner = findViewById(R.id.verbal_response_spinner)
             motorResponseSpinner = findViewById(R.id.motor_response_spinner)
             pupilSxRadiogroup = findViewById(R.id.pupilSx_radiogroup)
-            pupilDXRadiogroup = findViewById(R.id.pupilDx_radiogroup)
+            pupilDxRadiogroup = findViewById(R.id.pupilDx_radiogroup)
             photoreagentSxSwitch = findViewById(R.id.photoreagentSx_switch)
             photoreagentDxSwitch = findViewById(R.id.photoreagentDx_switch)
             bodyTempEditText = findViewById(R.id.body_temperature_edittext)
@@ -140,7 +140,7 @@ open class HistoryVitalParametersDialog : DialogFragment() {
         verbalResponseSpinner.setSelection(data.verbalResponse)
         motorResponseSpinner.setSelection(data.motorResponse)
         pupilSxRadiogroup.check(data.pupilSx)
-        pupilDXRadiogroup.check(data.pupilDx)
+        pupilDxRadiogroup.check(data.pupilDx)
         photoreagentSxSwitch.isChecked = data.photoreagentSx
         photoreagentDxSwitch.isChecked = data.photoreagentDx
         bodyTempEditText.setText(data.temperature.toString())

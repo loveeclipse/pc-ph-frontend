@@ -184,7 +184,7 @@
     <string name="ferita_penetrante">Ferita penetrante di testa, collo, tronco o radice di un arto</string>
     <string name="frattura_cranica_io">Frattura canica infossata/otorragia</string>
     <string name="volet_costale_id">Volet costale o instabilità/deformità della parete toracica</string>
-    <string name="ustione">Ustione di 2° e/o 3° grado, >30% superfice corporea ustionata, volto/mani/piedi/genitali</string>
+    <string name="ustione">Ustione di 2° e/o 3° grado, >30\% superfice corporea ustionata, volto/mani/piedi/genitali</string>
     <string name="sospetta_lesione_verbale">Sospetta lesione vertebrale</string>
     <string name="default_shock_index">0.0</string>
 
@@ -207,8 +207,8 @@
     <string name="dinamica">Dinamica</string>
     <string name="secondario">Secondario</string>
     <string name="indirizzo">Indirizzo</string>
-    <string name="mezzi_coinvolti">Mezzi coinvolti</string>
-    <string name="numero_pazienti">Numero pazieti</string>
+    <string name="mezzi_coinvolti">Missioni attive su evento</string>
+    <string name="numero_pazienti">Numero pazienti</string>
     <string name="emptyText">-------------</string>
 
     <string name="note">Note</string>
@@ -237,4 +237,5 @@
     <string name="cancel_button">Annulla</string>
     
     <string name="luogo_rilascio">Luogo rilascio</string>
+    <string name="ricerca_missione_in_corso">Ricerca missione in corso</string>
 </resources>

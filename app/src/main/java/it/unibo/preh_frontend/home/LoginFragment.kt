@@ -16,8 +16,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import it.unibo.preh_frontend.R
 import android.widget.ArrayAdapter
+import android.widget.ProgressBar
+import it.unibo.preh_frontend.utils.DtIdentifiers
+import it.unibo.preh_frontend.utils.RetrofitClient
 
 class LoginFragment : Fragment() {
+
+    private lateinit var medicSpinner: Spinner
+    private lateinit var vehicleSpinner: Spinner
+    private lateinit var missionProgressBar: ProgressBar
+    private lateinit var missionTextView: TextView
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -26,8 +34,11 @@ class LoginFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_login, container, false)
-        val medicSpinner = root.findViewById<Spinner>(R.id.medicSpinner)
-        val vehicleSpinner = root.findViewById<Spinner>(R.id.vehicleSpinner)
+
+        medicSpinner = root.findViewById(R.id.medicSpinner)
+        vehicleSpinner = root.findViewById(R.id.vehicleSpinner)
+        missionProgressBar = root.findViewById(R.id.mission_search_progressbar)
+        missionTextView = root.findViewById(R.id.mission_search_textview)
 
         var adapter = ArrayAdapter.createFromResource(requireContext(), R.array.medicSpinnerItems, R.layout.spinner_layout)
         adapter.setDropDownViewResource(R.layout.dropdown_spinner_layout)
@@ -38,8 +49,14 @@ class LoginFragment : Fragment() {
         vehicleSpinner.adapter = adapter
 
         root.findViewById<Button>(R.id.confirmButton).setOnClickListener {
+            it.isEnabled = false
+            missionProgressBar.visibility = View.VISIBLE
+            missionTextView.visibility = View.VISIBLE
+
             setDoctorAndVehicle("Dott. " + medicSpinner.selectedItem.toString(), vehicleSpinner.selectedItem.toString())
-            findNavController().navigate(R.id.action_login_to_home)
+            DtIdentifiers.vehicle = vehicleSpinner.selectedItem.toString()
+            DtIdentifiers.doctor = medicSpinner.selectedItem.toString()
+            RetrofitClient.getOngoingMissionsByVehicle(this)
         }
         return root
     }
@@ -49,6 +66,10 @@ class LoginFragment : Fragment() {
             findViewById<TextView>(R.id.doctor).text = doctor
             findViewById<TextView>(R.id.vehicle).text = vehicle
         }
+    }
+
+    fun navigateApplicationFragments() {
+        findNavController().navigate(R.id.action_login_to_home)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

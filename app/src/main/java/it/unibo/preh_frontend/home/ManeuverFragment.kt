@@ -11,12 +11,13 @@ import android.widget.Button
 import android.widget.Switch
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
-
+import it.unibo.preh_frontend.utils.RetrofitClient
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.ManeuverData
 import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.dialog.PacingDialogFragment
 import it.unibo.preh_frontend.model.ManeuverHistoryData
+import it.unibo.preh_frontend.utils.DateManager
 
 class ManeuverFragment : Fragment() {
 
@@ -44,18 +45,48 @@ class ManeuverFragment : Fragment() {
 
         cervicalCollarSwitch.setOnClickListener {
             setHistoryStatus(cervicalCollarSwitch.isChecked, this.getString(R.string.collare_cervicale))
+            if (cervicalCollarSwitch.isChecked) {
+                val time: String = DateManager.getStandardRepresentation()
+                RetrofitClient.postSimpleManeuver("cervical-collar", time)
+            } else {
+                RetrofitClient.deleteSimpleManeuver("cervical-collar")
+            }
         }
         immobilizationSwitch.setOnClickListener {
             setHistoryStatus(immobilizationSwitch.isChecked, this.getString(R.string.immobilizzazione))
+            if (immobilizationSwitch.isChecked) {
+                val time: String = DateManager.getStandardRepresentation()
+                RetrofitClient.postSimpleManeuver("immobilization", time)
+            } else {
+                RetrofitClient.deleteSimpleManeuver("immobilization")
+            }
         }
         electricalCardioversionSwitch.setOnClickListener {
             setHistoryStatus(electricalCardioversionSwitch.isChecked, this.getString(R.string.cardioversione_elettrica_sincronizzata))
+            if (electricalCardioversionSwitch.isChecked) {
+                val time: String = DateManager.getStandardRepresentation()
+                RetrofitClient.postSimpleManeuver("electrical-cardioversion", time)
+            } else {
+                RetrofitClient.deleteSimpleManeuver("electrical-cardioversion")
+            }
         }
         gastricProbeSwitch.setOnClickListener {
             setHistoryStatus(gastricProbeSwitch.isChecked, this.getString(R.string.sonda_gastrica))
+            if (gastricProbeSwitch.isChecked) {
+                val time: String = DateManager.getStandardRepresentation()
+                RetrofitClient.postSimpleManeuver("gastric-probe", time)
+            } else {
+                RetrofitClient.deleteSimpleManeuver("gastric-probe")
+            }
         }
         bladderProbeSwitch.setOnClickListener {
             setHistoryStatus(bladderProbeSwitch.isChecked, this.getString(R.string.sonda_vescicale))
+            if (bladderProbeSwitch.isChecked) {
+                val time: String = DateManager.getStandardRepresentation()
+                RetrofitClient.postSimpleManeuver("bladder-catheter", time)
+            } else {
+                RetrofitClient.deleteSimpleManeuver("bladder-catheter")
+            }
         }
         root.findViewById<Button>(R.id.pacing_button).setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("fragment_pacing_dialog") == null)

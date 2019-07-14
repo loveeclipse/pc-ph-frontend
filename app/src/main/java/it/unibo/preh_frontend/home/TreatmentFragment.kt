@@ -21,6 +21,10 @@ import it.unibo.preh_frontend.utils.PhysiologicaCriteriaManager
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
 import it.unibo.preh_frontend.utils.HistoryManager
+import it.unibo.preh_frontend.utils.RetrofitClient
+import it.unibo.preh_frontend.model.dt_model.SimpleTreatment
+import it.unibo.preh_frontend.model.dt_model.InjectionTreatment
+import it.unibo.preh_frontend.utils.DateManager
 
 class TreatmentFragment : Fragment() {
 
@@ -98,12 +102,16 @@ class TreatmentFragment : Fragment() {
         }
         trachealTubeButton.setOnClickListener {
             setButtonColor(trachealTubeButton, resources, R.string.tubo_tracheale)
-            if (trachealTubeButton.isActivated)
+            val time = DateManager.getStandardRepresentation()
+            if (trachealTubeButton.isActivated) {
                 PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext(),
                         this.getString(R.string.necessit_supporto_ventilatorio)).activeCentralization()
-            else
+                RetrofitClient.postSimpleTreatment(SimpleTreatment("tracheal-tube", time))
+            } else {
                 PhysiologicaCriteriaManager(sharedPreferences, requireActivity(), requireContext(),
                         this.getString(R.string.necessit_supporto_ventilatorio)).deactivatesCentralization()
+                RetrofitClient.deleteSimpleManeuver("tracheal-tube")
+            }
         }
 
         oxygenTherapyButton.setOnClickListener {
@@ -127,18 +135,27 @@ class TreatmentFragment : Fragment() {
         peripheralButton.setOnClickListener {
             addHistoryEntry(peripheralButton.isPressed, peripheralSpinner.selectedItem.toString(),
                     "${peripheralSpinner.selectedItem} ${this.getString(R.string.gauge)} ${this.getString(R.string.periferica)}")
+            val time = DateManager.getStandardRepresentation()
+            val peripheralInjection = InjectionTreatment("peripheral", peripheralSpinner.selectedItem.toString() + "-" + this.getString(R.string.gauge), time)
+            RetrofitClient.postInjectionTreatment(peripheralInjection)
             peripheralSpinner.setSelection(0)
         }
         centralSpinner.onItemSelectedListener = spinnerAdapter(centralButton)
         centralButton.setOnClickListener {
             addHistoryEntry(centralButton.isPressed, centralSpinner.selectedItem.toString(),
                     "${centralSpinner.selectedItem} ${this.getString(R.string.french)} ${this.getString(R.string.centrale)}")
+            val time = DateManager.getStandardRepresentation()
+            val centralInjection = InjectionTreatment("central", centralSpinner.selectedItem.toString() + "-" + this.getString(R.string.french), time)
+            RetrofitClient.postInjectionTreatment(centralInjection)
             centralSpinner.setSelection(0)
         }
         intraosseousSpinner.onItemSelectedListener = spinnerAdapter(intraosseousButton)
         intraosseousButton.setOnClickListener {
             addHistoryEntry(intraosseousButton.isPressed, intraosseousSpinner.selectedItem.toString(),
                     "${intraosseousSpinner.selectedItem} ${this.getString(R.string.size)} ${this.getString(R.string.intraossea)}")
+            val time = DateManager.getStandardRepresentation()
+            val intraosseusInjection = InjectionTreatment("intreosseus", intraosseousSpinner.selectedItem.toString() + "-" + this.getString(R.string.size), time)
+            RetrofitClient.postInjectionTreatment(intraosseusInjection)
             intraosseousSpinner.setSelection(0)
         }
         hemostasisButton.setOnClickListener {

@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import it.unibo.preh_frontend.utils.PermissionManager
 import it.unibo.preh_frontend.dialog.TerminatePreH
+import it.unibo.preh_frontend.utils.RetrofitClient
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        RetrofitClient.obtainServiceLocation()
         setContentView(R.layout.activity_main)
         navController = findNavController(R.id.nav_host_fragment)
         setSupportActionBar(findViewById(R.id.toolbar))
