@@ -2,6 +2,7 @@
 
 ## Project for Pervasive Computing
 
+https://www.unibo.it/en/teaching/course-unit-catalogue/course-unit/2018/412647
 
 ## Getting Started
 
@@ -9,7 +10,7 @@
 
 In order to smoothly run the application, an Android version with API level equal or greater than 21 (Android 5.0 Lollipop) is required.
 
-If the services aren't online, a manual launch of all three of them is required. These services can be found at the following github page:
+If the services aren't online, a manual launch of all three of them is required. These services can be found at the following github page: 
 https://github.com/loveeclipse/pc-18-preh-backend/releases
 
 ## Releases
