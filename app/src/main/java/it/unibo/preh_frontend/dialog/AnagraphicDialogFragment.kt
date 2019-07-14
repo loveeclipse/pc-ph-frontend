@@ -14,7 +14,9 @@ import com.google.gson.Gson
 
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.AnagraphicData
+import it.unibo.preh_frontend.model.dt_model.Anagraphic
 import it.unibo.preh_frontend.utils.HistoryManager
+import it.unibo.preh_frontend.utils.RetrofitClient
 
 class AnagraphicDialogFragment : Fragment() {
 
@@ -27,6 +29,8 @@ class AnagraphicDialogFragment : Fragment() {
     private lateinit var anticoagulantsSwitch: Switch
     private lateinit var antiplateletsSwitch: Switch
 
+    private lateinit var root: View
+
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
@@ -35,7 +39,7 @@ class AnagraphicDialogFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_anagrafic, container, false)
+        root = inflater.inflate(R.layout.fragment_anagrafic, container, false)
 
         sharedPreferences = requireContext().getSharedPreferences("preHData", Context.MODE_PRIVATE)
 
@@ -47,6 +51,8 @@ class AnagraphicDialogFragment : Fragment() {
         genderRadioGroup = root.findViewById(R.id.gender_radiogroup)
         anticoagulantsSwitch = root.findViewById(R.id.anticoagulants_switch)
         antiplateletsSwitch = root.findViewById(R.id.antiplatelets_switch)
+
+        RetrofitClient.getEventInformation()
 
         return root
     }
@@ -81,7 +87,28 @@ class AnagraphicDialogFragment : Fragment() {
         val stateAsJson = gson.toJson(anagraphicData, AnagraphicData::class.java)
         sharedPreferences.edit().putString("anagraphicData", stateAsJson).apply()
         HistoryManager.addEntry(anagraphicData, sharedPreferences)
+        addAnagraphicToPatientDt()
         super.onStop()
+    }
+
+    private fun addAnagraphicToPatientDt() {
+        val gender = when (genderRadioGroup.checkedRadioButtonId) {
+            R.id.male_radio -> "male"
+            R.id.female_radio -> "female"
+            else -> null
+        }
+        RetrofitClient.putAnagraphicData(Anagraphic(nullEmptyField(nameEditText.text.toString()),
+                                                    nullEmptyField(surnameEditText.text.toString()),
+                                                    nullEmptyField(residenceEditText.text.toString()),
+                                                    nullEmptyField(birthplaceEditText.text.toString()),
+                                                    nullEmptyField(birthdayEditText.text.toString()),
+                                                    gender,
+                                                    anticoagulantsSwitch.isChecked,
+                                                    antiplateletsSwitch.isChecked))
+    }
+
+    private fun nullEmptyField(text: String): String? {
+        return if (text == "") null else text
     }
 
     private fun applySharedPreferences(anagraphicData: AnagraphicData) {

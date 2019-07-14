@@ -17,6 +17,8 @@ import it.unibo.preh_frontend.model.ComplicationsHistoryData
 import it.unibo.preh_frontend.utils.HistoryManager
 import it.unibo.preh_frontend.utils.ButtonAppearance.activateButton
 import it.unibo.preh_frontend.utils.ButtonAppearance.deactivateButton
+import it.unibo.preh_frontend.utils.RetrofitClient
+import it.unibo.preh_frontend.utils.DateManager
 
 class ComplicationsFragment : Fragment() {
 
@@ -33,6 +35,9 @@ class ComplicationsFragment : Fragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
 
+    private var deathInItinere = false
+    private var deathInPs = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,26 +52,71 @@ class ComplicationsFragment : Fragment() {
 
         cardioCirculatoryShockSwitch.setOnClickListener {
             setHistoryStatus(cardioCirculatoryShockSwitch.isChecked, this.getString(R.string.shock_cardiocircolatorio))
+            val time = DateManager.getStandardRepresentation()
+            if (cardioCirculatoryShockSwitch.isChecked) {
+                RetrofitClient.postComplication("cardiocirculatory-shock", time)
+            } else {
+                RetrofitClient.deleteComplication("cardiocirculatory-shock")
+            }
         }
         deterioratingStateConsciousnessSwitch.setOnClickListener {
             setHistoryStatus(deterioratingStateConsciousnessSwitch.isChecked, this.getString(R.string.deterioramento_stato_di_coscenza))
+            val time = DateManager.getStandardRepresentation()
+            if (deterioratingStateConsciousnessSwitch.isChecked) {
+                RetrofitClient.postComplication("impaired-consciousness", time)
+            } else {
+            }
         }
         anisoMidriasiSwitch.setOnClickListener {
             setHistoryStatus(anisoMidriasiSwitch.isChecked, this.getString(R.string.anisocoria_midriasi))
+            val time = DateManager.getStandardRepresentation()
+            if (anisoMidriasiSwitch.isChecked) {
+                RetrofitClient.postComplication("anisocoria-mydriasis", time)
+            } else {
+                RetrofitClient.deleteComplication("anisocoria-mydriasis")
+            }
         }
         respiratoryFailureSwitch.setOnClickListener {
             setHistoryStatus(respiratoryFailureSwitch.isChecked, this.getString(R.string.insufficienza_respiratoria))
+            val time = DateManager.getStandardRepresentation()
+            if (respiratoryFailureSwitch.isChecked) {
+                RetrofitClient.postComplication("respiratory-failure", time)
+            } else {
+                RetrofitClient.deleteComplication("respiratory-failure")
+            }
         }
         landingInItinereSwitch.setOnClickListener {
             setHistoryStatus(landingInItinereSwitch.isChecked, this.getString(R.string.atterraggio_in_itinere_per_manovra_terapeutica))
+            val time = DateManager.getStandardRepresentation()
+            if (landingInItinereSwitch.isChecked) {
+                RetrofitClient.postComplication("landing-in-itinere", time)
+            } else {
+                RetrofitClient.deleteComplication("landing-in-itinere")
+            }
         }
         deathInItinereButton.setOnClickListener {
-            setButtonColor(deathInItinereButton, deathArrivalInPSButton, resources,
+            setButtonColor(deathInItinereButton, resources,
                     "${this.getString(R.string.decesso)} ${this.getString(R.string.in_itinere)}")
+            val time = DateManager.getStandardRepresentation()
+            if (!deathInItinere) {
+                deathInItinere = true
+                RetrofitClient.postComplication("death-in-itinere", time)
+            } else {
+                deathInItinere = false
+                RetrofitClient.deleteComplication("death-in-itinere")
+            }
         }
         deathArrivalInPSButton.setOnClickListener {
-            setButtonColor(deathArrivalInPSButton, deathInItinereButton, resources,
+            setButtonColor(deathArrivalInPSButton, resources,
                     "${this.getString(R.string.decesso)} ${this.getString(R.string.all_arrivo_in_ps)}")
+            val time = DateManager.getStandardRepresentation()
+            if (!deathInPs) {
+                deathInPs = true
+                RetrofitClient.postComplication("demise-in-ps", time)
+            } else {
+                deathInPs = false
+                RetrofitClient.deleteComplication("demise-in-ps")
+            }
         }
         return root
     }
@@ -92,7 +142,7 @@ class ComplicationsFragment : Fragment() {
         }
     }
 
-    private fun setButtonColor(buttonPressed: Button, buttonSecondary: Button, resources: Resources, complicationsName: String) {
+    private fun setButtonColor(buttonPressed: Button, resources: Resources, complicationsName: String) {
         if (!buttonPressed.isActivated) {
             buttonPressed.isActivated = true
             activateButton(buttonPressed, resources)

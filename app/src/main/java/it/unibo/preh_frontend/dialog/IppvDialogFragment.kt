@@ -13,7 +13,10 @@ import com.google.gson.Gson
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.dialog.history.HistoryIppvDialog
 import it.unibo.preh_frontend.model.IppvData
+import it.unibo.preh_frontend.model.dt_model.IppvTreatment
+import it.unibo.preh_frontend.utils.DateManager
 import it.unibo.preh_frontend.utils.HistoryManager
+import it.unibo.preh_frontend.utils.RetrofitClient
 
 class IppvDialogFragment : HistoryIppvDialog() {
     private lateinit var parentDialog: Dialog
@@ -58,7 +61,18 @@ class IppvDialogFragment : HistoryIppvDialog() {
 
     override fun onCancel(dialog: DialogInterface) {
         addHistoryEntry(vtEditText.text.toString(), frEditText.text.toString(), peepEditText.text.toString(), fio2EditText.text.toString())
+        sendIppvDataToDt()
         super.onCancel(dialog)
+    }
+
+    private fun sendIppvDataToDt() {
+        val time = DateManager.getStandardRepresentation()
+        val ippvTreatment = IppvTreatment(vtEditText.text.toString().toInt(),
+                frEditText.text.toString().toInt(),
+                peepEditText.text.toString().toInt(),
+                fio2EditText.text.toString().toInt(),
+                time)
+        RetrofitClient.postIppvTreatment(ippvTreatment)
     }
 
     private fun addHistoryEntry(vt: String, fr: String, peep: String, fio2: String) {

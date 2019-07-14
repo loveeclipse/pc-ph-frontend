@@ -11,6 +11,7 @@ import android.widget.Spinner
 import android.widget.Switch
 import it.unibo.preh_frontend.R
 import it.unibo.preh_frontend.model.NewPcCarReturnData
+import it.unibo.preh_frontend.utils.DateManager
 
 class HistoryNewPcCarReturnDialog : HistoryNewPcCarDialog() {
     private lateinit var returnCode: Spinner
@@ -56,7 +57,7 @@ class HistoryNewPcCarReturnDialog : HistoryNewPcCarDialog() {
     private fun setData(data: NewPcCarReturnData) {
         type.text = data.eventName
         place.setText(data.place)
-        time.setText(data.eventTime)
+        time.setText(DateManager.getHistoryRepresentation(data.eventTime))
         returnCode.setSelection(data.returnCode)
         hospital.setSelection(data.hospital)
         vehicleRadiogroup.check(data.vehicle)
