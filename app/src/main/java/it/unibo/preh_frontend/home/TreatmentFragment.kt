@@ -122,9 +122,13 @@ class TreatmentFragment : Fragment() {
         }
         minithoracotomySxButton.setOnClickListener {
             setButtonColor(minithoracotomySxButton, resources, R.string.minithoracotomySx)
+                val time = DateManager.getStandardRepresentation()
+                RetrofitClient.postSimpleTreatment(SimpleTreatment("minithoracotomySx", time))
         }
         minithoracotomyDxButton.setOnClickListener {
             setButtonColor(minithoracotomyDxButton, resources, R.string.minithoracotomyDx)
+                val time = DateManager.getStandardRepresentation()
+                RetrofitClient.postSimpleTreatment(SimpleTreatment("minithoracotoymDx", time))
         }
         ippvButton.setOnClickListener {
             if (requireActivity().supportFragmentManager.findFragmentByTag("fragment_ippv_dialog") == null)
